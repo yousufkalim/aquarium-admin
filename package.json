@@ -1,17 +1,17 @@
 {
-  "name": "React-Js",
+  "name": "Aquarium-React",
   "version": "0.1.0",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/falconitconsultant/React-JS.git"
+    "url": "git+https://github.com/falconitconsultant/Aquarium-React.git"
   },
   "author": "Yousuf Kalim",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/falconitconsultant/React-JS/issues"
+    "url": "https://github.com/falconitconsultant/Aquarium-React/issues"
   },
-  "homepage": "https://github.com/falconitconsultant/React-JS#readme",
+  "homepage": "https://github.com/falconitconsultant/Aquarium-React#readme",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
