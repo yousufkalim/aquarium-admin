@@ -1,0 +1,84 @@
+.bgImg {
+  object-fit: cover;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+#heroSection {
+  position: relative;
+}
+.imgTxt {
+  color: white;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 130px;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+}
+.contentOnImg {
+  display: flex;
+  flex-direction: row;
+  font-family: 'Helvetica Neue', sans-serif;
+  align-items: center;
+}
+.vl {
+  border-left: 4px solid white;
+  height: 150px;
+  margin: 3%;
+}
+.txtOnImg {
+  font-weight: 700;
+  font-size: 38px;
+  line-height: 1.4;
+}
+.logoOnImg {
+  width: 418px;
+}
+
+.descriptionOnImg {
+  text-align: center;
+  margin-top: 4%;
+}
+.getStartedBtn {
+  background: #28cdff !important;
+  font-weight: 700 !important;
+  font-size: 16px !important;
+  border-radius: 14px !important;
+  text-transform: none !important;
+  padding: 10px 36px !important;
+  cursor: pointer !important;
+}
+
+.descriptionTxt {
+  font-size: 22px;
+  font-weight: 400;
+  padding: 0 31%;
+  padding-bottom: 3%;
+  width: 100%;
+}
+.mouseImg {
+  position: absolute;
+  bottom: 10%;
+
+  animation: vertical-shaking 1.3s infinite;
+  left: 48%;
+}
+@keyframes vertical-shaking {
+  0% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(5px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+  75% {
+    transform: translateY(5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

@@ -1,11 +1,13 @@
 /* Importing all CSS files */
 @import url('./Header.css');
-
+@import url('./Landing.css');
+@import url('http://fonts.cdnfonts.com/css/helvetica-neue-9');
 /* Defaults */
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: 'Helvetica Neue', sans-serif;
 }
 
 /* Primary Variables */

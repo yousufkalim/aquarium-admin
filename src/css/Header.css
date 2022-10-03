@@ -1,4 +1,57 @@
 /* Header Component Style */
-h1 {
-  color: red;
+.navbar {
+  background-color: #202020;
+  height: 89px;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  padding: 15px 100px;
+  line-height: 3;
+  font-family: 'Helvetica Neue', sans-serif;
+}
+
+.navbar ul {
+  display: flex !important;
+  float: right !important;
+  list-style: none !important;
+  color: white;
+
+  /* margin-right: 14px; */
+
+  text-align: right;
+}
+.navbar li {
+  display: inline-block !important;
+  color: white;
+}
+
+.logo {
+  height: 50px;
+  margin-right: 4%;
+}
+.loginBtn {
+  background: #28cdff !important;
+  font-weight: 700 !important;
+  font-size: 16px !important;
+  border-radius: 14px !important;
+  text-transform: none !important;
+  padding: 8px 26px !important;
+  cursor: pointer !important;
+}
+#menu {
+  display: flex !important;
+  justify-content: space-between !important;
+  font-weight: 400;
+  font-size: 19px;
+}
+
+.nav-item {
+  text-decoration: none;
+  color: white;
+}
+.nav-item:hover {
+  color: #28cdff;
+}
+.active-nav-item {
+  color: #28cdff;
 }
