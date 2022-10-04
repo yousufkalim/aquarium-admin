@@ -40,8 +40,17 @@ export default function Header() {
             </Link>
           </strong>
           , Developed by &nbsp;
-          <strong>Falcon Consulting. </strong>
-          &nbsp; All rights reserved.
+          <strong style={{ textDecoration: 'underline' }}>
+            <a
+              href="https://falconitconsultant.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ textDecoration: 'none', color: 'black' }}
+            >
+              Falcon Consulting
+            </a>
+          </strong>
+          . &nbsp; All rights reserved.
         </p>
       </div>
     </div>

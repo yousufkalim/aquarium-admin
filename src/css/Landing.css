@@ -65,6 +65,100 @@
   left: 48%;
   /* transform: translateX(-50%); */
 }
+.vector {
+  position: relative;
+  bottom: 30%;
+}
+
+#howItWorkSection,
+#howItWorkSectionCol2 {
+  background: #f3fdff;
+  height: 100vh;
+}
+
+#howItWorkSection,
+#howItWorkSectionCol2 {
+  background: #f3fdff;
+  height: 100vh;
+  padding-right: 7%;
+}
+.mainHeading {
+  padding: 15% 0 5% 15%;
+}
+.howItWorkSectionCol2 {
+  padding-right: 25%;
+  margin-top: 12%;
+}
+#howItWorkCol2 {
+  margin-top: 30%;
+}
+.numberedBox {
+  font-size: 50px;
+  font-weight: 700;
+  color: #28cdff;
+  background-color: #c8f3ff;
+  text-align: center;
+  width: 89px;
+  padding: 2%;
+  border-radius: 13px;
+  font-family: 'Roboto Slab', serif;
+}
+
+.firstNumberedBox {
+  font-size: 50px;
+  font-weight: 700;
+  color: #28cdff;
+  background-color: #ffffff;
+  text-align: center;
+  width: 89px;
+  padding: 1%;
+  border-radius: 13px;
+  font-family: 'Roboto Slab', serif;
+  position: relative;
+  right: 5%;
+  z-index: 5;
+  margin: auto;
+}
+.boxHeading {
+  font-size: 23px;
+  font-weight: 700;
+}
+.boxContent {
+  font-size: 22px;
+  font-weight: 400;
+  color: #a0a0a0;
+}
+.mainHeading {
+  color: #28cdff;
+  font-size: 64px;
+  font-weight: 700;
+  font-family: 'Economica', sans-serif;
+}
+.leftBox {
+  width: 30%;
+  background-color: #28cdff;
+  color: white;
+  margin-left: auto !important;
+  padding: 7% 3%;
+  width: 100%;
+  border-radius: 15px;
+  position: relative;
+  top: -4%;
+  z-index: 1;
+
+  right: 20% !important;
+}
+.card1Heading {
+  font-size: 24px;
+  font-weight: 700;
+}
+.leftBoxContent {
+  font-size: 22px;
+  font-weight: 400;
+  color: #8c8c8c;
+  padding-left: 15%;
+}
+
 @keyframes vertical-shaking {
   0% {
     transform: translateY(0);
