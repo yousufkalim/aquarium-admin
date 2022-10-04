@@ -61,9 +61,9 @@
 .mouseImg {
   position: absolute;
   bottom: 10%;
-
   animation: vertical-shaking 1.3s infinite;
   left: 48%;
+  /* transform: translateX(-50%); */
 }
 @keyframes vertical-shaking {
   0% {

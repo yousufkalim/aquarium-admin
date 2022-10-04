@@ -4,6 +4,7 @@ import React from 'react';
 // Importing Components
 import Header from '../components/Header';
 import Landing from './LandingPg';
+import Footer from '../components/Footer';
 
 // Home Component
 export default function Home() {
@@ -11,6 +12,7 @@ export default function Home() {
     <div>
       <Header />
       <Landing />
+      <Footer />
     </div>
   );
 }

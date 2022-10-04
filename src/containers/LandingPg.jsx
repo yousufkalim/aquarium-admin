@@ -37,6 +37,13 @@ export default function Landing() {
           <img src={Mouse} alt="" />
         </div>
       </Grid>
+      <Grid id="howItWorkSection" item xs={12}>
+        <h1>How it works</h1>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+        </p>
+      </Grid>
     </Grid>
   );
 }

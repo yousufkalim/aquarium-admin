@@ -1,6 +1,7 @@
 /* Importing all CSS files */
 @import url('./Header.css');
 @import url('./Landing.css');
+@import url('./Footer.css');
 @import url('http://fonts.cdnfonts.com/css/helvetica-neue-9');
 /* Defaults */
 * {
