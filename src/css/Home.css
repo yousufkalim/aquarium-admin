@@ -62,7 +62,7 @@
   position: absolute;
   bottom: 10%;
   animation: vertical-shaking 1.3s infinite;
-  left: 48%;
+  left: 47%;
   /* transform: translateX(-50%); */
 }
 
@@ -70,9 +70,7 @@
 #howItWorkSectionCol2 {
   padding-right: 7%;
 }
-.mainHeading {
-  padding: 15% 0 5% 15%;
-}
+
 .howItWorkSectionCol2 {
   padding-right: 25%;
   margin-top: 12%;
@@ -109,7 +107,7 @@
   background-color: #ffffff;
   text-align: center;
   width: 89px;
-  padding: 1%;
+  padding: 2%;
   border-radius: 13px;
   font-family: 'Roboto Slab', serif;
   position: absolute;
@@ -130,6 +128,7 @@
   font-size: 64px;
   font-weight: 700;
   font-family: 'Economica', sans-serif;
+  padding: 15% 0 5% 15%;
 }
 .cardContent {
   font-size: 21px;
@@ -205,16 +204,99 @@
   .cardContent {
     font-size: 17px;
   }
+  .contentOnImg {
+    margin-left: 3%;
+  }
 }
 
-/* Small devices (portrait tablets and large phones, 600px and up) */
+/* Small devices (portrait tablets and  phones, 600px and up) */
 @media only screen and (min-width: 300px) and (max-width: 600px) {
+  .logoOnImg {
+    width: 244px;
+  }
+  .txtOnImg {
+    font-weight: 700;
+    font-size: 23px;
+    line-height: 1.1;
+  }
+  .descriptionTxt {
+    font-size: 15px;
+    font-weight: 400;
+    padding: 6%;
+  }
+  .getStartedBtn {
+    padding: 8px 17px !important;
+    font-size: 12px !important;
+    margin-top: 13% !important;
+  }
+  .mouseImg {
+    display: none;
+  }
+  .vl {
+    height: 77px;
+    margin: 2%;
+  }
+
+  .howItWorkSection {
+    background: none;
+    /* background-color: aliceblue; */
+  }
+  .howItWorkSectionCol2 {
+    padding: 0;
+  }
+  #howItWorkSection,
+  #howItWorkSectionCol2 {
+    margin: auto;
+    padding: 7%;
+  }
+
+  .numberedBox,
+  .firstNumberedBox {
+    margin: auto;
+  }
+  .card1Heading {
+    color: black;
+  }
+  .leftBox {
+    width: auto;
+    background-color: white;
+    font-size: 22px;
+    font-weight: 400;
+    color: #a0a0a0;
+    margin: auto;
+    margin-left: none !important;
+    padding: 0;
+    border-radius: none;
+    position: unset;
+  }
+  .firstNumberedBox {
+    position: unset;
+    color: #28cdff;
+    background-color: #c8f3ff;
+    width: 89px;
+    padding: 2%;
+    border-radius: 13px;
+    margin-bottom: 6%;
+    margin-top: 15%;
+  }
+  .mainHeading {
+    padding: 0 !important;
+    text-align: center;
+    margin: auto;
+  }
+  .leftBoxContent {
+    padding-left: 0 !important;
+    padding-top: 4%;
+  }
+  .howItWorkSectionCol2,
+  #howItWorkCol2 {
+    margin-top: 0;
+  }
+  .boxContent {
+    margin-bottom: 10%;
+  }
 }
 
 /* Medium devices (landscape tablets, 768px and up)
   @media only screen and (min-width: 768px) {
   } */
-
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-/* @media only screen and (min-width: 1200px) {
-  }  */

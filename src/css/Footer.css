@@ -52,3 +52,26 @@
   position: absolute;
   bottom: 0;
 }
+
+@media only screen and (min-width: 300px) and (max-width: 600px) {
+  .footerSection {
+    background: none;
+    height: 525px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+  }
+
+  .hl,
+  .footerSection1,
+  .footerSection2 {
+    display: none;
+  }
+  .copyrightTxt {
+    background-color: #28cdff;
+    padding: 3%;
+    display: block;
+    font-size: 14px;
+    text-align: center;
+  }
+}

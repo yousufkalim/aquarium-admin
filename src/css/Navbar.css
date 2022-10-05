@@ -61,3 +61,18 @@
 .active-nav-item {
   color: #28cdff;
 }
+
+@media only screen and (min-width: 300px) and (max-width: 600px) {
+  .menu {
+    display: none;
+  }
+  .navbar {
+    padding: 13px;
+    display: inline;
+    height: 20%;
+  }
+  .loginBtn {
+    font-size: 12px !important;
+    padding: 5px 22px !important;
+  }
+}

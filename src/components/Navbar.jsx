@@ -9,7 +9,7 @@ export default function Navbar() {
   return (
     <div className="navigationBar">
       <nav className="container navbar">
-        <div>
+        <div className="menu">
           <ul id="menu">
             <li style={{ marginRight: ' 50px' }}>
               <NavLink to="/About" className="nav-item" activeClassName="active-nav-item">
