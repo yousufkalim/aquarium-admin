@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <Grid container spacing={2}>
+      <Grid container spacing={0}>
         {/* ======================================hero section================================  */}
         <Grid id="heroSection" item xs={12}>
           <img src={BG} className="bgImg" alt="heroImg" />
@@ -42,8 +42,9 @@ export default function Home() {
             <img src={Mouse} alt="" />
           </div>
         </Grid>
-        {/* =============================How it works section=================================  */}
-
+      </Grid>
+      {/* =============================How it works section=================================  */}
+      <Grid container spacing={0} className="howItWorkSection">
         <Grid id="howItWorkSection" item xs={12} sm={12} lg={8}>
           <Grid item xs={12} sm={12} lg={7}>
             <h1 className="mainHeading">How it works</h1>

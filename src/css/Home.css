@@ -68,14 +68,6 @@
 
 #howItWorkSection,
 #howItWorkSectionCol2 {
-  background: #f3fdff;
-  height: 100vh;
-}
-
-#howItWorkSection,
-#howItWorkSectionCol2 {
-  background: #f3fdff;
-  height: 100vh;
   padding-right: 7%;
 }
 .mainHeading {
@@ -87,6 +79,16 @@
 }
 #howItWorkCol2 {
   margin-top: 30%;
+}
+.howItWorkSection {
+  background: url('../assets/images/howitworksBG.svg');
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: 100%;
+  height: 1249px;
+  position: relative;
+  top: 63px;
+  margin-top: -75px;
 }
 .numberedBox {
   font-size: 50px;
@@ -134,11 +136,11 @@
   background-color: #28cdff;
   color: white;
   margin-left: auto !important;
-  padding: 7% 3%;
+  padding: 9% 4%;
   width: 100%;
   border-radius: 15px;
   position: relative;
-  top: 8%;
+  top: 5.5%;
   z-index: 1;
 
   right: 20% !important;
