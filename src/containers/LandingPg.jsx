@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import BG from '../assets/images/BG.svg';
 import Logo from '../assets/images/LOGO.svg';
 import Mouse from '../assets/images/Mouse.svg';
-import Vector from '../assets/images/Vector.svg';
 
 // Landing Page Component
 
@@ -41,8 +40,8 @@ export default function Landing() {
       </Grid>
       {/* ================================How it works section=================================  */}
 
-      <Grid id="howItWorkSection" item xs={8}>
-        <Grid item xs={7}>
+      <Grid id="howItWorkSection" item xs={12} sm={12} lg={8}>
+        <Grid item xs={12} sm={12} lg={7}>
           <h1 className="mainHeading">How it works</h1>
           <p className="leftBoxContent">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -50,8 +49,8 @@ export default function Landing() {
             exercitation
           </p>
         </Grid>
-        <div className="firstNumberedBox">1</div>
-        <Grid className="leftBox" item xs={5}>
+        <Grid className="leftBox" item xs={12} sm={12} lg={5}>
+          <div className="firstNumberedBox">1</div>
           <h1 className="card1Heading">COMPLETE AQUARIUM SERVICES</h1>
           <br />
           <p>
@@ -60,10 +59,9 @@ export default function Landing() {
             exercitation
           </p>
         </Grid>
-        <img src={Vector} className="vector" alt="" />
       </Grid>
 
-      <Grid id="howItWorkSectionCol2" item xs={4}>
+      <Grid id="howItWorkSectionCol2" item xs={12} sm={12} lg={4}>
         <Grid className="howItWorkSectionCol2" id="howItWorkCol2">
           <div className="numberedBox">2</div>
           <br />

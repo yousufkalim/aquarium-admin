@@ -65,10 +65,6 @@
   left: 48%;
   /* transform: translateX(-50%); */
 }
-.vector {
-  position: relative;
-  bottom: 300px;
-}
 
 #howItWorkSection,
 #howItWorkSectionCol2 {
@@ -114,10 +110,9 @@
   padding: 1%;
   border-radius: 13px;
   font-family: 'Roboto Slab', serif;
-  position: relative;
-  right: 5%;
+  position: absolute;
+  top: -15%;
   z-index: 5;
-  margin: auto;
 }
 .boxHeading {
   font-size: 23px;
@@ -143,7 +138,7 @@
   width: 100%;
   border-radius: 15px;
   position: relative;
-  top: -4%;
+  top: 8%;
   z-index: 1;
 
   right: 20% !important;
