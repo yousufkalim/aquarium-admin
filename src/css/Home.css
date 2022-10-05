@@ -15,13 +15,15 @@
   top: 130px;
   align-items: center;
   justify-content: center;
-  width: 100vw;
+  width: 100%;
 }
 .contentOnImg {
+  width: 100%;
   display: flex;
   flex-direction: row;
   font-family: 'Helvetica Neue', sans-serif;
   align-items: center;
+  justify-content: center;
 }
 .vl {
   border-left: 4px solid white;
@@ -177,40 +179,8 @@
 }
 /* ===========================MEDIA QUERIES========================= */
 
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) and (max-width: 1919px) {
-  .howItWorkSection {
-    height: 1060px;
-    position: relative;
-    top: 47px;
-    margin-top: -133px;
-  }
-  #howItWorkSection,
-  #howItWorkSectionCol2 {
-    padding-top: 7%;
-  }
-  .footerSection {
-    height: 415px !important;
-  }
-  .boxHeading {
-    font-size: 19px;
-  }
-  .leftBoxContent,
-  .boxContent {
-    font-size: 18px;
-  }
-
-  .card1Heading,
-  .cardContent {
-    font-size: 17px;
-  }
-  .contentOnImg {
-    margin-left: 3%;
-  }
-}
-
 /* Small devices (portrait tablets and  phones, 600px and up) */
-@media only screen and (min-width: 300px) and (max-width: 600px) {
+@media only screen and (min-width: 300px) and (max-width: 992px) {
   .logoOnImg {
     width: 244px;
   }
@@ -218,6 +188,7 @@
     font-weight: 700;
     font-size: 23px;
     line-height: 1.1;
+    width: 51%;
   }
   .descriptionTxt {
     font-size: 15px;
@@ -295,8 +266,46 @@
   .boxContent {
     margin-bottom: 10%;
   }
+  .bgImg {
+    margin-top: -19px;
+  }
+  .mainHeading {
+    font-size: 63px;
+  }
 }
 
-/* Medium devices (landscape tablets, 768px and up)
-  @media only screen and (min-width: 768px) {
-  } */
+/* Medium devices (landscape tablets, 768px and up)*/
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .txtOnImg {
+    width: 35%;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) and (max-width: 1919px) {
+  .howItWorkSection {
+    height: 1060px;
+    position: relative;
+    top: 47px;
+    margin-top: -133px;
+  }
+  #howItWorkSection,
+  #howItWorkSectionCol2 {
+    padding-top: 7%;
+  }
+  .footerSection {
+    height: 415px !important;
+  }
+  .boxHeading {
+    font-size: 19px;
+  }
+  .leftBoxContent,
+  .boxContent {
+    font-size: 18px;
+  }
+
+  .card1Heading,
+  .cardContent {
+    font-size: 17px;
+  }
+}

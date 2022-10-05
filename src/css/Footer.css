@@ -53,7 +53,7 @@
   bottom: 0;
 }
 
-@media only screen and (min-width: 300px) and (max-width: 600px) {
+@media only screen and (min-width: 300px) and (max-width: 992px) {
   .footerSection {
     background: none;
     height: 525px;
