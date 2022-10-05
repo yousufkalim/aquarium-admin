@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import { NavLink, Link } from 'react-router-dom';
 import Logo from '../assets/images/LOGO.svg';
 // Component
-export default function Header() {
+export default function Navbar() {
   return (
     <div>
       <nav className="container navbar">
@@ -30,7 +30,7 @@ export default function Header() {
           </Link>
         </div>
         <div className="btn">
-          <Link to="Login" style={{ textDecoration: 'none' }}>
+          <Link to="/login" style={{ textDecoration: 'none' }}>
             <Button className="loginBtn" variant="contained">
               Login
             </Button>
