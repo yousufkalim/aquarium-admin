@@ -58,7 +58,7 @@ export default function Home() {
             <div className="firstNumberedBox">1</div>
             <h1 className="card1Heading">COMPLETE AQUARIUM SERVICES</h1>
             <br />
-            <p>
+            <p className="cardContent">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
               incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
               exercitation

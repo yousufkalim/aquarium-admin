@@ -131,6 +131,9 @@
   font-weight: 700;
   font-family: 'Economica', sans-serif;
 }
+.cardContent {
+  font-size: 21px;
+}
 .leftBox {
   width: 30%;
   background-color: #28cdff;
@@ -173,3 +176,45 @@
     transform: translateY(0);
   }
 }
+/* ===========================MEDIA QUERIES========================= */
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) and (max-width: 1919px) {
+  .howItWorkSection {
+    height: 1060px;
+    position: relative;
+    top: 47px;
+    margin-top: -133px;
+  }
+  #howItWorkSection,
+  #howItWorkSectionCol2 {
+    padding-top: 7%;
+  }
+  .footerSection {
+    height: 415px !important;
+  }
+  .boxHeading {
+    font-size: 19px;
+  }
+  .leftBoxContent,
+  .boxContent {
+    font-size: 18px;
+  }
+
+  .card1Heading,
+  .cardContent {
+    font-size: 17px;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 300px) and (max-width: 600px) {
+}
+
+/* Medium devices (landscape tablets, 768px and up)
+  @media only screen and (min-width: 768px) {
+  } */
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+/* @media only screen and (min-width: 1200px) {
+  }  */

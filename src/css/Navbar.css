@@ -1,4 +1,10 @@
 /* Header Component Style */
+.navigationBar {
+  position: sticky;
+  top: 0;
+  z-index: 1300;
+}
+
 .navbar {
   background-color: #202020;
   height: 89px;
