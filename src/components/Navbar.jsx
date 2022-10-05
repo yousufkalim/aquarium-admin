@@ -7,7 +7,7 @@ import Logo from '../assets/images/LOGO.svg';
 // Component
 export default function Navbar() {
   return (
-    <div>
+    <div className="navigationBar">
       <nav className="container navbar">
         <div>
           <ul id="menu">
