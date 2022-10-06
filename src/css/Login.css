@@ -2,6 +2,7 @@
   background-image: url('../assets/images/BGlogin.svg');
   height: 100vh;
   width: 100vw;
+  background-size: 100%;
 }
 .logoLogin {
   width: 100%;
@@ -14,7 +15,7 @@
   text-align: center;
 }
 .loginFormSection {
-  margin-top: 45px;
+  margin-top: 90px;
   width: 100%;
 }
 .signInTxt {
@@ -41,4 +42,50 @@
 
 .passwordField:hover {
   border-color: #28cdff !important;
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1919px) {
+  .loginFirstSection {
+    height: 433px;
+  }
+  .loginFormSection {
+    margin-top: 0;
+  }
+}
+@media only screen and (min-width: 300px) and (max-width: 992px) {
+  .loginPg {
+    background: none;
+    background-image: linear-gradient(180deg, #28cdff -20%, aliceblue 29%);
+  }
+  .loginFirstSection {
+    height: 17%;
+    background-color: #28cdff;
+    -webkit-border-radius: 0% 0% 50% 50% / 0% 0% 50% 50%;
+    -moz-border-radius: 0% 0% 50% 50% / 0% 0% 50% 50%;
+    border-radius: 0% 0% 50% 50% / 0% 0% 50% 50%;
+    background-image: linear-gradient(315deg, #28cdff 0%, black 74%);
+  }
+
+  .lgForm {
+    text-align: center;
+    padding: 0% 2%;
+  }
+  .forgetPasswordTxt {
+    padding: 3%;
+    font-size: 17px;
+  }
+  .logoLogin {
+    width: 100%;
+    height: 83px;
+    position: relative;
+    top: 2%;
+  }
+  .signInTxt {
+    color: #28cdff;
+    font-size: 26px;
+  }
+  .signInBtn {
+    font-size: 17px !important;
+    padding: 8px 30px !important;
+  }
 }

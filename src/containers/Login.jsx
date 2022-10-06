@@ -10,6 +10,7 @@ import { makeStyles } from '@mui/styles';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Logo from '../assets/images/loginLogo.svg';
+// import Footer from '../components/Footer';
 
 const useOutlinedInputStyles = makeStyles({
   root: {
@@ -41,16 +42,16 @@ export default function Login() {
   const outlinedInputStyles = useOutlinedInputStyles();
   return (
     <div className="loginPg">
-      <Grid item xs={12} className="loginFirstSection">
+      <Grid item xs={0} className="loginFirstSection">
         <img src={Logo} className="logoLogin" alt="" />
       </Grid>
 
       <Grid container className="loginFormSection" xs={12}>
-        <Grid xs={0} xl={4.5} lg={4.5} />
-        <Grid xl={3} lg={3}>
+        <Grid xs={0} xl={4.5} lg={4.2} />
+        <Grid className="lgForm" xs={12} xl={3} lg={3.5}>
           <h1 className="signInTxt">Sign in to Aquarium!</h1>
           <Grid item xs={12}>
-            <FormControl sx={{ mb: 3, mt: 6, width: '100%' }} variant="outlined">
+            <FormControl sx={{ mb: 3, mt: 4, width: '100%' }} variant="outlined">
               <TextField
                 id="outlined-email"
                 classes={outlinedInputStyles}
@@ -60,7 +61,7 @@ export default function Login() {
             </FormControl>
           </Grid>
           <Grid item xs={12}>
-            <FormControl sx={{ mb: 8, width: '100%' }} variant="outlined">
+            <FormControl sx={{ mb: 5, width: '100%' }} variant="outlined">
               <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
               <OutlinedInput
                 id="outlined-adornment-password"
@@ -97,6 +98,7 @@ export default function Login() {
         </Grid>
         {/* <CssTextField /> */}
       </Grid>
+      {/* {window.innerWidth < 992 ? <Footer /> : ''} */}
     </div>
   );
 }
