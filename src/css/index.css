@@ -1,11 +1,16 @@
 /* Importing all CSS files */
-@import url('./Header.css');
-
+@import url('http://fonts.cdnfonts.com/css/helvetica-neue-9');
+@import url('https://fonts.googleapis.com/css2?family=Economica:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;700&display=swap');
+@import url('./Navbar.css');
+@import url('./Home.css');
+@import url('./Footer.css');
 /* Defaults */
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: 'Helvetica Neue', sans-serif;
 }
 
 /* Primary Variables */
