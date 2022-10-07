@@ -1871,7 +1871,6 @@
     csstype "^3.1.1"
     prop-types "^15.8.1"
 
-<<<<<<< HEAD
 "@mui/styles@^5.10.8":
   version "5.10.8"
   resolved "https://registry.yarnpkg.com/@mui/styles/-/styles-5.10.8.tgz#19421237e1580326fe2025adb6edf84730fee77d"
@@ -1899,12 +1898,6 @@
   version "5.10.7"
   resolved "https://registry.yarnpkg.com/@mui/system/-/system-5.10.7.tgz#c13e5d135967e9689c473a66db4695ff78012701"
   integrity sha512-kwyhjjKGsgtBRFl6vSqidDZcNKU5S1juTgm4Xi2fyWxaEbIQb9Sh9y0iVP2bNCJzgDr0alLaENOZOEaDWHISAQ==
-=======
-"@mui/system@^5.10.8":
-  version "5.10.8"
-  resolved "https://registry.yarnpkg.com/@mui/system/-/system-5.10.8.tgz#afea52aeed34bd2d98c993322b5b09585106953d"
-  integrity sha512-hRQ354zcrYP/KHqK8FheICSvE9raQaUgQaV+A3oD4JETaFUCVI9Ytt+RcQYgTqx02xlCXIjl8LK1rPjTneySqw==
->>>>>>> 9fb29a2b72bf0b66f62b45495c6a2eb1a079843f
   dependencies:
     "@babel/runtime" "^7.19.0"
     "@mui/private-theming" "^5.10.6"
