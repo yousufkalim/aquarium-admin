@@ -1,16 +1,14 @@
-import { Grid, OutlinedInput, IconButton } from '@mui/material';
-import InputLabel from '@mui/material/InputLabel';
+import { Grid, IconButton } from '@mui/material';
 import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-// import { styled } from '@mui/material/styles';
+import ClearIcon from '@mui/icons-material/Clear';
 import { makeStyles } from '@mui/styles';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Logo from '../assets/images/loginLogo.svg';
-// import Footer from '../components/Footer';
 
 const useOutlinedInputStyles = makeStyles({
   root: {
@@ -24,16 +22,13 @@ const useOutlinedInputStyles = makeStyles({
       '&:hover fieldset': {
         borderColor: '#28CDFF',
       },
+      '&::placeholder fieldset': {
+        fontWeight: 800,
+        color: 'red',
+      },
       '&.Mui-focused fieldset': {
         borderColor: '#28CDFF',
       },
-    },
-
-    '& .MuiOutlinedInput-notchedOutline': {
-      border: '2px solid #CDEEFC ',
-      borderRadius: '20px',
-      fontSize: 16,
-      width: 'auto',
     },
   },
 });
@@ -44,6 +39,7 @@ export default function Login() {
     <div className="loginPg">
       <Grid item xs={0} className="loginFirstSection">
         <img src={Logo} className="logoLogin" alt="" />
+        <ClearIcon className="loginClearIcon" />
       </Grid>
 
       <Grid container className="loginFormSection" xs={12}>
@@ -57,34 +53,51 @@ export default function Login() {
                 classes={outlinedInputStyles}
                 label="Email"
                 size="normal"
+                InputLabelProps={{
+                  style: {
+                    color: '#8C8C8C',
+                    fontSize: '19px',
+                    fontWeight: '700',
+                  },
+                }}
               />
             </FormControl>
           </Grid>
           <Grid item xs={12}>
             <FormControl sx={{ mb: 5, width: '100%' }} variant="outlined">
-              <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
-              <OutlinedInput
-                id="outlined-adornment-password"
-                className="passwordField"
+              <TextField
+                id="outlined-password"
                 classes={outlinedInputStyles}
+                label="Password"
+                size="normal"
+                InputLabelProps={{
+                  style: {
+                    color: '#8C8C8C',
+                    fontSize: '19px',
+                    fontWeight: '700',
+                  },
+                }}
                 // type={values.showPassword ? 'text' : 'password'}
                 // value={values.password}
                 // onChange={handleChange('password')}
-                endAdornment={
-                  // eslint-disable-next-line react/jsx-wrap-multilines
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      // onClick={handleClickShowPassword}
-                      // onMouseDown={handleMouseDownPassword}
-                      edge="end"
-                    >
-                      {false ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
-                  </InputAdornment>
-                }
-                label="Password"
+                InputProps={{
+                  endAdornment: (
+                    // eslint-disable-next-line react/jsx-wrap-multilines
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        // onClick={handleClickShowPassword}
+                        // onMouseDown={handleMouseDownPassword}
+                        edge="end"
+                        sx={{ color: '#28CDFF' }}
+                      >
+                        {true ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
               />
+
               <p className="forgetPasswordTxt">Forget password</p>
             </FormControl>
           </Grid>

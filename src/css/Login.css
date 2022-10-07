@@ -39,9 +39,15 @@
   padding: 2% 0;
   cursor: pointer;
 }
-
-.passwordField:hover {
-  border-color: #28cdff !important;
+.loginClearIcon {
+  position: absolute;
+  z-index: 1300;
+  right: 92px;
+  top: 34px;
+  color: white;
+  height: 2em !important;
+  width: 2em !important;
+  cursor: pointer;
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1919px) {
@@ -51,8 +57,22 @@
   .loginFormSection {
     margin-top: 0;
   }
+  .loginClearIcon {
+    height: 1.3em !important;
+    width: 1.3em !important;
+  }
 }
 @media only screen and (min-width: 300px) and (max-width: 992px) {
+  .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root {
+    font-size: 1rem !important;
+  }
+
+  .loginClearIcon {
+    position: absolute;
+    right: 0;
+    width: 1.2em !important;
+    top: 0;
+  }
   .loginPg {
     background: none;
     background-image: linear-gradient(180deg, #28cdff -20%, aliceblue 29%);
