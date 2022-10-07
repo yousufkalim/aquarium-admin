@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Grid, IconButton } from '@mui/material';
 import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
@@ -9,6 +10,7 @@ import { makeStyles } from '@mui/styles';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Logo from '../assets/images/loginLogo.svg';
+import ForgetPasswordPopup from '../components/ForgetPasswordPopup';
 
 const useOutlinedInputStyles = makeStyles({
   root: {
@@ -34,12 +36,16 @@ const useOutlinedInputStyles = makeStyles({
 });
 
 export default function Login() {
+  const [open, setOpen] = useState(false);
+
   const outlinedInputStyles = useOutlinedInputStyles();
   return (
     <div className="loginPg">
       <Grid item xs={0} className="loginFirstSection">
         <img src={Logo} className="logoLogin" alt="" />
-        <ClearIcon className="loginClearIcon" />
+        <Link to="/">
+          <ClearIcon className="loginClearIcon" />
+        </Link>
       </Grid>
 
       <Grid container className="loginFormSection" xs={12}>
@@ -49,6 +55,7 @@ export default function Login() {
           <Grid item xs={12}>
             <FormControl sx={{ mb: 3, mt: 4, width: '100%' }} variant="outlined">
               <TextField
+                sx={{ backgroundColor: 'white', borderRadius: '25px' }}
                 id="outlined-email"
                 classes={outlinedInputStyles}
                 label="Email"
@@ -66,6 +73,7 @@ export default function Login() {
           <Grid item xs={12}>
             <FormControl sx={{ mb: 5, width: '100%' }} variant="outlined">
               <TextField
+                sx={{ backgroundColor: 'white', borderRadius: '25px' }}
                 id="outlined-password"
                 classes={outlinedInputStyles}
                 label="Password"
@@ -98,7 +106,15 @@ export default function Login() {
                 }}
               />
 
-              <p className="forgetPasswordTxt">Forget password</p>
+              <p
+                className="forgetPasswordTxt"
+                onClick={() => setOpen(true)}
+                onKeyDown={() => setOpen(true)}
+                role="presentation"
+                aria-hidden
+              >
+                Forget password
+              </p>
             </FormControl>
           </Grid>
           <Grid>
@@ -111,7 +127,8 @@ export default function Login() {
         </Grid>
         {/* <CssTextField /> */}
       </Grid>
-      {/* {window.innerWidth < 992 ? <Footer /> : ''} */}
+
+      {open && <ForgetPasswordPopup open={open} setOpen={setOpen} />}
     </div>
   );
 }
