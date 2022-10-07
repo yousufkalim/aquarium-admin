@@ -12,7 +12,13 @@ export default function Header() {
         <div>
           <Link to="/">
             {' '}
-            <img src={Logo} style={{ cursor: 'pointer' }} alt="aquarium_logo" />
+            <img
+              src={Logo}
+              style={{ cursor: 'pointer' }}
+              alt="aquarium_logo"
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              role="presentation"
+            />
           </Link>
         </div>
         <div>
