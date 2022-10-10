@@ -1,0 +1,72 @@
+.profileDiv {
+  position: absolute;
+  bottom: 0;
+  width: 87%;
+  padding: 16% 0;
+}
+.sidebarTxt {
+  font-weight: 400;
+  font-size: 16px;
+  color: #8c8c8c;
+  margin-bottom: 9%;
+}
+
+.listItem {
+  font-weight: 500;
+  font-size: 18px;
+  color: #28cdff;
+  width: inherit;
+}
+.name {
+  font-weight: 700;
+  font-size: 20px;
+  color: #28cdff;
+}
+.fullListItem {
+  background-color: #f3fdff;
+  margin-bottom: 9%;
+  border-radius: 20px;
+}
+/* .fullListItem:hover{
+    background-color: #28CDFF;
+    color:white !important;
+    
+} */
+.fullListItem:hover .listItem {
+  color: #fff;
+  background-color: #28cdff;
+  border-radius: 20px;
+}
+​
+
+/* .fullListItem:hover ~ .listItem {
+    color: green;
+    background-color: #000;
+}​
+.fullListItem:hover  +  .listItem {
+    color: red;
+    background-color: #000;
+}​ */
+.active-nav-item {
+  color: #fff;
+  background-color: #28cdff;
+  border-radius: 20px;
+}
+
+.logoutBtn {
+  background-color: #f3fdff !important;
+  padding: 3% !important;
+  color: #8c8c8c !important;
+  border-radius: 15px !important;
+  margin-top: 4% !important;
+  text-transform: none !important;
+  font-weight: 500 !important;
+  font-size: 18px !important;
+}
+.red {
+  filter: invert(13%) sepia(94%) saturate(7466%) hue-rotate(0deg) brightness(94%) contrast(115%);
+}
+
+.fullListItem:hover .icon {
+  filter: brightness(0) invert(1);
+}
