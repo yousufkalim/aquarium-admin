@@ -23,7 +23,11 @@ export default function Home() {
             <div className="contentOnImg">
               <img src={Logo} className="logoOnImg" alt="Logo" />
               <div className="vl" />
-              <h1 className="txtOnImg">Best Aquarium Solutions</h1>
+              <h1 className="txtOnImg">
+                Best Aquarium
+                {window.innerWidth > 800 ? <br /> : ''}
+                Solutions
+              </h1>
             </div>
             <div className="descriptionOnImg">
               <p className="descriptionTxt">

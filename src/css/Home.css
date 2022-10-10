@@ -34,6 +34,7 @@
   font-weight: 700;
   font-size: 38px;
   line-height: 1.4;
+  width: 19%;
 }
 .logoOnImg {
   width: 418px;
@@ -51,6 +52,7 @@
   text-transform: none !important;
   padding: 10px 36px !important;
   cursor: pointer !important;
+  margin-left: 2%;
 }
 
 .descriptionTxt {
@@ -64,7 +66,7 @@
   position: absolute;
   bottom: 10%;
   animation: vertical-shaking 1.3s infinite;
-  left: 47%;
+  left: 49%;
   /* transform: translateX(-50%); */
 }
 
@@ -190,11 +192,13 @@
     line-height: 1.1;
     width: 51%;
   }
+
   .descriptionTxt {
     font-size: 15px;
     font-weight: 400;
     padding: 6%;
   }
+
   .getStartedBtn {
     padding: 8px 17px !important;
     font-size: 12px !important;
@@ -307,5 +311,17 @@
   .card1Heading,
   .cardContent {
     font-size: 17px;
+  }
+  .descriptionOnImg {
+    margin-top: 0 !important;
+  }
+  .getStartedBtn {
+    margin-left: 4%;
+  }
+  .txtOnImg {
+    font-weight: 700;
+    font-size: 38px;
+    line-height: 1.4;
+    width: 23%;
   }
 }
