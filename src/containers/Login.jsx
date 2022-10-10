@@ -118,7 +118,7 @@ export default function Login() {
             </FormControl>
           </Grid>
           <Grid>
-            <Link to="/" style={{ textDecoration: 'none' }}>
+            <Link to="/superadmin" style={{ textDecoration: 'none' }}>
               <Button className="signInBtn" variant="contained">
                 Sign in
               </Button>
