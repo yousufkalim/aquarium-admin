@@ -32,7 +32,7 @@
 }
 .txtOnImg {
   font-weight: 700;
-  font-size: 38px;
+  font-size: 45px;
   line-height: 1.4;
   width: 19%;
 }
@@ -52,7 +52,7 @@
   text-transform: none !important;
   padding: 10px 36px !important;
   cursor: pointer !important;
-  margin-left: 2%;
+  margin-left: 2% !important;
 }
 
 .descriptionTxt {
@@ -316,12 +316,9 @@
     margin-top: 0 !important;
   }
   .getStartedBtn {
-    margin-left: 4%;
+    margin-left: 4% !important;
   }
   .txtOnImg {
-    font-weight: 700;
-    font-size: 38px;
-    line-height: 1.4;
     width: 23%;
   }
 }
