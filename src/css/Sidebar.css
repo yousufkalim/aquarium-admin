@@ -27,27 +27,14 @@
   margin-bottom: 9%;
   border-radius: 20px;
 }
-/* .fullListItem:hover{
-    background-color: #28CDFF;
-    color:white !important;
-    
-} */
+
 .fullListItem:hover .listItem {
   color: #fff;
   background-color: #28cdff;
-  border-radius: 20px;
+  border-radius: 20px !important;
+  overflow: hidden !important;
 }
-​
-
-/* .fullListItem:hover ~ .listItem {
-    color: green;
-    background-color: #000;
-}​
-.fullListItem:hover  +  .listItem {
-    color: red;
-    background-color: #000;
-}​ */
-.active-nav-item {
+​ .active-nav-item {
   color: #fff;
   background-color: #28cdff;
   border-radius: 20px;
@@ -69,4 +56,7 @@
 
 .fullListItem:hover .icon {
   filter: brightness(0) invert(1);
+}
+.css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root {
+  border-radius: 20px !important;
 }

@@ -1,0 +1,38 @@
+.bg {
+  background: #d9f4ff;
+  text-align: right;
+  height: 100vh;
+  padding: 3%;
+}
+
+.thead {
+  text-align: left;
+  padding: 20px;
+  color: #8c8c8c;
+  font-size: 24;
+  font-weight: 700;
+}
+.editIcon {
+  margin-right: 2%;
+}
+.editIcon:hover,
+.deleteIcon:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
+.btnContainer {
+  width: 12%;
+  position: absolute;
+  z-index: 3;
+  bottom: 4.8%;
+  right: 14px;
+  overflow: hidden;
+}
+.addAdminBtn {
+  background-color: #28cdff !important;
+  border-radius: 25px !important;
+  padding: 3% !important;
+  font-size: 19px !important;
+  font-weight: 500 !important;
+  text-transform: none !important;
+}
