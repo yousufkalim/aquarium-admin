@@ -50,61 +50,6 @@
   cursor: pointer;
 }
 
-.css-1t1j96h-MuiPaper-root-MuiDialog-paper {
-  width: 100% !important;
-  height: 44%;
-  max-width: 767px !important;
-  border-radius: 30px !important;
-  padding: 2% 1%;
-  text-align: center;
-  background-color: #f3fdff !important;
-}
-.hl-forget {
-  position: relative;
-  border-bottom: 3px solid #cdeefc;
-  opacity: 10;
-  width: 64%;
-  margin: auto;
-}
-.forgetPasswordPopup {
-  margin-top: auto;
-  margin-bottom: auto;
-  overflow: hidden;
-}
-.closeBtn {
-  border: 2px solid #28cdff !important;
-  color: #28cdff !important;
-  font-weight: 500 !important;
-  font-size: 20px !important;
-  border-radius: 14px !important;
-  text-transform: none !important;
-  padding: 6px 30px !important;
-  cursor: pointer !important;
-  margin: 20px !important;
-}
-.resetPasswordBtn {
-  background-color: #28cdff !important;
-  color: white !important;
-  font-weight: 500 !important;
-  font-size: 20px !important;
-  border-radius: 14px !important;
-  text-transform: none !important;
-  padding: 7px 30px !important;
-  cursor: pointer !important;
-}
-.closeBtn:hover {
-  background-color: #28cdff !important;
-  color: white !important;
-}
-.enterEmailTxt {
-  color: #8c8c8c;
-
-  font-size: 18px;
-  font-weight: 400;
-  padding: 3% 0;
-  cursor: pointer;
-}
-
 @media only screen and (min-width: 992px) and (max-width: 1919px) {
   .loginFirstSection {
     height: 433px;
