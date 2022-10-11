@@ -1,4 +1,5 @@
-import * as React from 'react';
+import { React, useState } from 'react';
+
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -9,6 +10,8 @@ import Paper from '@mui/material/Paper';
 import profileDummy from '../assets/images/profileDummy.svg';
 import edit from '../assets/images/Edit.svg';
 import deleteIcon from '../assets/images/Delete.svg';
+import AddAdmin from '../containers/superadmin/AddAdmin';
+import DeletePopup from './DeletePopup';
 
 const StyledTableCell = styled(TableCell)(() => ({
   [`&.${tableCellClasses.body}`]: {
@@ -26,6 +29,9 @@ const StyledTableRow = styled(TableRow)(() => ({
 }));
 
 export default function TableList() {
+  const [del, setDel] = useState(false);
+  const [editing, setEditing] = useState(false);
+
   function createData(name, email) {
     return {
       name,
@@ -105,18 +111,30 @@ export default function TableList() {
                     paddingRight: '2%',
                   }}
                 >
-                  <span className="t-icon">
-                    <img src={edit} alt="" className="editIcon" id="t" />
-                  </span>
-                  <span className="t-icon">
-                    <img src={deleteIcon} className="deleteIcon" alt="" />
-                  </span>
+                  <img
+                    src={edit}
+                    alt=""
+                    className="editIcon"
+                    onClick={() => setEditing(true)}
+                    role="presentation"
+                  />
+
+                  <img
+                    src={deleteIcon}
+                    className="deleteIcon"
+                    onClick={() => setDel(true)}
+                    alt=""
+                    role="presentation"
+                  />
                 </StyledTableCell>
               </StyledTableRow>
             ))}
           </TableBody>
         </Table>
       </TableContainer>
+
+      {editing && <AddAdmin open={editing} setOpen={setEditing} />}
+      {del && <DeletePopup open={del} setOpen={setDel} />}
     </div>
   );
 }
