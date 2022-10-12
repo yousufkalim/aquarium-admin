@@ -41,7 +41,7 @@ function ForgetPasswordPopup({ open, setOpen }) {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
         className="forgetPasswordModal"
-        style={{ backdropFilter: 'blur(20px)', borderRadius: '30px' }}
+        style={{ borderRadius: '30px' }}
       >
         <div className="forgetPasswordPopup">
           <Grid container xs={12}>

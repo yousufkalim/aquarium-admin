@@ -17,7 +17,7 @@
   background-color: #f3fdff !important;
 }
 .forgetPasswordModal {
-  height: 44% !important;
+  height: 54% !important;
   margin: auto;
 }
 
@@ -74,4 +74,15 @@
   text-transform: none !important;
   padding: 7px 30px !important;
   cursor: pointer !important;
+}
+@media only screen and (min-width: 992px) and (max-width: 1919px) {
+  .addAdminModal {
+    max-height: 68% !important;
+    margin: auto !important;
+  }
+
+  .forgetPasswordModal {
+    height: 55% !important;
+    margin: auto;
+  }
 }
