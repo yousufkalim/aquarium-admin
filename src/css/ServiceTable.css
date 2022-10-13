@@ -1,0 +1,34 @@
+.technicianCol {
+  background-color: #f3fdff;
+  border-radius: 50px;
+  width: 60%;
+  display: flex;
+  text-align: center;
+  padding: 2%;
+  padding-left: 5%;
+  justify-content: space-between;
+}
+.placename {
+  font-size: 22px;
+  font-weight: 700;
+}
+.tankname {
+  font-size: 16px;
+  font-weight: 400;
+}
+.serviceTableTxt {
+  font-size: 20px !important;
+  font-weight: 400 !important;
+  color: #8c8c8c !important;
+}
+@media only screen and (min-width: 992px) and (max-width: 1919px) {
+  .technicianCol {
+    width: 100%;
+  }
+  .serviceTableTxt {
+    font-size: 16px !important;
+  }
+  .placename {
+    font-size: 19px;
+  }
+}

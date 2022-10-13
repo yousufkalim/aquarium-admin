@@ -8,7 +8,8 @@
 @import url('./Login.css');
 @import url('./Sidebar.css');
 @import url('./Popups.css');
-@import url('./TableList.css');
+@import url('./AdminTable.css');
+@import url('./ServiceTable.css');
 /* Defaults */
 * {
   padding: 0;
