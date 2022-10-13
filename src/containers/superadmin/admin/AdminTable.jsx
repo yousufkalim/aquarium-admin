@@ -7,11 +7,11 @@ import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import profileDummy from '../assets/images/profileDummy.svg';
-import edit from '../assets/images/Edit.svg';
-import deleteIcon from '../assets/images/Delete.svg';
-import AddAdmin from '../containers/superadmin/AddAdmin';
-import DeletePopup from './DeletePopup';
+import profileDummy from '../../../assets/images/profileDummy.svg';
+import edit from '../../../assets/images/Edit.svg';
+import deleteIcon from '../../../assets/images/Delete.svg';
+import AddAdmin from './AddAdmin';
+import DeletePopup from '../../../components/DeletePopup';
 
 const StyledTableCell = styled(TableCell)(() => ({
   [`&.${tableCellClasses.body}`]: {
@@ -28,7 +28,7 @@ const StyledTableRow = styled(TableRow)(() => ({
   },
 }));
 
-export default function TableList() {
+export default function AdminTable() {
   const [del, setDel] = useState(false);
   const [editing, setEditing] = useState(false);
 
@@ -95,12 +95,15 @@ export default function TableList() {
                   sx={{ width: '1%', paddingLeft: '2%', paddingRight: '2%' }}
                 >
                   {' '}
-                  <img src={profileDummy} alt="" />
+                  <img src={profileDummy} className="imgNameCombo" alt="" />
                 </StyledTableCell>
-                <StyledTableCell align={window.innerWidth > 1600 ? 'left' : 'center'}>
+                <StyledTableCell align="left" sx={{ fontSize: '22px', fontWeight: '700' }}>
                   {row.name}
                 </StyledTableCell>
-                <StyledTableCell align={window.innerWidth > 1600 ? 'right' : 'center'}>
+                <StyledTableCell
+                  align={window.innerWidth > 1600 ? 'right' : 'center'}
+                  sx={{ fontSize: '22px', fontWeight: '700', color: '#8C8C8C' }}
+                >
                   {row.email}
                 </StyledTableCell>
 

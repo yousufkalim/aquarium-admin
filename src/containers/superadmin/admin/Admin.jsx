@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { Grid, Button } from '@mui/material';
-import Sidebar from '../../components/Sidebar';
-import TableList from '../../components/TableList';
-import add from '../../assets/images/add.svg';
+
+import AdminTable from './AdminTable';
+import add from '../../../assets/images/add.svg';
 import AddAdmin from './AddAdmin';
+import Sidebar from '../../../components/Sidebar';
 
 export default function Admin() {
   const [open, setOpen] = useState(false);
-
   return (
     <div>
       <Grid container>
@@ -16,7 +16,7 @@ export default function Admin() {
         </Grid>
 
         <Grid xl={10} lg={9}>
-          <TableList />
+          <AdminTable />
           <div className="btnContainer">
             <Button
               variant="contained"

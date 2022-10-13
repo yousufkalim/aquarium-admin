@@ -43,7 +43,7 @@ function AddAdmin({ open, setOpen }) {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
         className="addAdminModal"
-        style={{ backdropFilter: 'blur(20px)', borderRadius: '30px' }}
+        style={{ borderRadius: '30px' }}
       >
         <div className="addAdminPopup" style={{ height: '100%' }}>
           <Grid container xs={12} sx={{ height: '100%' }}>
