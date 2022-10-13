@@ -60,3 +60,15 @@
 .css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root {
   border-radius: 20px !important;
 }
+
+@media only screen and (min-width: 992px) and (max-width: 1919px) {
+  .css-1ip8xo1-MuiDrawer-docked .MuiDrawer-paper {
+    width: 25% !important;
+  }
+  .sidebarLogo {
+    margin: 0 auto;
+  }
+  .sidebarLogoImg {
+    width: 100% !important;
+  }
+}

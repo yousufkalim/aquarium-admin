@@ -5,6 +5,7 @@ import Drawer from '@mui/material/Drawer';
 
 import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
+import { Link } from 'react-router-dom';
 
 // import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
@@ -37,24 +38,36 @@ export default function Sidebar() {
         variant="permanent"
         anchor="left"
       >
-        <img src={logo} style={{ margin: '16% auto', width: '70%', marginTop: '11%' }} alt="" />
+        <Link to="/" style={{ textDecoration: 'none' }} className="sidebarLogo">
+          <img
+            src={logo}
+            style={{ margin: '16% auto', width: '70%', marginTop: '11%' }}
+            className="sidebarLogoImg"
+            alt=""
+          />
+        </Link>
         {/* <Divider /> */}
 
         <List>
           <p className="sidebarTxt">Menu</p>
           {['Admin', 'Service'].map((text, index) => (
-            <ListItem className="fullListItem" key={text} disablePadding>
-              <ListItemButton className="listItem">
-                <ListItemIcon className="M-icon" activeClassName="active-nav-item">
-                  {index % 2 === 0 ? (
-                    <img src={admin} className="icon" id="icon" alt="" />
-                  ) : (
-                    <img src={service} className="icon" alt="" />
-                  )}
-                </ListItemIcon>
-                <ListItemText className="listItem" primary={text} />
-              </ListItemButton>
-            </ListItem>
+            <Link
+              to={text === 'Admin' ? '/superadmin' : '/service'}
+              style={{ textDecoration: 'none' }}
+            >
+              <ListItem className="fullListItem" key={text} disablePadding>
+                <ListItemButton className="listItem">
+                  <ListItemIcon className="M-icon" activeClassName="active-nav-item">
+                    {index % 2 === 0 ? (
+                      <img src={admin} className="icon" id="icon" alt="" />
+                    ) : (
+                      <img src={service} className="icon" alt="" />
+                    )}
+                  </ListItemIcon>
+                  <ListItemText className="listItem" primary={text} />
+                </ListItemButton>
+              </ListItem>
+            </Link>
           ))}
         </List>
         <div className="profileDiv">
