@@ -17,7 +17,21 @@ export default function Navbar() {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/home" className="nav-item" activeClassName="active-nav-item">
+              <NavLink
+                className="nav-item"
+                onClick={
+                  () =>
+                    // eslint-disable-next-line implicit-arrow-linebreak
+                    window.scrollTo({
+                      top: document.getElementById('howItWorks').offsetTop,
+
+                      behavior: 'smooth',
+                    })
+                  // eslint-disable-next-line react/jsx-curly-newline
+                }
+                role="presentation"
+                activeClassName="active-nav-item"
+              >
                 How it works
               </NavLink>
             </li>
@@ -26,7 +40,12 @@ export default function Navbar() {
         <div className="logo">
           <Link to="/">
             {' '}
-            <img src={Logo} alt="aquarium_logo" />
+            <img
+              src={Logo}
+              alt="aquarium_logo"
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              role="presentation"
+            />
           </Link>
         </div>
         <div className="btn">

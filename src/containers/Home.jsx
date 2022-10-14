@@ -23,7 +23,11 @@ export default function Home() {
             <div className="contentOnImg">
               <img src={Logo} className="logoOnImg" alt="Logo" />
               <div className="vl" />
-              <h1 className="txtOnImg">Best Aquarium Solutions</h1>
+              <h1 className="txtOnImg">
+                Best Aquarium
+                {window.innerWidth > 800 ? <br /> : ''}
+                Solutions
+              </h1>
             </div>
             <div className="descriptionOnImg">
               <p className="descriptionTxt">
@@ -44,7 +48,7 @@ export default function Home() {
         </Grid>
       </Grid>
       {/* =============================How it works section=================================  */}
-      <Grid container spacing={0} className="howItWorkSection">
+      <Grid container spacing={0} className="howItWorkSection" id="howItWorks">
         <Grid id="howItWorkSection" item xs={12} sm={12} lg={8}>
           <Grid item xs={12} sm={12} lg={7}>
             <h1 className="mainHeading">How it works</h1>
