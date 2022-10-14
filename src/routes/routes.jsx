@@ -12,13 +12,17 @@ import Services from '../containers/superadmin/services/Services';
 import admin from '../assets/images/admin.svg';
 import service from '../assets/images/service.svg';
 
-// Routes for login
-const AuthRoutes = [
+// unAuth routes
+const unAuthRoutes = [
   {
     path: '/',
     name: 'Home Page',
     element: <Home />,
   },
+];
+
+// Routes for login
+const authRoutes = [
   {
     path: '/login',
     name: 'Login',
@@ -59,4 +63,4 @@ const adminRoutes = [
 ];
 
 // Getting all routes
-export { AuthRoutes, superadminRoutes, adminRoutes };
+export { authRoutes, unAuthRoutes, superadminRoutes, adminRoutes };
