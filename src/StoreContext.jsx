@@ -20,7 +20,9 @@ export function StoreProvider({ children }) {
   // Initializing State
   const [store, setStore] = useState({
     loggedIn: false,
-    user: {},
+    user: {
+      role: 'superadmin',
+    },
   });
 
   // eslint-disable-next-line react/jsx-no-constructed-context-values

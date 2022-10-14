@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
+
 // import CssBaseline from '@mui/material/CssBaseline';
 
 import Toolbar from '@mui/material/Toolbar';
@@ -13,15 +14,20 @@ import ListItemButton from '@mui/material/ListItemButton';
 import Button from '@mui/material/Button';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import admin from '../assets/images/admin.svg';
 import logo from '../assets/images/blueLogo.svg';
-import service from '../assets/images/service.svg';
 import logout from '../assets/images/Logout.svg';
 import profileDummy from '../assets/images/profileDummy.svg';
+
+import { Store } from '../StoreContext';
+
+// eslint-disable-next-line import/no-cycle
+import { superadminRoutes, adminRoutes } from '../routes/routes';
 
 const drawerWidth = 300;
 
 export default function Sidebar() {
+  const { user } = Store();
+
   return (
     <Box sx={{ display: 'flex' }}>
       <Drawer
@@ -50,25 +56,35 @@ export default function Sidebar() {
 
         <List>
           <p className="sidebarTxt">Menu</p>
-          {['Admin', 'Service'].map((text, index) => (
-            <Link
-              to={text === 'Admin' ? '/superadmin' : '/service'}
-              style={{ textDecoration: 'none' }}
-            >
-              <ListItem className="fullListItem" key={text} disablePadding>
-                <ListItemButton className="listItem">
-                  <ListItemIcon className="M-icon" activeClassName="active-nav-item">
-                    {index % 2 === 0 ? (
-                      <img src={admin} className="icon" id="icon" alt="" />
-                    ) : (
-                      <img src={service} className="icon" alt="" />
-                    )}
-                  </ListItemIcon>
-                  <ListItemText className="listItem" primary={text} />
-                </ListItemButton>
-              </ListItem>
-            </Link>
-          ))}
+          {user.role === 'superadmin'
+            ? superadminRoutes.map((route) => (
+                // eslint-disable-next-line react/jsx-indent
+                <Link to={route.path} style={{ textDecoration: 'none' }}>
+                  <ListItem className="fullListItem" key={route.name} disablePadding>
+                    <ListItemButton className="listItem">
+                      <ListItemIcon className="M-icon" activeClassName="active-nav-item">
+                        <img src={route.icon} className="icon" id="icon" alt="" />
+                      </ListItemIcon>
+                      <ListItemText className="listItem" primary={route.name} />
+                    </ListItemButton>
+                  </ListItem>
+                </Link>
+                // eslint-disable-next-line indent
+              ))
+            : adminRoutes.map((route) => (
+                // eslint-disable-next-line react/jsx-indent
+                <Link to={route.path} style={{ textDecoration: 'none' }}>
+                  <ListItem className="fullListItem" key={route.name} disablePadding>
+                    <ListItemButton className="listItem">
+                      <ListItemIcon className="M-icon" activeClassName="active-nav-item">
+                        <img src={route.icon} className="icon" id="icon" alt="" />
+                      </ListItemIcon>
+                      <ListItemText className="listItem" primary={route.name} />
+                    </ListItemButton>
+                  </ListItem>
+                </Link>
+                // eslint-disable-next-line indent
+              ))}
         </List>
         <div className="profileDiv">
           <p className="sidebarTxt">Profile</p>

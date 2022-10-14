@@ -1,9 +1,11 @@
 import { Grid, Button } from '@mui/material';
 import ServiceTable from './ServiceTable';
 import arrow from '../../../assets/images/arrow.svg';
+
+// eslint-disable-next-line import/no-cycle
 import Sidebar from '../../../components/Sidebar';
 
-export default function Service() {
+export default function Services() {
   return (
     <div>
       <Grid container>

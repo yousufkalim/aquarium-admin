@@ -4,9 +4,11 @@ import { Grid, Button } from '@mui/material';
 import AdminTable from './AdminTable';
 import add from '../../../assets/images/add.svg';
 import AddAdmin from './AddAdmin';
+
+// eslint-disable-next-line import/no-cycle
 import Sidebar from '../../../components/Sidebar';
 
-export default function Admin() {
+export default function Admins() {
   const [open, setOpen] = useState(false);
   return (
     <div>
