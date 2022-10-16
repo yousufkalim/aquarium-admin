@@ -28,6 +28,11 @@ const drawerWidth = 300;
 export default function Sidebar() {
   const { admin } = Store();
 
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    window.location = '/auth/login';
+  };
+
   return (
     <Box sx={{ display: 'flex' }}>
       <Drawer
@@ -128,7 +133,12 @@ export default function Sidebar() {
             </div>
           </div>
           <div>
-            <Button fullWidth variant="contained" className="logoutBtn">
+            <Button
+              fullWidth
+              variant="contained"
+              className="logoutBtn"
+              onClick={handleLogout}
+            >
               <img src={logout} style={{ marginRight: '4%' }} alt="" />
               Log out
             </Button>
