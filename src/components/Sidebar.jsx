@@ -26,7 +26,7 @@ import { superadminRoutes, adminRoutes } from '../routes/routes';
 const drawerWidth = 300;
 
 export default function Sidebar() {
-  const { user } = Store();
+  const { admin } = Store();
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -56,14 +56,26 @@ export default function Sidebar() {
 
         <List>
           <p className="sidebarTxt">Menu</p>
-          {user.role === 'superadmin'
+          {admin.role === 'super_admin'
             ? superadminRoutes.map((route) => (
                 // eslint-disable-next-line react/jsx-indent
                 <Link to={route.path} style={{ textDecoration: 'none' }}>
-                  <ListItem className="fullListItem" key={route.name} disablePadding>
+                  <ListItem
+                    className="fullListItem"
+                    key={route.name}
+                    disablePadding
+                  >
                     <ListItemButton className="listItem">
-                      <ListItemIcon className="M-icon" activeClassName="active-nav-item">
-                        <img src={route.icon} className="icon" id="icon" alt="" />
+                      <ListItemIcon
+                        className="M-icon"
+                        activeClassName="active-nav-item"
+                      >
+                        <img
+                          src={route.icon}
+                          className="icon"
+                          id="icon"
+                          alt=""
+                        />
                       </ListItemIcon>
                       <ListItemText className="listItem" primary={route.name} />
                     </ListItemButton>
@@ -74,10 +86,22 @@ export default function Sidebar() {
             : adminRoutes.map((route) => (
                 // eslint-disable-next-line react/jsx-indent
                 <Link to={route.path} style={{ textDecoration: 'none' }}>
-                  <ListItem className="fullListItem" key={route.name} disablePadding>
+                  <ListItem
+                    className="fullListItem"
+                    key={route.name}
+                    disablePadding
+                  >
                     <ListItemButton className="listItem">
-                      <ListItemIcon className="M-icon" activeClassName="active-nav-item">
-                        <img src={route.icon} className="icon" id="icon" alt="" />
+                      <ListItemIcon
+                        className="M-icon"
+                        activeClassName="active-nav-item"
+                      >
+                        <img
+                          src={route.icon}
+                          className="icon"
+                          id="icon"
+                          alt=""
+                        />
                       </ListItemIcon>
                       <ListItemText className="listItem" primary={route.name} />
                     </ListItemButton>

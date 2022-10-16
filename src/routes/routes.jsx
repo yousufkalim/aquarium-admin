@@ -47,20 +47,7 @@ const superadminRoutes = [
 ];
 
 // Routes for patient
-const adminRoutes = [
-  {
-    path: '/admins',
-    name: 'Admins',
-    icon: admin,
-    element: <Admins />,
-  },
-  {
-    path: '/services',
-    name: 'Services',
-    icon: service,
-    element: <Services />,
-  },
-];
+const adminRoutes = [];
 
 // Getting all routes
 export { authRoutes, unAuthRoutes, superadminRoutes, adminRoutes };

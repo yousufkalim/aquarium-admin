@@ -12,7 +12,11 @@ export default function Navbar() {
         <div className="menu">
           <ul id="menu">
             <li style={{ marginRight: ' 50px' }}>
-              <NavLink to="/About" className="nav-item" activeClassName="active-nav-item">
+              <NavLink
+                to="/About"
+                className="nav-item"
+                activeClassName="active-nav-item"
+              >
                 About
               </NavLink>
             </li>
@@ -49,7 +53,7 @@ export default function Navbar() {
           </Link>
         </div>
         <div className="btn">
-          <Link to="/login" style={{ textDecoration: 'none' }}>
+          <Link to="/auth/login" style={{ textDecoration: 'none' }}>
             <Button className="loginBtn" variant="contained">
               Login
             </Button>

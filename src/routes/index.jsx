@@ -1,44 +1,23 @@
 // Init
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
-// Routes
-import {
-  authRoutes,
-  unAuthRoutes,
-  superadminRoutes,
-  adminRoutes,
-} from './routes';
+import { unAuthRoutes } from './routes';
 
-import { Store } from '../StoreContext';
+import Auth from '../layouts/Auth';
+import SuperAdmin from '../layouts/SuperAdmin';
+import Admin from '../layouts/Admin';
 
 function Index() {
-  const { user } = Store();
-
-  const getRoutes = () => {
-    let routes = [];
-    if (user.role === 'superadmin') {
-      routes = superadminRoutes.map((route) => (
-        <Route path={route.path} element={route.element} />
-      ));
-    } else if (user.role === 'admin') {
-      routes = adminRoutes.map((route) => (
-        <Route path={route.path} element={route.element} />
-      ));
-    } else {
-      routes = authRoutes.map((route) => (
-        <Route path={route.path} element={route.element} />
-      ));
-    }
-    return routes;
-  };
-
   return (
     <Routes>
       {unAuthRoutes.map((route) => (
         <Route path={route.path} element={route.element} />
       ))}
-      {getRoutes()}
+      <Route path="auth/*" element={<Auth />} />
+      <Route path="superadmin/*" element={<SuperAdmin />} />
+      <Route path="admin/*" element={<Admin />} />
+      <Route path="*" element={<Navigate replace to="/" />} />
     </Routes>
   );
 }

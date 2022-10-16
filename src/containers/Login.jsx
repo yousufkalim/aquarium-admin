@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Grid, IconButton } from '@mui/material';
 import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
@@ -7,10 +8,12 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import ClearIcon from '@mui/icons-material/Clear';
 import { makeStyles } from '@mui/styles';
-import { Link } from 'react-router-dom';
+
 import Button from '@mui/material/Button';
 import Logo from '../assets/images/loginLogo.svg';
 import ForgetPasswordPopup from '../components/ForgetPasswordPopup';
+import api from '../api';
+import { UpdateStore } from '../StoreContext';
 
 const useOutlinedInputStyles = makeStyles({
   root: {
@@ -37,6 +40,23 @@ const useOutlinedInputStyles = makeStyles({
 
 export default function Login() {
   const [open, setOpen] = useState(false);
+  const [user, setUser] = useState({});
+  const [showPassword, setShowPassword] = useState(false);
+
+  const updateStore = UpdateStore();
+
+  const handleChange = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async () => {
+    const { data } = await api('post', '/admins/login', user);
+
+    updateStore({ admin: data.admin, loggedIn: true });
+    localStorage.setItem('token', data.token);
+
+    window.location = `/${data.admin?.role}`;
+  };
 
   const outlinedInputStyles = useOutlinedInputStyles();
   return (
@@ -53,13 +73,19 @@ export default function Login() {
         <Grid className="lgForm" xs={12} xl={3} lg={3.5}>
           <h1 className="signInTxt">Sign in to Aquarium!</h1>
           <Grid item xs={12}>
-            <FormControl sx={{ mb: 3, mt: 4, width: '100%' }} variant="outlined">
+            <FormControl
+              sx={{ mb: 3, mt: 4, width: '100%' }}
+              variant="outlined"
+            >
               <TextField
                 sx={{ backgroundColor: 'white', borderRadius: '25px' }}
                 id="outlined-email"
                 classes={outlinedInputStyles}
                 label="Email"
                 size="normal"
+                name="email"
+                value={user.email}
+                onChange={handleChange}
                 InputLabelProps={{
                   style: {
                     color: '#8C8C8C',
@@ -85,21 +111,22 @@ export default function Login() {
                     fontWeight: '700',
                   },
                 }}
-                // type={values.showPassword ? 'text' : 'password'}
-                // value={values.password}
-                // onChange={handleChange('password')}
+                name="password"
+                type={showPassword ? 'text' : 'password'}
+                value={user.password}
+                onChange={handleChange}
                 InputProps={{
                   endAdornment: (
                     // eslint-disable-next-line react/jsx-wrap-multilines
                     <InputAdornment position="end">
                       <IconButton
                         aria-label="toggle password visibility"
-                        // onClick={handleClickShowPassword}
-                        // onMouseDown={handleMouseDownPassword}
+                        onClick={() => setShowPassword(true)}
+                        onMouseDown={() => setShowPassword(true)}
                         edge="end"
                         sx={{ color: '#28CDFF' }}
                       >
-                        {true ? <VisibilityOff /> : <Visibility />}
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
                       </IconButton>
                     </InputAdornment>
                   ),
@@ -118,11 +145,13 @@ export default function Login() {
             </FormControl>
           </Grid>
           <Grid>
-            <Link to="/superadmin" style={{ textDecoration: 'none' }}>
-              <Button className="signInBtn" variant="contained">
-                Sign in
-              </Button>
-            </Link>
+            <Button
+              className="signInBtn"
+              variant="contained"
+              onClick={handleSubmit}
+            >
+              Sign in
+            </Button>
           </Grid>
         </Grid>
         {/* <CssTextField /> */}
