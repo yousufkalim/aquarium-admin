@@ -26,6 +26,7 @@ const authRoutes = [
   {
     path: '/login',
     name: 'Login',
+    layout: '/auth',
     element: <Login />,
   },
 ];
@@ -33,12 +34,14 @@ const authRoutes = [
 // Routes for Superadmin
 const superadminRoutes = [
   {
+    layout: '/superadmin',
     path: '/admins',
     name: 'Admins',
     icon: admin,
     element: <Admins />,
   },
   {
+    layout: '/superadmin',
     path: '/services',
     name: 'Services',
     icon: service,

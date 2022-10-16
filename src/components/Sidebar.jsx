@@ -59,7 +59,10 @@ export default function Sidebar() {
           {admin.role === 'super_admin'
             ? superadminRoutes.map((route) => (
                 // eslint-disable-next-line react/jsx-indent
-                <Link to={route.path} style={{ textDecoration: 'none' }}>
+                <Link
+                  to={route.layout + route.path}
+                  style={{ textDecoration: 'none' }}
+                >
                   <ListItem
                     className="fullListItem"
                     key={route.name}
@@ -85,7 +88,10 @@ export default function Sidebar() {
               ))
             : adminRoutes.map((route) => (
                 // eslint-disable-next-line react/jsx-indent
-                <Link to={route.path} style={{ textDecoration: 'none' }}>
+                <Link
+                  to={route.layout + route.path}
+                  style={{ textDecoration: 'none' }}
+                >
                   <ListItem
                     className="fullListItem"
                     key={route.name}
