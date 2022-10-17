@@ -1,6 +1,11 @@
 // Init
 import React, { useEffect } from 'react';
-import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import {
+  Routes,
+  Route,
+  Navigate,
+  useLocation,
+} from 'react-router-dom';
 
 // Routes
 import { superadminRoutes } from '../routes/routes';
@@ -26,7 +31,7 @@ function SuperAdmin() {
 
   const getRoutes = () => {
     let routes = [];
-    if (admin.role === 'super_admin') {
+    if (admin.role === 'superadmin') {
       routes = superadminRoutes.map((route) => (
         <Route path={route.path} element={route.element} />
       ));
@@ -37,7 +42,10 @@ function SuperAdmin() {
   return (
     <Routes>
       {getRoutes()}
-      <Route path="/*" element={<Navigate replace to="/superadmin/admins" />} />
+      <Route
+        path="/*"
+        element={<Navigate replace to="/superadmin/admins" />}
+      />
     </Routes>
   );
 }

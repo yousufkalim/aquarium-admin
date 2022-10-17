@@ -1,4 +1,5 @@
-import { React, useState } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { React, useState, useEffect } from 'react';
 
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
@@ -28,53 +29,23 @@ const StyledTableRow = styled(TableRow)(() => ({
   },
 }));
 
-export default function AdminTable() {
+export default function AdminTable({ admins, getAdmins }) {
   const [del, setDel] = useState(false);
   const [editing, setEditing] = useState(false);
+  const [admin, setAdmin] = useState('');
 
-  function createData(name, email) {
-    return {
-      name,
-      email,
-    };
-  }
-  const rows = [
-    createData('Rabiya', 'r@gmail.com'),
-    createData('Hamza', 'h@g.com'),
-    createData('Aqsa', 'aq@g.com'),
-    createData('Jeena', 'j@g.com'),
-    createData('Jeena', 'j@g.com'),
-    createData('Rabiya', 'r@gmail.com'),
-    createData('Hamza', 'h@g.com'),
-    createData('Aqsa', 'aq@g.com'),
-    createData('Jeena', 'j@g.com'),
-    createData('Jeena', 'j@g.com'),
-    createData('Rabiya', 'r@gmail.com'),
-    createData('Hamza', 'h@g.com'),
-    createData('Aqsa', 'aq@g.com'),
-    createData('Jeena', 'j@g.com'),
-    createData('Jeena', 'j@g.com'),
-    createData('Rabiya', 'r@gmail.com'),
-    createData('Hamza', 'h@g.com'),
-    createData('Aqsa', 'aq@g.com'),
-    createData('Jeena', 'j@g.com'),
-    createData('Jeena', 'j@g.com'),
-    createData('Rabiya', 'r@gmail.com'),
-    createData('Hamza', 'h@g.com'),
-    createData('Aqsa', 'aq@g.com'),
-    createData('Jeena', 'j@g.com'),
-    createData('Jeena', 'j@g.com'),
-    createData('Rabiya', 'r@gmail.com'),
-    createData('Hamza', 'h@g.com'),
-    createData('Aqsa', 'aq@g.com'),
-    createData('Jeena', 'j@g.com'),
-    createData('Jeena', 'j@g.com'),
-  ];
+  useEffect(() => {
+    getAdmins();
+  }, []);
   return (
     <div className="bg">
       <TableContainer
         component={Paper}
-        style={{ borderRadius: '20px', maxHeight: '100%', overflow: 'scroll' }}
+        style={{
+          borderRadius: '20px',
+          maxHeight: '100%',
+          overflow: 'scroll',
+        }}
       >
         <h1 className="thead">List of Admins</h1>
         <Table
@@ -87,22 +58,38 @@ export default function AdminTable() {
           aria-label="customized table"
         >
           <TableBody>
-            {/* <h1>List of Admins</h1> */}
-            {rows.map((row) => (
+            {admins.map((row) => (
               <StyledTableRow key={row.name}>
                 <StyledTableCell
                   align="right"
-                  sx={{ width: '1%', paddingLeft: '2%', paddingRight: '2%' }}
+                  sx={{
+                    width: '1%',
+                    paddingLeft: '2%',
+                    paddingRight: '2%',
+                  }}
                 >
                   {' '}
-                  <img src={profileDummy} className="imgNameCombo" alt="" />
+                  <img
+                    src={profileDummy}
+                    className="imgNameCombo"
+                    alt=""
+                  />
                 </StyledTableCell>
-                <StyledTableCell align="left" sx={{ fontSize: '22px', fontWeight: '700' }}>
+                <StyledTableCell
+                  align="left"
+                  sx={{ fontSize: '22px', fontWeight: '700' }}
+                >
                   {row.name}
                 </StyledTableCell>
                 <StyledTableCell
-                  align={window.innerWidth > 1600 ? 'right' : 'center'}
-                  sx={{ fontSize: '22px', fontWeight: '700', color: '#8C8C8C' }}
+                  align={
+                    window.innerWidth > 1600 ? 'right' : 'center'
+                  }
+                  sx={{
+                    fontSize: '22px',
+                    fontWeight: '700',
+                    color: '#8C8C8C',
+                  }}
                 >
                   {row.email}
                 </StyledTableCell>
@@ -118,14 +105,20 @@ export default function AdminTable() {
                     src={edit}
                     alt=""
                     className="editIcon"
-                    onClick={() => setEditing(true)}
+                    onClick={() => {
+                      setEditing(true);
+                      setAdmin(row);
+                    }}
                     role="presentation"
                   />
 
                   <img
                     src={deleteIcon}
                     className="deleteIcon"
-                    onClick={() => setDel(true)}
+                    onClick={() => {
+                      setDel(true);
+                      setAdmin(row);
+                    }}
                     alt=""
                     role="presentation"
                   />
@@ -136,8 +129,23 @@ export default function AdminTable() {
         </Table>
       </TableContainer>
 
-      {editing && <AddAdmin open={editing} setOpen={setEditing} />}
-      {del && <DeletePopup open={del} setOpen={setDel} />}
+      {editing && (
+        <AddAdmin
+          open={editing}
+          setOpen={setEditing}
+          editing={editing}
+          admin={admin}
+          getAdmins={getAdmins}
+        />
+      )}
+      {del && (
+        <DeletePopup
+          open={del}
+          setOpen={setDel}
+          admin={admin}
+          getAdmins={getAdmins}
+        />
+      )}
     </div>
   );
 }

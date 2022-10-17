@@ -49,10 +49,18 @@ export default function Sidebar() {
         variant="permanent"
         anchor="left"
       >
-        <Link to="/" style={{ textDecoration: 'none' }} className="sidebarLogo">
+        <Link
+          to="/"
+          style={{ textDecoration: 'none' }}
+          className="sidebarLogo"
+        >
           <img
             src={logo}
-            style={{ margin: '16% auto', width: '70%', marginTop: '11%' }}
+            style={{
+              margin: '16% auto',
+              width: '70%',
+              marginTop: '11%',
+            }}
             className="sidebarLogoImg"
             alt=""
           />
@@ -61,7 +69,7 @@ export default function Sidebar() {
 
         <List>
           <p className="sidebarTxt">Menu</p>
-          {admin.role === 'super_admin'
+          {admin.role === 'superadmin'
             ? superadminRoutes.map((route) => (
                 // eslint-disable-next-line react/jsx-indent
                 <Link
@@ -85,7 +93,10 @@ export default function Sidebar() {
                           alt=""
                         />
                       </ListItemIcon>
-                      <ListItemText className="listItem" primary={route.name} />
+                      <ListItemText
+                        className="listItem"
+                        primary={route.name}
+                      />
                     </ListItemButton>
                   </ListItem>
                 </Link>
@@ -114,7 +125,10 @@ export default function Sidebar() {
                           alt=""
                         />
                       </ListItemIcon>
-                      <ListItemText className="listItem" primary={route.name} />
+                      <ListItemText
+                        className="listItem"
+                        primary={route.name}
+                      />
                     </ListItemButton>
                   </ListItem>
                 </Link>
@@ -125,7 +139,11 @@ export default function Sidebar() {
           <p className="sidebarTxt">Profile</p>
           <div style={{ display: 'flex', flexDirection: 'row' }}>
             <div style={{ marginRight: '7%' }}>
-              <img src={profileDummy} style={{ width: '100%' }} alt="" />
+              <img
+                src={profileDummy}
+                style={{ width: '100%' }}
+                alt=""
+              />
             </div>
             <div>
               <h3 className="name">Farhan Shakir</h3>
@@ -139,7 +157,11 @@ export default function Sidebar() {
               className="logoutBtn"
               onClick={handleLogout}
             >
-              <img src={logout} style={{ marginRight: '4%' }} alt="" />
+              <img
+                src={logout}
+                style={{ marginRight: '4%' }}
+                alt=""
+              />
               Log out
             </Button>
           </div>

@@ -2,11 +2,21 @@ import React from 'react';
 import Dialog from '@mui/material/Dialog';
 import { Grid } from '@mui/material';
 import Button from '@mui/material/Button';
+import { toast } from 'react-toastify';
+import api from '../api/index';
 import delConfirm from '../assets/images/delConfirm.svg';
 
-function DeletePopup({ open, setOpen }) {
+// eslint-disable-next-line object-curly-newline
+function DeletePopup({ open, setOpen, admin, getAdmins }) {
   const handleClose = () => {
     setOpen(false);
+  };
+  const handleDelete = async () => {
+    await api('delete', `/admins/${admin._id}`);
+    // console.log(data.results);
+    toast.success('Admin deleted successfully');
+    handleClose();
+    getAdmins();
   };
   return (
     <div>
@@ -22,15 +32,27 @@ function DeletePopup({ open, setOpen }) {
           <Grid container xs={12}>
             <Grid xs={12}>
               <img src={delConfirm} alt="" />
-              <h1 style={{ fontSize: '24px', color: '#28CDFF' }}>Are you sure?</h1>
-              <p className="enterEmailTxt">You won’t be able to revert this!</p>
+              <h1 style={{ fontSize: '24px', color: '#28CDFF' }}>
+                Are you sure?
+              </h1>
+              <p className="enterEmailTxt">
+                You won’t be able to revert this!
+              </p>
               <div className="hl-forget" />
 
               <Grid item xs={12}>
-                <Button onClick={handleClose} className="closeBtn" variant="outlined">
+                <Button
+                  onClick={handleClose}
+                  className="closeBtn"
+                  variant="outlined"
+                >
                   Cancel
                 </Button>
-                <Button onClick={handleClose} className="delBtn" variant="contained">
+                <Button
+                  onClick={handleDelete}
+                  className="delBtn"
+                  variant="contained"
+                >
                   Yes,Delete it!
                 </Button>
               </Grid>
