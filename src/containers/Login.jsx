@@ -78,7 +78,10 @@ export default function Login() {
               variant="outlined"
             >
               <TextField
-                sx={{ backgroundColor: 'white', borderRadius: '25px' }}
+                sx={{
+                  backgroundColor: 'white',
+                  borderRadius: '25px',
+                }}
                 id="outlined-email"
                 classes={outlinedInputStyles}
                 label="Email"
@@ -97,9 +100,15 @@ export default function Login() {
             </FormControl>
           </Grid>
           <Grid item xs={12}>
-            <FormControl sx={{ mb: 5, width: '100%' }} variant="outlined">
+            <FormControl
+              sx={{ mb: 5, width: '100%' }}
+              variant="outlined"
+            >
               <TextField
-                sx={{ backgroundColor: 'white', borderRadius: '25px' }}
+                sx={{
+                  backgroundColor: 'white',
+                  borderRadius: '25px',
+                }}
                 id="outlined-password"
                 classes={outlinedInputStyles}
                 label="Password"
@@ -126,7 +135,11 @@ export default function Login() {
                         edge="end"
                         sx={{ color: '#28CDFF' }}
                       >
-                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                        {showPassword ? (
+                          <VisibilityOff />
+                        ) : (
+                          <Visibility />
+                        )}
                       </IconButton>
                     </InputAdornment>
                   ),

@@ -53,4 +53,5 @@ const superadminRoutes = [
 const adminRoutes = [];
 
 // Getting all routes
+// eslint-disable-next-line object-curly-newline
 export { authRoutes, unAuthRoutes, superadminRoutes, adminRoutes };

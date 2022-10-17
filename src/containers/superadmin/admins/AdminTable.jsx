@@ -1,4 +1,5 @@
-import { React, useState } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { React, useState, useEffect } from 'react';
 
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
@@ -12,6 +13,7 @@ import edit from '../../../assets/images/Edit.svg';
 import deleteIcon from '../../../assets/images/Delete.svg';
 import AddAdmin from './AddAdmin';
 import DeletePopup from '../../../components/DeletePopup';
+import api from '../../../api/index';
 
 const StyledTableCell = styled(TableCell)(() => ({
   [`&.${tableCellClasses.body}`]: {
@@ -31,50 +33,29 @@ const StyledTableRow = styled(TableRow)(() => ({
 export default function AdminTable() {
   const [del, setDel] = useState(false);
   const [editing, setEditing] = useState(false);
+  const [admins, setAdmins] = useState([]);
 
-  function createData(name, email) {
-    return {
-      name,
-      email,
-    };
-  }
-  const rows = [
-    createData('Rabiya', 'r@gmail.com'),
-    createData('Hamza', 'h@g.com'),
-    createData('Aqsa', 'aq@g.com'),
-    createData('Jeena', 'j@g.com'),
-    createData('Jeena', 'j@g.com'),
-    createData('Rabiya', 'r@gmail.com'),
-    createData('Hamza', 'h@g.com'),
-    createData('Aqsa', 'aq@g.com'),
-    createData('Jeena', 'j@g.com'),
-    createData('Jeena', 'j@g.com'),
-    createData('Rabiya', 'r@gmail.com'),
-    createData('Hamza', 'h@g.com'),
-    createData('Aqsa', 'aq@g.com'),
-    createData('Jeena', 'j@g.com'),
-    createData('Jeena', 'j@g.com'),
-    createData('Rabiya', 'r@gmail.com'),
-    createData('Hamza', 'h@g.com'),
-    createData('Aqsa', 'aq@g.com'),
-    createData('Jeena', 'j@g.com'),
-    createData('Jeena', 'j@g.com'),
-    createData('Rabiya', 'r@gmail.com'),
-    createData('Hamza', 'h@g.com'),
-    createData('Aqsa', 'aq@g.com'),
-    createData('Jeena', 'j@g.com'),
-    createData('Jeena', 'j@g.com'),
-    createData('Rabiya', 'r@gmail.com'),
-    createData('Hamza', 'h@g.com'),
-    createData('Aqsa', 'aq@g.com'),
-    createData('Jeena', 'j@g.com'),
-    createData('Jeena', 'j@g.com'),
-  ];
+  const getAdmins = async () => {
+    const { data } = await api('get', '/admins');
+    if (data) {
+      setAdmins(data?.results);
+    }
+    console.log('admins', data.results);
+  };
+
+  useEffect(() => {
+    getAdmins();
+  }, []);
+
   return (
     <div className="bg">
       <TableContainer
         component={Paper}
-        style={{ borderRadius: '20px', maxHeight: '100%', overflow: 'scroll' }}
+        style={{
+          borderRadius: '20px',
+          maxHeight: '100%',
+          overflow: 'scroll',
+        }}
       >
         <h1 className="thead">List of Admins</h1>
         <Table
@@ -88,21 +69,38 @@ export default function AdminTable() {
         >
           <TableBody>
             {/* <h1>List of Admins</h1> */}
-            {rows.map((row) => (
+            {admins.map((row) => (
               <StyledTableRow key={row.name}>
                 <StyledTableCell
                   align="right"
-                  sx={{ width: '1%', paddingLeft: '2%', paddingRight: '2%' }}
+                  sx={{
+                    width: '1%',
+                    paddingLeft: '2%',
+                    paddingRight: '2%',
+                  }}
                 >
                   {' '}
-                  <img src={profileDummy} className="imgNameCombo" alt="" />
+                  <img
+                    src={profileDummy}
+                    className="imgNameCombo"
+                    alt=""
+                  />
                 </StyledTableCell>
-                <StyledTableCell align="left" sx={{ fontSize: '22px', fontWeight: '700' }}>
+                <StyledTableCell
+                  align="left"
+                  sx={{ fontSize: '22px', fontWeight: '700' }}
+                >
                   {row.name}
                 </StyledTableCell>
                 <StyledTableCell
-                  align={window.innerWidth > 1600 ? 'right' : 'center'}
-                  sx={{ fontSize: '22px', fontWeight: '700', color: '#8C8C8C' }}
+                  align={
+                    window.innerWidth > 1600 ? 'right' : 'center'
+                  }
+                  sx={{
+                    fontSize: '22px',
+                    fontWeight: '700',
+                    color: '#8C8C8C',
+                  }}
                 >
                   {row.email}
                 </StyledTableCell>

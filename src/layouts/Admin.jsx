@@ -1,6 +1,11 @@
 // Init
 import React, { useEffect } from 'react';
-import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import {
+  Routes,
+  Route,
+  Navigate,
+  useLocation,
+} from 'react-router-dom';
 
 // Routes
 import { adminRoutes } from '../routes/routes';
@@ -15,7 +20,7 @@ function Admin() {
 
   useEffect(() => {
     api('get', '/admins/auth').then(({ data }) => {
-      if (data.admin?.role === 'super_admin') {
+      if (data.admin?.role === 'superadmin') {
         window.location = '/superadmin';
       }
       updateStore({ admin: data.admin, loggedIn: true });
@@ -37,7 +42,10 @@ function Admin() {
   return (
     <Routes>
       {getRoutes()}
-      <Route path="/*" element={<Navigate replace to="/admin/technicians" />} />
+      <Route
+        path="/*"
+        element={<Navigate replace to="/admin/technicians" />}
+      />
     </Routes>
   );
 }
