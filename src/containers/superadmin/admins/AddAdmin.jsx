@@ -37,7 +37,6 @@ function AddAdmin({ open, setOpen, getAdmins }) {
     name: '',
     email: '',
     password: '',
-    confirmPassword: '12345678',
   });
 
   const { name, email, password } = values;
