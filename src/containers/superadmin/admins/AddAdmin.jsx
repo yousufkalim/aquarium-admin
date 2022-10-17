@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Dialog from '@mui/material/Dialog';
 import { Grid, FormControl, TextField } from '@mui/material';
 import Button from '@mui/material/Button';
@@ -30,15 +30,19 @@ const useOutlinedInputStyles = makeStyles({
   },
 });
 
-function AddAdmin({ open, setOpen, getAdmins }) {
-  const [edit] = useState(false);
-
+// eslint-disable-next-line object-curly-newline
+function AddAdmin({ open, setOpen, editing, getAdmins, admin }) {
   const [values, setValues] = useState({
     name: '',
     email: '',
     password: '',
   });
 
+  useEffect(() => {
+    if (admin) {
+      setValues(admin);
+    }
+  }, [admin]);
   const { name, email, password } = values;
   const handleClose = () => {
     setOpen(false);
@@ -51,10 +55,15 @@ function AddAdmin({ open, setOpen, getAdmins }) {
   };
 
   const handleSubmit = async () => {
-    await api('post', '/admins', values);
-    getAdmins();
-    toast.success('Admin created successfully');
+    if (editing) {
+      await api('put', `/admins/${admin._id}/edit`, values);
+      toast.success('Admin edited successfully');
+    } else {
+      await api('post', '/admins', values);
+      toast.success('Admin created successfully');
+    }
     handleClose();
+    getAdmins();
   };
   const outlinedInputStyles = useOutlinedInputStyles();
 
@@ -72,10 +81,14 @@ function AddAdmin({ open, setOpen, getAdmins }) {
           <Grid container xs={12} sx={{ height: '100%' }}>
             <Grid xs={12}>
               <h1 style={{ fontSize: '24px', color: '#28CDFF' }}>
-                Invite a new Admin
+                {editing
+                  ? 'Edit Admin Profile'
+                  : 'Invite a new Admin'}
               </h1>
               <p className="enterEmailTxt">
-                Admin will be invited by email address
+                {editing
+                  ? 'Admin info will be modified by click on save button'
+                  : 'Admin will be invited by email address'}
               </p>
               <div className="hl-forget" />
               <Grid item xs={12}>
@@ -132,34 +145,36 @@ function AddAdmin({ open, setOpen, getAdmins }) {
                   />
                 </FormControl>
               </Grid>
-              <Grid item xs={12}>
-                <FormControl
-                  sx={{ mb: 1, mt: 1, width: '85%' }}
-                  variant="outlined"
-                >
-                  <TextField
-                    sx={{
-                      backgroundColor: 'white',
-                      borderRadius: '25px',
-                    }}
-                    id="outlined-password"
-                    classes={outlinedInputStyles}
-                    label="Password"
-                    size="normal"
-                    type="password"
-                    value={password}
-                    name="password"
-                    onChange={onChangeEvent}
-                    InputLabelProps={{
-                      style: {
-                        color: '#8C8C8C',
-                        fontSize: '19px',
-                        fontWeight: '700',
-                      },
-                    }}
-                  />
-                </FormControl>
-              </Grid>
+              {!editing && (
+                <Grid item xs={12}>
+                  <FormControl
+                    sx={{ mb: 1, mt: 1, width: '85%' }}
+                    variant="outlined"
+                  >
+                    <TextField
+                      sx={{
+                        backgroundColor: 'white',
+                        borderRadius: '25px',
+                      }}
+                      id="outlined-password"
+                      classes={outlinedInputStyles}
+                      label="Password"
+                      size="normal"
+                      type="password"
+                      value={password}
+                      name="password"
+                      onChange={onChangeEvent}
+                      InputLabelProps={{
+                        style: {
+                          color: '#8C8C8C',
+                          fontSize: '19px',
+                          fontWeight: '700',
+                        },
+                      }}
+                    />
+                  </FormControl>
+                </Grid>
+              )}
               <Grid item xs={12}>
                 <Button
                   onClick={handleClose}
@@ -173,7 +188,7 @@ function AddAdmin({ open, setOpen, getAdmins }) {
                   className="resetPasswordBtn"
                   variant="contained"
                 >
-                  {edit ? 'Save' : 'Send Invite'}
+                  {editing ? 'Save' : 'Send Invite'}
                 </Button>
               </Grid>
             </Grid>

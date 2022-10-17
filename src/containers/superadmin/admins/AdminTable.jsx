@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
@@ -29,10 +29,14 @@ const StyledTableRow = styled(TableRow)(() => ({
   },
 }));
 
-export default function AdminTable({ admins }) {
+export default function AdminTable({ admins, getAdmins }) {
   const [del, setDel] = useState(false);
   const [editing, setEditing] = useState(false);
+  const [admin, setAdmin] = useState('');
 
+  useEffect(() => {
+    getAdmins();
+  }, []);
   return (
     <div className="bg">
       <TableContainer
@@ -101,7 +105,10 @@ export default function AdminTable({ admins }) {
                     src={edit}
                     alt=""
                     className="editIcon"
-                    onClick={() => setEditing(true)}
+                    onClick={() => {
+                      setEditing(true);
+                      setAdmin(row);
+                    }}
                     role="presentation"
                   />
 
@@ -119,7 +126,15 @@ export default function AdminTable({ admins }) {
         </Table>
       </TableContainer>
 
-      {editing && <AddAdmin open={editing} setOpen={setEditing} />}
+      {editing && (
+        <AddAdmin
+          open={editing}
+          setOpen={setEditing}
+          editing={editing}
+          admin={admin}
+          getAdmins={getAdmins}
+        />
+      )}
       {del && <DeletePopup open={del} setOpen={setDel} />}
     </div>
   );

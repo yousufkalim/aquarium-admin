@@ -31,7 +31,7 @@ export default function Admins() {
         </Grid>
 
         <Grid xl={10} lg={9}>
-          <AdminTable admins={admins} />
+          <AdminTable admins={admins} getAdmins={getAdmins} />
           <div className="btnContainer">
             <Button
               variant="contained"
