@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Grid, Button } from '@mui/material';
 
 import AdminTable from './AdminTable';
@@ -7,9 +7,22 @@ import AddAdmin from './AddAdmin';
 
 // eslint-disable-next-line import/no-cycle
 import Sidebar from '../../../components/Sidebar';
+import api from '../../../api/index';
 
 export default function Admins() {
   const [open, setOpen] = useState(false);
+  const [admins, setAdmins] = useState([]);
+
+  const getAdmins = async () => {
+    const { data } = await api('get', '/admins');
+    if (data) {
+      setAdmins(data?.results);
+    }
+  };
+
+  useEffect(() => {
+    getAdmins();
+  }, []);
   return (
     <div>
       <Grid container>
@@ -18,7 +31,7 @@ export default function Admins() {
         </Grid>
 
         <Grid xl={10} lg={9}>
-          <AdminTable />
+          <AdminTable admins={admins} />
           <div className="btnContainer">
             <Button
               variant="contained"
@@ -32,7 +45,13 @@ export default function Admins() {
           </div>
         </Grid>
       </Grid>
-      {open && <AddAdmin open={open} setOpen={setOpen} />}
+      {open && (
+        <AddAdmin
+          open={open}
+          setOpen={setOpen}
+          getAdmins={getAdmins}
+        />
+      )}
     </div>
   );
 }

@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { React, useState, useEffect } from 'react';
+import { React, useState } from 'react';
 
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
@@ -13,7 +13,6 @@ import edit from '../../../assets/images/Edit.svg';
 import deleteIcon from '../../../assets/images/Delete.svg';
 import AddAdmin from './AddAdmin';
 import DeletePopup from '../../../components/DeletePopup';
-import api from '../../../api/index';
 
 const StyledTableCell = styled(TableCell)(() => ({
   [`&.${tableCellClasses.body}`]: {
@@ -30,22 +29,9 @@ const StyledTableRow = styled(TableRow)(() => ({
   },
 }));
 
-export default function AdminTable() {
+export default function AdminTable({ admins }) {
   const [del, setDel] = useState(false);
   const [editing, setEditing] = useState(false);
-  const [admins, setAdmins] = useState([]);
-
-  const getAdmins = async () => {
-    const { data } = await api('get', '/admins');
-    if (data) {
-      setAdmins(data?.results);
-    }
-    console.log('admins', data.results);
-  };
-
-  useEffect(() => {
-    getAdmins();
-  }, []);
 
   return (
     <div className="bg">
@@ -68,7 +54,6 @@ export default function AdminTable() {
           aria-label="customized table"
         >
           <TableBody>
-            {/* <h1>List of Admins</h1> */}
             {admins.map((row) => (
               <StyledTableRow key={row.name}>
                 <StyledTableCell
