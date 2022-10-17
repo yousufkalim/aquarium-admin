@@ -115,7 +115,10 @@ export default function AdminTable({ admins, getAdmins }) {
                   <img
                     src={deleteIcon}
                     className="deleteIcon"
-                    onClick={() => setDel(true)}
+                    onClick={() => {
+                      setDel(true);
+                      setAdmin(row);
+                    }}
                     alt=""
                     role="presentation"
                   />
@@ -135,7 +138,14 @@ export default function AdminTable({ admins, getAdmins }) {
           getAdmins={getAdmins}
         />
       )}
-      {del && <DeletePopup open={del} setOpen={setDel} />}
+      {del && (
+        <DeletePopup
+          open={del}
+          setOpen={setDel}
+          admin={admin}
+          getAdmins={getAdmins}
+        />
+      )}
     </div>
   );
 }

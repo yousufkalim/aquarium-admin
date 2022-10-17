@@ -56,7 +56,7 @@ function AddAdmin({ open, setOpen, editing, getAdmins, admin }) {
 
   const handleSubmit = async () => {
     if (editing) {
-      await api('put', `/admins/${admin._id}/edit`, values);
+      await api('put', `/admins/${admin._id}`, values);
       toast.success('Admin edited successfully');
     } else {
       await api('post', '/admins', values);
