@@ -5,8 +5,6 @@ import AdminTable from './AdminTable';
 import add from '../../../assets/images/add.svg';
 import AddAdmin from './AddAdmin';
 
-// eslint-disable-next-line import/no-cycle
-import Sidebar from '../../../components/Sidebar';
 import api from '../../../api/index';
 
 export default function Admins() {
@@ -26,9 +24,7 @@ export default function Admins() {
   return (
     <div>
       <Grid container>
-        <Grid xl={2} lg={3}>
-          <Sidebar />
-        </Grid>
+        <Grid xl={2} lg={3} />
 
         <Grid xl={10} lg={9}>
           <AdminTable admins={admins} getAdmins={getAdmins} />

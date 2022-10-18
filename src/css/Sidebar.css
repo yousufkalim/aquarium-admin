@@ -10,6 +10,13 @@
   color: #8c8c8c;
   margin-bottom: 9%;
 }
+.fullListItemAdmin {
+  margin-bottom: 3%;
+  padding: 2%;
+  background-color: #f3fdff;
+  border-radius: 20px;
+  height: 10% !important;
+}
 
 .listItem {
   font-weight: 500;
@@ -28,11 +35,21 @@
   border-radius: 20px;
 }
 
-.fullListItem:hover .listItem {
+.fullListItem:hover .listItem,
+.fullListItemAdmin:hover .listItem {
   color: #fff;
   background-color: #28cdff;
   border-radius: 20px !important;
   overflow: hidden !important;
+}
+
+.fullListItemAdmin:hover {
+  border-radius: 20px !important;
+  background-color: #28cdff;
+  color: #fff;
+}
+.fullListItemAdmin:hover .adminServiceDropdown {
+  color: #fff;
 }
 ​ .active-nav-item {
   color: #fff;
@@ -51,24 +68,49 @@
   font-size: 18px !important;
 }
 .red {
-  filter: invert(13%) sepia(94%) saturate(7466%) hue-rotate(0deg) brightness(94%) contrast(115%);
+  filter: invert(13%) sepia(94%) saturate(7466%) hue-rotate(0deg)
+    brightness(94%) contrast(115%);
+}
+.adminServiceDropdown {
+  margin: auto;
+  color: #8c8c8c;
+  font-size: 16px;
+  padding-bottom: 10%;
 }
 
-.fullListItem:hover .icon {
+.fullListItem:hover .icon,
+.fullListItemAdmin:hover .icon,
+.fullListItemAdmin:hover .arrow-icon-up {
   filter: brightness(0) invert(1);
+}
+.fullListItemAdmin:hover .s-vl {
+  border-left: 2px solid white;
 }
 .css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root {
   border-radius: 20px !important;
+}
+.s-vl {
+  height: 116px;
+  margin-left: -20px;
+  border-left: 2px solid #28cdff;
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1919px) {
   .css-1ip8xo1-MuiDrawer-docked .MuiDrawer-paper {
     width: 25% !important;
+    padding: 0 2% !important;
   }
   .sidebarLogo {
     margin: 0 auto;
   }
   .sidebarLogoImg {
     width: 100% !important;
+  }
+
+  .profileDiv {
+    position: relative;
+    bottom: 0;
+    width: 87%;
+    padding-top: 16% 0;
   }
 }

@@ -1,14 +1,12 @@
-import * as React from 'react';
+/* eslint-disable react/jsx-indent */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable operator-linebreak */
+/* eslint-disable indent */
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
-
-// import CssBaseline from '@mui/material/CssBaseline';
-
-import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
-import { Link } from 'react-router-dom';
-
-// import Divider from '@mui/material/Divider';
+import { Link, NavLink } from 'react-router-dom';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import Button from '@mui/material/Button';
@@ -17,6 +15,7 @@ import ListItemText from '@mui/material/ListItemText';
 import logo from '../assets/images/blueLogo.svg';
 import logout from '../assets/images/Logout.svg';
 import profileDummy from '../assets/images/profileDummy.svg';
+import arrowUp from '../assets/images/arrowUp.svg';
 
 import { Store } from '../StoreContext';
 
@@ -32,6 +31,17 @@ export default function Sidebar() {
     localStorage.removeItem('token');
     window.location = '/auth/login';
   };
+  const [updownIconToggle, setupdownIconToggle] = useState({
+    key: '',
+  });
+  const [activeLink, setactiveLink] = useState();
+  function toggleIcon(name) {
+    setupdownIconToggle((pre) => ({
+      ...pre,
+      [name]: !updownIconToggle[name],
+      key: name,
+    }));
+  }
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -48,6 +58,7 @@ export default function Sidebar() {
         }}
         variant="permanent"
         anchor="left"
+        className="sideBarAdmin"
       >
         <Link
           to="/"
@@ -104,35 +115,140 @@ export default function Sidebar() {
               ))
             : adminRoutes.map((route) => (
                 // eslint-disable-next-line react/jsx-indent
-                <Link
-                  to={route.layout + route.path}
-                  style={{ textDecoration: 'none' }}
+
+                <div
+                  onClick={() => toggleIcon(route?.name)}
+                  onKeyDown={() => toggleIcon(route?.name)}
                 >
-                  <ListItem
-                    className="fullListItem"
-                    key={route.name}
-                    disablePadding
+                  <Link
+                    to={route.layout + route.path}
+                    style={{ textDecoration: 'none' }}
                   >
-                    <ListItemButton className="listItem">
-                      <ListItemIcon
-                        className="M-icon"
-                        activeClassName="active-nav-item"
-                      >
-                        <img
-                          src={route.icon}
-                          className="icon"
-                          id="icon"
-                          alt=""
+                    <ListItem
+                      className="fullListItemAdmin"
+                      style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                      }}
+                      key={route.name}
+                      disablePadding
+                    >
+                      <ListItemButton className="listItem">
+                        <ListItemIcon
+                          className="M-icon"
+                          activeClassName="active-nav-item"
+                        >
+                          <img
+                            src={route.icon}
+                            className="icon"
+                            id="icon"
+                            alt=""
+                          />
+                        </ListItemIcon>
+                        <ListItemText
+                          className="listItem"
+                          primary={route.name}
                         />
-                      </ListItemIcon>
-                      <ListItemText
-                        className="listItem"
-                        primary={route.name}
-                      />
-                    </ListItemButton>
-                  </ListItem>
-                </Link>
-                // eslint-disable-next-line indent
+
+                        {route.name === 'Services' ? (
+                          <div>
+                            {/* eslint-disable-next-line operator-linebreak */}
+                            {updownIconToggle[updownIconToggle.key] &&
+                            updownIconToggle.key === route?.name ? (
+                              <img
+                                className="arrow-icon-up"
+                                src={arrowUp}
+                                alt="arrowUp"
+                              />
+                            ) : (
+                              // eslint-disable-next-line indent
+                              // eslint-disable-next-line indent
+                              <img
+                                className="arrow-icon-up"
+                                src={arrowUp}
+                                style={{
+                                  transform: 'rotateX(180deg)',
+                                }}
+                                alt="arrowUp"
+                              />
+                              // eslint-disable-next-line indent
+                            )}
+                          </div>
+                        ) : (
+                          ''
+                        )}
+                      </ListItemButton>
+                      {route.name === 'Services' ? (
+                        <div
+                          className="flex listItem1"
+                          style={{
+                            display: 'flex',
+                            flexDirection: 'row',
+                            width: '100%',
+                            justifyContent: 'center',
+                          }}
+                        >
+                          {updownIconToggle[updownIconToggle.key] &&
+                          updownIconToggle.key === route?.name ? (
+                            <>
+                              <div className="s-vl" />
+                              <div
+                                className="flex-col"
+                                style={{
+                                  marginLeft: '60px',
+                                  marginTop: '10%',
+                                  marginBottom: '10%',
+                                }}
+                              >
+                                {route?.child.map((routeChild) => (
+                                  <div
+                                    onClick={
+                                      () =>
+                                        // eslint-disable-next-line implicit-arrow-linebreak
+                                        setactiveLink(
+                                          routeChild?.name,
+                                        )
+                                      // eslint-disable-next-line react/jsx-curly-newline
+                                    }
+                                    onKeyUp={
+                                      () =>
+                                        // eslint-disable-next-line implicit-arrow-linebreak
+                                        setactiveLink(
+                                          routeChild?.name,
+                                        )
+                                      // eslint-disable-next-line react/jsx-curly-newline
+                                    }
+                                    role="presentation"
+                                    className="dropDownLeftBorder"
+                                  >
+                                    <NavLink
+                                      style={{
+                                        textDecoration: 'none',
+                                      }}
+                                      className={
+                                        routeChild?.name ===
+                                        activeLink
+                                          ? 'active-link'
+                                          : ''
+                                      }
+                                      to={routeChild?.path}
+                                    >
+                                      <p className="adminServiceDropdown">
+                                        {routeChild?.name}
+                                      </p>
+                                    </NavLink>
+                                  </div>
+                                ))}
+                              </div>
+                            </>
+                          ) : null}
+                        </div>
+                      ) : (
+                        ''
+                      )}
+                    </ListItem>
+                  </Link>
+                </div>
               ))}
         </List>
         <div className="profileDiv">
@@ -166,7 +282,6 @@ export default function Sidebar() {
             </Button>
           </div>
         </div>
-        <Toolbar />
       </Drawer>
     </Box>
   );
