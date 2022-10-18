@@ -1,8 +1,11 @@
-import React from 'react';
+/* eslint-disable consistent-return */
+import React, { useState } from 'react';
 import Dialog from '@mui/material/Dialog';
 import { Grid, FormControl, TextField } from '@mui/material';
 import Button from '@mui/material/Button';
 import { makeStyles } from '@mui/styles';
+import { toast } from 'react-toastify';
+import api from '../api/index';
 
 const useOutlinedInputStyles = makeStyles({
   root: {
@@ -29,9 +32,25 @@ const useOutlinedInputStyles = makeStyles({
 
 function ForgetPasswordPopup({ open, setOpen }) {
   const outlinedInputStyles = useOutlinedInputStyles();
+  // const { admin } = Store();
+  const [email, setEmail] = useState('');
 
+  const handleInput = (e) => {
+    setEmail(e.target.value);
+  };
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleForgetPassword = async () => {
+    if (!email) {
+      return toast.error('Please enter your email');
+    }
+    const res = await api('put', `/admins/forgot/${email}`, email);
+    if (res) {
+      toast.success('Please check your email to reset your password');
+      handleClose();
+    }
   };
   return (
     <div>
@@ -46,19 +65,31 @@ function ForgetPasswordPopup({ open, setOpen }) {
         <div className="forgetPasswordPopup">
           <Grid container xs={12}>
             <Grid xs={12}>
-              <h1 style={{ fontSize: '24px', color: '#28CDFF' }}>Forgot Password</h1>
+              <h1 style={{ fontSize: '24px', color: '#28CDFF' }}>
+                Forgot Password
+              </h1>
               <p className="enterEmailTxt">
-                Enter your email, So we can send you reset instructions
+                Enter your email, So we can send you reset
+                instructions
               </p>
               <div className="hl-forget" />
               <Grid item xs={12}>
-                <FormControl sx={{ mb: 3, mt: 6, width: '85%' }} variant="outlined">
+                <FormControl
+                  sx={{ mb: 3, mt: 6, width: '85%' }}
+                  variant="outlined"
+                >
                   <TextField
-                    sx={{ backgroundColor: 'white', borderRadius: '25px' }}
+                    sx={{
+                      backgroundColor: 'white',
+                      borderRadius: '25px',
+                    }}
                     id="outlined-email"
                     classes={outlinedInputStyles}
                     label="Email"
                     size="normal"
+                    value={email}
+                    type={email}
+                    onChange={handleInput}
                     InputLabelProps={{
                       style: {
                         color: '#8C8C8C',
@@ -70,11 +101,21 @@ function ForgetPasswordPopup({ open, setOpen }) {
                 </FormControl>
               </Grid>
               <Grid item xs={12}>
-                <Button onClick={handleClose} className="closeBtn" variant="outlined">
+                <Button
+                  onClick={handleClose}
+                  className="closeBtn"
+                  variant="outlined"
+                >
                   Close
                 </Button>
-                <Button onClick={handleClose} className="resetPasswordBtn" variant="contained">
-                  {window.innerWidth < 768 ? 'Reset' : ' Send Reset Instructions'}
+                <Button
+                  onClick={handleForgetPassword}
+                  className="resetPasswordBtn"
+                  variant="contained"
+                >
+                  {window.innerWidth < 768
+                    ? 'Reset'
+                    : ' Send Reset Instructions'}
                 </Button>
               </Grid>
             </Grid>
