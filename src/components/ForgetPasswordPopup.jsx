@@ -46,7 +46,7 @@ function ForgetPasswordPopup({ open, setOpen }) {
     if (!email) {
       return toast.error('Please enter your email');
     }
-    const res = await api('put', `/admins/forgot/${email}`, email);
+    const res = await api('put', `/admins/forgot/${email}`);
     if (res) {
       toast.success('Please check your email to reset your password');
       handleClose();
