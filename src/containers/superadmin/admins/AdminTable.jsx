@@ -62,10 +62,9 @@ export default function AdminTable({ admins, getAdmins }) {
               <StyledTableRow key={row.name}>
                 <StyledTableCell
                   align="right"
+                  className="safariMarginClass"
                   sx={{
                     width: '1%',
-                    paddingLeft: '2%',
-                    paddingRight: '2%',
                   }}
                 >
                   {' '}
@@ -82,9 +81,7 @@ export default function AdminTable({ admins, getAdmins }) {
                   {row.name}
                 </StyledTableCell>
                 <StyledTableCell
-                  align={
-                    window.innerWidth > 1600 ? 'right' : 'center'
-                  }
+                  align="center"
                   sx={{
                     fontSize: '22px',
                     fontWeight: '700',

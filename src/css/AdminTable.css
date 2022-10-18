@@ -28,6 +28,11 @@
   right: 14px;
   overflow: hidden;
 }
+.safariMarginClass {
+  /* using vw to keep the spacing same on safari as well as on chrome otherwis it was not fixed */
+  padding-left: 2vw !important;
+  /* padding-right: .5vw !important;  */
+}
 .addAdminBtn {
   background-color: #28cdff !important;
   border-radius: 25px !important;
