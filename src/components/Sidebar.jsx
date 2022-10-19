@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import Button from '@mui/material/Button';
@@ -60,7 +60,7 @@ export default function Sidebar() {
         anchor="left"
         className="sideBarAdmin"
       >
-        <Link
+        <NavLink
           to="/"
           style={{ textDecoration: 'none' }}
           className="sidebarLogo"
@@ -75,7 +75,7 @@ export default function Sidebar() {
             className="sidebarLogoImg"
             alt=""
           />
-        </Link>
+        </NavLink>
         {/* <Divider /> */}
 
         <List>
@@ -83,9 +83,10 @@ export default function Sidebar() {
           {admin.role === 'superadmin'
             ? superadminRoutes.map((route) => (
                 // eslint-disable-next-line react/jsx-indent
-                <Link
+                <NavLink
                   to={route.layout + route.path}
                   style={{ textDecoration: 'none' }}
+                  activeClassName="active"
                 >
                   <ListItem
                     className="fullListItem"
@@ -93,10 +94,7 @@ export default function Sidebar() {
                     disablePadding
                   >
                     <ListItemButton className="listItem">
-                      <ListItemIcon
-                        className="M-icon"
-                        activeClassName="active-nav-item"
-                      >
+                      <ListItemIcon className="M-icon">
                         <img
                           src={route.icon}
                           className="icon"
@@ -110,7 +108,7 @@ export default function Sidebar() {
                       />
                     </ListItemButton>
                   </ListItem>
-                </Link>
+                </NavLink>
                 // eslint-disable-next-line indent
               ))
             : adminRoutes.map((route) => (
@@ -120,9 +118,10 @@ export default function Sidebar() {
                   onClick={() => toggleIcon(route?.name)}
                   onKeyDown={() => toggleIcon(route?.name)}
                 >
-                  <Link
+                  <NavLink
                     to={route.layout + route.path}
                     style={{ textDecoration: 'none' }}
+                    activeClassName="active"
                   >
                     <ListItem
                       className="fullListItemAdmin"
@@ -134,10 +133,7 @@ export default function Sidebar() {
                       disablePadding
                     >
                       <ListItemButton className="listItem">
-                        <ListItemIcon
-                          className="M-icon"
-                          activeClassName="active-nav-item"
-                        >
+                        <ListItemIcon className="M-icon">
                           <img
                             src={route.icon}
                             className="icon"
@@ -195,7 +191,7 @@ export default function Sidebar() {
                               <div
                                 className="flex-col"
                                 style={{
-                                  marginLeft: '60px',
+                                  marginLeft: '50px',
                                   marginTop: '10%',
                                   marginBottom: '10%',
                                 }}
@@ -225,10 +221,11 @@ export default function Sidebar() {
                                       style={{
                                         textDecoration: 'none',
                                       }}
+                                      activeClassName="active"
                                       className={
                                         routeChild?.name ===
                                         activeLink
-                                          ? 'active-link'
+                                          ? 'active-NavLink'
                                           : ''
                                       }
                                       to={routeChild?.path}
@@ -247,7 +244,7 @@ export default function Sidebar() {
                         ''
                       )}
                     </ListItem>
-                  </Link>
+                  </NavLink>
                 </div>
               ))}
         </List>
