@@ -62,14 +62,14 @@ export default function Sidebar() {
       >
         <NavLink
           to="/"
-          style={{ textDecoration: 'none' }}
+          style={{ textDecoration: 'none', margin: 'auto' }}
           className="sidebarLogo"
         >
           <img
             src={logo}
             style={{
               margin: '16% auto',
-              width: '70%',
+              width: '100%',
               marginTop: '11%',
             }}
             className="sidebarLogoImg"
