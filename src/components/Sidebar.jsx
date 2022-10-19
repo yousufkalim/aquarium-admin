@@ -78,7 +78,7 @@ export default function Sidebar() {
         </NavLink>
         {/* <Divider /> */}
 
-        <List>
+        <List sx={{ flexBasis: '80%' }}>
           <p className="sidebarTxt">Menu</p>
           {admin.role === 'superadmin'
             ? superadminRoutes.map((route) => (

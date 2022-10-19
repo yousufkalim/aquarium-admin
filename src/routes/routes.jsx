@@ -15,6 +15,7 @@ import serviceAdmin from '../assets/images/serviceAdmin.svg';
 import products from '../assets/images/products.svg';
 import checklist from '../assets/images/checklist.svg';
 import tank from '../assets/images/aquarium.svg';
+import Technicians from '../containers/admin/dashboard/Technicians';
 
 // unAuth routes
 const unAuthRoutes = [
@@ -60,7 +61,7 @@ const adminRoutes = [
     path: '/dashboard',
     name: 'Dashboard',
     icon: admin,
-    element: <Admins />,
+    element: <Technicians />,
   },
   {
     layout: '/admin',

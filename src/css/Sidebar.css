@@ -1,7 +1,7 @@
 .profileDiv {
-  position: absolute;
+  position: relative;
   bottom: 0;
-  width: 87%;
+  width: 100%;
   padding: 16% 0;
 }
 .sidebarTxt {
@@ -144,15 +144,12 @@
   }
   .sidebarLogo {
     margin: 0 auto;
+    flex-basis: 10%;
   }
   .sidebarLogoImg {
     width: 100% !important;
   }
-
   .profileDiv {
-    position: relative;
-    bottom: 0;
-    width: 87%;
-    padding-top: 16% 0;
+    width: 88%;
   }
 }

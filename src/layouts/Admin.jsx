@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import {
   Routes,
   Route,
-  // Navigate,
+  Navigate,
   useLocation,
 } from 'react-router-dom';
 
@@ -46,10 +46,10 @@ function Admin() {
 
       <Routes>
         {getRoutes()}
-        {/* <Route
+        <Route
           path="/*"
-          element={<Navigate to="/admin/technicians" />}
-        /> */}
+          element={<Navigate to="/admin/dashboard" />}
+        />
       </Routes>
     </>
   );

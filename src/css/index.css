@@ -10,6 +10,7 @@
 @import url('./Popups.css');
 @import url('./AdminTable.css');
 @import url('./ServiceTable.css');
+@import url('./Technician.css');
 /* Defaults */
 * {
   padding: 0;

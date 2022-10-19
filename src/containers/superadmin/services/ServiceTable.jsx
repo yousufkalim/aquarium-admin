@@ -183,9 +183,19 @@ export default function AdminTable() {
     <div className="bg">
       <TableContainer
         component={Paper}
-        style={{ borderRadius: '20px', maxHeight: '100%', overflow: 'scroll' }}
+        style={{
+          borderRadius: '20px',
+          maxHeight: '100%',
+          overflow: 'scroll',
+        }}
       >
-        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+          }}
+        >
           <div>
             <h1 className="thead">Service History</h1>
           </div>
@@ -203,7 +213,11 @@ export default function AdminTable() {
             />
             <MultipleSelect
               text="Filter"
-              style={{ borderRadius: '17px', border: '1px solid #8C8C8C', color: '#8C8C8C' }}
+              style={{
+                borderRadius: '17px',
+                border: '1px solid #8C8C8C',
+                color: '#8C8C8C',
+              }}
               sx={{ m: 1, minWidth: 80, mt: 3 }}
             />
           </div>
@@ -220,16 +234,28 @@ export default function AdminTable() {
         >
           <TableHead>
             <TableRow sx={{ background: '#d9f4ff' }}>
-              <StyledTableCell sx={{ fontSize: '16px', fontWeight: '700' }} align="center">
+              <StyledTableCell
+                sx={{ fontSize: '16px', fontWeight: '700' }}
+                align="center"
+              >
                 Client Name
               </StyledTableCell>
-              <StyledTableCell sx={{ fontSize: '16px', fontWeight: '700' }} align="center">
+              <StyledTableCell
+                sx={{ fontSize: '16px', fontWeight: '700' }}
+                align="center"
+              >
                 Date
               </StyledTableCell>
-              <StyledTableCell sx={{ fontSize: '16px', fontWeight: '700' }} align="center">
+              <StyledTableCell
+                sx={{ fontSize: '16px', fontWeight: '700' }}
+                align="center"
+              >
                 Service Start Time - End Time
               </StyledTableCell>
-              <StyledTableCell sx={{ fontSize: '16px', fontWeight: '700' }} align="center">
+              <StyledTableCell
+                sx={{ fontSize: '16px', fontWeight: '700' }}
+                align="center"
+              >
                 Technician
               </StyledTableCell>
             </TableRow>
@@ -238,27 +264,42 @@ export default function AdminTable() {
             {/* <h1>List of Admins</h1> */}
             {rows.map((row) => (
               <StyledTableRow key={row.name}>
-                <StyledTableCell align="center" sx={{ display: 'flex', justifyContent: 'center' }}>
+                <StyledTableCell
+                  align="center"
+                  sx={{ display: 'flex', justifyContent: 'center' }}
+                >
                   <div style={{ textAlign: 'left' }}>
                     <p className="placename">{row.placeName}</p>
 
                     <p className="tankname">{row.tank}</p>
                   </div>
                 </StyledTableCell>
-                <StyledTableCell align="center" className="serviceTableTxt">
+                <StyledTableCell
+                  align="center"
+                  className="serviceTableTxt"
+                >
                   {row.date}
                 </StyledTableCell>
-                <StyledTableCell align="center" className="serviceTableTxt">
+                <StyledTableCell
+                  align="center"
+                  className="serviceTableTxt"
+                >
                   {row.time}
                 </StyledTableCell>
                 <StyledTableCell align="center">
                   <div className="technicianCol">
                     <img
                       src={profileDummy}
-                      style={{ border: '3px solid #28CDFF', borderRadius: '50px' }}
+                      style={{
+                        border: '3px solid #28CDFF',
+                        borderRadius: '50px',
+                      }}
                       alt=""
                     />
-                    <span style={{ margin: 'auto' }} className="serviceTableTxt">
+                    <span
+                      style={{ margin: 'auto' }}
+                      className="serviceTableTxt"
+                    >
                       {row.technician}
                     </span>
                   </div>
