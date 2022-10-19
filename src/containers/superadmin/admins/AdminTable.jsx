@@ -134,8 +134,9 @@ export default function AdminTable({ admins, getAdmins }) {
         <DeletePopup
           open={del}
           setOpen={setDel}
-          admin={admin}
-          getAdmins={getAdmins}
+          item={admin}
+          txt="admins"
+          getData={getAdmins}
         />
       )}
     </div>

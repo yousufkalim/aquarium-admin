@@ -7,16 +7,15 @@ import api from '../api/index';
 import delConfirm from '../assets/images/delConfirm.svg';
 
 // eslint-disable-next-line object-curly-newline
-function DeletePopup({ open, setOpen, admin, getAdmins }) {
+function DeletePopup({ open, setOpen, item, getData, txt }) {
   const handleClose = () => {
     setOpen(false);
   };
   const handleDelete = async () => {
-    await api('delete', `/admins/${admin._id}`);
-    // console.log(data.results);
-    toast.success('Admin deleted successfully');
+    await api('delete', `/${txt}/${item._id}`);
+    getData();
+    toast.success('Deleted successfully');
     handleClose();
-    getAdmins();
   };
   return (
     <div>
