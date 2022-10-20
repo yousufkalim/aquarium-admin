@@ -19,7 +19,7 @@ const StyledTableCell = styled(TableCell)(() => ({
 }));
 const StyledTableRow = styled(TableRow)(() => ({
   '&:nth-of-type(even)': {
-    backgroundColor: '#F3FDFF',
+    backgroundColor: '#F3FDFF!important',
   },
   // hide last border
   '&:last-child td, &:last-child th': {
@@ -253,7 +253,11 @@ export default function AdminTable() {
                 Service Start Time - End Time
               </StyledTableCell>
               <StyledTableCell
-                sx={{ fontSize: '16px', fontWeight: '700' }}
+                sx={{
+                  fontSize: '16px',
+                  fontWeight: '700',
+                  width: '20%',
+                }}
                 align="center"
               >
                 Technician

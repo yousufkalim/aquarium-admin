@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import React, { useState, useEffect } from 'react';
 import Dialog from '@mui/material/Dialog';
 import { Grid, FormControl, TextField } from '@mui/material';
