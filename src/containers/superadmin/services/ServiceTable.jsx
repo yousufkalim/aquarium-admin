@@ -10,7 +10,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import TableHead from '@mui/material/TableHead';
 import profileDummy from '../../../assets/images/profileDummy.svg';
-import MultipleSelect from '../../../components/Multiselect';
+import MultipleSelect from './Multiselect';
 
 const StyledTableCell = styled(TableCell)(() => ({
   [`&.${tableCellClasses.body}`]: {

@@ -38,12 +38,7 @@
   background-color: #28cdff !important;
   color: white !important;
 }
-.filterField {
-}
-.css-jedpe8-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-jedpe8-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-jedpe8-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
-  padding-right: 0 !important;
-  text-align: left !important;
-}
+
 @media only screen and (min-width: 992px) and (max-width: 1919px) {
   .technicianCol {
     width: 100%;
