@@ -1,7 +1,7 @@
 .profileDiv {
-  position: absolute;
+  position: relative;
   bottom: 0;
-  width: 87%;
+  width: 100%;
   padding: 16% 0;
 }
 .sidebarTxt {
@@ -9,6 +9,13 @@
   font-size: 16px;
   color: #8c8c8c;
   margin-bottom: 9%;
+}
+.fullListItemAdmin {
+  margin-bottom: 3%;
+  padding: 2%;
+  background-color: #f3fdff;
+  border-radius: 20px;
+  height: 10% !important;
 }
 
 .listItem {
@@ -22,23 +29,93 @@
   font-size: 20px;
   color: #28cdff;
 }
+
+/*====================================== styling superadmin menu items=================== */
 .fullListItem {
   background-color: #f3fdff;
   margin-bottom: 9%;
   border-radius: 20px;
 }
+.active .fullListItem .listItem {
+  color: #fff;
+}
+.fullListItem:hover .icon {
+  filter: brightness(0) invert(1);
+}
+.active .fullListItem {
+  color: white !important;
+  background-color: #28cdff;
+}
+.active .fullListItem .icon {
+  filter: brightness(0) invert(1);
+}
+/* ======================================end of styling superadmin menu items=================== */
 
-.fullListItem:hover .listItem {
+/*===================================styling admin menu items==================================== */
+.fullListItemAdmin:hover {
+  border-radius: 20px !important;
+  background-color: #28cdff;
+  color: #fff;
+}
+.fullListItemAdmin:hover .adminServiceDropdown {
+  color: #fff;
+}
+.adminServiceDropdown {
+  margin: auto;
+  color: #8c8c8c;
+  font-size: 16px;
+  padding-bottom: 10%;
+}
+.adminServiceDropdown:hover {
+  font-weight: 700;
+}
+.fullListItemAdmin:hover .s-vl {
+  border-left: 2px solid white;
+}
+.active .fullListItemAdmin .listItem {
+  color: #fff;
+}
+.active .fullListItemAdmin .listItem .arrow-icon-up {
+  filter: brightness(0) invert(1);
+}
+.active .fullListItemAdmin .s-vl {
+  border-left: 2px solid white;
+}
+.active .fullListItemAdmin .adminServiceDropdown {
+  color: #fff;
+}
+
+.active .fullListItemAdmin {
+  color: white !important;
+  background-color: #28cdff;
+}
+.active .fullListItemAdmin .icon {
+  filter: brightness(0) invert(1);
+}
+
+/*====================================== end of styling admin menu items============================ */
+
+/* ======================================styling both admin/superadmin menu items=================== */
+.fullListItem:hover .listItem,
+.fullListItemAdmin:hover .listItem {
   color: #fff;
   background-color: #28cdff;
   border-radius: 20px !important;
   overflow: hidden !important;
 }
-​ .active-nav-item {
-  color: #fff;
+
+.fullListItem:focus .icon,
+.fullListItemAdmin:focus .icon,
+.fullListItemAdmin:focus .arrow-icon-up {
+  color: white !important;
   background-color: #28cdff;
-  border-radius: 20px;
 }
+/* .active.fullListItem .icon, */
+.fullListItemAdmin:hover .icon,
+.fullListItemAdmin:hover .arrow-icon-up {
+  filter: brightness(0) invert(1);
+}
+/* ===================end of styling both admin/superadmin menu items ===================*/
 
 .logoutBtn {
   background-color: #f3fdff !important;
@@ -50,25 +127,29 @@
   font-weight: 500 !important;
   font-size: 18px !important;
 }
-.red {
-  filter: invert(13%) sepia(94%) saturate(7466%) hue-rotate(0deg) brightness(94%) contrast(115%);
-}
 
-.fullListItem:hover .icon {
-  filter: brightness(0) invert(1);
-}
 .css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root {
   border-radius: 20px !important;
+}
+.s-vl {
+  height: 116px;
+  margin-left: -40px !important;
+  border-left: 2px solid #28cdff;
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1919px) {
   .css-1ip8xo1-MuiDrawer-docked .MuiDrawer-paper {
     width: 25% !important;
+    padding: 0 2% !important;
   }
   .sidebarLogo {
     margin: 0 auto;
+    flex-basis: 10%;
   }
   .sidebarLogoImg {
     width: 100% !important;
+  }
+  .profileDiv {
+    width: 88%;
   }
 }

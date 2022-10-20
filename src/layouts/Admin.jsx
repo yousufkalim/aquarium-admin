@@ -12,6 +12,7 @@ import { adminRoutes } from '../routes/routes';
 
 import { Store, UpdateStore } from '../StoreContext';
 import api from '../api';
+import Sidebar from '../components/Sidebar';
 
 function Admin() {
   const { admin } = Store();
@@ -40,13 +41,17 @@ function Admin() {
   };
 
   return (
-    <Routes>
-      {getRoutes()}
-      <Route
-        path="/*"
-        element={<Navigate replace to="/admin/technicians" />}
-      />
-    </Routes>
+    <>
+      <Sidebar />
+
+      <Routes>
+        {getRoutes()}
+        <Route
+          path="/*"
+          element={<Navigate to="/admin/dashboard" />}
+        />
+      </Routes>
+    </>
   );
 }
 

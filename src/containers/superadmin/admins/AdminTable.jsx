@@ -16,7 +16,7 @@ import DeletePopup from '../../../components/DeletePopup';
 
 const StyledTableCell = styled(TableCell)(() => ({
   [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
+    fontSize: 18,
   },
 }));
 const StyledTableRow = styled(TableRow)(() => ({
@@ -62,32 +62,24 @@ export default function AdminTable({ admins, getAdmins }) {
               <StyledTableRow key={row.name}>
                 <StyledTableCell
                   align="right"
+                  className="safariMarginClass"
                   sx={{
                     width: '1%',
-                    paddingLeft: '2%',
-                    paddingRight: '2%',
                   }}
                 >
-                  {' '}
                   <img
                     src={profileDummy}
                     className="imgNameCombo"
                     alt=""
                   />
                 </StyledTableCell>
-                <StyledTableCell
-                  align="left"
-                  sx={{ fontSize: '22px', fontWeight: '700' }}
-                >
+                <StyledTableCell align="left" className="admintxt">
                   {row.name}
                 </StyledTableCell>
                 <StyledTableCell
-                  align={
-                    window.innerWidth > 1600 ? 'right' : 'center'
-                  }
+                  align="center"
+                  className="admintxt"
                   sx={{
-                    fontSize: '22px',
-                    fontWeight: '700',
                     color: '#8C8C8C',
                   }}
                 >
@@ -142,8 +134,9 @@ export default function AdminTable({ admins, getAdmins }) {
         <DeletePopup
           open={del}
           setOpen={setDel}
-          admin={admin}
-          getAdmins={getAdmins}
+          item={admin}
+          txt="admins"
+          getData={getAdmins}
         />
       )}
     </div>

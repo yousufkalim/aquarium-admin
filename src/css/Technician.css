@@ -1,0 +1,32 @@
+.scheduleBtn {
+  border: 2px solid #28cdff !important;
+  border-radius: 20px !important;
+  color: #28cdff !important;
+  padding: 7px 30px !important;
+  font-size: 18px !important;
+}
+.scheduleBtn:hover {
+  background-color: #28cdff !important;
+  color: white !important;
+}
+.flexitem {
+  margin-right: 15px;
+}
+.spaceCol {
+  width: 40% !important;
+}
+.technicianName {
+  font-size: 20px !important;
+  font-weight: 700 !important;
+}
+@media only screen and (min-width: 992px) and (max-width: 1919px) {
+  .spaceCol {
+    width: auto !important;
+  }
+  .technicianName {
+    font-size: 17px !important;
+  }
+  .scheduleBtn {
+    font-size: 14px !important;
+  }
+}

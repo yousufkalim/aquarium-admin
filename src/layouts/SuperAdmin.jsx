@@ -12,6 +12,7 @@ import { superadminRoutes } from '../routes/routes';
 
 import { Store, UpdateStore } from '../StoreContext';
 import api from '../api';
+import Sidebar from '../components/Sidebar';
 
 function SuperAdmin() {
   const { admin } = Store();
@@ -40,13 +41,17 @@ function SuperAdmin() {
   };
 
   return (
-    <Routes>
-      {getRoutes()}
-      <Route
-        path="/*"
-        element={<Navigate replace to="/superadmin/admins" />}
-      />
-    </Routes>
+    <>
+      <Sidebar />
+      <Routes>
+        {getRoutes()}
+
+        <Route
+          path="/*"
+          element={<Navigate replace to="/superadmin/admins" />}
+        />
+      </Routes>
+    </>
   );
 }
 export default SuperAdmin;
