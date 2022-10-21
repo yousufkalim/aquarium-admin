@@ -1,13 +1,41 @@
-import React from 'react';
-import Dialog from '@mui/material/Dialog';
-import { Grid } from '@mui/material';
+import * as React from 'react';
 import Button from '@mui/material/Button';
+import { styled } from '@mui/material/styles';
+import Dialog from '@mui/material/Dialog';
+
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
+
+import Typography from '@mui/material/Typography';
 import { toast } from 'react-toastify';
 import api from '../api/index';
 import delConfirm from '../assets/images/delConfirm.svg';
 
 // eslint-disable-next-line object-curly-newline
-function DeletePopup({ open, setOpen, item, getData, txt }) {
+
+const BootstrapDialog = styled(Dialog)(({ theme }) => ({
+  '& .MuiDialog-root': {
+    borderRadius: '25px',
+  },
+  '& .MuiDialogContent-root': {
+    padding: theme.spacing(2),
+    paddingTop: theme.spacing(7),
+    textAlign: 'center',
+  },
+  '& .MuiDialogActions-root': {
+    padding: theme.spacing(1),
+    paddingBottom: theme.spacing(4),
+    margin: 'auto',
+  },
+}));
+
+export default function DeleteModal({
+  open,
+  setOpen,
+  item,
+  getData,
+  txt,
+}) {
   const handleClose = () => {
     setOpen(false);
   };
@@ -17,50 +45,52 @@ function DeletePopup({ open, setOpen, item, getData, txt }) {
     toast.success('Deleted successfully');
     handleClose();
   };
+
   return (
     <div>
-      <Dialog
+      <BootstrapDialog
+        onClose={handleClose}
+        aria-labelledby="customized-dialog-title"
         open={open}
         setOpen={setOpen}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-        className="deleteModal"
-        style={{ borderRadius: '30px' }}
+        PaperProps={{
+          style: {
+            borderRadius: 25,
+            width: 500,
+            background: '#F3FDFF',
+          },
+        }}
       >
-        <div className="forgetPasswordPopup">
-          <Grid container xs={12}>
-            <Grid xs={12}>
-              <img src={delConfirm} alt="" />
-              <h1 style={{ fontSize: '24px', color: '#28CDFF' }}>
-                Are you sure?
-              </h1>
-              <p className="enterEmailTxt">
-                You won’t be able to revert this!
-              </p>
-              <div className="hl-forget" />
+        <DialogContent>
+          <Typography gutterBottom>
+            <img src={delConfirm} alt="" />
+            <h1 style={{ fontSize: '24px', color: '#28CDFF' }}>
+              Are you sure?
+            </h1>
 
-              <Grid item xs={12}>
-                <Button
-                  onClick={handleClose}
-                  className="closeBtn"
-                  variant="outlined"
-                >
-                  Cancel
-                </Button>
-                <Button
-                  onClick={handleDelete}
-                  className="delBtn"
-                  variant="contained"
-                >
-                  Yes,Delete it!
-                </Button>
-              </Grid>
-            </Grid>
-          </Grid>
-        </div>
-      </Dialog>
+            <p className="enterEmailTxt">
+              You won’t be able to revert this!
+            </p>
+            <div className="hl-del" />
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            onClick={handleClose}
+            className="closeBtn"
+            variant="outlined"
+          >
+            Cancel
+          </Button>
+          <Button
+            onClick={handleDelete}
+            className="delBtn"
+            variant="contained"
+          >
+            Yes,Delete it!
+          </Button>
+        </DialogActions>
+      </BootstrapDialog>
     </div>
   );
 }
-
-export default DeletePopup;
