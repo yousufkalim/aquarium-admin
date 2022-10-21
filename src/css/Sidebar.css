@@ -68,7 +68,13 @@
 }
 .adminServiceDropdown:hover {
   font-weight: 700;
+  color: aliceblue !important;
 }
+.active .adminServiceDropdown {
+  font-weight: 700;
+  color: aliceblue !important;
+}
+
 .fullListItemAdmin:hover .s-vl {
   border-left: 2px solid white;
 }

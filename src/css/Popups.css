@@ -65,6 +65,13 @@
   padding: 3% 0;
   cursor: pointer;
 }
+.clientPopupTxt {
+  color: #8c8c8c;
+  font-size: 18px;
+  font-weight: 400;
+  padding: 10px 0;
+  cursor: pointer;
+}
 .delBtn {
   background-color: red !important;
   color: white !important;
