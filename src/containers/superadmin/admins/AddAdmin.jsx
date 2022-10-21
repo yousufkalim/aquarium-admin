@@ -1,12 +1,33 @@
-import React, { useState, useEffect } from 'react';
-import Dialog from '@mui/material/Dialog';
-import { Grid, FormControl, TextField } from '@mui/material';
+/* eslint-disable consistent-return */
+import { React, useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
+import { styled } from '@mui/material/styles';
+import Dialog from '@mui/material/Dialog';
 import { makeStyles } from '@mui/styles';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
+import Typography from '@mui/material/Typography';
 import { toast } from 'react-toastify';
-
+import { FormControl, TextField } from '@mui/material';
 import api from '../../../api/index';
 
+// eslint-disable-next-line object-curly-newline
+
+const BootstrapDialog = styled(Dialog)(({ theme }) => ({
+  '& .MuiDialog-root': {
+    borderRadius: '25px',
+  },
+  '& .MuiDialogContent-root': {
+    padding: theme.spacing(2),
+    paddingTop: theme.spacing(7),
+    textAlign: 'center',
+  },
+  '& .MuiDialogActions-root': {
+    padding: theme.spacing(1),
+    paddingBottom: theme.spacing(7),
+    margin: 'auto',
+  },
+}));
 const useOutlinedInputStyles = makeStyles({
   root: {
     '& .MuiOutlinedInput-root': {
@@ -29,9 +50,13 @@ const useOutlinedInputStyles = makeStyles({
     },
   },
 });
-
-// eslint-disable-next-line object-curly-newline
-function AddAdmin({ open, setOpen, editing, getAdmins, admin }) {
+export default function AddAdmin({
+  open,
+  setOpen,
+  editing,
+  getAdmins,
+  admin,
+}) {
   const [values, setValues] = useState({
     name: '',
     email: '',
@@ -69,134 +94,129 @@ function AddAdmin({ open, setOpen, editing, getAdmins, admin }) {
 
   return (
     <div>
-      <Dialog
+      <BootstrapDialog
+        onClose={handleClose}
+        aria-labelledby="customized-dialog-title"
         open={open}
         setOpen={setOpen}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-        className="addAdminModal"
-        style={{ borderRadius: '30px' }}
+        fullWidth
+        maxWidth="md"
+        PaperProps={{
+          style: {
+            borderRadius: 25,
+            width: 800,
+            background: '#F3FDFF',
+          },
+        }}
       >
-        <div className="addAdminPopup" style={{ height: '100%' }}>
-          <Grid container xs={12} sx={{ height: '100%' }}>
-            <Grid xs={12}>
-              <h1 style={{ fontSize: '24px', color: '#28CDFF' }}>
-                {editing
-                  ? 'Edit Admin Profile'
-                  : 'Invite a new Admin'}
-              </h1>
-              <p className="enterEmailTxt">
-                {editing
-                  ? 'Admin info will be modified by click on save button'
-                  : 'Admin will be invited by email address'}
-              </p>
-              <div className="hl-forget" />
-              <Grid item xs={12}>
-                <FormControl
-                  sx={{ mb: 1, mt: 6, width: '85%' }}
-                  variant="outlined"
-                >
-                  <TextField
-                    sx={{
-                      backgroundColor: 'white',
-                      borderRadius: '25px',
-                    }}
-                    id="outlined-fname"
-                    classes={outlinedInputStyles}
-                    label="Name"
-                    size="normal"
-                    name="name"
-                    value={name}
-                    onChange={onChangeEvent}
-                    InputLabelProps={{
-                      style: {
-                        color: '#8C8C8C',
-                        fontSize: '19px',
-                        fontWeight: '700',
-                      },
-                    }}
-                  />
-                </FormControl>
-              </Grid>
-              <Grid item xs={12}>
-                <FormControl
-                  sx={{ mb: 1, mt: 1, width: '85%' }}
-                  variant="outlined"
-                >
-                  <TextField
-                    sx={{
-                      backgroundColor: 'white',
-                      borderRadius: '25px',
-                    }}
-                    id="outlined-email"
-                    classes={outlinedInputStyles}
-                    label="Email"
-                    name="email"
-                    value={email}
-                    type="email"
-                    onChange={onChangeEvent}
-                    InputLabelProps={{
-                      style: {
-                        color: '#8C8C8C',
-                        fontSize: '19px',
-                        fontWeight: '700',
-                      },
-                    }}
-                  />
-                </FormControl>
-              </Grid>
-              {!editing && (
-                <Grid item xs={12}>
-                  <FormControl
-                    sx={{ mb: 1, mt: 1, width: '85%' }}
-                    variant="outlined"
-                  >
-                    <TextField
-                      sx={{
-                        backgroundColor: 'white',
-                        borderRadius: '25px',
-                      }}
-                      id="outlined-password"
-                      classes={outlinedInputStyles}
-                      label="Password"
-                      size="normal"
-                      type="password"
-                      value={password}
-                      name="password"
-                      onChange={onChangeEvent}
-                      InputLabelProps={{
-                        style: {
-                          color: '#8C8C8C',
-                          fontSize: '19px',
-                          fontWeight: '700',
-                        },
-                      }}
-                    />
-                  </FormControl>
-                </Grid>
-              )}
-              <Grid item xs={12}>
-                <Button
-                  onClick={handleClose}
-                  className="closeBtn"
-                  variant="outlined"
-                >
-                  Close
-                </Button>
-                <Button
-                  onClick={handleSubmit}
-                  className="resetPasswordBtn"
-                  variant="contained"
-                >
-                  {editing ? 'Save' : 'Send Invite'}
-                </Button>
-              </Grid>
-            </Grid>
-          </Grid>
-        </div>
-      </Dialog>
+        <DialogContent>
+          <Typography gutterBottom>
+            <h1 style={{ fontSize: '24px', color: '#28CDFF' }}>
+              {editing ? 'Edit Admin Profile' : 'Invite a new Admin'}
+            </h1>
+            <p className="enterEmailTxt">
+              {editing
+                ? 'Admin info will be modified by click on save button'
+                : 'Admin will be invited by email address'}
+            </p>
+            <div className="hl-forget" />
+            <FormControl
+              sx={{ mb: 1, mt: 6, width: '85%' }}
+              variant="outlined"
+            >
+              <TextField
+                sx={{
+                  backgroundColor: 'white',
+                  borderRadius: '25px',
+                }}
+                id="outlined-fname"
+                classes={outlinedInputStyles}
+                label="Name"
+                size="normal"
+                name="name"
+                value={name}
+                onChange={onChangeEvent}
+                InputLabelProps={{
+                  style: {
+                    color: '#8C8C8C',
+                    fontSize: '19px',
+                    fontWeight: '700',
+                  },
+                }}
+              />
+            </FormControl>
+            <FormControl
+              sx={{ mb: 1, mt: 1, width: '85%' }}
+              variant="outlined"
+            >
+              <TextField
+                sx={{
+                  backgroundColor: 'white',
+                  borderRadius: '25px',
+                }}
+                id="outlined-email"
+                classes={outlinedInputStyles}
+                label="Email"
+                name="email"
+                value={email}
+                type="email"
+                onChange={onChangeEvent}
+                InputLabelProps={{
+                  style: {
+                    color: '#8C8C8C',
+                    fontSize: '19px',
+                    fontWeight: '700',
+                  },
+                }}
+              />
+            </FormControl>
+            {!editing && (
+              <FormControl
+                sx={{ mb: 1, mt: 1, width: '85%' }}
+                variant="outlined"
+              >
+                <TextField
+                  sx={{
+                    backgroundColor: 'white',
+                    borderRadius: '25px',
+                  }}
+                  id="outlined-password"
+                  classes={outlinedInputStyles}
+                  label="Password"
+                  size="normal"
+                  type="password"
+                  value={password}
+                  name="password"
+                  onChange={onChangeEvent}
+                  InputLabelProps={{
+                    style: {
+                      color: '#8C8C8C',
+                      fontSize: '19px',
+                      fontWeight: '700',
+                    },
+                  }}
+                />
+              </FormControl>
+            )}
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            onClick={handleClose}
+            className="closeBtn"
+            variant="outlined"
+          >
+            Close
+          </Button>
+          <Button
+            onClick={handleSubmit}
+            className="resetPasswordBtn"
+            variant="contained"
+          >
+            {editing ? 'Save' : 'Send Invite'}
+          </Button>
+        </DialogActions>
+      </BootstrapDialog>
     </div>
   );
 }
-
-export default AddAdmin;
