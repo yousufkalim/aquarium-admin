@@ -17,6 +17,8 @@ import checklist from '../assets/images/checklist.svg';
 import tank from '../assets/images/aquarium.svg';
 import Technicians from '../containers/admin/dashboard/Technicians';
 import Clients from '../containers/admin/services/clients/Clients';
+import Aquarium from '../containers/admin/services/aquariums/Aquarium';
+import ServiceHistory from '../containers/admin/services/serviceHistory/ServiceHistory';
 
 // unAuth routes
 const unAuthRoutes = [
@@ -66,10 +68,10 @@ const adminRoutes = [
   },
   {
     layout: '/admin',
-    path: '/services/clients',
+    path: '/services/aquariums',
     name: 'Services',
     icon: serviceAdmin,
-    element: <Clients />,
+    element: <Aquarium />,
     key: '1',
     child: [
       {
@@ -82,13 +84,13 @@ const adminRoutes = [
       {
         path: '/services/aquariums',
         name: 'Aquariums',
-        element: <Services />,
+        element: <Aquarium />,
         key: '3',
       },
       {
         path: '/services/servicehistory',
         name: 'Service History',
-        element: <Services />,
+        element: <ServiceHistory />,
         key: '4',
       },
     ],
