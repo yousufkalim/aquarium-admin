@@ -158,4 +158,7 @@
   .profileDiv {
     width: 88%;
   }
+  .s-vl {
+    margin-left: -80px !important;
+  }
 }
