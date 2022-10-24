@@ -1,12 +1,35 @@
 /* eslint-disable consistent-return */
-import React, { useState } from 'react';
-import Dialog from '@mui/material/Dialog';
-import { Grid, FormControl, TextField } from '@mui/material';
+
+import { React, useState } from 'react';
 import Button from '@mui/material/Button';
+import { styled } from '@mui/material/styles';
+import Dialog from '@mui/material/Dialog';
 import { makeStyles } from '@mui/styles';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
+
+import Typography from '@mui/material/Typography';
 import { toast } from 'react-toastify';
+import { FormControl, TextField } from '@mui/material';
 import api from '../api/index';
 
+// eslint-disable-next-line object-curly-newline
+
+const BootstrapDialog = styled(Dialog)(({ theme }) => ({
+  '& .MuiDialog-root': {
+    borderRadius: '25px',
+  },
+  '& .MuiDialogContent-root': {
+    padding: theme.spacing(2),
+    paddingTop: theme.spacing(7),
+    textAlign: 'center',
+  },
+  '& .MuiDialogActions-root': {
+    padding: theme.spacing(1),
+    paddingBottom: theme.spacing(7),
+    margin: 'auto',
+  },
+}));
 const useOutlinedInputStyles = makeStyles({
   root: {
     '& .MuiOutlinedInput-root': {
@@ -30,11 +53,9 @@ const useOutlinedInputStyles = makeStyles({
   },
 });
 
-function ForgetPasswordPopup({ open, setOpen }) {
-  const outlinedInputStyles = useOutlinedInputStyles();
-  // const { admin } = Store();
+export default function ForgetPasswordPopup({ open, setOpen }) {
   const [email, setEmail] = useState('');
-
+  const outlinedInputStyles = useOutlinedInputStyles();
   const handleInput = (e) => {
     setEmail(e.target.value);
   };
@@ -52,78 +73,75 @@ function ForgetPasswordPopup({ open, setOpen }) {
       handleClose();
     }
   };
+
   return (
     <div>
-      <Dialog
+      <BootstrapDialog
+        onClose={handleClose}
+        aria-labelledby="customized-dialog-title"
         open={open}
         setOpen={setOpen}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-        className="forgetPasswordModal"
-        style={{ borderRadius: '30px' }}
+        fullWidth
+        maxWidth="md"
+        PaperProps={{
+          style: { borderRadius: 25, background: '#F3FDFF' },
+        }}
       >
-        <div className="forgetPasswordPopup">
-          <Grid container xs={12}>
-            <Grid xs={12}>
-              <h1 style={{ fontSize: '24px', color: '#28CDFF' }}>
-                Forgot Password
-              </h1>
-              <p className="enterEmailTxt">
-                Enter your email, So we can send you reset
-                instructions
-              </p>
-              <div className="hl-forget" />
-              <Grid item xs={12}>
-                <FormControl
-                  sx={{ mb: 3, mt: 6, width: '85%' }}
-                  variant="outlined"
-                >
-                  <TextField
-                    sx={{
-                      backgroundColor: 'white',
-                      borderRadius: '25px',
-                    }}
-                    id="outlined-email"
-                    classes={outlinedInputStyles}
-                    label="Email"
-                    size="normal"
-                    value={email}
-                    type={email}
-                    onChange={handleInput}
-                    InputLabelProps={{
-                      style: {
-                        color: '#8C8C8C',
-                        fontSize: '19px',
-                        fontWeight: '700',
-                      },
-                    }}
-                  />
-                </FormControl>
-              </Grid>
-              <Grid item xs={12}>
-                <Button
-                  onClick={handleClose}
-                  className="closeBtn"
-                  variant="outlined"
-                >
-                  Close
-                </Button>
-                <Button
-                  onClick={handleForgetPassword}
-                  className="resetPasswordBtn"
-                  variant="contained"
-                >
-                  {window.innerWidth < 768
-                    ? 'Reset'
-                    : ' Send Reset Instructions'}
-                </Button>
-              </Grid>
-            </Grid>
-          </Grid>
-        </div>
-      </Dialog>
+        <DialogContent>
+          <Typography gutterBottom>
+            <h1 style={{ fontSize: '24px', color: '#28CDFF' }}>
+              Forgot Password
+            </h1>
+            <p className="enterEmailTxt">
+              Enter your email, So we can send you reset instructions
+            </p>
+            <div className="hl-forget" />
+            <FormControl
+              sx={{ mb: 3, mt: 6, width: '85%' }}
+              variant="outlined"
+            >
+              <TextField
+                sx={{
+                  backgroundColor: 'white',
+                  borderRadius: '25px',
+                }}
+                id="outlined-email"
+                classes={outlinedInputStyles}
+                label="Email"
+                size="normal"
+                value={email}
+                type={email}
+                onChange={handleInput}
+                InputLabelProps={{
+                  style: {
+                    color: '#8C8C8C',
+                    fontSize: '19px',
+                    fontWeight: '700',
+                  },
+                }}
+              />
+            </FormControl>
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            onClick={handleClose}
+            className="closeBtn"
+            variant="outlined"
+          >
+            Close
+          </Button>
+          <Button
+            onClick={handleForgetPassword}
+            className="resetPasswordBtn"
+            variant="contained"
+          >
+            {window.innerWidth < 768
+              ? 'Reset'
+              : ' Send Reset Instructions'}
+          </Button>
+        </DialogActions>
+      </BootstrapDialog>
     </div>
   );
 }
-
-export default ForgetPasswordPopup;

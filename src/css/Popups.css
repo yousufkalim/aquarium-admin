@@ -1,23 +1,8 @@
-.addAdminModal {
-  max-height: 60% !important;
-  margin: auto !important;
-}
-.deleteModal {
-  max-height: 55% !important;
-  margin: auto !important;
-  max-width: 580px !important;
-}
-.css-1t1j96h-MuiPaper-root-MuiDialog-paper {
-  width: 100% !important;
-  height: 100% !important;
-  max-width: 767px !important;
-  border-radius: 30px !important;
-  padding: 2% 1%;
-  text-align: center;
-  background-color: #f3fdff !important;
-}
-.forgetPasswordModal {
-  height: 54% !important;
+.hl-del {
+  position: relative;
+  border-bottom: 3px solid #cdeefc;
+  opacity: 10;
+  width: 84%;
   margin: auto;
 }
 
@@ -25,7 +10,7 @@
   position: relative;
   border-bottom: 3px solid #cdeefc;
   opacity: 10;
-  width: 64%;
+  width: 60%;
   margin: auto;
 }
 .forgetPasswordPopup {
@@ -42,7 +27,7 @@
   text-transform: none !important;
   padding: 6px 30px !important;
   cursor: pointer !important;
-  margin: 20px !important;
+  margin: 10px !important;
 }
 .resetPasswordBtn {
   background-color: #28cdff !important;
@@ -62,7 +47,7 @@
   color: #8c8c8c;
   font-size: 18px;
   font-weight: 400;
-  padding: 3% 0;
+  padding: 2% 0;
   cursor: pointer;
 }
 .clientPopupTxt {
@@ -81,15 +66,4 @@
   text-transform: none !important;
   padding: 7px 30px !important;
   cursor: pointer !important;
-}
-@media only screen and (min-width: 992px) and (max-width: 1919px) {
-  .addAdminModal {
-    max-height: 68% !important;
-    margin: auto !important;
-  }
-
-  .forgetPasswordModal {
-    height: 55% !important;
-    margin: auto;
-  }
 }
