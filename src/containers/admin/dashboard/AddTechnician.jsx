@@ -82,10 +82,10 @@ export default function AddTechnician({
   const handleSubmit = async () => {
     if (editing) {
       await api('put', `/users/${technician._id}`, values);
-      toast.success('Admin edited successfully');
+      toast.success('Technician edited successfully');
     } else {
       await api('post', '/users', values);
-      toast.success('Admin created successfully');
+      toast.success('Technician created successfully');
     }
     handleClose();
     getTechnicians();

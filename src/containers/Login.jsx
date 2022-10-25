@@ -49,6 +49,10 @@ export default function Login() {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
+  const handleClickShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
   const handleSubmit = async () => {
     const { data } = await api('post', '/admins/login', user);
 
@@ -130,7 +134,7 @@ export default function Login() {
                     <InputAdornment position="end">
                       <IconButton
                         aria-label="toggle password visibility"
-                        onClick={() => setShowPassword(true)}
+                        onClick={handleClickShowPassword}
                         onMouseDown={() => setShowPassword(true)}
                         edge="end"
                         sx={{ color: '#28CDFF' }}
