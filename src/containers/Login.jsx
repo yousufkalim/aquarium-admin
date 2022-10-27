@@ -4,8 +4,8 @@ import { Grid, IconButton } from '@mui/material';
 import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
+import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import ClearIcon from '@mui/icons-material/Clear';
 import { makeStyles } from '@mui/styles';
 
@@ -73,12 +73,12 @@ export default function Login() {
       </Grid>
 
       <Grid container className="loginFormSection" xs={12}>
-        <Grid xs={0} xl={4.5} lg={4.2} />
-        <Grid className="lgForm" xs={12} xl={3} lg={3.5}>
+        <Grid xs={0} xl={8.5} lg={3.5} />
+        <Grid className="lgForm" xs={12} xl={6} lg={6}>
           <h1 className="signInTxt">Sign in to Aquarium!</h1>
           <Grid item xs={12}>
             <FormControl
-              sx={{ mb: 3, mt: 4, width: '100%' }}
+              sx={{ mb: 2.5, mt: 4, width: '80%' }}
               variant="outlined"
             >
               <TextField
@@ -105,7 +105,7 @@ export default function Login() {
           </Grid>
           <Grid item xs={12}>
             <FormControl
-              sx={{ mb: 5, width: '100%' }}
+              sx={{ mb: 5, width: '80%' }}
               variant="outlined"
             >
               <TextField
@@ -125,8 +125,8 @@ export default function Login() {
                   },
                 }}
                 name="password"
-                type={showPassword ? 'text' : 'password'}
                 value={user.password}
+                type={showPassword ? 'text' : 'password'}
                 onChange={handleChange}
                 InputProps={{
                   endAdornment: (
@@ -140,9 +140,9 @@ export default function Login() {
                         sx={{ color: '#28CDFF' }}
                       >
                         {showPassword ? (
-                          <VisibilityOff />
+                          <VisibilityOffOutlinedIcon />
                         ) : (
-                          <Visibility />
+                          <VisibilityOutlinedIcon />
                         )}
                       </IconButton>
                     </InputAdornment>
@@ -157,12 +157,15 @@ export default function Login() {
                 role="presentation"
                 aria-hidden
               >
-                Forget password
+                Forgot password
               </p>
             </FormControl>
           </Grid>
           <Grid>
             <Button
+              sx={{
+                marginBottom: '80px',
+              }}
               className="signInBtn"
               variant="contained"
               onClick={handleSubmit}
