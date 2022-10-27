@@ -1,22 +1,31 @@
-.bgImg {
-  object-fit: cover;
-  width: 100%;
-  height: 100vh;
-  position: relative;
-}
 #heroSection {
   position: relative;
-}
-.imgTxt {
-  color: white;
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  top: 130px;
-  align-items: center;
-  justify-content: center;
+  background-image: url('../assets/images/BG.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: calc(100vh - 89px);
   width: 100%;
 }
+
+/* .bgImg {
+  object-fit: cover;
+  width: 100%;
+  height: calc(100vh - 89px);
+  position: relative;
+} */
+
+.imgTxt {
+  color: white;
+  /* position: absolute; */
+  display: flex;
+  flex-direction: column;
+  /* top: 130px; */
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  margin: 70px 0px 0px 0px;
+}
+
 .contentOnImg {
   width: 100%;
   display: flex;
@@ -25,25 +34,31 @@
   align-items: center;
   justify-content: center;
 }
+
 .vl {
-  border-left: 4px solid white;
-  height: 150px;
+  border-left: 4px solid #cdeefc;
+  height: 159px;
+  width: 4px;
   margin: 3%;
+  border-radius: 100px;
 }
+
 .txtOnImg {
   font-weight: 700;
   font-size: 45px;
   line-height: 1.4;
   width: 19%;
 }
+
 .logoOnImg {
   width: 418px;
 }
 
 .descriptionOnImg {
   text-align: center;
-  margin-top: 4%;
+  margin-top: 2%;
 }
+
 .getStartedBtn {
   background: #28cdff !important;
   font-weight: 700 !important;
@@ -58,15 +73,22 @@
 .descriptionTxt {
   font-size: 22px;
   font-weight: 400;
-  padding: 0 31%;
+  padding: 20px 0px 0px 0px;
   padding-bottom: 3%;
   width: 100%;
+  font-family: 'Helvetica Neue';
+  font-style: normal;
+  line-height: 26px;
+  display: flex;
+  align-items: center;
+  text-align: center;
 }
+
 .mouseImg {
   position: absolute;
-  bottom: 10%;
+  bottom: 0%;
   animation: vertical-shaking 1.3s infinite;
-  left: 49%;
+  left: 48%;
   /* transform: translateX(-50%); */
 }
 
@@ -77,21 +99,24 @@
 
 .howItWorkSectionCol2 {
   padding-right: 25%;
-  margin-top: 12%;
+  margin-top: 14%;
 }
+
 #howItWorkCol2 {
   margin-top: 30%;
 }
+
 .howItWorkSection {
   background: url('../assets/images/howitworksBG.svg');
   background-repeat: no-repeat;
   background-position: bottom;
   background-size: 100%;
-  height: 1249px;
+  height: 100%;
   position: relative;
   top: 63px;
   margin-top: -75px;
 }
+
 .numberedBox {
   font-size: 50px;
   font-weight: 700;
@@ -115,28 +140,42 @@
   border-radius: 13px;
   font-family: 'Roboto Slab', serif;
   position: absolute;
-  top: -15%;
+  top: -12%;
+  left: 15%;
   z-index: 5;
 }
+
 .boxHeading {
   font-size: 23px;
   font-weight: 700;
 }
+
 .boxContent {
   font-size: 22px;
+  text-align: justify;
+  font-family: 'Helvetica Neue';
+  font-style: normal;
   font-weight: 400;
   color: #a0a0a0;
 }
+
 .mainHeading {
   color: #28cdff;
   font-size: 64px;
   font-weight: 700;
   font-family: 'Economica', sans-serif;
-  padding: 15% 0 5% 15%;
+  padding: 5% 0 5% 15%;
 }
+
 .cardContent {
-  font-size: 21px;
+  font-family: 'Helvetica Neue';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 26px;
+  color: #ffffff;
 }
+
 .leftBox {
   width: 30%;
   background-color: #28cdff;
@@ -151,41 +190,62 @@
 
   right: 20% !important;
 }
+
 .card1Heading {
   font-size: 24px;
   font-weight: 700;
+  font-family: 'Helvetica Neue';
+  font-style: normal;
+  line-height: 29px;
+  letter-spacing: 0.03em;
+  text-transform: capitalize;
+  color: #ffffff;
 }
+
 .leftBoxContent {
   font-size: 22px;
   font-weight: 400;
   color: #8c8c8c;
   padding-left: 15%;
+  font-family: 'Helvetica Neue';
+  font-style: normal;
+  line-height: 26px;
+  text-align: justify;
+}
+
+.leftBox2Content {
+  margin: 3% 0% 0% 0%;
 }
 
 @keyframes vertical-shaking {
   0% {
     transform: translateY(0);
   }
+
   25% {
     transform: translateY(5px);
   }
+
   50% {
     transform: translateY(-5px);
   }
+
   75% {
     transform: translateY(5px);
   }
+
   100% {
     transform: translateY(0);
   }
 }
-/* ===========================MEDIA QUERIES========================= */
 
+/* ===========================MEDIA QUERIES========================= */
 /* Small devices (portrait tablets and  phones, 600px and up) */
 @media only screen and (min-width: 300px) and (max-width: 992px) {
   .logoOnImg {
     width: 244px;
   }
+
   .txtOnImg {
     font-weight: 700;
     font-size: 23px;
@@ -196,7 +256,6 @@
   .descriptionTxt {
     font-size: 15px;
     font-weight: 400;
-    padding: 6%;
   }
 
   .getStartedBtn {
@@ -204,9 +263,13 @@
     font-size: 12px !important;
     margin-top: 13% !important;
   }
+
   .mouseImg {
-    display: none;
+    position: absolute;
+    bottom: 6%;
+    left: 40%;
   }
+
   .vl {
     height: 77px;
     margin: 2%;
@@ -216,9 +279,11 @@
     background: none;
     /* background-color: aliceblue; */
   }
+
   .howItWorkSectionCol2 {
     padding: 0;
   }
+
   #howItWorkSection,
   #howItWorkSectionCol2 {
     margin: auto;
@@ -229,9 +294,11 @@
   .firstNumberedBox {
     margin: auto;
   }
+
   .card1Heading {
     color: black;
   }
+
   .leftBox {
     width: auto;
     background-color: white;
@@ -244,6 +311,7 @@
     border-radius: none;
     position: unset;
   }
+
   .firstNumberedBox {
     position: unset;
     color: #28cdff;
@@ -254,25 +322,31 @@
     margin-bottom: 6%;
     margin-top: 15%;
   }
+
   .mainHeading {
     padding: 0 !important;
     text-align: center;
     margin: auto;
   }
+
   .leftBoxContent {
     padding-left: 0 !important;
     padding-top: 4%;
   }
+
   .howItWorkSectionCol2,
   #howItWorkCol2 {
     margin-top: 0;
   }
+
   .boxContent {
     margin-bottom: 10%;
   }
+
   .bgImg {
     margin-top: -19px;
   }
+
   .mainHeading {
     font-size: 63px;
   }
@@ -283,26 +357,33 @@
   .txtOnImg {
     width: 35%;
   }
+  .mouseImg {
+    bottom: 4%;
+    left: 46%;
+  }
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) and (max-width: 1919px) {
   .howItWorkSection {
-    height: 1060px;
+    height: 100%;
     position: relative;
     top: 47px;
-    margin-top: -133px;
   }
+
   #howItWorkSection,
   #howItWorkSectionCol2 {
     padding-top: 7%;
   }
+
   .footerSection {
     height: 415px !important;
   }
+
   .boxHeading {
     font-size: 19px;
   }
+
   .leftBoxContent,
   .boxContent {
     font-size: 18px;
@@ -312,12 +393,15 @@
   .cardContent {
     font-size: 17px;
   }
+
   .descriptionOnImg {
-    margin-top: 0 !important;
+    margin-top: 0% !important;
   }
+
   .getStartedBtn {
     margin-left: 4% !important;
   }
+
   .txtOnImg {
     width: 23%;
   }
