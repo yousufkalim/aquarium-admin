@@ -5,7 +5,6 @@ import { Grid, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import BG from '../assets/images/BG.svg';
 import Logo from '../assets/images/LOGO.svg';
 import Mouse from '../assets/images/Mouse.svg';
 
@@ -18,7 +17,6 @@ export default function Home() {
       <Grid container spacing={0}>
         {/* ======================================hero section================================  */}
         <Grid id="heroSection" item xs={12}>
-          <img src={BG} className="bgImg" alt="heroImg" />
           <div className="imgTxt">
             <div className="contentOnImg">
               <img src={Logo} className="logoOnImg" alt="Logo" />
@@ -31,9 +29,13 @@ export default function Home() {
             </div>
             <div className="descriptionOnImg">
               <p className="descriptionTxt">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                exercitation
+                Lorem ipsum dolor sit amet, consectetur adipiscing
+                elit, sed do eiusmod tempor
+                <br />
+                incididunt ut labore et dolore magna aliqua. Ut enim
+                ad minim veniam, quis
+                <br />
+                nostrud exercitation
               </p>
               <Link to="/login" style={{ textDecoration: 'none' }}>
                 <Button className="getStartedBtn" variant="contained">
@@ -48,23 +50,32 @@ export default function Home() {
         </Grid>
       </Grid>
       {/* =============================How it works section=================================  */}
-      <Grid container spacing={0} className="howItWorkSection" id="howItWorks">
+      <Grid
+        container
+        spacing={0}
+        className="howItWorkSection"
+        id="howItWorks"
+      >
         <Grid id="howItWorkSection" item xs={12} sm={12} lg={8}>
           <Grid item xs={12} sm={12} lg={7}>
             <h1 className="mainHeading">How it works</h1>
             <p className="leftBoxContent">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+              sed do eiusmod tempor incididunt ut labore et dolore
+              magna aliqua. Ut enim ad minim veniam, quis nostrud
               exercitation
             </p>
           </Grid>
           <Grid className="leftBox" item xs={12} sm={12} lg={5}>
             <div className="firstNumberedBox">1</div>
-            <h1 className="card1Heading">COMPLETE AQUARIUM SERVICES</h1>
+            <h1 className="card1Heading">
+              COMPLETE AQUARIUM SERVICES
+            </h1>
             <br />
             <p className="cardContent">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+              sed do eiusmod tempor incididunt ut labore et dolore
+              magna aliqua. Ut enim ad minim veniam, quis nostrud
               exercitation
             </p>
           </Grid>
@@ -72,15 +83,19 @@ export default function Home() {
 
         <Grid id="howItWorkSectionCol2" item xs={12} sm={12} lg={4}>
           <Grid className="howItWorkSectionCol2" id="howItWorkCol2">
-            <div className="numberedBox">2</div>
-            <br />
-            <h1 className="boxHeading">LEADERS IN THE MARKET</h1>
-            <br />
-            <p className="boxContent">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-              exercitation Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            </p>
+            <div className="leftBox2Content">
+              <div className="numberedBox">2</div>
+              <br />
+              <h1 className="boxHeading">LEADERS IN THE MARKET</h1>
+              <br />
+              <p className="boxContent">
+                Lorem ipsum dolor sit amet, consectetur adipiscing
+                elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis
+                nostrud exercitation Lorem ipsum dolor sit amet,
+                consectetur adipiscing elit, sed do
+              </p>
+            </div>
           </Grid>
           <Grid className="howItWorkSectionCol2">
             <div className="numberedBox">3</div>
@@ -88,9 +103,11 @@ export default function Home() {
             <h1 className="boxHeading">OUR AQUACULTURE PROGRAM</h1>
             <br />
             <p className="boxContent">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-              exercitation Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+              sed do eiusmod tempor incididunt ut labore et dolore
+              magna aliqua. Ut enim ad minim veniam, quis nostrud
+              exercitation Lorem ipsum dolor sit amet, consectetur
+              adipiscing elit, sed do
             </p>
           </Grid>
         </Grid>
