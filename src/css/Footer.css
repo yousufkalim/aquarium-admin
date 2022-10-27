@@ -5,10 +5,12 @@
   background-size: 100%;
   height: 556px;
   position: relative;
+  background-color: #f3fdff;
 }
+
 .footerSection1 {
   position: absolute;
-  bottom: 47%;
+  bottom: 38%;
   display: flex;
   width: 100%;
   align-items: center;
@@ -17,24 +19,29 @@
 
 .footerSection2 ul {
   position: absolute;
-  bottom: 30%;
+  bottom: 26%;
   display: flex;
   width: 100%;
   flex-direction: row;
   justify-content: center;
   list-style: none;
 }
+
 .footerSection2 ul li {
   padding: 0 2%;
   font-size: 20px;
   font-weight: 700;
   cursor: pointer;
 }
+
 .footerDescription {
   font-size: 18px;
   font-weight: 400;
   text-align: center;
+  font-style: normal;
+  line-height: 21px;
 }
+
 .hl {
   position: absolute;
   border-bottom: 1px solid #cdeefc;
@@ -43,6 +50,7 @@
   width: 100%;
   bottom: 18%;
 }
+
 .copyrightTxt {
   font-size: 20px;
   display: flex;
@@ -67,6 +75,7 @@
   .footerSection2 {
     display: none;
   }
+
   .copyrightTxt {
     background-color: #28cdff;
     padding: 3%;
