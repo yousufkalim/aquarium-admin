@@ -13,6 +13,7 @@
   justify-content: space-between !important;
   padding: 15px 100px;
   line-height: 3;
+  align-items: center;
   font-family: 'Helvetica Neue', sans-serif;
 }
 
@@ -26,6 +27,7 @@
 
   text-align: right;
 }
+
 .navbar li {
   display: inline-block !important;
   color: white;
@@ -35,6 +37,7 @@
   height: 50px;
   margin-right: 4%;
 }
+
 .loginBtn {
   background: #28cdff !important;
   font-weight: 700 !important;
@@ -44,6 +47,7 @@
   padding: 8px 26px !important;
   cursor: pointer !important;
 }
+
 #menu {
   display: flex !important;
   justify-content: space-between !important;
@@ -55,9 +59,11 @@
   text-decoration: none;
   color: white;
 }
+
 .nav-item:hover {
   color: #28cdff;
 }
+
 .active-nav-item {
   color: #28cdff;
 }
@@ -66,11 +72,13 @@
   .menu {
     display: none;
   }
+
   .navbar {
     padding: 13px;
     display: inline;
     height: 22%;
   }
+
   .loginBtn {
     font-size: 12px !important;
     padding: 5px 22px !important;
