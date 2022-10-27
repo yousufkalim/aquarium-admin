@@ -1,14 +1,14 @@
 .loginPg {
   background-image: url('../assets/images/BGlogin.svg');
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   background-size: 100%;
 }
 .logoLogin {
   width: 100%;
   height: 40%;
   position: relative;
-  top: 115px;
+  top: 80px;
 }
 .loginFirstSection {
   height: 490px;
@@ -20,6 +20,12 @@
 }
 .signInTxt {
   color: #28cdff;
+}
+.MuiFormLabel-root {
+  padding-left: 15px !important;
+}
+.MuiInputLabel-shrink {
+  padding: 0 !important;
 }
 .signInBtn {
   background-color: #28cdff !important;
@@ -35,7 +41,7 @@
   text-align: right;
   color: #8c8c8c;
   font-size: 20px;
-  font-weight: 400;
+  font-weight: 400 !important;
   padding: 2% 0;
   cursor: pointer;
 }
@@ -49,8 +55,17 @@
   width: 2em !important;
   cursor: pointer;
 }
+.css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root {
+  padding-right: 30px !important;
+}
 
 @media only screen and (min-width: 992px) and (max-width: 1919px) {
+  .loginPg {
+    height: 100%;
+  }
+  .loginFormSection {
+    background-color: #f3fdff;
+  }
   .loginFirstSection {
     height: 433px;
   }
@@ -99,7 +114,11 @@
   }
   .loginPg {
     background: none;
-    background-image: linear-gradient(180deg, #28cdff -20%, aliceblue 29%);
+    background-image: linear-gradient(
+      180deg,
+      #28cdff -20%,
+      aliceblue 29%
+    );
   }
   .loginFirstSection {
     height: 17%;
@@ -115,8 +134,8 @@
     padding: 0% 2%;
   }
   .forgetPasswordTxt {
-    padding: 3%;
-    font-size: 17px;
+    padding: 4%;
+    font-size: 20px;
   }
   .logoLogin {
     width: 100%;
@@ -126,10 +145,11 @@
   }
   .signInTxt {
     color: #28cdff;
-    font-size: 26px;
+    font-size: 30px;
   }
   .signInBtn {
     font-size: 17px !important;
     padding: 8px 30px !important;
+    margin-bottom: 80px !important;
   }
 }
