@@ -132,6 +132,9 @@ export default function ForgetPasswordPopup({ open, setOpen }) {
             Close
           </Button>
           <Button
+            sx={{
+              width: 'fit-Content',
+            }}
             onClick={handleForgetPassword}
             className="resetPasswordBtn"
             variant="contained"
