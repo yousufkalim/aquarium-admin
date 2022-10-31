@@ -1,5 +1,4 @@
-/* eslint-disable react/no-unstable-nested-components */
-/* eslint-disable consistent-return */
+/* eslint-disable react/jsx-props-no-spreading */
 import { React, useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
@@ -14,7 +13,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import InputBase from '@mui/material/InputBase';
-// import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
+import Autocomplete from '@mui/material/Autocomplete';
 import api from '../../../../api/index';
 
 // eslint-disable-next-line object-curly-newline
@@ -63,11 +62,6 @@ const useOutlinedInputStyles = makeStyles({
 
 // styling for select drop down
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
-  // 'label + &': {
-  //   // marginTop: theme.spacing(3),
-  //   color: 'red',
-  // },
-
   '& .MuiInputBase-input': {
     borderRadius: 20,
     position: 'relative',
@@ -105,16 +99,17 @@ export default function AddAquarium({
   editing,
   getAquariums,
   aquarium,
+  clients,
+  tanks,
 }) {
+  const divStyle = {
+    color: '#8C8C8C',
+    fontSize: '19px',
+    fontWeight: '700',
+  };
+
+  const outlinedInputStyles = useOutlinedInputStyles();
   const [values, setValues] = useState({
-    address: {
-      street: '',
-      city: '',
-      country: '',
-      zip_code: '',
-      lat: '',
-      lng: '',
-    },
     client: '',
     tank_details: {
       size: '',
@@ -125,9 +120,14 @@ export default function AddAquarium({
     service_details: '',
   });
 
+  const [allAddresses, setAllAddresses] = useState([]);
+  // eslint-disable-next-line no-unused-vars
   useEffect(() => {
     if (aquarium) {
-      setValues(aquarium);
+      setValues({
+        ...aquarium,
+        client: aquarium.client._id,
+      });
     }
   }, [aquarium]);
 
@@ -140,19 +140,61 @@ export default function AddAquarium({
       [e.target.name]: e.target.value,
     });
   };
+  const onChangeTankDetails = (e) => {
+    setValues((prev) => ({
+      ...prev,
+      tank_details: {
+        ...prev.tank_details,
+        [e.target.name]: e.target.value,
+      },
+    }));
+  };
+
+  const handleGetAddress = async ({ target }) => {
+    const { data } = await api(
+      'get',
+      `/address?text=${target.value}`,
+    );
+    setAllAddresses(data.results);
+  };
+
+  // Handling Address Change
+  const handleAddressChange = async ({ target }) => {
+    if (target.textContent) {
+      const index = allAddresses.findIndex(
+        (a) => a.name === target.textContent,
+      );
+      setValues({
+        ...values,
+        address: {
+          name: allAddresses[index].name,
+          lat: allAddresses[index].lat,
+          lng: allAddresses[index].lng,
+        },
+      });
+    } else {
+      setValues({
+        ...values,
+        address: {
+          name: '',
+          lat: '',
+          lng: '',
+        },
+      });
+    }
+  };
 
   const handleSubmit = async () => {
     if (editing) {
-      await api('put', `/clients/aquairiums/${aquarium._id}`, values);
-      toast.success('Client edited successfully');
+      await api('put', `/clients/aquariums/${aquarium._id}`, values);
+      toast.success('Aquarium edited successfully');
     } else {
       await api('post', '/clients/aquariums', values);
-      toast.success('Client created successfully');
+      toast.success('Aquarium created successfully');
     }
     handleClose();
     getAquariums();
   };
-  const outlinedInputStyles = useOutlinedInputStyles();
 
   return (
     <div>
@@ -185,26 +227,24 @@ export default function AddAquarium({
             <FormControl sx={{ mt: 5, mr: 5, mb: 3, width: '45%' }}>
               <InputLabel
                 id="demo-simple-select-label"
-                sx={{
-                  color: '#8C8C8C',
-                  fontSize: '19px',
-                  fontWeight: '700',
-                }}
+                style={divStyle}
               >
                 Client Name
               </InputLabel>
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
+                name="client"
                 value={values.client}
-                placeholder="Client Name"
-                label="Age"
+                label="Client Name"
                 onChange={onChangeEvent}
                 input={<BootstrapInput />}
               >
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
+                {clients?.map((client) => (
+                  <MenuItem value={client._id}>
+                    {`${client.first_name} ${client.last_name}`}
+                  </MenuItem>
+                ))}
               </Select>
             </FormControl>
 
@@ -212,25 +252,32 @@ export default function AddAquarium({
               sx={{ mb: 1, mt: 5, width: '45%' }}
               variant="outlined"
             >
-              <TextField
-                sx={{
-                  backgroundColor: 'white',
-                  borderRadius: '25px',
-                }}
-                id="outlined-email"
-                classes={outlinedInputStyles}
-                label="Address"
-                name="address"
-                // value={values.address}
-                type="text"
-                onChange={onChangeEvent}
-                InputLabelProps={{
-                  style: {
-                    color: '#8C8C8C',
-                    fontSize: '19px',
-                    fontWeight: '700',
-                  },
-                }}
+              <Autocomplete
+                id="combo-box-demo"
+                value={aquarium?.address}
+                options={allAddresses}
+                getOptionLabel={(option) => option.name}
+                onChange={(e) => handleAddressChange(e)}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    sx={{
+                      backgroundColor: 'white',
+                      borderRadius: '25px',
+                    }}
+                    label="Address"
+                    variant="outlined"
+                    classes={outlinedInputStyles}
+                    onChange={(e) => handleGetAddress(e)}
+                    InputLabelProps={{
+                      style: {
+                        color: '#8C8C8C',
+                        fontSize: '19px',
+                        fontWeight: '700',
+                      },
+                    }}
+                  />
+                )}
               />
             </FormControl>
             <FormControl fullWidth sx={{ width: '95%', mb: 5 }}>
@@ -239,7 +286,10 @@ export default function AddAquarium({
                 rows={5}
                 maxRows={5}
                 classes={outlinedInputStyles}
+                name="service_details"
+                value={values.service_details}
                 label="Service Details"
+                onChange={onChangeEvent}
                 sx={{
                   backgroundColor: 'white',
                   borderRadius: '25px',
@@ -272,11 +322,7 @@ export default function AddAquarium({
             >
               <InputLabel
                 id="demo-simple-select-label"
-                sx={{
-                  color: '#8C8C8C',
-                  fontSize: '19px',
-                  fontWeight: '700',
-                }}
+                style={divStyle}
               >
                 Size
               </InputLabel>
@@ -284,23 +330,24 @@ export default function AddAquarium({
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 value={values.tank_details.size}
-                label="Age"
-                // onChange={handleChange}
+                label="size"
+                name="size"
+                onChange={onChangeTankDetails}
                 input={<BootstrapInput />}
               >
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
+                {tanks
+                  ?.filter((tank) => tank.type === 'size')
+                  .map((tank) => (
+                    <MenuItem value={`${tank.value} Gallon Tank `}>
+                      {`${tank.value} Gallon Tank `}
+                    </MenuItem>
+                  ))}
               </Select>
             </FormControl>
             <FormControl sx={{ mb: 2, mt: 5, width: '45%' }}>
               <InputLabel
                 id="demo-simple-select-label"
-                sx={{
-                  color: '#8C8C8C',
-                  fontSize: '19px',
-                  fontWeight: '700',
-                }}
+                style={divStyle}
               >
                 Type
               </InputLabel>
@@ -308,13 +355,18 @@ export default function AddAquarium({
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 value={values.tank_details.type}
-                label="Age"
-                // onChange={handleChange}
+                label="type"
+                name="type"
+                onChange={onChangeTankDetails}
                 input={<BootstrapInput />}
               >
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
+                {tanks
+                  ?.filter((tank) => tank.type === 'type')
+                  .map((tank) => (
+                    <MenuItem value={tank.value}>
+                      {tank.value}
+                    </MenuItem>
+                  ))}
               </Select>
             </FormControl>
             <FormControl
@@ -325,11 +377,7 @@ export default function AddAquarium({
             >
               <InputLabel
                 id="demo-simple-select-label"
-                sx={{
-                  color: '#8C8C8C',
-                  fontSize: '19px',
-                  fontWeight: '700',
-                }}
+                style={divStyle}
               >
                 Material
               </InputLabel>
@@ -337,13 +385,18 @@ export default function AddAquarium({
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 value={values.tank_details.material}
-                label="Age"
-                // onChange={handleChange}
+                label="material"
+                name="material"
+                onChange={onChangeTankDetails}
                 input={<BootstrapInput />}
               >
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
+                {tanks
+                  ?.filter((tank) => tank.type === 'material')
+                  .map((tank) => (
+                    <MenuItem value={tank.value}>
+                      {tank.value}
+                    </MenuItem>
+                  ))}
               </Select>
             </FormControl>
             <FormControl
@@ -354,11 +407,7 @@ export default function AddAquarium({
             >
               <InputLabel
                 id="demo-simple-select-label"
-                sx={{
-                  color: '#8C8C8C',
-                  fontSize: '19px',
-                  fontWeight: '700',
-                }}
+                style={divStyle}
               >
                 Filter
               </InputLabel>
@@ -366,13 +415,18 @@ export default function AddAquarium({
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 value={values.tank_details.filter}
-                label="Age"
-                // onChange={handleChange}
+                label="filter"
+                name="filter"
+                onChange={onChangeTankDetails}
                 input={<BootstrapInput />}
               >
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
+                {tanks
+                  ?.filter((tank) => tank.type === 'filter')
+                  .map((tank) => (
+                    <MenuItem value={tank.value}>
+                      {tank.value}
+                    </MenuItem>
+                  ))}
               </Select>
             </FormControl>
           </Typography>
