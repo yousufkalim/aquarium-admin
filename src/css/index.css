@@ -11,12 +11,28 @@
 @import url('./AdminTable.css');
 @import url('./ServiceTable.css');
 @import url('./Technician.css');
+
+@font-face {
+  font-family: 'Helvetica';
+  src: url('../assets/fonts/HelveticaNeue Light.ttf');
+}
+
+@font-face {
+  font-family: 'HelveticaBold';
+  src: url('../assets/fonts/HelveticaNeueBd.ttf');
+}
+
+@font-face {
+  font-family: 'HelveticaMedium';
+  src: url('../assets/fonts/HelveticaNeue Medium.ttf');
+}
+
 /* Defaults */
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: 'Helvetica Neue', sans-serif;
+  font-family: 'Helvetica';
 }
 
 /* Primary Variables */

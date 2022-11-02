@@ -15,7 +15,7 @@ export default function Navbar() {
               <NavLink
                 to="/About"
                 className="nav-item"
-                activeClassName="active-nav-item"
+                activeClassName="active"
               >
                 About
               </NavLink>
@@ -27,14 +27,15 @@ export default function Navbar() {
                   () =>
                     // eslint-disable-next-line implicit-arrow-linebreak
                     window.scrollTo({
-                      top: document.getElementById('howItWorks').offsetTop,
+                      top: document.getElementById('howItWorks')
+                        .offsetTop,
 
                       behavior: 'smooth',
                     })
                   // eslint-disable-next-line react/jsx-curly-newline
                 }
                 role="presentation"
-                activeClassName="active-nav-item"
+                activeClassName="active"
               >
                 How it works
               </NavLink>

@@ -41,7 +41,14 @@ export default function Header() {
         <p className="copyrightTxt">
           © 2022 &nbsp;
           <strong>
-            <Link to="/" style={{ textDecoration: 'none', color: 'black' }}>
+            <Link
+              to="/"
+              style={{
+                textDecoration: 'none',
+                color: 'black',
+                fontFamily: 'HelveticaBold',
+              }}
+            >
               Aquarium Service Pro
             </Link>
           </strong>
@@ -51,7 +58,11 @@ export default function Header() {
               href="https://falconitconsultant.com"
               target="_blank"
               rel="noopener noreferrer"
-              style={{ textDecoration: 'none', color: 'black' }}
+              style={{
+                textDecoration: 'none',
+                color: 'black',
+                fontFamily: 'HelveticaBold',
+              }}
             >
               Falcon Consulting
             </a>
