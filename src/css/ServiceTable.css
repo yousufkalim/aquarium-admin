@@ -8,14 +8,17 @@
   padding-left: 5%;
   justify-content: space-between !important;
 }
+
 .placename {
   font-size: 22px;
   font-weight: 700;
 }
+
 .tankname {
   font-size: 16px;
   font-weight: 400;
 }
+
 .serviceTableTxt {
   font-size: 20px !important;
   font-weight: 400 !important;
@@ -42,10 +45,14 @@
   .technicianCol {
     width: 100%;
   }
+
   .serviceTableTxt {
-    font-size: 16px !important;
+    font-size: 17px !important;
+    font-weight: 400 !important;
   }
+
   .placename {
     font-size: 19px;
+    font-family: 'HelveticaBold';
   }
 }
