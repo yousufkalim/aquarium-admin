@@ -13,6 +13,7 @@ import { adminRoutes } from '../routes/routes';
 import { Store, UpdateStore } from '../StoreContext';
 import api from '../api';
 import Sidebar from '../components/Sidebar';
+import Schedule from '../containers/admin/dashboard/schedule.jsx/schedule';
 
 function Admin() {
   const { admin } = Store();
@@ -55,6 +56,7 @@ function Admin() {
 
       <Routes>
         {getRoutes()}
+        <Route path="/technicans/:id" element={Schedule} />
         <Route
           path="/*"
           element={<Navigate to="/admin/dashboard" />}

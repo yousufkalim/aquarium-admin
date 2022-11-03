@@ -149,16 +149,22 @@ export default function Login() {
                   ),
                 }}
               />
-
-              <p
-                className="forgetPasswordTxt"
-                onClick={() => setOpen(true)}
-                onKeyDown={() => setOpen(true)}
-                role="presentation"
-                aria-hidden
+              <div
+                style={{
+                  width: 'fit-content',
+                  marginLeft: 'auto',
+                }}
               >
-                Forgot password
-              </p>
+                <p
+                  className="forgetPasswordTxt"
+                  onClick={() => setOpen(true)}
+                  onKeyDown={() => setOpen(true)}
+                  role="presentation"
+                  aria-hidden
+                >
+                  Forget password
+                </p>
+              </div>
             </FormControl>
           </Grid>
           <Grid>

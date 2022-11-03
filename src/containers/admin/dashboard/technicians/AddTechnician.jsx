@@ -9,7 +9,7 @@ import DialogActions from '@mui/material/DialogActions';
 import Typography from '@mui/material/Typography';
 import { toast } from 'react-toastify';
 import { FormControl, TextField } from '@mui/material';
-import api from '../../../api/index';
+import api from '../../../../api/index';
 
 // eslint-disable-next-line object-curly-newline
 

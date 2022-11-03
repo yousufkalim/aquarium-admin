@@ -268,7 +268,6 @@ export default function AddTank({
                     value={description || attachment.name}
                     onChange={(e) => {
                       if (attachment.name) {
-                        console.log(attachment);
                         setAttachment({
                           ...attachment,
                           name: e.target.value,
