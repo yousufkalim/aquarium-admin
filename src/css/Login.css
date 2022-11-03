@@ -1,26 +1,32 @@
 .loginPg {
   background-image: url('../assets/images/BGlogin.svg');
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   background-size: 100%;
 }
+
 .logoLogin {
   width: 100%;
   height: 40%;
   position: relative;
-  top: 115px;
+  top: 80px;
 }
+
 .loginFirstSection {
   height: 490px;
   text-align: center;
 }
+
 .loginFormSection {
   margin-top: 90px;
   width: 100%;
 }
+
 .signInTxt {
   color: #28cdff;
+  font-family: 'HelveticaBold' !important;
 }
+
 .signInBtn {
   background-color: #28cdff !important;
   font-weight: 500 !important;
@@ -30,15 +36,18 @@
   padding: 10px 36px !important;
   cursor: pointer !important;
   position: relative;
+  font-weight: 600 !important;
 }
+
 .forgetPasswordTxt {
   text-align: right;
   color: #8c8c8c;
   font-size: 20px;
-  font-weight: 400;
+  font-weight: 400 !important;
   padding: 2% 0;
   cursor: pointer;
 }
+
 .loginClearIcon {
   position: absolute;
   z-index: 1300;
@@ -50,26 +59,45 @@
   cursor: pointer;
 }
 
+@media only screen and (min-width: 1600px) {
+  .loginFirstSection {
+    height: 490px !important;
+  }
+}
+
 @media only screen and (min-width: 992px) and (max-width: 1919px) {
+  .loginPg {
+    height: 100vh;
+  }
+
+  .loginFormSection {
+    background-color: #f3fdff;
+  }
+
   .loginFirstSection {
     height: 433px;
   }
+
   .loginFormSection {
     margin-top: 0;
   }
+
   .loginClearIcon {
     height: 1.3em !important;
     width: 1.3em !important;
   }
 }
+
 @media only screen and (min-width: 300px) and (max-width: 992px) {
   .hl-forget {
     width: 90%;
   }
+
   .css-1t1j96h-MuiPaper-root-MuiDialog-paper {
     height: 60%;
     max-width: 800px !important;
   }
+
   .resetPasswordBtn,
   .closeBtn {
     font-size: 12px !important;
@@ -77,9 +105,11 @@
     width: 4%;
     margin: 3% !important;
   }
+
   .enterEmailTxt {
     font-size: 13px;
   }
+
   .resetPasswordBtn {
     padding: 10px !important;
   }
@@ -87,6 +117,7 @@
   .forgetPasswordPopup {
     overflow: auto;
   }
+
   .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root {
     font-size: 1rem !important;
   }
@@ -97,10 +128,16 @@
     width: 1.2em !important;
     top: 0;
   }
+
   .loginPg {
     background: none;
-    background-image: linear-gradient(180deg, #28cdff -20%, aliceblue 29%);
+    background-image: linear-gradient(
+      180deg,
+      #28cdff -20%,
+      aliceblue 29%
+    );
   }
+
   .loginFirstSection {
     height: 17%;
     background-color: #28cdff;
@@ -114,22 +151,27 @@
     text-align: center;
     padding: 0% 2%;
   }
+
   .forgetPasswordTxt {
-    padding: 3%;
-    font-size: 17px;
+    padding: 4%;
+    font-size: 20px;
   }
+
   .logoLogin {
     width: 100%;
     height: 83px;
     position: relative;
     top: 2%;
   }
+
   .signInTxt {
     color: #28cdff;
-    font-size: 26px;
+    font-size: 30px;
   }
+
   .signInBtn {
     font-size: 17px !important;
     padding: 8px 30px !important;
+    margin-bottom: 80px !important;
   }
 }

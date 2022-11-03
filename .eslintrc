@@ -9,6 +9,7 @@
     "ecmaVersion": 12
   },
   "rules": {
+    "linebreak-style": "off",
     "no-duplicate-imports": "error",
     "no-self-compare": "error",
     "no-plusplus": "off",
