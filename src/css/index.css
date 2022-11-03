@@ -2,6 +2,7 @@
 @import url('https://fonts.cdnfonts.com/css/helvetica-neue-9');
 @import url('https://fonts.googleapis.com/css2?family=Economica:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;700&display=swap');
+
 @font-face {
   font-family: 'Helvetica';
   src: url('../assets/fonts/HelveticaNeue Light.ttf');
@@ -16,6 +17,7 @@
   font-family: 'HelveticaMedium';
   src: url('../assets/fonts/HelveticaNeue Medium.ttf');
 }
+
 @import url('./Navbar.css');
 @import url('./Home.css');
 @import url('./Footer.css');
@@ -34,9 +36,11 @@
   box-sizing: border-box;
   font-family: 'Helvetica';
 }
+
 body {
   background-color: #d9f4ff;
 }
+
 /* Primary Variables */
 :root {
   --primary: 'green';
