@@ -186,7 +186,7 @@ export default function AdminTable() {
         style={{
           borderRadius: '20px',
           maxHeight: '100%',
-          overflow: 'scroll',
+          overflowX: 'hidden',
         }}
       >
         <div
