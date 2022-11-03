@@ -5,6 +5,7 @@
   padding: 7px 30px !important;
   font-size: 18px !important;
   text-transform: none !important;
+  font-weight: 600 !important;
 }
 .scheduleBtn:hover {
   background-color: #28cdff !important;
@@ -18,7 +19,7 @@
 }
 .technicianName {
   font-size: 20px !important;
-  font-weight: 700 !important;
+  font-family: 'HelveticaBold' !important;
 }
 @media only screen and (min-width: 992px) and (max-width: 1919px) {
   .spaceCol {
