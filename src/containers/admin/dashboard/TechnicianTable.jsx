@@ -48,7 +48,7 @@ export default function TechnicianTable({
         style={{
           borderRadius: '20px',
           maxHeight: '100%',
-          overflow: 'scroll',
+          overflowX: 'hidden',
         }}
       >
         <h1 className="thead">List of Technicians</h1>
