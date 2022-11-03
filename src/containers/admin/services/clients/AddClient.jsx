@@ -189,6 +189,7 @@ export default function AddClient({
                 label="Phone Number"
                 size="normal"
                 type="text"
+                inputProps={{ maxLength: 10 }}
                 value={phone_number}
                 name="phone_number"
                 onChange={onChangeEvent}

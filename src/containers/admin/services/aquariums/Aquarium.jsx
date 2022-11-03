@@ -8,6 +8,8 @@ import api from '../../../../api/index';
 export default function Aquariums() {
   const [open, setOpen] = useState(false);
   const [aquariums, setAquariums] = useState([]);
+  const [clients, setClients] = useState([]);
+  const [tanks, setTanks] = useState([]);
 
   const getAquariums = async () => {
     const { data } = await api('get', '/clients/aquariums');
@@ -15,9 +17,25 @@ export default function Aquariums() {
       setAquariums(data?.results);
     }
   };
+  const getClients = async () => {
+    const { data } = await api('get', '/clients');
+    if (data) {
+      setClients(data?.results);
+    }
+  };
+  const getTankDetails = async () => {
+    const { data } = await api('get', '/tank');
+    if (data) {
+      setTanks(data?.tanks);
+    }
+  };
 
   useEffect(() => {
     getAquariums();
+    getClients();
+    getTankDetails();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <div>
@@ -28,7 +46,10 @@ export default function Aquariums() {
           <AquariumTable
             aquariums={aquariums}
             getAquariums={getAquariums}
+            clients={clients}
+            tanks={tanks}
           />
+
           <div className="btnContainer">
             <Button
               variant="contained"
@@ -47,6 +68,8 @@ export default function Aquariums() {
           open={open}
           setOpen={setOpen}
           getAquariums={getAquariums}
+          clients={clients}
+          tanks={tanks}
         />
       )}
     </div>

@@ -29,7 +29,12 @@ const StyledTableRow = styled(TableRow)(() => ({
   },
 }));
 
-export default function AquariumTable({ aquariums, getAquariums }) {
+export default function AquariumTable({
+  aquariums,
+  getAquariums,
+  clients,
+  tanks,
+}) {
   const [del, setDel] = useState(false);
   const [editing, setEditing] = useState(false);
   const [aquarium, setAquarium] = useState('');
@@ -66,6 +71,7 @@ export default function AquariumTable({ aquariums, getAquariums }) {
                 color: '#8C8C8C',
                 padding: '2%',
               }}
+              clients={clients}
               sx={{ m: 1, mt: 3, mr: 8, minWidth: 200 }}
             />
           </div>
@@ -146,7 +152,7 @@ export default function AquariumTable({ aquariums, getAquariums }) {
                   align="center"
                   className="serviceTableTxt"
                 >
-                  {`${row.address.street}, ${row.address.city}, ${row.address.country} ${row.address.zip_code}`}
+                  {`${row.address.name}`}
                 </StyledTableCell>
                 <StyledTableCell
                   align="center"
@@ -155,6 +161,7 @@ export default function AquariumTable({ aquariums, getAquariums }) {
                     color: '#8c8c8c',
                     textAlign: 'justify',
                     letterSpacing: '0',
+                    wordBreak: 'break-word',
                   }}
                 >
                   {row.service_details.length < 135
@@ -206,6 +213,8 @@ export default function AquariumTable({ aquariums, getAquariums }) {
           editing={editing}
           aquarium={aquarium}
           getAquariums={getAquariums}
+          clients={clients}
+          tanks={tanks}
         />
       )}
       {del && (

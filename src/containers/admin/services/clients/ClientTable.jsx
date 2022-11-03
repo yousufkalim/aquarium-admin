@@ -36,6 +36,18 @@ export default function ClientsTable({ clients, getClients }) {
   useEffect(() => {
     getClients();
   }, []);
+
+  const phoneFormat = (num) => {
+    const match = num.match(/(\d{3})(\d{3})(\d{4})$/);
+
+    if (match) {
+      // eslint-disable-next-line no-param-reassign
+      num = ['(', match[1], ') ', match[2], '-', match[3]].join('');
+      return num;
+    }
+    return num;
+  };
+
   return (
     <div className="bg">
       <TableContainer
@@ -107,7 +119,7 @@ export default function ClientsTable({ clients, getClients }) {
                     color: '#8C8C8C',
                   }}
                 >
-                  {row.phone_number}
+                  {phoneFormat(row.phone_number)}
                 </StyledTableCell>
 
                 <StyledTableCell

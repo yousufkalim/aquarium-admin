@@ -11,6 +11,7 @@
 @import url('./AdminTable.css');
 @import url('./ServiceTable.css');
 @import url('./Technician.css');
+@import url('./Tank.css');
 /* Defaults */
 * {
   padding: 0;
@@ -18,7 +19,9 @@
   box-sizing: border-box;
   font-family: 'Helvetica Neue', sans-serif;
 }
-
+body {
+  background-color: #d9f4ff;
+}
 /* Primary Variables */
 :root {
   --primary: 'green';

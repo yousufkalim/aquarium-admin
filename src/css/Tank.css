@@ -1,0 +1,11 @@
+.tankInfo {
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  width: 100% !important;
+}
+@media only screen and (min-width: 992px) and (max-width: 1919px) {
+  .tankInfo {
+    font-size: 17px !important;
+    width: 80% !important;
+  }
+}
