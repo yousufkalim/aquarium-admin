@@ -188,6 +188,7 @@ export default function AddTechnician({
                 type="text"
                 value={phone_number}
                 name="phone_number"
+                inputProps={{ maxLength: 10 }}
                 onChange={onChangeEvent}
                 InputLabelProps={{
                   style: {

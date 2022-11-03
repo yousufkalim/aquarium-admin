@@ -65,10 +65,6 @@
   font-weight: 700;
 }
 
-.active-nav-item {
-  color: #28cdff;
-}
-
 @media only screen and (min-width: 300px) and (max-width: 600px) {
   .menu {
     display: none;

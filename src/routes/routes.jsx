@@ -16,9 +16,11 @@ import products from '../assets/images/products.svg';
 import checklist from '../assets/images/checklist.svg';
 import tank from '../assets/images/aquarium.svg';
 import Technicians from '../containers/admin/dashboard/Technicians';
+import Tanks from '../containers/admin/tanks/Tanks';
 import Clients from '../containers/admin/services/clients/Clients';
 import Aquarium from '../containers/admin/services/aquariums/Aquarium';
 import ServiceHistory from '../containers/admin/services/serviceHistory/ServiceHistory';
+import Checklist from '../containers/admin/checklistBuilder/Checklist';
 
 // unAuth routes
 const unAuthRoutes = [
@@ -101,7 +103,7 @@ const adminRoutes = [
     path: '/checklistBuilder',
     name: 'Checklist Builder',
     icon: checklist,
-    element: <Admins />,
+    element: <Checklist />,
   },
   {
     layout: '/admin',
@@ -115,8 +117,9 @@ const adminRoutes = [
     path: '/tankDetails',
     name: 'Tank Details',
     icon: tank,
-    element: <Services />,
+    element: <Tanks />,
   },
+
   {
     layout: '/admin',
     path: '/products',

@@ -67,3 +67,65 @@
   padding: 7px 30px !important;
   cursor: pointer !important;
 }
+
+.tankOptionBtns {
+  color: #8c8c8c !important;
+  background-color: white !important;
+  border: 2px solid #cdeefc !important;
+  font-weight: 500 !important;
+  font-size: 16px !important;
+  border-radius: 20px !important;
+  text-transform: none !important;
+  width: 17%;
+  padding: 9px !important;
+  cursor: pointer !important;
+  margin: 10px !important;
+}
+.activeTankBtn {
+  background-color: #28cdff !important;
+  color: #202020 !important;
+  border: 2px solid #cdeefc !important;
+  font-weight: 500 !important;
+  font-size: 16px !important;
+  border-radius: 20px !important;
+  text-transform: none !important;
+  width: 17%;
+  padding: 9px !important;
+  cursor: pointer !important;
+  margin: 10px !important;
+}
+.tankOptionBtns:hover {
+  background-color: #28cdff !important;
+  color: #202020 !important;
+}
+
+.checkOptionBtns {
+  color: #8c8c8c !important;
+  background-color: white !important;
+  border: 2px solid #cdeefc !important;
+  font-weight: 500 !important;
+  font-size: 16px !important;
+  border-radius: 20px !important;
+  text-transform: none !important;
+  width: 24% !important;
+  padding: 9px !important;
+  cursor: pointer !important;
+  margin: 10px !important;
+}
+.activeCheckBtn {
+  background-color: #28cdff !important;
+  color: #202020 !important;
+  border: 2px solid #cdeefc !important;
+  font-weight: 500 !important;
+  font-size: 16px !important;
+  border-radius: 25px !important;
+  text-transform: none !important;
+  width: 24% !important;
+  padding: 9px !important;
+  cursor: pointer !important;
+  margin: 10px !important;
+}
+.checkOptionBtns:hover {
+  background-color: #28cdff !important;
+  color: #202020 !important;
+}

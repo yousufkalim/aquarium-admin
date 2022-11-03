@@ -1,0 +1,248 @@
+/* eslint-disable consistent-return */
+import { React, useState, useEffect } from 'react';
+import Button from '@mui/material/Button';
+import { styled } from '@mui/material/styles';
+import Dialog from '@mui/material/Dialog';
+import { makeStyles } from '@mui/styles';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
+import Typography from '@mui/material/Typography';
+import { toast } from 'react-toastify';
+import { FormControl, TextField } from '@mui/material';
+import InputLabel from '@mui/material/InputLabel';
+import api from '../../../api/index';
+
+// eslint-disable-next-line object-curly-newline
+
+const BootstrapDialog = styled(Dialog)(({ theme }) => ({
+  '& .MuiDialog-root': {
+    borderRadius: '25px',
+  },
+  '& .MuiDialogContent-root': {
+    padding: theme.spacing(2),
+    paddingTop: theme.spacing(7),
+    textAlign: 'center',
+  },
+  '& .MuiDialogActions-root': {
+    padding: theme.spacing(1),
+    paddingBottom: theme.spacing(7),
+    margin: 'auto',
+  },
+}));
+const useOutlinedInputStyles = makeStyles({
+  root: {
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        border: '2px solid #CDEEFC ',
+        borderRadius: '20px',
+        fontSize: 16,
+        width: 'auto',
+      },
+      '&:hover fieldset': {
+        borderColor: '#28CDFF',
+      },
+      '&::placeholder fieldset': {
+        fontWeight: 800,
+        color: 'red',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: '#28CDFF',
+      },
+    },
+  },
+});
+export default function AddTank({
+  open,
+  setOpen,
+  editing,
+  getTanks,
+  tank,
+}) {
+  const [type, setType] = useState('');
+  const [value, setValue] = useState('');
+
+  useEffect(() => {
+    if (tank) {
+      setType(tank.type);
+      setValue(tank.value);
+    }
+  }, [tank]);
+  // eslint-disable-next-line no-unused-vars
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const onChangeEvent = (e) => {
+    const regex = /^[0-9\b]+$/;
+    if (e.target.value === '' || regex.test(e.target.value)) {
+      setValue(e.target.value);
+    }
+  };
+
+  const handleSubmit = async () => {
+    const tankDetails = {
+      type,
+      value,
+    };
+    if (editing) {
+      await api('put', `/tank/${tank._id}`, tankDetails);
+      toast.success('Tank edited successfully');
+    } else {
+      await api('post', '/tank', tankDetails);
+      toast.success('Tank created successfully');
+    }
+    getTanks();
+    handleClose();
+  };
+  const outlinedInputStyles = useOutlinedInputStyles();
+
+  return (
+    <div>
+      <BootstrapDialog
+        onClose={handleClose}
+        aria-labelledby="customized-dialog-title"
+        open={open}
+        setOpen={setOpen}
+        fullWidth
+        maxWidth="md"
+        PaperProps={{
+          style: {
+            borderRadius: 25,
+            width: 800,
+            background: '#F3FDFF',
+          },
+        }}
+      >
+        <DialogContent>
+          <Typography gutterBottom>
+            <h1 style={{ fontSize: '24px', color: '#28CDFF' }}>
+              {editing ? 'Edit Tank Details' : 'Add New Tank Details'}
+            </h1>
+            <p className="enterEmailTxt">
+              {editing
+                ? 'Lorem ipsum dolor sit amet, consectetur adipiscing elit'
+                : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit'}
+            </p>
+            <div
+              className="hl-del"
+              style={{ width: '76%', marginBottom: '7%' }}
+            />
+            <InputLabel
+              sx={{
+                textAlign: 'left',
+                marginLeft: '12%',
+                color: '#8C8C8C',
+                fontSize: '16px',
+              }}
+            >
+              New value for
+              <span
+                style={{ fontWeight: '100', letterSpacing: '1px' }}
+              >
+                {' '}
+                (select one)
+              </span>
+            </InputLabel>
+            <div>
+              <Button
+                className={
+                  type === 'size' ? 'activeTankBtn' : 'tankOptionBtns'
+                }
+                variant="outlined"
+                onClick={() => setType('size')}
+              >
+                Size
+              </Button>
+              <Button
+                className={
+                  type === 'type' ? 'activeTankBtn' : 'tankOptionBtns'
+                }
+                variant="outlined"
+                onClick={() => setType('type')}
+              >
+                Type
+              </Button>
+              <Button
+                className={
+                  type === 'material'
+                    ? 'activeTankBtn'
+                    : 'tankOptionBtns'
+                }
+                variant="outlined"
+                onClick={() => setType('material')}
+              >
+                Material
+              </Button>
+              <Button
+                className={
+                  type === 'filter'
+                    ? 'activeTankBtn'
+                    : 'tankOptionBtns'
+                }
+                variant="outlined"
+                onClick={() => setType('filter')}
+              >
+                Filter
+              </Button>
+            </div>
+            <FormControl
+              sx={{ mb: 1, mt: 2, width: '76%' }}
+              variant="outlined"
+            >
+              <TextField
+                sx={{
+                  backgroundColor: 'white',
+                  borderRadius: '25px',
+                }}
+                id="outlined-fname"
+                classes={outlinedInputStyles}
+                label={
+                  type === 'size'
+                    ? 'E.G. 100 Gallon Tank'
+                    : 'Tank Details'
+                }
+                size="normal"
+                name={type}
+                type="text"
+                value={value}
+                // eslint-disable-next-line no-confusing-arrow
+                onChange={
+                  // eslint-disable-next-line no-confusing-arrow
+                  (e) =>
+                    // eslint-disable-next-line implicit-arrow-linebreak
+                    type === 'size'
+                      ? onChangeEvent(e)
+                      : setValue(e.target.value)
+                  // eslint-disable-next-line react/jsx-curly-newline
+                }
+                InputLabelProps={{
+                  style: {
+                    color: '#8C8C8C',
+                    fontSize: '19px',
+                    fontWeight: '700',
+                  },
+                }}
+              />
+            </FormControl>
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            onClick={handleClose}
+            className="closeBtn"
+            variant="outlined"
+          >
+            Close
+          </Button>
+          <Button
+            onClick={handleSubmit}
+            className="resetPasswordBtn"
+            variant="contained"
+          >
+            {editing ? 'Update Value' : 'Add Value'}
+          </Button>
+        </DialogActions>
+      </BootstrapDialog>
+    </div>
+  );
+}

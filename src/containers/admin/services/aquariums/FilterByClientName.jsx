@@ -1,6 +1,5 @@
 /* eslint-disable react/no-unstable-nested-components */
 import * as React from 'react';
-import { useTheme } from '@mui/material/styles';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -20,29 +19,7 @@ const MenuProps = {
   },
 };
 
-const sizes = [
-  '5 gallon',
-  '15 gallon',
-  '10 gallon',
-  '25 gallon',
-  '20 gallon',
-  '35 gallon',
-  '30 gallon',
-  '45 gallon',
-  '50 gallon',
-];
-
-function getStyles(name, tank, theme) {
-  return {
-    fontWeight:
-      tank.indexOf(name) === -1
-        ? theme.typography.fontWeightRegular
-        : theme.typography.fontWeightMedium,
-  };
-}
-
-export default function MultipleSelect({ text, style, sx }) {
-  const theme = useTheme();
+export default function MultipleSelect({ text, style, sx, clients }) {
   const [tank, settank] = React.useState([]);
 
   const handleChange = (event) => {
@@ -85,14 +62,10 @@ export default function MultipleSelect({ text, style, sx }) {
           <MenuItem disabled value="">
             <em>{text}</em>
           </MenuItem>
-          {sizes.map((size) => (
-            <MenuItem
-              key={size}
-              value={size}
-              inputProps={{ color: 'red' }}
-              style={getStyles(size, tank, theme)}
-            >
-              {size}
+
+          {clients?.map((client) => (
+            <MenuItem value={client.first_name}>
+              {`${client.first_name} ${client.last_name}`}
             </MenuItem>
           ))}
         </Select>
