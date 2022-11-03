@@ -36,7 +36,10 @@ export default function Home() {
                 dolore magna aliqua. Ut enim ad minim veniam, quis
                 nostrud exercitation
               </p>
-              <Link to="/login" style={{ textDecoration: 'none' }}>
+              <Link
+                to="/auth/login"
+                style={{ textDecoration: 'none' }}
+              >
                 <Button className="getStartedBtn" variant="contained">
                   Get Started
                 </Button>
