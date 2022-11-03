@@ -68,7 +68,7 @@ export default function TechnicianTable({
               <StyledTableCell
                 sx={{
                   fontSize: '16px',
-                  fontWeight: '700',
+                  fontFamily: 'HelveticaBold',
                 }}
                 align="left"
               >
@@ -81,7 +81,7 @@ export default function TechnicianTable({
               <StyledTableCell
                 sx={{
                   fontSize: '16px',
-                  fontWeight: '700',
+                  fontFamily: 'HelveticaBold',
                 }}
                 align="center"
               >
