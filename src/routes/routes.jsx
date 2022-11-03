@@ -15,7 +15,7 @@ import serviceAdmin from '../assets/images/serviceAdmin.svg';
 import products from '../assets/images/products.svg';
 import checklist from '../assets/images/checklist.svg';
 import tank from '../assets/images/aquarium.svg';
-import Technicians from '../containers/admin/dashboard/Technicians';
+import Technicians from '../containers/admin/dashboard/technicians/Technicians';
 import Tanks from '../containers/admin/tanks/Tanks';
 import Clients from '../containers/admin/services/clients/Clients';
 import Aquarium from '../containers/admin/services/aquariums/Aquarium';
