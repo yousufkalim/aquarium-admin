@@ -58,7 +58,7 @@
   cursor: pointer;
 }
 .delBtn {
-  background-color: red !important;
+  background-color: #ff5151 !important;
   color: white !important;
   font-weight: 500 !important;
   font-size: 20px !important;
@@ -66,4 +66,5 @@
   text-transform: none !important;
   padding: 7px 30px !important;
   cursor: pointer !important;
+  box-shadow: none !important;
 }
