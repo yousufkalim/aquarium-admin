@@ -6,15 +6,11 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 import { authRoutes } from '../routes/routes';
 
 function SuperAdmin() {
-  const getRoutes = () => {
-    let routes = [];
-    if (!localStorage.getItem('token')) {
-      routes = authRoutes.map((route) => (
-        <Route path={route.path} element={route.element} />
-      ));
-    }
-    return routes;
-  };
+  function getRoutes() {
+    return authRoutes.map((route) => (
+      <Route path={route.path} element={route.element} />
+    ));
+  }
 
   return (
     <Routes>

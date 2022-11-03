@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import {
   Routes,
   Route,
-  // Navigate,
+  Navigate,
   useLocation,
 } from 'react-router-dom';
 
@@ -34,11 +34,20 @@ function Admin() {
   const getRoutes = () => {
     let routes = [];
     if (admin.role === 'admin') {
-      routes = adminRoutes.map((route) => (
-        <Route path={route.path} element={route.element} />
-      ));
+      // eslint-disable-next-line array-callback-return
+      routes = adminRoutes.map((route) => {
+        if (route.name === 'Services') {
+          return route.child.map((child) => (
+            <Route path={child.path} element={child.element} />
+          ));
+          // eslint-disable-next-line no-else-return
+        } else {
+          return <Route path={route.path} element={route.element} />;
+        }
+      });
     }
-    return routes;
+    // console.log(routes.flat());
+    return routes.flat();
   };
 
   return (
@@ -48,10 +57,10 @@ function Admin() {
       <Routes>
         {getRoutes()}
         <Route path="/technicans/:id" element={Schedule} />
-        {/* <Route
+        <Route
           path="/*"
           element={<Navigate to="/admin/dashboard" />}
-        /> */}
+        />
       </Routes>
     </>
   );

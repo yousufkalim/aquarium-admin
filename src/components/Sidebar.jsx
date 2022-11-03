@@ -111,42 +111,36 @@ export default function Sidebar() {
                 </NavLink>
                 // eslint-disable-next-line indent
               ))
-            : adminRoutes.map((route) => (
-                // eslint-disable-next-line react/jsx-indent
-
-                <div
-                  onClick={() => toggleIcon(route?.name)}
-                  onKeyDown={() => toggleIcon(route?.name)}
-                >
-                  <NavLink
-                    to={route.layout + route.path}
-                    style={{ textDecoration: 'none' }}
-                    activeClassName="active"
-                  >
-                    <ListItem
-                      className="fullListItemAdmin"
-                      style={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                      }}
-                      key={route.name}
-                      disablePadding
+            : adminRoutes.map((route) => {
+                if (route.name === 'Services') {
+                  return (
+                    <div
+                      onClick={() => toggleIcon(route?.name)}
+                      onKeyDown={() => toggleIcon(route?.name)}
                     >
-                      <ListItemButton className="listItem">
-                        <ListItemIcon className="M-icon">
-                          <img
-                            src={route.icon}
-                            className="icon"
-                            id="icon"
-                            alt=""
+                      <ListItem
+                        className="fullListItemAdmin"
+                        style={{
+                          display: 'flex',
+                          flexDirection: 'column',
+                        }}
+                        key={route.name}
+                        disablePadding
+                      >
+                        <ListItemButton className="listItem">
+                          <ListItemIcon className="M-icon">
+                            <img
+                              src={route.icon}
+                              className="icon"
+                              id="icon"
+                              alt=""
+                            />
+                          </ListItemIcon>
+                          <ListItemText
+                            className="listItem"
+                            primary={route.name}
                           />
-                        </ListItemIcon>
-                        <ListItemText
-                          className="listItem"
-                          primary={route.name}
-                        />
 
-                        {route.name === 'Services' ? (
                           <div>
                             {/* eslint-disable-next-line operator-linebreak */}
                             {updownIconToggle[updownIconToggle.key] &&
@@ -170,11 +164,7 @@ export default function Sidebar() {
                               // eslint-disable-next-line indent
                             )}
                           </div>
-                        ) : (
-                          ''
-                        )}
-                      </ListItemButton>
-                      {route.name === 'Services' ? (
+                        </ListItemButton>
                         <div
                           className="flex listItem1"
                           style={{
@@ -228,7 +218,7 @@ export default function Sidebar() {
                                           ? 'active-NavLink'
                                           : ''
                                       }
-                                      to={routeChild?.path}
+                                      to={`${routeChild.layout}${routeChild?.path}`}
                                     >
                                       <p className="adminServiceDropdown">
                                         {routeChild?.name}
@@ -240,13 +230,42 @@ export default function Sidebar() {
                             </>
                           ) : null}
                         </div>
-                      ) : (
-                        ''
-                      )}
-                    </ListItem>
-                  </NavLink>
-                </div>
-              ))}
+                      </ListItem>
+                    </div>
+                  );
+                  // eslint-disable-next-line no-else-return
+                } else {
+                  return (
+                    <NavLink
+                      to={route.layout + route.path}
+                      style={{ textDecoration: 'none' }}
+                      activeClassName="active"
+                    >
+                      <ListItem
+                        className="fullListItem"
+                        key={route.name}
+                        disablePadding
+                      >
+                        <ListItemButton className="listItem">
+                          <ListItemIcon className="M-icon">
+                            <img
+                              src={route.icon}
+                              className="icon"
+                              id="icon"
+                              alt=""
+                            />
+                          </ListItemIcon>
+                          <ListItemText
+                            className="listItem"
+                            primary={route.name}
+                          />
+                        </ListItemButton>
+                      </ListItem>
+                    </NavLink>
+                  );
+                  // eslint-disable-next-line indent
+                }
+              })}
         </List>
         <div className="profileDiv">
           <p className="sidebarTxt">Profile</p>

@@ -31,11 +31,15 @@ export default function Home() {
             </div>
             <div className="descriptionOnImg">
               <p className="descriptionTxt">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                exercitation
+                Lorem ipsum dolor sit amet, consectetur adipiscing
+                elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis
+                nostrud exercitation
               </p>
-              <Link to="/login" style={{ textDecoration: 'none' }}>
+              <Link
+                to="/auth/login"
+                style={{ textDecoration: 'none' }}
+              >
                 <Button className="getStartedBtn" variant="contained">
                   Get Started
                 </Button>
@@ -43,28 +47,52 @@ export default function Home() {
             </div>
           </div>
           <div className="mouseImg">
-            <img src={Mouse} alt="" />
+            <img
+              src={Mouse}
+              alt=""
+              onClick={
+                () =>
+                  // eslint-disable-next-line implicit-arrow-linebreak
+                  window.scrollTo({
+                    top: document.getElementById('howItWorks')
+                      .offsetTop,
+
+                    behavior: 'smooth',
+                  })
+                // eslint-disable-next-line react/jsx-curly-newline
+              }
+              role="presentation"
+            />
           </div>
         </Grid>
       </Grid>
       {/* =============================How it works section=================================  */}
-      <Grid container spacing={0} className="howItWorkSection" id="howItWorks">
+      <Grid
+        container
+        spacing={0}
+        className="howItWorkSection"
+        id="howItWorks"
+      >
         <Grid id="howItWorkSection" item xs={12} sm={12} lg={8}>
           <Grid item xs={12} sm={12} lg={7}>
             <h1 className="mainHeading">How it works</h1>
             <p className="leftBoxContent">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+              sed do eiusmod tempor incididunt ut labore et dolore
+              magna aliqua. Ut enim ad minim veniam, quis nostrud
               exercitation
             </p>
           </Grid>
           <Grid className="leftBox" item xs={12} sm={12} lg={5}>
             <div className="firstNumberedBox">1</div>
-            <h1 className="card1Heading">COMPLETE AQUARIUM SERVICES</h1>
+            <h1 className="card1Heading">
+              COMPLETE AQUARIUM SERVICES
+            </h1>
             <br />
             <p className="cardContent">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+              sed do eiusmod tempor incididunt ut labore et dolore
+              magna aliqua. Ut enim ad minim veniam, quis nostrud
               exercitation
             </p>
           </Grid>
@@ -77,9 +105,11 @@ export default function Home() {
             <h1 className="boxHeading">LEADERS IN THE MARKET</h1>
             <br />
             <p className="boxContent">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-              exercitation Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+              sed do eiusmod tempor incididunt ut labore et dolore
+              magna aliqua. Ut enim ad minim veniam, quis nostrud
+              exercitation Lorem ipsum dolor sit amet, consectetur
+              adipiscing elit, sed do
             </p>
           </Grid>
           <Grid className="howItWorkSectionCol2">
@@ -88,9 +118,11 @@ export default function Home() {
             <h1 className="boxHeading">OUR AQUACULTURE PROGRAM</h1>
             <br />
             <p className="boxContent">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-              exercitation Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+              sed do eiusmod tempor incididunt ut labore et dolore
+              magna aliqua. Ut enim ad minim veniam, quis nostrud
+              exercitation Lorem ipsum dolor sit amet, consectetur
+              adipiscing elit, sed do
             </p>
           </Grid>
         </Grid>

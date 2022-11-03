@@ -84,12 +84,14 @@ const adminRoutes = [
         key: '2',
       },
       {
+        layout: '/admin',
         path: '/services/aquariums',
         name: 'Aquariums',
         element: <Aquarium />,
         key: '3',
       },
       {
+        layout: '/admin',
         path: '/services/servicehistory',
         name: 'Service History',
         element: <ServiceHistory />,
