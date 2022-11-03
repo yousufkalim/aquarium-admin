@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Grid, Button } from '@mui/material';
 import TechnicianTable from './TechnicianTable';
-import add from '../../../assets/images/add.svg';
+import add from '../../../../assets/images/add.svg';
 import AddTechnician from './AddTechnician';
 
-import api from '../../../api/index';
+import api from '../../../../api/index';
 
 export default function Technicians() {
   const [open, setOpen] = useState(false);

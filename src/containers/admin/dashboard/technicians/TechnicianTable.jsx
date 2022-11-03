@@ -9,11 +9,12 @@ import TableRow from '@mui/material/TableRow';
 import TableHead from '@mui/material/TableHead';
 import Paper from '@mui/material/Paper';
 import { Button } from '@mui/material';
-import profileDummy from '../../../assets/images/profileDummy.svg';
-import edit from '../../../assets/images/Edit.svg';
-import deleteIcon from '../../../assets/images/Delete.svg';
+import { Navigate } from 'react-router-dom';
+import profileDummy from '../../../../assets/images/profileDummy.svg';
+import edit from '../../../../assets/images/Edit.svg';
+import deleteIcon from '../../../../assets/images/Delete.svg';
 import AddTechnician from './AddTechnician';
-import DeletePopup from '../../../components/DeletePopup';
+import DeletePopup from '../../../../components/DeletePopup';
 
 const StyledTableCell = styled(TableCell)(() => ({
   [`&.${tableCellClasses.body}`]: {
@@ -134,6 +135,14 @@ export default function TechnicianTable({
                         variant="outlined"
                         className="scheduleBtn flexitem"
                         id="flexitem"
+                        onClick={
+                          // eslint-disable-next-line react/no-unstable-nested-components
+                          () => (
+                            <Navigate
+                              to={`/admin/technicians/${row._id}`}
+                            />
+                          )
+                        }
                       >
                         See Schedule
                       </Button>
