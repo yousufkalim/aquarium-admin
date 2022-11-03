@@ -6,9 +6,12 @@ import Dialog from '@mui/material/Dialog';
 import { makeStyles } from '@mui/styles';
 import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
+import InputAdornment from '@mui/material/InputAdornment';
+import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
+import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import Typography from '@mui/material/Typography';
 import { toast } from 'react-toastify';
-import { FormControl, TextField } from '@mui/material';
+import { FormControl, TextField, IconButton } from '@mui/material';
 import api from '../../../api/index';
 
 // eslint-disable-next-line object-curly-newline
@@ -62,6 +65,7 @@ export default function AddAdmin({
     email: '',
     password: '',
   });
+  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     if (admin) {
@@ -77,6 +81,9 @@ export default function AddAdmin({
       ...values,
       [e.target.name]: e.target.value,
     });
+  };
+  const handleClickShowPassword = () => {
+    setShowPassword(!showPassword);
   };
 
   const handleSubmit = async () => {
@@ -112,7 +119,7 @@ export default function AddAdmin({
         <DialogContent>
           <Typography gutterBottom>
             <h1 style={{ fontSize: '24px', color: '#28CDFF' }}>
-              {editing ? 'Edit Admin Profile' : 'Invite a new Admin'}
+              {editing ? 'Edit Admin Profile' : 'Invite A New Admin'}
             </h1>
             <p className="enterEmailTxt">
               {editing
@@ -184,7 +191,7 @@ export default function AddAdmin({
                   classes={outlinedInputStyles}
                   label="Password"
                   size="normal"
-                  type="password"
+                  type={showPassword ? 'text' : 'password'}
                   value={password}
                   name="password"
                   onChange={onChangeEvent}
@@ -194,6 +201,26 @@ export default function AddAdmin({
                       fontSize: '19px',
                       fontWeight: '700',
                     },
+                  }}
+                  InputProps={{
+                    endAdornment: (
+                      // eslint-disable-next-line react/jsx-wrap-multilines
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowPassword}
+                          onMouseDown={() => setShowPassword(true)}
+                          edge="end"
+                          sx={{ color: '#28CDFF' }}
+                        >
+                          {showPassword ? (
+                            <VisibilityOffOutlinedIcon />
+                          ) : (
+                            <VisibilityOutlinedIcon />
+                          )}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
                   }}
                 />
               </FormControl>
@@ -213,7 +240,7 @@ export default function AddAdmin({
             className="resetPasswordBtn"
             variant="contained"
           >
-            {editing ? 'Save' : 'Send Invite'}
+            {editing ? 'Save' : 'Create Admin & Send Invite'}
           </Button>
         </DialogActions>
       </BootstrapDialog>
