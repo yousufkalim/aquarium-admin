@@ -73,7 +73,7 @@
   border-left: 2px solid white;
 }
 .activeDropdown .adminServiceDropdown {
-  color: #fff;
+  color: #cdeefc;
 }
 .activeDropdown .listItem .M-icon .icon {
   filter: brightness(0) invert(1);
