@@ -162,7 +162,7 @@ export default function Login() {
                   role="presentation"
                   aria-hidden
                 >
-                  Forget password
+                  Forgot password
                 </p>
               </div>
             </FormControl>

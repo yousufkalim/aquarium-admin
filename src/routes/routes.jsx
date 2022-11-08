@@ -15,12 +15,12 @@ import serviceAdmin from '../assets/images/serviceAdmin.svg';
 import products from '../assets/images/products.svg';
 import checklist from '../assets/images/checklist.svg';
 import tank from '../assets/images/aquarium.svg';
-import Technicians from '../containers/admin/dashboard/Technicians';
 import Tanks from '../containers/admin/tanks/Tanks';
 import Clients from '../containers/admin/services/clients/Clients';
 import Aquarium from '../containers/admin/services/aquariums/Aquarium';
 import ServiceHistory from '../containers/admin/services/serviceHistory/ServiceHistory';
 import Checklist from '../containers/admin/checklistBuilder/Checklist';
+import Technicians from '../containers/admin/dashboard/technicians/Technicians';
 
 // unAuth routes
 const unAuthRoutes = [
@@ -112,7 +112,7 @@ const adminRoutes = [
     path: '/billing',
     name: 'Billing',
     icon: service,
-    element: <Services />,
+    // element: <Services />,
   },
   {
     layout: '/admin',
@@ -127,7 +127,7 @@ const adminRoutes = [
     path: '/products',
     name: 'Products',
     icon: products,
-    element: <Services />,
+    // element: <Services />,
   },
 ];
 
