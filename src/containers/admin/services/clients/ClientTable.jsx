@@ -55,7 +55,7 @@ export default function ClientsTable({ clients, getClients }) {
         style={{
           borderRadius: '20px',
           maxHeight: '100%',
-          overflow: 'scroll',
+          overflowX: 'hidden',
         }}
       >
         <h1 className="thead">List of Clients</h1>
@@ -74,8 +74,8 @@ export default function ClientsTable({ clients, getClients }) {
               <StyledTableCell
                 sx={{
                   fontSize: '16px',
-                  fontWeight: '700',
                   width: '20%',
+                  fontFamily: 'HelveticaBold',
                 }}
                 align="center"
               >
@@ -85,7 +85,7 @@ export default function ClientsTable({ clients, getClients }) {
               <StyledTableCell
                 sx={{
                   fontSize: '16px',
-                  fontWeight: '700',
+                  fontFamily: 'HelveticaBold',
                 }}
                 align="center"
               >
@@ -94,7 +94,7 @@ export default function ClientsTable({ clients, getClients }) {
               <StyledTableCell
                 sx={{
                   fontSize: '16px',
-                  fontWeight: '700',
+                  fontFamily: 'HelveticaBold',
                   width: '25%',
                 }}
                 align="center"
@@ -109,6 +109,10 @@ export default function ClientsTable({ clients, getClients }) {
                 <StyledTableCell
                   align="center"
                   className="technicianName"
+                  sx={{
+                    textAlign: 'justify',
+                    paddingLeft: '40px',
+                  }}
                 >
                   {`${row.first_name} ${row.last_name}`}
                 </StyledTableCell>

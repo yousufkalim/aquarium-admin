@@ -43,7 +43,7 @@ export default function AdminTable({ admins, getAdmins }) {
         style={{
           borderRadius: '20px',
           maxHeight: '100%',
-          overflow: 'hidden',
+          overflowX: 'hidden',
         }}
       >
         <h1 className="thead">List of Admins</h1>

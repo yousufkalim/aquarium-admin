@@ -185,7 +185,7 @@ export default function ServiceHistoryTable() {
         style={{
           borderRadius: '20px',
           maxHeight: '100%',
-          overflow: 'scroll',
+          overflowX: 'hidden',
         }}
       >
         <div
@@ -234,19 +234,19 @@ export default function ServiceHistoryTable() {
           <TableHead>
             <TableRow sx={{ background: '#d9f4ff' }}>
               <StyledTableCell
-                sx={{ fontSize: '16px', fontWeight: '700' }}
+                sx={{ fontSize: '16px', fontFamily: 'HelveticaBold' }}
                 align="center"
               >
                 Client Name
               </StyledTableCell>
               <StyledTableCell
-                sx={{ fontSize: '16px', fontWeight: '700' }}
+                sx={{ fontSize: '16px', fontFamily: 'HelveticaBold' }}
                 align="center"
               >
                 Date
               </StyledTableCell>
               <StyledTableCell
-                sx={{ fontSize: '16px', fontWeight: '700' }}
+                sx={{ fontSize: '16px', fontFamily: 'HelveticaBold' }}
                 align="center"
               >
                 Service Start Time - End Time
@@ -254,7 +254,7 @@ export default function ServiceHistoryTable() {
               <StyledTableCell
                 sx={{
                   fontSize: '16px',
-                  fontWeight: '700',
+                  fontFamily: 'HelveticaBold',
                   width: '20%',
                 }}
                 align="center"
@@ -264,7 +264,7 @@ export default function ServiceHistoryTable() {
               <StyledTableCell
                 sx={{
                   fontSize: '16px',
-                  fontWeight: '700',
+                  fontFamily: 'HelveticaBold',
                   width: '20%',
                 }}
                 align="center"
