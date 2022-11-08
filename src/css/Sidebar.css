@@ -83,7 +83,7 @@
   border-left: 2px solid white;
 }
 .fullListItemAdmin:hover .adminServiceDropdown {
-  color: #fff;
+  color: #cdeefc;
 }
 .adminServiceDropdown {
   margin: auto;
@@ -93,11 +93,11 @@
 }
 .adminServiceDropdown:hover {
   font-weight: 700;
-  color: aliceblue !important;
+  color: white !important;
 }
 .active .adminServiceDropdown {
   font-weight: 700;
-  color: aliceblue !important;
+  color: white !important;
 }
 
 /*====================================== end of styling admin menu items============================ */
