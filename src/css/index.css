@@ -28,6 +28,7 @@
 @import url('./ServiceTable.css');
 @import url('./Technician.css');
 @import url('./Tank.css');
+@import url('./CheckList.css');
 
 /* Defaults */
 * {

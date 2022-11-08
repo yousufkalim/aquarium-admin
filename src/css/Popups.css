@@ -13,43 +13,50 @@
   width: 60%;
   margin: auto;
 }
+
 .forgetPasswordPopup {
   margin-top: auto;
   margin-bottom: auto;
   overflow: hidden;
 }
+
 .closeBtn {
   border: 2px solid #28cdff !important;
   color: #28cdff !important;
-  font-weight: 500 !important;
   font-size: 20px !important;
   border-radius: 14px !important;
   text-transform: none !important;
   padding: 6px 30px !important;
   cursor: pointer !important;
   margin: 10px !important;
+  font-family: 'HelveticaMedium' !important;
 }
+
 .resetPasswordBtn {
   background-color: #28cdff !important;
   color: white !important;
-  font-weight: 500 !important;
   font-size: 20px !important;
   border-radius: 14px !important;
   text-transform: none !important;
   padding: 7px 30px !important;
   cursor: pointer !important;
+  font-family: 'HelveticaMedium' !important;
 }
+
 .closeBtn:hover {
   background-color: #28cdff !important;
   color: white !important;
+  font-family: 'HelveticaMedium' !important;
 }
+
 .enterEmailTxt {
   color: #8c8c8c;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 400;
   padding: 2% 0;
   cursor: pointer;
 }
+
 .clientPopupTxt {
   color: #8c8c8c;
   font-size: 18px;
@@ -57,6 +64,7 @@
   padding: 10px 0;
   cursor: pointer;
 }
+
 .delBtn {
   background-color: #ff5151 !important;
   color: white !important;
@@ -73,7 +81,6 @@
   color: #8c8c8c !important;
   background-color: white !important;
   border: 2px solid #cdeefc !important;
-  font-weight: 500 !important;
   font-size: 16px !important;
   border-radius: 20px !important;
   text-transform: none !important;
@@ -81,12 +88,13 @@
   padding: 9px !important;
   cursor: pointer !important;
   margin: 10px !important;
+  font-family: 'HelveticaMedium' !important;
 }
+
 .activeTankBtn {
   background-color: #28cdff !important;
   color: #202020 !important;
   border: 2px solid #cdeefc !important;
-  font-weight: 500 !important;
   font-size: 16px !important;
   border-radius: 20px !important;
   text-transform: none !important;
@@ -94,10 +102,13 @@
   padding: 9px !important;
   cursor: pointer !important;
   margin: 10px !important;
+  font-family: 'HelveticaMedium' !important;
 }
+
 .tankOptionBtns:hover {
   background-color: #28cdff !important;
   color: #202020 !important;
+  font-family: 'HelveticaMedium' !important;
 }
 
 .checkOptionBtns {
@@ -113,6 +124,7 @@
   cursor: pointer !important;
   margin: 10px !important;
 }
+
 .activeCheckBtn {
   background-color: #28cdff !important;
   color: #202020 !important;
@@ -126,6 +138,7 @@
   cursor: pointer !important;
   margin: 10px !important;
 }
+
 .checkOptionBtns:hover {
   background-color: #28cdff !important;
   color: #202020 !important;

@@ -7,14 +7,14 @@
 
 .thead {
   text-align: left;
-  padding: 20px;
+  padding: 22px;
   color: #8c8c8c;
   font-size: 24px;
   font-family: 'HelveticaBold';
 }
 
 .editIcon {
-  margin-right: 9%;
+  margin-right: 4%;
 }
 
 .editIcon:hover,
@@ -52,6 +52,10 @@
   .bg {
     padding: 3% 3% 3% 13%;
   }
+
+  .serviceCheckList {
+    padding: 3% 3% 3% 13% !important;
+  }
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1919px) {
@@ -60,12 +64,13 @@
   }
 
   .addAdminBtn {
-    padding: 4% 4% 4% 7% !important;
+    padding: 4% 2% 4% 3% !important;
     font-size: 16px !important;
+    font-family: 'HelveticaMedium' !important;
   }
 
   .admintxt {
-    font-size: 16px !important;
+    font-size: 17px !important;
     font-family: 'HelveticaBold' !important;
     width: fit-content;
   }
@@ -76,4 +81,26 @@
   width: 100%;
   gap: 8px;
   align-items: center;
+}
+
+@media only screen and (min-width: 1920px) {
+  .bg {
+    padding: 3% 3% 3% 2%;
+  }
+
+  .admintxt {
+    font-size: 22px;
+  }
+
+  .adminTextAndImage {
+    gap: 36px;
+  }
+
+  .admintxt {
+    font-family: 'HelveticaBold' !important;
+  }
+
+  .addAdminBtn {
+    font-size: 20px !important;
+  }
 }

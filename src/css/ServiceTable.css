@@ -28,12 +28,13 @@
   border: 2px solid #28cdff !important;
   color: #28cdff !important;
   font-weight: 500 !important;
-  font-size: 20px !important;
+  font-size: 18px !important;
   border-radius: 20px !important;
   text-transform: none !important;
   padding: 6px 37px !important;
   cursor: pointer !important;
   margin: 20px !important;
+  font-family: 'HelveticaMedium' !important;
 }
 
 .serviceDetailBtn:hover {
@@ -53,6 +54,13 @@
 
   .placename {
     font-size: 19px;
+    font-family: 'HelveticaBold';
+  }
+}
+
+@media only screen and (min-width: 1920px) {
+  .placename {
+    font-size: 22px;
     font-family: 'HelveticaBold';
   }
 }

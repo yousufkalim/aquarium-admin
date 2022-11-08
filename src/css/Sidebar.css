@@ -10,7 +10,7 @@
   font-size: 16px;
   color: #8c8c8c;
   margin-bottom: 9%;
-  font-family: 'Helvetica' !important;
+  font-family: 'HelveticaMedium';
 }
 
 .fullListItemAdmin {
@@ -30,7 +30,8 @@
 
 .listItem > span {
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 500;
+  font-family: 'HelveticaMedium';
 }
 
 .name {
@@ -133,6 +134,10 @@
 }
 
 .fullListItem:hover {
+  background-color: #28cdff;
+}
+
+.fullListItemAdmin:hover .listItem {
   background-color: #28cdff;
 }
 
