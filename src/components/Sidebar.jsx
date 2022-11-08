@@ -114,20 +114,36 @@ export default function Sidebar() {
             : adminRoutes.map((route) => {
                 if (route.name === 'Services') {
                   return (
-                    <div
-                      onClick={() => toggleIcon(route?.name)}
-                      onKeyDown={() => toggleIcon(route?.name)}
-                    >
+                    <div>
                       <ListItem
-                        className="fullListItemAdmin"
-                        style={{
-                          display: 'flex',
-                          flexDirection: 'column',
-                        }}
+                        className={`fullListItemAdmin ${
+                          window.location.pathname.includes(
+                            'services',
+                          ) && 'activeDropdown'
+                        }`}
+                        style={
+                          activeLink === 'Services'
+                            ? {
+                                background: '#28cdff',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                color: 'white',
+                              }
+                            : {
+                                display: 'flex',
+                                flexDirection: 'column',
+                              }
+                        }
                         key={route.name}
                         disablePadding
                       >
-                        <ListItemButton className="listItem">
+                        <ListItemButton
+                          className="listItem"
+                          onClick={() => {
+                            toggleIcon(route?.name);
+                          }}
+                          onKeyDown={() => toggleIcon(route?.name)}
+                        >
                           <ListItemIcon className="M-icon">
                             <img
                               src={route.icon}
@@ -141,7 +157,7 @@ export default function Sidebar() {
                             primary={route.name}
                           />
 
-                          <div>
+                          <div className="T-btn">
                             {/* eslint-disable-next-line operator-linebreak */}
                             {updownIconToggle[updownIconToggle.key] &&
                             updownIconToggle.key === route?.name ? (

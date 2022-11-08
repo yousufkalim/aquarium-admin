@@ -57,6 +57,31 @@
   background-color: #28cdff;
   color: #fff;
 }
+.activeDropdown {
+  border-radius: 20px !important;
+  background-color: #28cdff;
+  color: #fff;
+}
+
+.activeDropdown .listItem .listItem {
+  color: #fff;
+}
+.activeDropdown .listItem .T-btn .arrow-icon-up {
+  filter: brightness(0) invert(1);
+}
+.activeDropdown .s-vl {
+  border-left: 2px solid white;
+}
+.activeDropdown .adminServiceDropdown {
+  color: #fff;
+}
+.activeDropdown .listItem .M-icon .icon {
+  filter: brightness(0) invert(1);
+}
+
+.fullListItemAdmin:hover .s-vl {
+  border-left: 2px solid white;
+}
 .fullListItemAdmin:hover .adminServiceDropdown {
   color: #fff;
 }
@@ -73,30 +98,6 @@
 .active .adminServiceDropdown {
   font-weight: 700;
   color: aliceblue !important;
-}
-
-.fullListItemAdmin:hover .s-vl {
-  border-left: 2px solid white;
-}
-.active .fullListItemAdmin .listItem {
-  color: #fff;
-}
-.active .fullListItemAdmin .listItem .arrow-icon-up {
-  filter: brightness(0) invert(1);
-}
-.active .fullListItemAdmin .s-vl {
-  border-left: 2px solid white;
-}
-.active .fullListItemAdmin .adminServiceDropdown {
-  color: #fff;
-}
-
-.active .fullListItemAdmin {
-  color: white !important;
-  background-color: #28cdff;
-}
-.active .fullListItemAdmin .icon {
-  filter: brightness(0) invert(1);
 }
 
 /*====================================== end of styling admin menu items============================ */
