@@ -1,4 +1,4 @@
-import { React } from 'react';
+import { React, useEffect } from 'react';
 import { styled } from '@mui/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -26,158 +26,23 @@ const StyledTableRow = styled(TableRow)(() => ({
   },
 }));
 
-export default function ServiceHistoryTable() {
-  function createData(placeName, tank, date, time, technician) {
-    return {
-      placeName,
-      tank,
-      date,
-      time,
-      technician,
-    };
-  }
-  const rows = [
-    createData(
-      'Dental Clinic',
-      '100 gallon tank',
-      'Mon, 4 Aug, 2022',
-      '10:00 AM - 01:00 PM',
-      'Mike Bay',
-    ),
-    createData(
-      'Dental Clinic',
-      '100 gallon tank',
-      'Mon, 4 Aug, 2022',
-      '10:00 AM - 01:00 PM',
-      'Mike Bay',
-    ),
-    createData(
-      'Dental Clinic',
-      '100 gallon tank',
-      'Mon, 4 Aug, 2022',
-      '10:00 AM - 01:00 PM',
-      'Mike Bay',
-    ),
-    createData(
-      'Dental Clinic',
-      '100 gallon tank',
-      'Mon, 4 Aug, 2022',
-      '10:00 AM - 01:00 PM',
-      'Mike Bay',
-    ),
-    createData(
-      'Dental Clinic',
-      '100 gallon tank',
-      'Mon, 4 Aug, 2022',
-      '10:00 AM - 01:00 PM',
-      'Mike Bay',
-    ),
-    createData(
-      'Dental Clinic',
-      '100 gallon tank',
-      'Mon, 4 Aug, 2022',
-      '10:00 AM - 01:00 PM',
-      'Mike Bay',
-    ),
-    createData(
-      'Dental Clinic',
-      '100 gallon tank',
-      'Mon, 4 Aug, 2022',
-      '10:00 AM - 01:00 PM',
-      'Mike Bay',
-    ),
-    createData(
-      'Dental Clinic',
-      '100 gallon tank',
-      'Mon, 4 Aug, 2022',
-      '10:00 AM - 01:00 PM',
-      'Mike Bay',
-    ),
-    createData(
-      'Dental Clinic',
-      '100 gallon tank',
-      'Mon, 4 Aug, 2022',
-      '10:00 AM - 01:00 PM',
-      'Mike Bay',
-    ),
-    createData(
-      'Dental Clinic',
-      '100 gallon tank',
-      'Mon, 4 Aug, 2022',
-      '10:00 AM - 01:00 PM',
-      'Mike Bay',
-    ),
-    createData(
-      'Dental Clinic',
-      '100 gallon tank',
-      'Mon, 4 Aug, 2022',
-      '10:00 AM - 01:00 PM',
-      'Mike Bay',
-    ),
-    createData(
-      'Dental Clinic',
-      '100 gallon tank',
-      'Mon, 4 Aug, 2022',
-      '10:00 AM - 01:00 PM',
-      'Mike Bay',
-    ),
-    createData(
-      'Dental Clinic',
-      '100 gallon tank',
-      'Mon, 4 Aug, 2022',
-      '10:00 AM - 01:00 PM',
-      'Mike Bay',
-    ),
-    createData(
-      'Dental Clinic',
-      '100 gallon tank',
-      'Mon, 4 Aug, 2022',
-      '10:00 AM - 01:00 PM',
-      'Mike Bay',
-    ),
-    createData(
-      'Dental Clinic',
-      '100 gallon tank',
-      'Mon, 4 Aug, 2022',
-      '10:00 AM - 01:00 PM',
-      'Mike Bay',
-    ),
-    createData(
-      'Dental Clinic',
-      '100 gallon tank',
-      'Mon, 4 Aug, 2022',
-      '10:00 AM - 01:00 PM',
-      'Mike Bay',
-    ),
-    createData(
-      'Dental Clinic',
-      '100 gallon tank',
-      'Mon, 4 Aug, 2022',
-      '10:00 AM - 01:00 PM',
-      'Mike Bay',
-    ),
-    createData(
-      'Dental Clinic',
-      '100 gallon tank',
-      'Mon, 4 Aug, 2022',
-      '10:00 AM - 01:00 PM',
-      'Mike Bay',
-    ),
-    createData(
-      'Dental Clinic',
-      '100 gallon tank',
-      'Mon, 4 Aug, 2022',
-      '10:00 AM - 01:00 PM',
-      'Mike Bay',
-    ),
-    createData(
-      'Dental Clinic',
-      '100 gallon tank',
-      'Mon, 4 Aug, 2022',
-      '10:00 AM - 01:00 PM',
-      'Mike Bay',
-    ),
-  ];
+export default function ServiceHistoryTable({
+  serviceHistory,
+  getServiceHistory,
+}) {
+  const options = {
+    weekday: 'short',
+    year: 'numeric',
+    day: 'numeric',
+    month: 'short',
+  };
+  const t_options = {
+    hour: '2-digit',
+    minute: '2-digit',
+  };
+  useEffect(() => {
+    getServiceHistory();
+  }, [getServiceHistory]);
   return (
     <div className="bg">
       <TableContainer
@@ -274,9 +139,8 @@ export default function ServiceHistoryTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {/* <h1>List of Admins</h1> */}
-            {rows.map((row) => (
-              <StyledTableRow key={row.name}>
+            {serviceHistory.map((row) => (
+              <StyledTableRow key={row.placeName}>
                 <StyledTableCell
                   align="center"
                   sx={{ display: 'flex', justifyContent: 'center' }}
@@ -284,22 +148,33 @@ export default function ServiceHistoryTable() {
                   <div
                     style={{ textAlign: 'left', marginTop: '20px' }}
                   >
-                    <p className="placename">{row.placeName}</p>
+                    <p className="placename">{`${row.aquarium?.client?.first_name} ${row.aquarium?.client?.last_name}`}</p>
 
-                    <p className="tankname">{row.tank}</p>
+                    <p className="tankname">
+                      {row.aquarium?.tank_details?.size}
+                    </p>
                   </div>
                 </StyledTableCell>
                 <StyledTableCell
                   align="center"
                   className="serviceTableTxt"
                 >
-                  {row.date}
+                  {new Date(row.date).toLocaleDateString(
+                    'en-BA',
+                    options,
+                  )}
                 </StyledTableCell>
                 <StyledTableCell
                   align="center"
                   className="serviceTableTxt"
                 >
-                  {row.time}
+                  {`${new Date(row.start_time).toLocaleTimeString(
+                    'en',
+                    t_options,
+                  )} -  ${new Date(row.end_time).toLocaleTimeString(
+                    'en',
+                    t_options,
+                  )} `}
                 </StyledTableCell>
                 <StyledTableCell align="center">
                   <div className="technicianCol">
@@ -315,7 +190,7 @@ export default function ServiceHistoryTable() {
                       style={{ margin: 'auto' }}
                       className="serviceTableTxt"
                     >
-                      {row.technician}
+                      {`${row.technician?.first_name} ${row.technician?.last_name}`}
                     </span>
                   </div>
                 </StyledTableCell>
