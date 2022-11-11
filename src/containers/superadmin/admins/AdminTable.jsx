@@ -43,7 +43,7 @@ export default function AdminTable({ admins, getAdmins }) {
         style={{
           borderRadius: '20px',
           maxHeight: '100%',
-          overflow: 'hidden',
+          overflowX: 'hidden',
         }}
       >
         <h1 className="thead">List of Admins</h1>
@@ -63,23 +63,28 @@ export default function AdminTable({ admins, getAdmins }) {
                   align="right"
                   className="safariMarginClass"
                   sx={{
-                    width: '1%',
+                    width: '30%',
                   }}
                 >
-                  <img
-                    src={profileDummy}
-                    className="imgNameCombo"
-                    alt=""
-                  />
+                  <div className="adminTextAndImage">
+                    <img
+                      src={profileDummy}
+                      className="imgNameCombo"
+                      alt=""
+                    />
+                    <p className="admintxt">{row.name}</p>
+                  </div>
                 </StyledTableCell>
-                <StyledTableCell align="left" className="admintxt">
-                  {row.name}
-                </StyledTableCell>
+                {/* <StyledTableCell align="left" className="admintxt">
+                {row.name}
+                </StyledTableCell> */}
                 <StyledTableCell
                   align="center"
                   className="admintxt"
                   sx={{
                     color: '#8C8C8C',
+                    paddingLeft: '10%',
+                    textAlign: 'justify',
                   }}
                 >
                   {row.email}

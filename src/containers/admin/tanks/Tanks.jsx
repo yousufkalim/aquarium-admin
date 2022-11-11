@@ -39,7 +39,7 @@ export default function Tanks() {
             <Button
               variant="contained"
               fullWidth
-              className="addAdminBtn"
+              className="tankDetailsBtn"
               onClick={() => setOpen(true)}
             >
               Add New Value &nbsp;

@@ -46,7 +46,7 @@ export default function Checklist() {
             <Button
               variant="contained"
               fullWidth
-              className="addAdminBtn"
+              className="CheckListBtn"
               onClick={() => setOpen(true)}
             >
               Add New Check &nbsp;

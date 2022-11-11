@@ -2,7 +2,7 @@
   background-image: url('../assets/images/BGlogin.svg');
   height: 100vh;
   width: 100%;
-  background-size: 100%;
+  background-size: cover;
 }
 
 .logoLogin {
@@ -25,6 +25,7 @@
 .signInTxt {
   color: #28cdff;
   font-family: 'HelveticaBold' !important;
+  font-size: 30px;
 }
 
 .signInBtn {

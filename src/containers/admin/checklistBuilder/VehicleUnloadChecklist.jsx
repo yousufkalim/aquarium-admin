@@ -52,13 +52,13 @@ export default function VehicleUnloadChecklist({
   }, []);
 
   return (
-    <div style={{ padding: '1% 3%' }}>
+    <div className="CheckList" style={{ padding: '1% 3%' }}>
       <TableContainer
         component={Paper}
         style={{
           borderRadius: '20px',
           maxHeight: '100%',
-          overflow: 'scroll',
+          overflowX: 'hidden',
         }}
       >
         <div
@@ -111,13 +111,18 @@ export default function VehicleUnloadChecklist({
                       align="left"
                       className="tankInfo"
                     >
-                      <p style={{ color: '#28cdff' }}>
+                      <p
+                        style={{
+                          color: '#28cdff',
+                          fontFamily: 'HelveticaBold',
+                        }}
+                      >
                         {`${row.title}`}
                       </p>
                       <p
                         style={{
                           color: '#8C8C8C',
-                          fontSize: '15px',
+                          fontSize: '16px',
                           fontWeight: '400',
                           lineHeight: '2',
                         }}
@@ -137,6 +142,8 @@ export default function VehicleUnloadChecklist({
                         style={{
                           display: 'flex',
                           flexDirection: 'row',
+                          gap: '8px',
+                          marginRight: '90px',
                         }}
                       >
                         <img

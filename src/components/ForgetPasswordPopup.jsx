@@ -89,7 +89,13 @@ export default function ForgetPasswordPopup({ open, setOpen }) {
       >
         <DialogContent>
           <Typography gutterBottom>
-            <h1 style={{ fontSize: '24px', color: '#28CDFF' }}>
+            <h1
+              style={{
+                fontSize: '24px',
+                color: '#28CDFF',
+                fontFamily: 'HelveticaBold',
+              }}
+            >
               Forgot Password
             </h1>
             <p className="enterEmailTxt">
