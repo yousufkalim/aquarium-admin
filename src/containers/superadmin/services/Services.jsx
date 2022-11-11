@@ -22,10 +22,7 @@ export default function Services() {
         <Grid xl={2} lg={3} />
 
         <Grid xl={10} lg={9}>
-          <ServiceTable
-            serviceHistory={serviceHistory}
-            getServiceHistory={getServiceHistory}
-          />
+          <ServiceTable serviceHistory={serviceHistory} />
           <div className="btnContainer">
             <Button
               variant="contained"

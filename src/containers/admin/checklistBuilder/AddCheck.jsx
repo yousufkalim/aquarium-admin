@@ -99,10 +99,12 @@ export default function AddTank({
     if (description) {
       formData.append('description', description);
     }
-    if (attachment.name && !attachment.editing) {
-      formData.append('attachment', attachment);
-    }
 
+    if (type === 'service') {
+      if (attachment.name && !attachment.editing) {
+        formData.append('attachment', attachment);
+      }
+    }
     if (editing) {
       await api('put', `/checklist/${check._id}`, formData);
       toast.success('Check edited successfully');
@@ -170,6 +172,7 @@ export default function AddTank({
                     : 'checkOptionBtns'
                 }
                 variant="outlined"
+                disabled={editing}
                 onClick={() => setType('service')}
               >
                 Service
@@ -181,6 +184,7 @@ export default function AddTank({
                     : 'checkOptionBtns'
                 }
                 variant="outlined"
+                disabled={editing}
                 onClick={() => setType('loadup')}
               >
                 Vehicle Loadup
@@ -192,6 +196,7 @@ export default function AddTank({
                     : 'checkOptionBtns'
                 }
                 variant="outlined"
+                disabled={editing}
                 onClick={() => setType('unload')}
               >
                 Vehicle Unload
@@ -261,7 +266,7 @@ export default function AddTank({
                     }}
                     id="outlined-fname"
                     classes={outlinedInputStyles}
-                    label="Text, Image or video (optional)"
+                    placeholder="Text, Image or video (optional)"
                     size="normal"
                     name="attachment"
                     type="text"
