@@ -92,7 +92,7 @@ export default function AquariumTable({
                 sx={{
                   fontSize: '16px',
                   fontFamily: 'HelveticaBold',
-                  width: '15%',
+                  width: '18%',
                 }}
                 align="center"
               >
