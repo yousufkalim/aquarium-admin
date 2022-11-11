@@ -84,15 +84,24 @@ export default function AddTank({
       type,
       value,
     };
-    if (editing) {
-      await api('put', `/tank/${tank._id}`, tankDetails);
-      toast.success('Tank edited successfully');
+    const regex = /^[0-9\b]+$/;
+    if (
+      // eslint-disable-next-line operator-linebreak
+      tankDetails.type === 'size' &&
+      !regex.test(tankDetails.value)
+    ) {
+      toast.error('Only numeric characters are allowed');
     } else {
-      await api('post', '/tank', tankDetails);
-      toast.success('Tank created successfully');
+      if (editing) {
+        await api('put', `/tank/${tank._id}`, tankDetails);
+        toast.success('Tank edited successfully');
+      } else {
+        await api('post', '/tank', tankDetails);
+        toast.success('Tank created successfully');
+      }
+      getTanks();
+      handleClose();
     }
-    getTanks();
-    handleClose();
   };
   const outlinedInputStyles = useOutlinedInputStyles();
 
@@ -149,6 +158,7 @@ export default function AddTank({
                   type === 'size' ? 'activeTankBtn' : 'tankOptionBtns'
                 }
                 variant="outlined"
+                disabled={editing}
                 onClick={() => setType('size')}
               >
                 Size
@@ -158,6 +168,7 @@ export default function AddTank({
                   type === 'type' ? 'activeTankBtn' : 'tankOptionBtns'
                 }
                 variant="outlined"
+                disabled={editing}
                 onClick={() => setType('type')}
               >
                 Type
@@ -169,6 +180,7 @@ export default function AddTank({
                     : 'tankOptionBtns'
                 }
                 variant="outlined"
+                disabled={editing}
                 onClick={() => setType('material')}
               >
                 Material
@@ -180,6 +192,7 @@ export default function AddTank({
                     : 'tankOptionBtns'
                 }
                 variant="outlined"
+                disabled={editing}
                 onClick={() => setType('filter')}
               >
                 Filter
