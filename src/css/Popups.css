@@ -130,3 +130,62 @@
   background-color: #28cdff !important;
   color: #202020 !important;
 }
+
+.taskOptionBtns {
+  color: #8c8c8c !important;
+  background-color: white !important;
+  border: 2px solid #cdeefc !important;
+  font-weight: 500 !important;
+  font-size: 16px !important;
+  padding: 14px 20px !important;
+  border-radius: 20px !important;
+  text-transform: none !important;
+  cursor: pointer !important;
+  margin: 10px !important;
+}
+.activeTaskBtn {
+  background-color: #28cdff !important;
+  color: #202020 !important;
+  border: 2px solid #cdeefc !important;
+  font-weight: 500 !important;
+  font-size: 16px !important;
+  border-radius: 20px !important;
+  padding: 14px 20px !important;
+  text-transform: none !important;
+  cursor: pointer !important;
+  margin: 10px !important;
+}
+.taskOptionBtns:hover {
+  background-color: #28cdff !important;
+  color: #202020 !important;
+}
+
+.otherTaskBtn {
+  color: #8c8c8c !important;
+  background-color: white !important;
+  border: 2px solid #cdeefc !important;
+  font-weight: 500 !important;
+  font-size: 16px !important;
+  border-radius: 16px !important;
+  padding: 0px !important;
+  text-transform: none !important;
+  cursor: pointer !important;
+  margin: 10px !important;
+}
+.activeOtherTaskBtn {
+  background-color: #28cdff !important;
+  color: #202020 !important;
+  border: 2px solid #cdeefc !important;
+  font-weight: 500 !important;
+  font-size: 16px !important;
+  padding: 0px !important;
+  border-radius: 16px !important;
+  text-transform: none !important;
+  cursor: pointer !important;
+  margin: 10px !important;
+}
+.otherTaskBtn:hover {
+  background-color: #28cdff !important;
+  color: #202020 !important;
+  border: 2px solid #cdeefc !important;
+}
