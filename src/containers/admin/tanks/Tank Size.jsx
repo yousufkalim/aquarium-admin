@@ -49,13 +49,13 @@ export default function TankSize({ tanks, getTanks }) {
   }, []);
 
   return (
-    <div style={{ padding: ' 3% 3% 1% 3%' }}>
+    <div className="tankDetails" style={{ padding: ' 3% 3% 1% 3%' }}>
       <TableContainer
         component={Paper}
         style={{
           borderRadius: '20px',
           maxHeight: '100%',
-          overflow: 'scroll',
+          overflowX: 'hidden',
         }}
       >
         <div
@@ -125,6 +125,8 @@ export default function TankSize({ tanks, getTanks }) {
                         style={{
                           display: 'flex',
                           flexDirection: 'row',
+                          gap: '8px',
+                          marginRight: '90px',
                         }}
                       >
                         <img

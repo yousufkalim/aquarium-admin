@@ -4,12 +4,15 @@
   width: 100%;
   padding: 16% 0;
 }
+
 .sidebarTxt {
   font-weight: 400;
   font-size: 16px;
   color: #8c8c8c;
   margin-bottom: 9%;
+  font-family: 'HelveticaMedium';
 }
+
 .fullListItemAdmin {
   margin-bottom: 3%;
   padding: 2%;
@@ -24,6 +27,13 @@
   color: #28cdff;
   width: inherit;
 }
+
+.listItem > span {
+  font-size: 18px;
+  font-weight: 500;
+  font-family: 'HelveticaMedium';
+}
+
 .name {
   font-size: 20px;
   color: #28cdff;
@@ -36,19 +46,24 @@
   margin-bottom: 9%;
   border-radius: 20px;
 }
+
 .active .fullListItem .listItem {
   color: #fff;
 }
+
 .fullListItem:hover .icon {
   filter: brightness(0) invert(1);
 }
+
 .active .fullListItem {
   color: white !important;
   background-color: #28cdff;
 }
+
 .active .fullListItem .icon {
   filter: brightness(0) invert(1);
 }
+
 /* ======================================end of styling superadmin menu items=================== */
 
 /*===================================styling admin menu items==================================== */
@@ -106,9 +121,16 @@
 .fullListItem:hover .listItem,
 .fullListItemAdmin:hover .listItem {
   color: #fff;
-  background-color: #28cdff;
   border-radius: 20px !important;
   overflow: hidden !important;
+}
+
+.fullListItem:hover {
+  background-color: #28cdff;
+}
+
+.fullListItemAdmin:hover .listItem {
+  background-color: #28cdff;
 }
 
 .fullListItem:focus .icon,
@@ -117,11 +139,13 @@
   color: white !important;
   background-color: #28cdff;
 }
+
 /* .active.fullListItem .icon, */
 .fullListItemAdmin:hover .icon,
 .fullListItemAdmin:hover .arrow-icon-up {
   filter: brightness(0) invert(1);
 }
+
 /* ===================end of styling both admin/superadmin menu items ===================*/
 
 .logoutBtn {
@@ -132,13 +156,14 @@
   margin-top: 4% !important;
   text-transform: none !important;
   font-weight: 500 !important;
-  font-size: 18.5px !important;
+  font-size: 18px !important;
   box-shadow: none !important;
 }
 
 .css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root {
   border-radius: 20px !important;
 }
+
 .s-vl {
   height: 116px;
   margin-left: -40px !important;
@@ -150,16 +175,20 @@
     width: 25% !important;
     padding: 0 2% !important;
   }
+
   .sidebarLogo {
     margin: 0 auto;
     flex-basis: 10%;
   }
+
   .sidebarLogoImg {
     width: 100% !important;
   }
+
   .profileDiv {
     width: 88%;
   }
+
   .s-vl {
     margin-left: -80px !important;
   }

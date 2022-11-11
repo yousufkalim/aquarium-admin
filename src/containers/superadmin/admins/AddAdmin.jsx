@@ -118,7 +118,13 @@ export default function AddAdmin({
       >
         <DialogContent>
           <Typography gutterBottom>
-            <h1 style={{ fontSize: '24px', color: '#28CDFF' }}>
+            <h1
+              style={{
+                fontSize: '24px',
+                color: '#28CDFF',
+                fontFamily: 'HelveticaMedium',
+              }}
+            >
               {editing ? 'Edit Admin Profile' : 'Invite A New Admin'}
             </h1>
             <p className="enterEmailTxt">

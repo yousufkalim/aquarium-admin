@@ -49,7 +49,7 @@ export default function AquariumTable({
         style={{
           borderRadius: '20px',
           maxHeight: '100%',
-          overflow: 'scroll',
+          overflowX: 'hidden',
         }}
       >
         <div
@@ -91,7 +91,7 @@ export default function AquariumTable({
               <StyledTableCell
                 sx={{
                   fontSize: '16px',
-                  fontWeight: '700',
+                  fontFamily: 'HelveticaBold',
                   width: '15%',
                 }}
                 align="center"
@@ -101,7 +101,7 @@ export default function AquariumTable({
               <StyledTableCell
                 sx={{
                   fontSize: '16px',
-                  fontWeight: '700',
+                  fontFamily: 'HelveticaBold',
                   width: '35%',
                 }}
                 align="center"
@@ -109,7 +109,7 @@ export default function AquariumTable({
                 Address
               </StyledTableCell>
               <StyledTableCell
-                sx={{ fontSize: '16px', fontWeight: '700' }}
+                sx={{ fontSize: '16px', fontFamily: 'HelveticaBold' }}
                 align="center"
               >
                 Service Details
@@ -118,7 +118,7 @@ export default function AquariumTable({
               <StyledTableCell
                 sx={{
                   fontSize: '16px',
-                  fontWeight: '700',
+                  fontFamily: 'HelveticaBold',
                   width: '20%',
                 }}
                 align="center"
@@ -175,7 +175,7 @@ export default function AquariumTable({
                   align="center"
                   sx={{
                     paddingLeft: '2%',
-                    paddingRight: '2%',
+                    paddingRight: '1%',
                   }}
                 >
                   <img
