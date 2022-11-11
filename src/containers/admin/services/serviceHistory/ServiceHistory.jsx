@@ -14,19 +14,18 @@ export default function ServiceHistory() {
       setServiceHistory(data?.results);
     }
   };
+
   useEffect(() => {
     getServiceHistory();
   }, []);
+
   return (
     <div>
       <Grid container>
         <Grid xl={2} lg={3} />
 
         <Grid xl={10} lg={9}>
-          <ServiceHistoryTable
-            serviceHistory={serviceHistory}
-            getServiceHistory={getServiceHistory}
-          />
+          <ServiceHistoryTable serviceHistory={serviceHistory} />
           <div className="btnContainer">
             <Button
               variant="contained"

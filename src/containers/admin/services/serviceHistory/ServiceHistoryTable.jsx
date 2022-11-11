@@ -1,4 +1,4 @@
-import { React, useEffect } from 'react';
+import { React } from 'react';
 import { styled } from '@mui/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -26,10 +26,7 @@ const StyledTableRow = styled(TableRow)(() => ({
   },
 }));
 
-export default function ServiceHistoryTable({
-  serviceHistory,
-  getServiceHistory,
-}) {
+export default function ServiceHistoryTable({ serviceHistory }) {
   const options = {
     weekday: 'short',
     year: 'numeric',
@@ -40,9 +37,7 @@ export default function ServiceHistoryTable({
     hour: '2-digit',
     minute: '2-digit',
   };
-  useEffect(() => {
-    getServiceHistory();
-  }, [getServiceHistory]);
+
   return (
     <div className="bg">
       <TableContainer
