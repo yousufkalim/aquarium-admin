@@ -16,4 +16,11 @@ if (window.location.host === 'aquarium-admin-dev.falconweb.app') {
   baseUrl = 'https://aquarium-api-prod.falconweb.app/api';
 }
 
-module.exports = { baseUrl };
+const genMediaUrl = (url) => {
+  if (url) {
+    return baseUrl.replace('/api', '/') + url;
+  }
+  return null;
+};
+
+module.exports = { baseUrl, genMediaUrl };
