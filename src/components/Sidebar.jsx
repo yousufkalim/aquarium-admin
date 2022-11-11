@@ -16,6 +16,7 @@ import logo from '../assets/images/blueLogo.svg';
 import logout from '../assets/images/Logout.svg';
 import profileDummy from '../assets/images/profileDummy.svg';
 import arrowUp from '../assets/images/arrowUp.svg';
+import { genMediaUrl } from '../config';
 
 import { Store } from '../StoreContext';
 
@@ -288,14 +289,14 @@ export default function Sidebar() {
           <div style={{ display: 'flex', flexDirection: 'row' }}>
             <div style={{ marginRight: '7%' }}>
               <img
-                src={profileDummy}
+                src={genMediaUrl(admin.profile_pic) || profileDummy}
                 style={{ width: '100%' }}
                 alt=""
               />
             </div>
             <div>
-              <h3 className="name">Farhan Shakir</h3>
-              <p className="sidebarTxt">farhan@aquarium.com</p>
+              <h3 className="name">{admin.name}</h3>
+              <p className="sidebarTxt">{admin.email}</p>
             </div>
           </div>
           <div>
