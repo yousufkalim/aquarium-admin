@@ -9,7 +9,7 @@ import TableRow from '@mui/material/TableRow';
 import TableHead from '@mui/material/TableHead';
 import Paper from '@mui/material/Paper';
 import { Button } from '@mui/material';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import profileDummy from '../../../../assets/images/profileDummy.svg';
 import edit from '../../../../assets/images/Edit.svg';
 import deleteIcon from '../../../../assets/images/Delete.svg';
@@ -38,6 +38,8 @@ export default function TechnicianTable({
   const [del, setDel] = useState(false);
   const [editing, setEditing] = useState(false);
   const [technician, setTechnician] = useState('');
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     getTechnicians();
@@ -137,11 +139,9 @@ export default function TechnicianTable({
                         id="flexitem"
                         onClick={
                           // eslint-disable-next-line react/no-unstable-nested-components
-                          () => (
-                            <Navigate
-                              to={`/admin/technicians/${row._id}`}
-                            />
-                          )
+                          () =>
+                            // eslint-disable-next-line implicit-arrow-linebreak
+                            navigate(`/admin/technicians/${row._id}`)
                         }
                       >
                         See Schedule
