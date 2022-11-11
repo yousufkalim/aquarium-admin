@@ -25,9 +25,9 @@
   width: inherit;
 }
 .name {
-  font-weight: 700;
   font-size: 20px;
   color: #28cdff;
+  font-family: 'HelveticaBold';
 }
 
 /*====================================== styling superadmin menu items=================== */
@@ -132,7 +132,8 @@
   margin-top: 4% !important;
   text-transform: none !important;
   font-weight: 500 !important;
-  font-size: 18px !important;
+  font-size: 18.5px !important;
+  box-shadow: none !important;
 }
 
 .css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root {

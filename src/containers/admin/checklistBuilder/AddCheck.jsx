@@ -70,7 +70,7 @@ export default function AddTank({
       setType(check.type);
       setTitle(check.title);
       setDescription(check.description);
-      if (check.attachment.url) {
+      if (check.attachment?.url) {
         setAttachment({
           name: check.attachment?.url?.split('-').pop(),
           editing: true,
