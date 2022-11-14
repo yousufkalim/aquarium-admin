@@ -17,7 +17,7 @@ import DeletePopup from '../../../components/DeletePopup';
 const StyledTableCell = styled(TableCell)(() => ({
   [`&.${tableCellClasses.body}`]: {
     fontSize: 14,
-    padding: '1% 3%',
+    padding: '1% 5%',
     width: '100%',
   },
 }));
