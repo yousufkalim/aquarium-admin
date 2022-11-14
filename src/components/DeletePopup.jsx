@@ -64,7 +64,13 @@ export default function DeleteModal({
         <DialogContent>
           <Typography gutterBottom>
             <img src={delConfirm} alt="" />
-            <h1 style={{ fontSize: '24px', color: '#28CDFF' }}>
+            <h1
+              style={{
+                fontSize: '24px',
+                color: '#28CDFF',
+                marginTop: '40px',
+              }}
+            >
               Are you sure?
             </h1>
 

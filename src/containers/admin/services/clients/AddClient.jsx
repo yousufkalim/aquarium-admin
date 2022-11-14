@@ -57,6 +57,7 @@ export default function AddClient({
   getClients,
   client,
 }) {
+  const CHARACTER_LIMIT = 30;
   const [values, setValues] = useState({
     first_name: '',
     last_name: '',
@@ -132,6 +133,10 @@ export default function AddClient({
                   backgroundColor: 'white',
                   borderRadius: '25px',
                 }}
+                inputProps={{
+                  maxlength: CHARACTER_LIMIT,
+                  style: { color: '#8C8C8C', fontWeight: '700' },
+                }}
                 id="outlined-fname"
                 classes={outlinedInputStyles}
                 label="First Name"
@@ -157,6 +162,10 @@ export default function AddClient({
                 sx={{
                   backgroundColor: 'white',
                   borderRadius: '25px',
+                }}
+                inputProps={{
+                  maxlength: CHARACTER_LIMIT,
+                  style: { color: '#8C8C8C', fontWeight: '700' },
                 }}
                 id="outlined-email"
                 classes={outlinedInputStyles}
@@ -189,7 +198,10 @@ export default function AddClient({
                 label="Phone Number"
                 size="normal"
                 type="text"
-                inputProps={{ maxLength: 10 }}
+                inputProps={{
+                  maxLength: 10,
+                  style: { color: '#8C8C8C', fontWeight: '700' },
+                }}
                 value={phone_number}
                 name="phone_number"
                 onChange={onChangeEvent}
@@ -211,6 +223,9 @@ export default function AddClient({
                 sx={{
                   backgroundColor: 'white',
                   borderRadius: '25px',
+                }}
+                inputProps={{
+                  style: { color: '#8C8C8C', fontWeight: '700' },
                 }}
                 id="outlined-password"
                 classes={outlinedInputStyles}
