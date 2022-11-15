@@ -17,7 +17,7 @@ import DeletePopup from '../../../components/DeletePopup';
 const StyledTableCell = styled(TableCell)(() => ({
   [`&.${tableCellClasses.body}`]: {
     fontSize: 14,
-    padding: '1% 5%',
+    padding: '1% 3.5%',
     width: '100%',
   },
 }));
@@ -121,10 +121,9 @@ export default function TankFilter({ tanks, getTanks }) {
                     >
                       <div
                         style={{
+                          marginRight: '72px',
                           display: 'flex',
-                          flexDirection: 'row',
-                          gap: '8px',
-                          marginRight: '90px',
+                          alignItems: 'center',
                         }}
                       >
                         <img
@@ -139,6 +138,9 @@ export default function TankFilter({ tanks, getTanks }) {
                         />
 
                         <img
+                          style={{
+                            marginLeft: '10px',
+                          }}
                           src={deleteIcon}
                           className="deleteIcon"
                           onClick={() => {
