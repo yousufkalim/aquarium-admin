@@ -43,7 +43,6 @@ const useOutlinedInputStyles = makeStyles({
       },
       '&::placeholder fieldset': {
         fontWeight: 800,
-        color: 'red',
       },
       '&.Mui-focused fieldset': {
         borderColor: '#28CDFF',

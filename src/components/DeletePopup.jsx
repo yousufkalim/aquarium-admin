@@ -87,7 +87,7 @@ export default function DeleteModal({
             className="delBtn"
             variant="contained"
           >
-            Yes,Delete it!
+            Delete
           </Button>
         </DialogActions>
       </BootstrapDialog>

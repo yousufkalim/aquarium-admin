@@ -8,7 +8,7 @@ export default function Services() {
   const [serviceHistory, setServiceHistory] = useState([]);
 
   const getServiceHistory = async () => {
-    const { data } = await api('get', '//schedule/tasks');
+    const { data } = await api('get', '/schedule/tasks');
     if (data) {
       setServiceHistory(data?.results);
     }

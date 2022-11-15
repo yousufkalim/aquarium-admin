@@ -29,7 +29,6 @@ const useOutlinedInputStyles = makeStyles({
       },
       '&::placeholder fieldset': {
         fontWeight: 800,
-        color: 'red',
       },
       '&.Mui-focused fieldset': {
         borderColor: '#28CDFF',
@@ -140,9 +139,9 @@ export default function Login() {
                         sx={{ color: '#28CDFF' }}
                       >
                         {showPassword ? (
-                          <VisibilityOffOutlinedIcon />
-                        ) : (
                           <VisibilityOutlinedIcon />
+                        ) : (
+                          <VisibilityOffOutlinedIcon />
                         )}
                       </IconButton>
                     </InputAdornment>

@@ -39,7 +39,6 @@ const useOutlinedInputStyles = makeStyles({
       },
       '&::placeholder fieldset': {
         fontWeight: 800,
-        color: 'red',
       },
       '&.Mui-focused fieldset': {
         borderColor: '#28CDFF',
@@ -298,9 +297,9 @@ export default function AddTask({
               style={{
                 display: 'flex',
                 flexDirection: 'row',
-                justifyContent: 'space-around',
-                textAlign: 'center',
-                justifyItems: 'center',
+                justifyContent: 'space-between',
+                width: '456px',
+                margin: 'auto',
               }}
             >
               <div
@@ -380,30 +379,30 @@ export default function AddTask({
                   }}
                   classes={outlinedInputStyles}
                 /> */}
-
-                <TimePicker
-                  style={{
-                    height: 'calc(1.5em + 1.25rem + 2px)',
-                    fontWeight: '500',
-                    color: 'red',
-                  }}
-                  name="start_time"
-                  className="timpicker_cst"
-                  disableClock
-                  hourPlaceholder="hh"
-                  minutePlaceholder="mm"
-                  locale="sv-sv"
-                  clockIcon={null}
-                  defaultValue={null}
-                  // amPmAriaLabel
-                  value={start_time}
-                  onChange={(e) => {
-                    setSchedule({
-                      ...schedule,
-                      start_time: e,
-                    });
-                  }}
-                />
+                <div className="parent-div">
+                  <TimePicker
+                    style={{
+                      height: 'calc(1.5em + 1.25rem + 2px)',
+                      fontWeight: '500',
+                    }}
+                    name="start_time"
+                    className="timpicker_cst"
+                    disableClock
+                    hourPlaceholder="hh"
+                    minutePlaceholder="mm"
+                    locale="sv-sv"
+                    clockIcon={null}
+                    defaultValue={null}
+                    // amPmAriaLabel
+                    value={start_time}
+                    onChange={(e) => {
+                      setSchedule({
+                        ...schedule,
+                        start_time: e,
+                      });
+                    }}
+                  />
+                </div>
               </div>
               <div
                 style={{
@@ -412,27 +411,29 @@ export default function AddTask({
                 }}
               >
                 <InputLabel>End Time</InputLabel>
-                <TimePicker
-                  style={{
-                    backgroundColor: 'yellow',
-                  }}
-                  name="end_time"
-                  className="timpicker_cst"
-                  disableClock
-                  hourPlaceholder="hh"
-                  minutePlaceholder="mm"
-                  locale="sv-sv"
-                  clockIcon={null}
-                  defaultValue={null}
-                  // amPmAriaLabel={false}
-                  value={end_time}
-                  onChange={(e) => {
-                    setSchedule({
-                      ...schedule,
-                      end_time: e,
-                    });
-                  }}
-                />
+                <div className="parent-div">
+                  <TimePicker
+                    style={{
+                      backgroundColor: 'yellow',
+                    }}
+                    name="end_time"
+                    className="timpicker_cst"
+                    disableClock
+                    hourPlaceholder="hh"
+                    minutePlaceholder="mm"
+                    locale="sv-sv"
+                    clockIcon={null}
+                    defaultValue={null}
+                    // amPmAriaLabel={false}
+                    value={end_time}
+                    onChange={(e) => {
+                      setSchedule({
+                        ...schedule,
+                        end_time: e,
+                      });
+                    }}
+                  />
+                </div>
               </div>
             </div>
             <InputLabel
