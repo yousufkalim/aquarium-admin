@@ -202,3 +202,24 @@
   color: #202020 !important;
   border: 2px solid #cdeefc !important;
 }
+.profileBtn {
+  border: 2px solid #cdeefc !important;
+  padding: 10px 20px !important;
+  text-align: left !important;
+  color: #8c8c8c !important;
+  font-size: 19px !important;
+  font-weight: 700 !important;
+  text-transform: none !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  text-align: center !important;
+  margin: auto !important;
+}
+
+.parent-div .react-time-picker__wrapper {
+  border: 2px solid #cdeefc !important;
+  background-color: white;
+  border-radius: 25px;
+  margin-top: 20px;
+  padding: 10%;
+}
