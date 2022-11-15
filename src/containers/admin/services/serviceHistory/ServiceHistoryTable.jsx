@@ -1,4 +1,4 @@
-import { React } from 'react';
+import { React, useState, useEffect } from 'react';
 import { styled } from '@mui/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -10,6 +10,8 @@ import Paper from '@mui/material/Paper';
 import TableHead from '@mui/material/TableHead';
 import profileDummy from '../../../../assets/images/profileDummy.svg';
 import MultipleSelect from './FiltersMultiselect';
+import ServiceHistoryPopup from '../../../../components/ServiceHistoryPopup';
+import api from '../../../../api/index';
 
 const StyledTableCell = styled(TableCell)(() => ({
   [`&.${tableCellClasses.body}`]: {
@@ -27,6 +29,19 @@ const StyledTableRow = styled(TableRow)(() => ({
 }));
 
 export default function ServiceHistoryTable({ serviceHistory }) {
+  const [open, setOpen] = useState(false);
+  const [services, setServices] = useState([]);
+
+  const getServices = async () => {
+    const { data } = await api('get', '/schedule/tasks');
+    if (data) {
+      setServices(data?.results);
+    }
+  };
+
+  useEffect(() => {
+    getServices();
+  }, []);
   const options = {
     weekday: 'short',
     year: 'numeric',
@@ -192,6 +207,12 @@ export default function ServiceHistoryTable({ serviceHistory }) {
                 <StyledTableCell align="center">
                   <Button
                     className="serviceDetailBtn"
+                    onClick={() => {
+                      setOpen(true);
+                      setServices(row);
+                      // console.log('services================', row);
+                    }}
+                    onKeyDown={() => setOpen(true)}
                     variant="outlined"
                   >
                     Details
@@ -202,6 +223,13 @@ export default function ServiceHistoryTable({ serviceHistory }) {
           </TableBody>
         </Table>
       </TableContainer>
+      {open && (
+        <ServiceHistoryPopup
+          open={open}
+          setOpen={setOpen}
+          services={services}
+        />
+      )}
     </div>
   );
 }
