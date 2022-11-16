@@ -2,7 +2,7 @@
   background: #d9f4ff;
   text-align: right;
   height: 100vh;
-  padding: 3%;
+  padding: 3% 4% 3% 0%;
 }
 
 .thead {
@@ -50,11 +50,11 @@
 
 @media only screen and (min-width: 1536px) and (max-width: 1919px) {
   .bg {
-    padding: 3% 3% 3% 13%;
+    padding: 3% 4% 3% 5%;
   }
 
   .serviceCheckList {
-    padding: 3% 3% 3% 13% !important;
+    padding: 3% 4% 3% 5% !important;
   }
 }
 
@@ -83,7 +83,7 @@
   align-items: center;
 }
 
-@media only screen and (min-width: 1920px) {
+@media only screen and (min-width: 1700px) {
   .bg {
     padding: 3% 3% 3% 2%;
   }

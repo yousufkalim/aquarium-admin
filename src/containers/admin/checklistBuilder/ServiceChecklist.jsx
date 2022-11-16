@@ -51,7 +51,7 @@ export default function ServiceChecklist({ checks, getChecks }) {
   return (
     <div
       className="CheckList"
-      style={{ padding: '1% 3%', marginTop: '3%' }}
+      style={{ padding: '1% 3% 1% 1%', marginTop: '3%' }}
     >
       <TableContainer
         component={Paper}

@@ -52,7 +52,7 @@ export default function VehicleLoadUpChecklist({
   }, []);
 
   return (
-    <div className="CheckList" style={{ padding: '1% 3%' }}>
+    <div className="CheckList" style={{ padding: '1% 3% 1% 1%' }}>
       <TableContainer
         component={Paper}
         style={{
