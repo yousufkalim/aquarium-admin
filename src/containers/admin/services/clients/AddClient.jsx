@@ -56,6 +56,8 @@ export default function AddClient({
   editing,
   getClients,
   client,
+  disable,
+  setDisable,
 }) {
   const CHARACTER_LIMIT = 30;
   const [values, setValues] = useState({
@@ -80,6 +82,7 @@ export default function AddClient({
       ...values,
       [e.target.name]: e.target.value,
     });
+    setDisable(false);
   };
 
   const handleSubmit = async () => {
@@ -256,8 +259,9 @@ export default function AddClient({
           </Button>
           <Button
             onClick={handleSubmit}
-            className="resetPasswordBtn"
+            className={`${disable ? 'disable' : 'resetPasswordBtn'}`}
             variant="contained"
+            disabled={disable}
           >
             {editing ? 'Save' : 'Send Invite'}
           </Button>

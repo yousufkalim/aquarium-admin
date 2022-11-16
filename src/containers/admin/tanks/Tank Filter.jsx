@@ -49,7 +49,7 @@ export default function TankFilter({ tanks, getTanks }) {
   }, []);
 
   return (
-    <div className="tankDetails" style={{ padding: '1% 3%' }}>
+    <div className="tankDetails" style={{ padding: '1% 3% 1% 1%' }}>
       <TableContainer
         component={Paper}
         style={{
