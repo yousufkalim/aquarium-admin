@@ -294,6 +294,9 @@ export default function AddAquarium({
                   backgroundColor: 'white',
                   borderRadius: '25px',
                 }}
+                inputProps={{
+                  maxlength: '500',
+                }}
                 InputLabelProps={{
                   style: {
                     color: '#8C8C8C',

@@ -1,4 +1,4 @@
-import { React } from 'react';
+import { React, useState, useEffect } from 'react';
 import { styled } from '@mui/styles';
 import Table from '@mui/material/Table';
 // import moment from 'moment';
@@ -10,6 +10,7 @@ import Paper from '@mui/material/Paper';
 import TableHead from '@mui/material/TableHead';
 import profileDummy from '../../../assets/images/profileDummy.svg';
 import MultipleSelect from './Multiselect';
+import { genMediaUrl } from '../../../config';
 
 const StyledTableCell = styled(TableCell)(() => ({
   [`&.${tableCellClasses.body}`]: {
@@ -27,6 +28,13 @@ const StyledTableRow = styled(TableRow)(() => ({
 }));
 
 export default function ServiceTable({ serviceHistory }) {
+  // eslint-disable-next-line no-unused-vars, operator-linebreak
+  const [serviceHistories, setServiceHistories] =
+    useState(serviceHistory);
+
+  useEffect(() => {
+    setServiceHistories(serviceHistory);
+  }, [serviceHistory]);
   const options = {
     weekday: 'short',
     year: 'numeric',
@@ -134,7 +142,7 @@ export default function ServiceTable({ serviceHistory }) {
           </TableHead>
           <TableBody>
             {/* <h1>List of Admins</h1> */}
-            {serviceHistory.map((row) => (
+            {serviceHistories.map((row, i) => (
               <StyledTableRow key={row.name}>
                 <StyledTableCell
                   align="center"
@@ -175,14 +183,33 @@ export default function ServiceTable({ serviceHistory }) {
                 </StyledTableCell>
                 <StyledTableCell align="center">
                   <div className="technicianCol">
-                    <img
-                      src={profileDummy}
-                      style={{
-                        border: '3px solid #28CDFF',
-                        borderRadius: '50px',
-                      }}
-                      alt=""
-                    />
+                    <div style={{ height: '56px' }}>
+                      <img
+                        src={
+                          // eslint-disable-next-line operator-linebreak
+                          genMediaUrl(row.technician?.profile_pic) ||
+                          profileDummy
+                        }
+                        onError={
+                          () =>
+                            // eslint-disable-next-line implicit-arrow-linebreak
+                            setServiceHistories((prev) => {
+                              // eslint-disable-next-line no-param-reassign, operator-linebreak
+                              prev[i].technician.profile_pic =
+                                undefined;
+                              return [...prev];
+                            })
+                          // eslint-disable-next-line react/jsx-curly-newline
+                        }
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          border: '3px solid #28CDFF',
+                          borderRadius: '50px',
+                        }}
+                        alt=""
+                      />
+                    </div>
                     <span
                       style={{ margin: 'auto' }}
                       className="serviceTableTxt"

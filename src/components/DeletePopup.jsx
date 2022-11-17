@@ -2,10 +2,9 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import Dialog from '@mui/material/Dialog';
-
+import moment from 'moment';
 import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
-
 import Typography from '@mui/material/Typography';
 import { toast } from 'react-toastify';
 import api from '../api/index';
@@ -35,13 +34,22 @@ export default function DeleteModal({
   item,
   getData,
   txt,
+  selectedDate,
 }) {
   const handleClose = () => {
     setOpen(false);
   };
   const handleDelete = async () => {
     await api('delete', `/${txt}/${item._id}`);
-    getData();
+    if (txt === 'schedule/tasks') {
+      getData(
+        // eslint-disable-next-line operator-linebreak
+        moment(selectedDate).format('DD/MM/YYYY') ||
+          moment(new Date()).format('DD/MM/YYYY'),
+      );
+    } else {
+      getData();
+    }
     toast.success('Deleted successfully');
     handleClose();
   };
@@ -87,7 +95,7 @@ export default function DeleteModal({
             className="delBtn"
             variant="contained"
           >
-            Yes,Delete it!
+            Delete
           </Button>
         </DialogActions>
       </BootstrapDialog>

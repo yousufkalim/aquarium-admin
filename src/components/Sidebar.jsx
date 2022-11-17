@@ -18,6 +18,7 @@ import profileDummy from '../assets/images/profileDummy.svg';
 import arrowUp from '../assets/images/arrowUp.svg';
 import { genMediaUrl } from '../config';
 
+import ProfilePopup from './ProfilePopup';
 import { Store } from '../StoreContext';
 
 // eslint-disable-next-line import/no-cycle
@@ -27,6 +28,7 @@ const drawerWidth = 300;
 
 export default function Sidebar() {
   const { admin } = Store();
+  const [open, setOpen] = useState(false);
 
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -286,11 +288,31 @@ export default function Sidebar() {
         </List>
         <div className="profileDiv">
           <p className="sidebarTxt">Profile</p>
-          <div style={{ display: 'flex', flexDirection: 'row' }}>
-            <div style={{ marginRight: '7%' }}>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              cursor: 'pointer',
+            }}
+            onClick={() => setOpen(true)}
+            role="presentation"
+          >
+            <div
+              style={{
+                marginRight: '7%',
+                minWidth: '20%',
+                width: '20%',
+                height: '51px',
+              }}
+            >
               <img
                 src={genMediaUrl(admin.profile_pic) || profileDummy}
-                style={{ width: '100%' }}
+                style={{
+                  width: '100%',
+                  borderRadius: '50px',
+                  height: '100%',
+                  objectFit: 'cover',
+                }}
                 alt=""
               />
             </div>
@@ -315,6 +337,9 @@ export default function Sidebar() {
             </Button>
           </div>
         </div>
+        {open && (
+          <ProfilePopup open={open} setOpen={setOpen} admin={admin} />
+        )}
       </Drawer>
     </Box>
   );

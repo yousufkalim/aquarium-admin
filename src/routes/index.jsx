@@ -7,6 +7,7 @@ import { unAuthRoutes } from './routes';
 import Auth from '../layouts/Auth';
 import SuperAdmin from '../layouts/SuperAdmin';
 import Admin from '../layouts/Admin';
+import ResetPasswordPopup from '../components/ResetPasswordPopup';
 
 function Index() {
   return (
@@ -17,6 +18,13 @@ function Index() {
       <Route path="auth/*" element={<Auth />} />
       <Route path="superadmin/*" element={<SuperAdmin />} />
       <Route path="admin/*" element={<Admin />} />
+
+      {/* Forget Password Route */}
+      <Route
+        exact
+        path="/password/:token"
+        element={<ResetPasswordPopup />}
+      />
       <Route path="*" element={<Navigate replace to="/" />} />
     </Routes>
   );
