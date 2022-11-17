@@ -4,13 +4,15 @@
 import { React, useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
-import { makeStyles } from '@mui/styles';
+// import { makeStyles } from '@mui/styles';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 import Typography from '@mui/material/Typography';
 import { toast } from 'react-toastify';
-import { FormControl, TextField } from '@mui/material';
+import { FormControl } from '@mui/material';
+import 'react-datepicker/dist/react-datepicker.css';
+import DatePicker from 'react-datepicker';
 import { useParams } from 'react-router-dom';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
@@ -19,33 +21,9 @@ import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import InputBase from '@mui/material/InputBase';
 import TimePicker from 'react-time-picker';
-// import moment from 'moment';
+import moment from 'moment';
 import api from '../../../../api/index';
 
-// eslint-disable-next-line object-curly-newline
-
-const useOutlinedInputStyles = makeStyles({
-  root: {
-    '& .MuiOutlinedInput-root': {
-      '& fieldset': {
-        border: '2px solid #CDEEFC ',
-        borderRadius: '20px',
-        fontSize: 16,
-        textAlign: 'center',
-      },
-
-      '&:hover fieldset': {
-        borderColor: '#28CDFF',
-      },
-      '&::placeholder fieldset': {
-        fontWeight: 800,
-      },
-      '&.Mui-focused fieldset': {
-        borderColor: '#28CDFF',
-      },
-    },
-  },
-});
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
   '& .MuiInputBase-input': {
     borderRadius: 20,
@@ -102,11 +80,15 @@ export default function AddTask({
   setOpen,
   editing,
   getTasks,
+  selectedDate,
   task,
   aquariums,
 }) {
   const { id } = useParams();
-
+  const t_options = {
+    hour: '2-digit',
+    minute: '2-digit',
+  };
   const [schedule, setSchedule] = useState({
     technician: id,
     type: '',
@@ -117,12 +99,14 @@ export default function AddTask({
     repeat: '',
   });
 
-  const { type, date, start_time, end_time, aquarium, repeat } =
+  // eslint-disable-next-line prefer-const
+  let { type, date, start_time, end_time, aquarium, repeat } =
     schedule;
 
   const [checked, setChecked] = useState(true);
-  const outlinedInputStyles = useOutlinedInputStyles();
+  // const outlinedInputStyles = useOutlinedInputStyles();
 
+  console.log('[=============]', task);
   const handleCheck = (event) => {
     setChecked(event.target.checked);
   };
@@ -132,8 +116,54 @@ export default function AddTask({
       [e.target.name]: e.target.value,
     });
   };
+  const dateChange = (e) => {
+    setSchedule({
+      ...schedule,
+      date: e,
+    });
+  };
+
+  const startTimeChange = (e) => {
+    setSchedule({
+      ...schedule,
+      start_time: e,
+    });
+  };
+  const endTimeChange = (e) => {
+    setSchedule({
+      ...schedule,
+      end_time: e,
+    });
+  };
   useEffect(() => {
+    console.log(
+      'UseEffect',
+      open,
+      setOpen,
+      editing,
+      getTasks,
+      selectedDate,
+      task,
+      aquariums,
+    );
+    if (editing) {
+      setSchedule({
+        ...schedule,
+        type: task.type,
+        date: task.date,
+        start_time: new Date(task.start_time).toLocaleTimeString(
+          'en',
+          t_options,
+        ),
+        end_time: new Date(task.end_time).toLocaleTimeString(
+          'en',
+          t_options,
+        ),
+        aquarium: task.aquarium._id,
+      });
+    }
     // setSchedule(values);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   // eslint-disable-next-line no-unused-vars
 
@@ -142,15 +172,24 @@ export default function AddTask({
   };
 
   const handleSubmit = async () => {
+    const updatedSchedule = {
+      ...schedule,
+      date: moment(date).format('DD/MM/YYYY'),
+      start_time: moment(start_time, 'HH:mm').format('hh:mm a'),
+      end_time: moment(end_time, 'HH:mm').format('hh:mm a'),
+    };
     if (editing) {
-      await api('put', `/schedule/tasks/${task._id}`, schedule);
+      await api(
+        'put',
+        `/schedule/tasks/${task._id}`,
+        updatedSchedule,
+      );
       toast.success('Tank edited successfully');
     } else {
-      await api('post', '/schedule/tasks', schedule);
+      await api('post', '/schedule/tasks', updatedSchedule);
       toast.success('Tank created successfully');
     }
-    getTasks();
-    console.log('schedule================>', schedule);
+    getTasks(moment(selectedDate).format('DD/MM/YYYY'));
     handleClose();
   };
 
@@ -298,7 +337,7 @@ export default function AddTask({
                 display: 'flex',
                 flexDirection: 'row',
                 justifyContent: 'space-between',
-                width: '456px',
+                width: '719px',
                 margin: 'auto',
               }}
             >
@@ -310,48 +349,22 @@ export default function AddTask({
               >
                 <InputLabel>Date</InputLabel>
 
-                <TextField
-                  type="date"
-                  name="date"
-                  value={date}
-                  onChange={(e) => {
-                    console.log(e.target.value);
-                    // setSchedule({
-                    //   ...schedule,
-                    //   date: moment(e).format('DD/MM/YYYY'),
-                    // });
-                  }}
-                  // onChange={(e) => {
-                  //   setSchedule({
-                  //     ...schedule,
-                  //     date: moment(e).format('DD/MM/YYY'),
-                  //   });
-                  // }}
-                  // InputLabelProps={{
-                  //   style: {
-                  //     color: '#8C8C8C',
-                  //     fontSize: '19px',
-                  //     fontWeight: '700',
-                  //   },
-                  // }}
-                  sx={{
-                    backgroundColor: 'white',
-                    borderRadius: '25px',
-                    marginTop: '20px',
-                  }}
-                  classes={outlinedInputStyles}
-                />
+                <div className="parent-date-div">
+                  <DatePicker
+                    showPopperArrow
+                    dateFormat="dd/MMMM/yyyy"
+                    name="date"
+                    placeholderText="DD/MM/YYYY"
+                    value={date}
+                    selected={date}
+                    popperPlacement="bottom-start"
+                    showYearDropdown
+                    // minDate={addDays(new Date(), 1)}
+                    onChange={dateChange}
+                  />
+                </div>
               </div>
-              {/* <Button
-                className={
-                  type === 'size' ? 'activeTaskBtn' : 'taskOptionBtns'
-                }
-                variant="outlined"
-                onClick={() => setType('size')}
-              >
-                Mon,14
-              </Button> */}
-              {/* <FormControl/> */}
+
               <div
                 style={{
                   display: 'flex',
@@ -359,48 +372,26 @@ export default function AddTask({
                 }}
               >
                 <InputLabel>Start Time</InputLabel>
-                {/* <TextField
-                  sx={{
-                    backgroundColor: 'white',
-                    borderRadius: '25px',
-                    marginTop: '20px',
-                  }}
-                  value={start_time}
-                  type="time"
-                  name="start_time"
-                  onChange={handleChange}
-                  onkeydown={handleChange}
-                  InputLabelProps={{
-                    style: {
-                      color: '#8C8C8C',
-                      fontSize: '19px',
-                      fontWeight: '700',
-                    },
-                  }}
-                  classes={outlinedInputStyles}
-                /> */}
+
                 <div className="parent-div">
                   <TimePicker
                     style={{
                       height: 'calc(1.5em + 1.25rem + 2px)',
                       fontWeight: '500',
                     }}
+                    format="hh:mm a"
                     name="start_time"
                     className="timpicker_cst"
                     disableClock
                     hourPlaceholder="hh"
                     minutePlaceholder="mm"
-                    locale="sv-sv"
+                    locale="en-US"
                     clockIcon={null}
                     defaultValue={null}
-                    // amPmAriaLabel
+                    amPmAriaLabel
+                    clearIcon={null}
                     value={start_time}
-                    onChange={(e) => {
-                      setSchedule({
-                        ...schedule,
-                        start_time: e,
-                      });
-                    }}
+                    onChange={startTimeChange}
                   />
                 </div>
               </div>
@@ -419,19 +410,16 @@ export default function AddTask({
                     name="end_time"
                     className="timpicker_cst"
                     disableClock
+                    format="hh:mm a"
                     hourPlaceholder="hh"
                     minutePlaceholder="mm"
-                    locale="sv-sv"
+                    locale="en-US"
                     clockIcon={null}
+                    clearIcon={null}
                     defaultValue={null}
-                    // amPmAriaLabel={false}
+                    amPmAriaLabel
                     value={end_time}
-                    onChange={(e) => {
-                      setSchedule({
-                        ...schedule,
-                        end_time: e,
-                      });
-                    }}
+                    onChange={endTimeChange}
                   />
                 </div>
               </div>
@@ -467,9 +455,9 @@ export default function AddTask({
                 input={<BootstrapInput />}
               >
                 <MenuItem disabled selected value="">
-                  Aquarium (150 gallon)
+                  Select Aquarium
                 </MenuItem>
-                {aquariums.map((_) => (
+                {aquariums?.map((_) => (
                   <MenuItem value={_._id}>
                     {' '}
                     {`${_.client?.first_name} ${_.client?.last_name} (${_.tank_details.size})`}
@@ -506,9 +494,6 @@ export default function AddTask({
                 onChange={handleChange}
                 input={<BootstrapInput />}
               >
-                <MenuItem value="" disabled>
-                  Week
-                </MenuItem>
                 <MenuItem value="1">1 week</MenuItem>
                 <MenuItem value="2">2 weeks</MenuItem>
                 <MenuItem value="3">3 weeks</MenuItem>

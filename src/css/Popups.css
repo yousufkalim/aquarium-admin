@@ -147,7 +147,7 @@
 .taskOptionBtns {
   color: #8c8c8c !important;
   background-color: white !important;
-  border: 2px solid #cdeefc !important;
+  border: 1px solid #cdeefc !important;
   font-weight: 500 !important;
   font-size: 16px !important;
   padding: 14px 20px !important;
@@ -217,9 +217,23 @@
 }
 
 .parent-div .react-time-picker__wrapper {
-  border: 2px solid #cdeefc !important;
+  border: 1px solid #cdeefc !important;
   background-color: white;
   border-radius: 25px;
   margin-top: 20px;
   padding: 10%;
+  width: 200px;
+}
+.parent-date-div .react-datepicker-wrapper {
+  border: 1px solid #cdeefc !important;
+  background-color: white;
+  border-radius: 25px;
+  margin-top: 20px;
+  padding: 5.5%;
+  width: 280px;
+}
+.react-datepicker-wrapper .react-datepicker__input-container input {
+  border: none;
+  font-size: 15px;
+  width: 131px;
 }
