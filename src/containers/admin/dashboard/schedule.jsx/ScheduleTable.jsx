@@ -41,10 +41,7 @@ export default function ScheduleTable({
   const [editing, setEditing] = useState(false);
   const [task, setTask] = useState({});
   const [date, setDate] = useState();
-  const t_options = {
-    hour: '2-digit',
-    minute: '2-digit',
-  };
+
   const dateChange = (e) => {
     setDate(e);
     getTasks(moment(e).format('DD/MM/YYYY'));
@@ -121,15 +118,11 @@ export default function ScheduleTable({
                     >
                       {row.type}
                       <p>
-                        {' '}
-                        {`${new Date(
-                          row.start_time,
-                        ).toLocaleTimeString(
-                          'en',
-                          t_options,
-                        )} -  ${new Date(
-                          row.end_time,
-                        ).toLocaleTimeString('en', t_options)} `}
+                        {`${moment(row.start_time)
+                          .tz('America/Tijuana')
+                          .format('hh:mm A')}-${moment(row.end_time)
+                          .tz('America/Tijuana')
+                          .format('hh:mm A')}`}
                       </p>
                     </StyledTableCell>
 

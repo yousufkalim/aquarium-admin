@@ -85,10 +85,7 @@ export default function AddTask({
   aquariums,
 }) {
   const { id } = useParams();
-  const t_options = {
-    hour: '2-digit',
-    minute: '2-digit',
-  };
+
   const [schedule, setSchedule] = useState({
     technician: id,
     type: '',
@@ -96,7 +93,6 @@ export default function AddTask({
     start_time: '',
     end_time: '',
     aquarium: '',
-    repeat: '',
   });
 
   // eslint-disable-next-line prefer-const
@@ -104,9 +100,7 @@ export default function AddTask({
     schedule;
 
   const [checked, setChecked] = useState(true);
-  // const outlinedInputStyles = useOutlinedInputStyles();
 
-  console.log('[=============]', task);
   const handleCheck = (event) => {
     setChecked(event.target.checked);
   };
@@ -136,29 +130,18 @@ export default function AddTask({
     });
   };
   useEffect(() => {
-    console.log(
-      'UseEffect',
-      open,
-      setOpen,
-      editing,
-      getTasks,
-      selectedDate,
-      task,
-      aquariums,
-    );
     if (editing) {
       setSchedule({
         ...schedule,
         type: task.type,
-        date: task.date,
-        start_time: new Date(task.start_time).toLocaleTimeString(
-          'en',
-          t_options,
-        ),
-        end_time: new Date(task.end_time).toLocaleTimeString(
-          'en',
-          t_options,
-        ),
+        date: new Date(task.date),
+        start_time: moment(task.start_time)
+          .tz('America/Tijuana')
+          .format('hh:mm a'),
+        end_time: moment(task.end_time)
+          .tz('America/Tijuana')
+          .format('hh:mm a'),
+
         aquarium: task.aquarium._id,
       });
     }
@@ -184,10 +167,10 @@ export default function AddTask({
         `/schedule/tasks/${task._id}`,
         updatedSchedule,
       );
-      toast.success('Tank edited successfully');
+      toast.success('Task edited successfully');
     } else {
       await api('post', '/schedule/tasks', updatedSchedule);
-      toast.success('Tank created successfully');
+      toast.success('Task created successfully');
     }
     getTasks(moment(selectedDate).format('DD/MM/YYYY'));
     handleClose();
@@ -464,42 +447,55 @@ export default function AddTask({
                   </MenuItem>
                 ))}
               </Select>
-              <FormControlLabel
-                sx={{ mt: 2 }}
-                control={
-                  <Checkbox defaultChecked onChange={handleCheck} />
-                }
-                label="Want to repeat this task every"
-              />
+              {!editing ? (
+                <FormControlLabel
+                  sx={{ mt: 2 }}
+                  control={
+                    <Checkbox defaultChecked onChange={handleCheck} />
+                  }
+                  label="Want to repeat this task every"
+                />
+              ) : (
+                ''
+              )}
             </FormControl>
-            <FormControl
-              sx={{
-                mb: 2,
+            {!editing ? (
+              <FormControl
+                sx={{
+                  mb: 2,
 
-                width: '85%',
-              }}
+                  width: '85%',
+                }}
 
-              // sx={{ mb: 1, mt: 3, width: '85%' }}
-              // variant="outlined"
-            >
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                displayEmpty
-                inputProps={{ 'aria-label': 'Without label' }}
-                value={repeat}
-                disabled={!checked}
-                // label="size"
-                name="repeat"
-                onChange={handleChange}
-                input={<BootstrapInput />}
+                // sx={{ mb: 1, mt: 3, width: '85%' }}
+                // variant="outlined"
               >
-                <MenuItem value="1">1 week</MenuItem>
-                <MenuItem value="2">2 weeks</MenuItem>
-                <MenuItem value="3">3 weeks</MenuItem>
-                {/* ))} */}
-              </Select>
-            </FormControl>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  displayEmpty
+                  inputProps={{ 'aria-label': 'Without label' }}
+                  value={repeat || ''}
+                  disabled={!checked}
+                  // label="size"
+                  name="repeat"
+                  onChange={handleChange}
+                  input={<BootstrapInput />}
+                >
+                  <MenuItem value="" disabled selected>
+                    Week
+                  </MenuItem>
+                  <MenuItem value="1" selected>
+                    1 week
+                  </MenuItem>
+                  <MenuItem value="2">2 weeks</MenuItem>
+                  <MenuItem value="3">3 weeks</MenuItem>
+                  {/* ))} */}
+                </Select>
+              </FormControl>
+            ) : (
+              ''
+            )}
           </Typography>
         </DialogContent>
         <DialogActions>
