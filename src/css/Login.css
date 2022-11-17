@@ -125,9 +125,9 @@
 
   .loginClearIcon {
     position: absolute;
-    right: 0;
+    right: 3%;
     width: 1.2em !important;
-    top: 0;
+    top: 1%;
   }
 
   .loginPg {
@@ -149,12 +149,15 @@
   }
 
   .lgForm {
+    display: flex;
+    flex-direction: column !important;
     text-align: center;
+    margin-left: 8%;
     padding: 0% 2%;
   }
 
   .forgetPasswordTxt {
-    padding: 4%;
+    padding: 6% 0% 0% 0%;
     font-size: 20px;
   }
 

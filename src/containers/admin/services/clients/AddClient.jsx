@@ -263,7 +263,7 @@ export default function AddClient({
             variant="contained"
             disabled={disable}
           >
-            {editing ? 'Save' : 'Send Invite'}
+            {editing ? 'Save' : 'Add Client'}
           </Button>
         </DialogActions>
       </BootstrapDialog>
