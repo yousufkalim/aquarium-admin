@@ -42,6 +42,28 @@
   color: white !important;
 }
 
+/* SERVICES HISTORY CSS START HERE */
+
+.serviceHistoryContainer {
+  padding: 6% 0% 4% 10%;
+}
+
+.serviceHistoryContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 10px;
+  align-items: flex-start;
+}
+.servicesTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+/* SERVICES HISTORY CSS END HERE */
+
 @media only screen and (min-width: 992px) and (max-width: 1919px) {
   .technicianCol {
     width: 100%;

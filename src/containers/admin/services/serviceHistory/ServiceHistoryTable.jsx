@@ -11,6 +11,7 @@ import TableHead from '@mui/material/TableHead';
 import profileDummy from '../../../../assets/images/profileDummy.svg';
 import MultipleSelect from './FiltersMultiselect';
 import { genMediaUrl } from '../../../../config';
+import ServiceHistoryPopup from '../../../../components/ServiceHistoryPopup';
 
 const StyledTableCell = styled(TableCell)(() => ({
   [`&.${tableCellClasses.body}`]: {
@@ -29,8 +30,8 @@ const StyledTableRow = styled(TableRow)(() => ({
 
 export default function ServiceHistoryTable({ serviceHistory }) {
   // eslint-disable-next-line no-unused-vars, operator-linebreak
-  const [serviceHistories, setServiceHistories] =
-    useState(serviceHistory);
+  const [serviceHistories, setServiceHistories] = useState([]);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     setServiceHistories(serviceHistory);
@@ -143,8 +144,8 @@ export default function ServiceHistoryTable({ serviceHistory }) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {serviceHistories.map((row, i) => (
-              <StyledTableRow key={row.placeName}>
+            {serviceHistories?.map((row, i) => (
+              <StyledTableRow>
                 <StyledTableCell
                   align="center"
                   sx={{ display: 'flex', justifyContent: 'center' }}
@@ -220,6 +221,12 @@ export default function ServiceHistoryTable({ serviceHistory }) {
                 <StyledTableCell align="center">
                   <Button
                     className="serviceDetailBtn"
+                    onClick={() => {
+                      setOpen(true);
+                      setServiceHistories(row);
+                      // console.log('services================', row);
+                    }}
+                    onKeyDown={() => setOpen(true)}
                     variant="outlined"
                   >
                     Details
@@ -230,6 +237,13 @@ export default function ServiceHistoryTable({ serviceHistory }) {
           </TableBody>
         </Table>
       </TableContainer>
+      {open && (
+        <ServiceHistoryPopup
+          open={open}
+          setOpen={setOpen}
+          services={serviceHistories}
+        />
+      )}
     </div>
   );
 }

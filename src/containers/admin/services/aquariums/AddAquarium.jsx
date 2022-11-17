@@ -296,6 +296,7 @@ export default function AddAquarium({
                 }}
                 inputProps={{
                   maxlength: '500',
+                  style: { color: '#8C8C8C', fontWeight: '700' },
                 }}
                 InputLabelProps={{
                   style: {

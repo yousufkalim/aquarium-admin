@@ -153,6 +153,7 @@ export default function AddTank({
                 marginLeft: '12%',
                 color: '#8C8C8C',
                 fontSize: '16px',
+                fontWeight: '600',
               }}
             >
               Check for
@@ -210,6 +211,9 @@ export default function AddTank({
                   backgroundColor: 'white',
                   borderRadius: '25px',
                 }}
+                inputProps={{
+                  style: { color: '#8C8C8C', fontWeight: '700' },
+                }}
                 id="outlined-fname"
                 classes={outlinedInputStyles}
                 label="Sentence"
@@ -222,7 +226,7 @@ export default function AddTank({
                   style: {
                     color: '#8C8C8C',
                     fontSize: '16px',
-                    fontWeight: '500',
+                    fontWeight: '700',
                   },
                 }}
               />
@@ -231,6 +235,9 @@ export default function AddTank({
             {type !== 'service' ? (
               <FormControl fullWidth sx={{ width: '78%', mt: 2 }}>
                 <TextField
+                  inputProps={{
+                    style: { color: '#8C8C8C', fontWeight: '700' },
+                  }}
                   multiline
                   rows={5}
                   maxRows={5}
@@ -247,7 +254,7 @@ export default function AddTank({
                     style: {
                       color: '#8C8C8C',
                       fontSize: '16px',
-                      fontWeight: '500',
+                      fontWeight: '700',
                     },
                   }}
                 />
@@ -262,6 +269,13 @@ export default function AddTank({
                     sx={{
                       backgroundColor: 'white',
                       borderRadius: '25px',
+                    }}
+                    inputProps={{
+                      style: {
+                        color: '#8C8C8C',
+                        fontWeight: '700',
+                        width: '86%',
+                      },
                     }}
                     id="outlined-fname"
                     classes={outlinedInputStyles}

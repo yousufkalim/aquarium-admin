@@ -17,7 +17,7 @@ import DeletePopup from '../../../components/DeletePopup';
 const StyledTableCell = styled(TableCell)(() => ({
   [`&.${tableCellClasses.body}`]: {
     fontSize: 14,
-    padding: '1% 3%',
+    padding: '1% 3.5%',
     width: '100%',
   },
 }));
@@ -51,7 +51,7 @@ export default function ServiceChecklist({ checks, getChecks }) {
   return (
     <div
       className="CheckList"
-      style={{ padding: '1% 3%', marginTop: '3%' }}
+      style={{ padding: '1% 3% 1% 1%', marginTop: '3%' }}
     >
       <TableContainer
         component={Paper}
@@ -141,10 +141,9 @@ export default function ServiceChecklist({ checks, getChecks }) {
                     >
                       <div
                         style={{
+                          marginRight: '72px',
                           display: 'flex',
-                          flexDirection: 'row',
-                          gap: '8px',
-                          marginRight: '90px',
+                          alignItems: 'center',
                         }}
                       >
                         <img
@@ -159,6 +158,9 @@ export default function ServiceChecklist({ checks, getChecks }) {
                         />
 
                         <img
+                          style={{
+                            marginLeft: '10px',
+                          }}
                           src={deleteIcon}
                           className="deleteIcon"
                           onClick={() => {

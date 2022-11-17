@@ -141,6 +141,9 @@ export default function AddAdmin({
                   backgroundColor: 'white',
                   borderRadius: '25px',
                 }}
+                inputProps={{
+                  style: { color: '#8C8C8C', fontWeight: '700' },
+                }}
                 id="outlined-fname"
                 classes={outlinedInputStyles}
                 label="Name"
@@ -165,6 +168,9 @@ export default function AddAdmin({
                 sx={{
                   backgroundColor: 'white',
                   borderRadius: '25px',
+                }}
+                inputProps={{
+                  style: { color: '#8C8C8C', fontWeight: '700' },
                 }}
                 id="outlined-email"
                 classes={outlinedInputStyles}
