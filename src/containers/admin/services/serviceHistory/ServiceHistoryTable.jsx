@@ -30,24 +30,12 @@ const StyledTableRow = styled(TableRow)(() => ({
 
 export default function ServiceHistoryTable({ serviceHistory }) {
   // eslint-disable-next-line no-unused-vars, operator-linebreak
-  const [serviceHistories, setServiceHistories] =
-    useState(serviceHistory);
+  const [serviceHistories, setServiceHistories] = useState([]);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
     setServiceHistories(serviceHistory);
   }, [serviceHistory]);
-
-  // const getServices = async () => {
-  //   const { data } = await api('get', '/schedule/tasks');
-  //   if (data) {
-  //     setServices(data?.results);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   getServices();
-  // }, []);
 
   const options = {
     weekday: 'short',
@@ -156,8 +144,8 @@ export default function ServiceHistoryTable({ serviceHistory }) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {serviceHistories.map((row, i) => (
-              <StyledTableRow key={row.placeName}>
+            {serviceHistories?.map((row, i) => (
+              <StyledTableRow>
                 <StyledTableCell
                   align="center"
                   sx={{ display: 'flex', justifyContent: 'center' }}
