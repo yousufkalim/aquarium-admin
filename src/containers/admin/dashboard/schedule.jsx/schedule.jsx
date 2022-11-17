@@ -1,20 +1,24 @@
 import { useState, useEffect } from 'react';
 import { Grid, Button } from '@mui/material';
-// import ScheduleTable from './ScheduleTable';
-import add from '../../../../assets/images/add.svg';
+import { useParams } from 'react-router-dom';
+import moment from 'moment';
+import ScheduleTable from './ScheduleTable';
+// import profileDummy from '../../../../assets/images/profileDummy.svg';
 import AddTask from './AddTask';
 import api from '../../../../api/index';
+// import { genMediaUrl } from '../../../../config';
 
 export default function Schedule() {
   const [open, setOpen] = useState(false);
   // eslint-disable-next-line no-unused-vars
   const [tasks, setTasks] = useState([]);
   const [aquariums, setAquariums] = useState([]);
+  const { id } = useParams();
 
-  const getTasks = async () => {
-    const { data } = await api('get', '/users');
+  const getTasks = async (date) => {
+    const { data } = await api('get', `/schedule/${id}?date=${date}`);
     if (data) {
-      setTasks(data?.users);
+      setTasks(data?.results || []);
     }
   };
   const getAquariums = async () => {
@@ -25,7 +29,7 @@ export default function Schedule() {
   };
 
   useEffect(() => {
-    getTasks();
+    getTasks(moment().format('DD/MM/YYYY'));
     getAquariums();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -34,8 +38,12 @@ export default function Schedule() {
       <Grid container>
         <Grid xl={2} lg={3} />
 
-        <Grid xl={10} lg={9}>
-          {/* <ScheduleTable tasks={tasks} getTasks={getTasks} /> */}
+        <Grid xl={8} lg={7}>
+          <ScheduleTable
+            taskList={tasks}
+            getTasks={getTasks}
+            aquariums={aquariums}
+          />
           <div className="btnContainer" style={{ width: '16%' }}>
             <Button
               variant="contained"
@@ -44,9 +52,14 @@ export default function Schedule() {
               onClick={() => setOpen(true)}
             >
               Add new task &nbsp;
-              <img src={add} alt="add" />
             </Button>
           </div>
+        </Grid>
+        <Grid xl={2} lg={2}>
+          {/* <div className="scheduleTech">
+                          <img src={genMediaUrl() || profileDummy} alt="add" />
+            <h1>David</h1>
+          </div> */}
         </Grid>
       </Grid>
       {open && (

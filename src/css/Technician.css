@@ -21,6 +21,15 @@
   font-size: 22px !important;
   font-family: 'HelveticaBold' !important;
 }
+.date-div .react-datepicker-wrapper {
+  border: 1px solid #cdeefc !important;
+  background-color: white;
+  border-radius: 25px;
+  margin-top: 20px;
+  padding: 2%;
+  text-align: right;
+}
+
 @media only screen and (min-width: 992px) and (max-width: 1919px) {
   .spaceCol {
     width: auto !important;
