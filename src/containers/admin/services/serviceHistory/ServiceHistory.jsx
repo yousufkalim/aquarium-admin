@@ -14,9 +14,11 @@ export default function ServiceHistory() {
       setServiceHistory(data?.results);
     }
   };
+
   useEffect(() => {
     getServiceHistory();
   }, []);
+
   return (
     <div>
       <Grid container>

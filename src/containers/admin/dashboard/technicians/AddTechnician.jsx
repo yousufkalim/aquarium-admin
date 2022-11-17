@@ -56,6 +56,7 @@ export default function AddTechnician({
   getTechnicians,
   technician,
 }) {
+  const CHARACTER_LIMIT = 30;
   const [values, setValues] = useState({
     first_name: '',
     last_name: '',
@@ -130,6 +131,10 @@ export default function AddTechnician({
                   backgroundColor: 'white',
                   borderRadius: '25px',
                 }}
+                inputProps={{
+                  maxlength: CHARACTER_LIMIT,
+                  style: { color: '#8C8C8C', fontWeight: '700' },
+                }}
                 id="outlined-fname"
                 classes={outlinedInputStyles}
                 label="First Name"
@@ -154,6 +159,10 @@ export default function AddTechnician({
                 sx={{
                   backgroundColor: 'white',
                   borderRadius: '25px',
+                }}
+                inputProps={{
+                  maxlength: CHARACTER_LIMIT,
+                  style: { color: '#8C8C8C', fontWeight: '700' },
                 }}
                 id="outlined-email"
                 classes={outlinedInputStyles}
@@ -187,7 +196,10 @@ export default function AddTechnician({
                 type="text"
                 value={phone_number}
                 name="phone_number"
-                inputProps={{ maxLength: 10 }}
+                inputProps={{
+                  maxLength: 10,
+                  style: { color: '#8C8C8C', fontWeight: '700' },
+                }}
                 onChange={onChangeEvent}
                 InputLabelProps={{
                   style: {

@@ -8,7 +8,7 @@
 
 .hl-forget {
   position: relative;
-  border-bottom: 3px solid #cdeefc;
+  border-bottom: 2px solid #cdeefc;
   opacity: 10;
   width: 60%;
   margin: auto;
@@ -38,9 +38,10 @@
   font-size: 20px !important;
   border-radius: 14px !important;
   text-transform: none !important;
-  padding: 7px 30px !important;
+  padding: 8px 30px !important;
   cursor: pointer !important;
   font-family: 'HelveticaMedium' !important;
+  box-shadow: none !important;
 }
 
 .closeBtn:hover {
@@ -53,7 +54,7 @@
   color: #8c8c8c;
   font-size: 18px;
   font-weight: 400;
-  padding: 2% 0;
+  padding: 0.5% 0% 2% 0%;
   cursor: pointer;
 }
 
@@ -115,7 +116,7 @@
   color: #8c8c8c !important;
   background-color: white !important;
   border: 2px solid #cdeefc !important;
-  font-weight: 500 !important;
+  font-weight: 700 !important;
   font-size: 16px !important;
   border-radius: 20px !important;
   text-transform: none !important;
@@ -129,7 +130,7 @@
   background-color: #28cdff !important;
   color: #202020 !important;
   border: 2px solid #cdeefc !important;
-  font-weight: 500 !important;
+  font-weight: 600 !important;
   font-size: 16px !important;
   border-radius: 25px !important;
   text-transform: none !important;
@@ -156,6 +157,7 @@
   cursor: pointer !important;
   margin: 10px !important;
 }
+
 .activeTaskBtn {
   background-color: #28cdff !important;
   color: #202020 !important;
@@ -168,6 +170,7 @@
   cursor: pointer !important;
   margin: 10px !important;
 }
+
 .taskOptionBtns:hover {
   background-color: #28cdff !important;
   color: #202020 !important;
@@ -185,6 +188,7 @@
   cursor: pointer !important;
   margin: 10px !important;
 }
+
 .activeOtherTaskBtn {
   background-color: #28cdff !important;
   color: #202020 !important;
@@ -197,6 +201,7 @@
   cursor: pointer !important;
   margin: 10px !important;
 }
+
 .otherTaskBtn:hover {
   background-color: #28cdff !important;
   color: #202020 !important;
@@ -236,4 +241,16 @@
   border: none;
   font-size: 15px;
   width: 131px;
+}
+
+.disable {
+  background-color: #b6efff !important;
+  color: white !important;
+  font-size: 20px !important;
+  border-radius: 14px !important;
+  text-transform: none !important;
+  padding: 8px 30px !important;
+  cursor: pointer !important;
+  font-family: 'HelveticaMedium' !important;
+  box-shadow: none !important;
 }

@@ -32,6 +32,7 @@ export default function ClientsTable({ clients, getClients }) {
   const [del, setDel] = useState(false);
   const [editing, setEditing] = useState(false);
   const [client, setClient] = useState('');
+  const [disable, setDisable] = useState(false);
 
   useEffect(() => {
     getClients();
@@ -140,6 +141,7 @@ export default function ClientsTable({ clients, getClients }) {
                     onClick={() => {
                       setEditing(true);
                       setClient(row);
+                      setDisable(true);
                     }}
                     role="presentation"
                   />
@@ -169,6 +171,8 @@ export default function ClientsTable({ clients, getClients }) {
           editing={editing}
           client={client}
           getClients={getClients}
+          disable={disable}
+          setDisable={setDisable}
         />
       )}
       {del && (
