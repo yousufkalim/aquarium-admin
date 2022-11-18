@@ -31,6 +31,7 @@ const StyledTableRow = styled(TableRow)(() => ({
 export default function ServiceHistoryTable({ serviceHistory }) {
   // eslint-disable-next-line no-unused-vars, operator-linebreak
   const [serviceHistories, setServiceHistories] = useState([]);
+  const [service, setService] = useState({});
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -223,8 +224,7 @@ export default function ServiceHistoryTable({ serviceHistory }) {
                     className="serviceDetailBtn"
                     onClick={() => {
                       setOpen(true);
-                      setServiceHistories(row);
-                      // console.log('services================', row);
+                      setService(row);
                     }}
                     onKeyDown={() => setOpen(true)}
                     variant="outlined"
@@ -241,7 +241,7 @@ export default function ServiceHistoryTable({ serviceHistory }) {
         <ServiceHistoryPopup
           open={open}
           setOpen={setOpen}
-          services={serviceHistories}
+          service={service}
         />
       )}
     </div>

@@ -46,7 +46,7 @@ function Admin() {
         }
       });
     }
-    // console.log(routes.flat());
+
     return routes.flat();
   };
 
