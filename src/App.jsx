@@ -10,7 +10,7 @@ import './css/index.css';
 
 // Component
 function App() {
-  moment.tz.setDefault('America/Tijuana');
+  moment().tz('America/Tijuana');
 
   return (
     <div className="App">
