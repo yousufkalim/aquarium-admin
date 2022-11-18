@@ -151,24 +151,26 @@
   border: 1px solid #cdeefc !important;
   font-weight: 500 !important;
   font-size: 16px !important;
-  padding: 14px 20px !important;
+  padding: 10px 30px !important;
   border-radius: 20px !important;
   text-transform: none !important;
   cursor: pointer !important;
-  margin: 10px !important;
+  margin: 16px 10px !important;
+  font-family: 'HelveticaMedium' !important;
 }
 
 .activeTaskBtn {
   background-color: #28cdff !important;
   color: #202020 !important;
-  border: 2px solid #cdeefc !important;
+  border: 1px solid #cdeefc !important;
   font-weight: 500 !important;
   font-size: 16px !important;
   border-radius: 20px !important;
-  padding: 14px 20px !important;
+  padding: 10px 30px !important;
   text-transform: none !important;
   cursor: pointer !important;
-  margin: 10px !important;
+  margin: 16px 10px !important;
+  font-family: 'HelveticaMedium' !important;
 }
 
 .taskOptionBtns:hover {
@@ -207,6 +209,7 @@
   color: #202020 !important;
   border: 2px solid #cdeefc !important;
 }
+
 .profileBtn {
   border: 2px solid #cdeefc !important;
   padding: 10px 20px !important;
@@ -226,21 +229,28 @@
   background-color: white;
   border-radius: 25px;
   margin-top: 20px;
-  padding: 10%;
-  width: 200px;
+  padding: 7.5%;
+  width: 150px;
 }
+
+.react-time-picker__inputGroup__input {
+  outline: none;
+}
+
 .parent-date-div .react-datepicker-wrapper {
   border: 1px solid #cdeefc !important;
   background-color: white;
   border-radius: 25px;
   margin-top: 20px;
-  padding: 5.5%;
+  padding: 4.2%;
   width: 280px;
 }
+
 .react-datepicker-wrapper .react-datepicker__input-container input {
   border: none;
   font-size: 15px;
   width: 131px;
+  outline: none;
 }
 
 .disable {

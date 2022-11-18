@@ -31,7 +31,7 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
     backgroundColor: theme.palette.background.paper,
     border: '1px solid #CDEEFC',
     fontSize: 16,
-    padding: '3%',
+    padding: '2% 3%',
     textAlign: 'left',
 
     transition: theme.transitions.create([
@@ -206,108 +206,122 @@ export default function AddTask({
             </p>
             <div
               className="hl-del"
-              style={{ width: '70%', marginBottom: '7%' }}
+              style={{ width: '70%', marginBottom: '6%' }}
             />
 
             <div>
               <InputLabel
                 sx={{
                   textAlign: 'left',
-                  marginLeft: '12%',
+                  margin: '2% 0% 0% 12%',
                   color: '#8C8C8C',
                   fontSize: '16px',
+                  fontFamily: 'HelveticaMedium',
+                  fontWeight: 400,
                 }}
               >
                 Task
               </InputLabel>
-              <Button
-                className={
-                  type === 'service'
-                    ? 'activeTaskBtn'
-                    : 'taskOptionBtns'
-                }
-                variant="outlined"
-                name="type"
-                value="service"
-                onClick={handleChange}
+              <div
+                className="taskInfo"
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  padding: '0% 7% 0% 10%',
+                }}
               >
-                Service
-              </Button>
+                <Button
+                  className={
+                    type === 'service'
+                      ? 'activeTaskBtn'
+                      : 'taskOptionBtns'
+                  }
+                  variant="outlined"
+                  name="type"
+                  value="service"
+                  onClick={handleChange}
+                >
+                  Service
+                </Button>
 
-              <Button
-                className={
-                  type === 'loadup'
-                    ? 'activeTaskBtn'
-                    : 'taskOptionBtns'
-                }
-                variant="outlined"
-                name="type"
-                value="loadup"
-                onClick={handleChange}
-              >
-                Vehicle Loadup
-              </Button>
-              <Button
-                className={
-                  type === 'unload'
-                    ? 'activeTaskBtn'
-                    : 'taskOptionBtns'
-                }
-                variant="outlined"
-                name="type"
-                value="unload"
-                onClick={handleChange}
-              >
-                Vehicle Unload
-              </Button>
+                <Button
+                  className={
+                    type === 'loadup'
+                      ? 'activeTaskBtn'
+                      : 'taskOptionBtns'
+                  }
+                  variant="outlined"
+                  name="type"
+                  value="loadup"
+                  onClick={handleChange}
+                >
+                  Vehicle Loadup
+                </Button>
+                <Button
+                  className={
+                    type === 'unload'
+                      ? 'activeTaskBtn'
+                      : 'taskOptionBtns'
+                  }
+                  variant="outlined"
+                  name="type"
+                  value="unload"
+                  onClick={handleChange}
+                >
+                  Vehicle Unload
+                </Button>
 
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                displayEmpty
-                variant="outlined"
-                className={
-                  [
-                    'drive',
-                    'lunch',
-                    'outOfOffice',
-                    'endOfShift',
-                  ].includes(type)
-                    ? 'activeOtherTaskBtn'
-                    : 'otherTaskBtn'
-                }
-                inputProps={{ 'aria-label': 'Without label' }}
-                value={
-                  [
-                    'drive',
-                    'lunch',
-                    'outOfOffice',
-                    'endOfShift',
-                  ].includes(type)
-                    ? type
-                    : ''
-                }
-                name="type"
-                onChange={handleChange}
-              >
-                <MenuItem disabled value="" name="type">
-                  {' '}
-                  Others
-                </MenuItem>
-                <MenuItem value="drive" name="type">
-                  {' '}
-                  Drive
-                </MenuItem>
-                <MenuItem value="lunch" name="type">
-                  Lunch
-                </MenuItem>
-                <MenuItem value="outOfOffice" name="type">
-                  Out of Office
-                </MenuItem>
-                <MenuItem value="endOfShift" name="type">
-                  End of Shift
-                </MenuItem>
-              </Select>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  displayEmpty
+                  variant="outlined"
+                  className={
+                    [
+                      'drive',
+                      'lunch',
+                      'outOfOffice',
+                      'endOfShift',
+                    ].includes(type)
+                      ? 'activeOtherTaskBtn'
+                      : 'otherTaskBtn'
+                  }
+                  sx={{
+                    fontFamily: 'HelveticaMedium',
+                  }}
+                  inputProps={{ 'aria-label': 'Without label' }}
+                  value={
+                    [
+                      'drive',
+                      'lunch',
+                      'outOfOffice',
+                      'endOfShift',
+                    ].includes(type)
+                      ? type
+                      : ''
+                  }
+                  name="type"
+                  onChange={handleChange}
+                >
+                  <MenuItem disabled value="" name="type">
+                    {' '}
+                    Others
+                  </MenuItem>
+                  <MenuItem value="drive" name="type">
+                    {' '}
+                    Drive
+                  </MenuItem>
+                  <MenuItem value="lunch" name="type">
+                    Lunch
+                  </MenuItem>
+                  <MenuItem value="outOfOffice" name="type">
+                    Out of Office
+                  </MenuItem>
+                  <MenuItem value="endOfShift" name="type">
+                    End of Shift
+                  </MenuItem>
+                </Select>
+              </div>
             </div>
 
             {/* <FormControl
@@ -330,9 +344,23 @@ export default function AddTask({
                   flexDirection: 'column',
                 }}
               >
-                <InputLabel>Date</InputLabel>
+                <InputLabel
+                  sx={{
+                    margin: '0% 0% -4% 14%',
+                    display: 'flex',
+                    fontFamily: 'HelveticaMedium',
+                    fontWeight: 400,
+                  }}
+                >
+                  Date
+                </InputLabel>
 
-                <div className="parent-date-div">
+                <div
+                  className="parent-date-div"
+                  style={{
+                    marginLeft: '11%',
+                  }}
+                >
                   <DatePicker
                     showPopperArrow
                     dateFormat="dd/MMMM/yyyy"
@@ -352,9 +380,18 @@ export default function AddTask({
                 style={{
                   display: 'flex',
                   flexDirection: 'column',
+                  alignItems: 'self-start',
                 }}
               >
-                <InputLabel>Start Time</InputLabel>
+                <InputLabel
+                  sx={{
+                    marginBottom: '-8%',
+                    fontFamily: 'HelveticaMedium',
+                    fontWeight: 400,
+                  }}
+                >
+                  Start Time
+                </InputLabel>
 
                 <div className="parent-div">
                   <TimePicker
@@ -382,9 +419,18 @@ export default function AddTask({
                 style={{
                   display: 'flex',
                   flexDirection: 'column',
+                  alignItems: 'self-start',
                 }}
               >
-                <InputLabel>End Time</InputLabel>
+                <InputLabel
+                  sx={{
+                    marginBottom: '-8%',
+                    fontFamily: 'HelveticaMedium',
+                    fontWeight: 400,
+                  }}
+                >
+                  End Time
+                </InputLabel>
                 <div className="parent-div">
                   <TimePicker
                     style={{
@@ -410,9 +456,11 @@ export default function AddTask({
             <InputLabel
               sx={{
                 textAlign: 'left',
-                marginLeft: '12%',
+                margin: '2% 0% 0% 12%',
                 color: '#8C8C8C',
                 fontSize: '16px',
+                fontFamily: 'HelveticaMedium',
+                fontWeight: 400,
               }}
             >
               Aquarium
@@ -421,7 +469,8 @@ export default function AddTask({
               sx={{
                 mb: 2,
                 mt: 1,
-                width: '85%',
+                width: '81%',
+                marginLeft: '3.5%',
               }}
 
               // sx={{ mb: 1, mt: 3, width: '85%' }}
@@ -449,10 +498,17 @@ export default function AddTask({
               </Select>
               {!editing ? (
                 <FormControlLabel
-                  sx={{ mt: 2 }}
-                  control={
-                    <Checkbox defaultChecked onChange={handleCheck} />
-                  }
+                  sx={{
+                    mt: 2,
+                    color: '#28CDFF',
+                  }}
+                  control={(
+                    <Checkbox
+                      defaultChecked
+                      onChange={handleCheck}
+                      style={{ color: '#28CDFF' }}
+                    />
+                  )}
                   label="Want to repeat this task every"
                 />
               ) : (
@@ -464,7 +520,8 @@ export default function AddTask({
                 sx={{
                   mb: 2,
 
-                  width: '85%',
+                  width: '81%',
+                  marginLeft: '3.5%',
                 }}
 
                 // sx={{ mb: 1, mt: 3, width: '85%' }}
