@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable indent */
 /* eslint-disable react/jsx-indent */
 /* eslint-disable react-hooks/exhaustive-deps */
@@ -5,7 +6,7 @@ import { React, useState } from 'react';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import moment from 'moment';
+import moment from 'moment-timezone';
 import DatePicker from 'react-datepicker';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
@@ -36,15 +37,17 @@ export default function ScheduleTable({
   taskList,
   getTasks,
   aquariums,
+  getDate,
 }) {
   const [del, setDel] = useState(false);
   const [editing, setEditing] = useState(false);
   const [task, setTask] = useState({});
-  const [date, setDate] = useState();
+  const [date, setDate] = useState(moment()._d);
 
   const dateChange = (e) => {
     setDate(e);
     getTasks(moment(e).format('DD/MM/YYYY'));
+    getDate(e);
   };
 
   return (

@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable operator-linebreak */
 /* eslint-disable no-constant-condition */
 /* eslint-disable consistent-return */
@@ -21,7 +22,7 @@ import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import InputBase from '@mui/material/InputBase';
 import TimePicker from 'react-time-picker';
-import moment from 'moment';
+import moment from 'moment-timezone';
 import api from '../../../../api/index';
 
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
@@ -129,18 +130,19 @@ export default function AddTask({
       end_time: e,
     });
   };
+
   useEffect(() => {
     if (editing) {
       setSchedule({
         ...schedule,
         type: task.type,
-        date: new Date(task.date),
+        date: moment(task.date)._d,
         start_time: moment(task.start_time)
           .tz('America/Tijuana')
-          .format('hh:mm a'),
+          .format('HH:mm'),
         end_time: moment(task.end_time)
           .tz('America/Tijuana')
-          .format('hh:mm a'),
+          .format('HH:mm'),
 
         aquarium: task.aquarium._id,
       });
@@ -157,7 +159,7 @@ export default function AddTask({
   const handleSubmit = async () => {
     const updatedSchedule = {
       ...schedule,
-      date: moment(date).format('DD/MM/YYYY'),
+      date: moment(date || selectedDate).format('DD/MM/YYYY'),
       start_time: moment(start_time, 'HH:mm').format('hh:mm a'),
       end_time: moment(end_time, 'HH:mm').format('hh:mm a'),
     };
@@ -338,7 +340,10 @@ export default function AddTask({
                     dateFormat="dd/MMMM/yyyy"
                     name="date"
                     placeholderText="DD/MM/YYYY"
-                    value={date}
+                    value={
+                      date ||
+                      moment(selectedDate).format('DD/MM/YYYY')
+                    }
                     selected={date}
                     popperPlacement="bottom-start"
                     showYearDropdown
