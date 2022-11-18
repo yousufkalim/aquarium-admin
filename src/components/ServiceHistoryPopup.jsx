@@ -31,7 +31,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 export default function ServiceHistoryPopup({
   open,
   setOpen,
-  services,
+  service,
 }) {
   const handleClose = () => {
     setOpen(false);
@@ -69,8 +69,8 @@ export default function ServiceHistoryPopup({
             />
 
             <div className="serviceHistoryContainer">
-              {services.checklists.length > 0 ? (
-                services.checklists.map((row) => (
+              {service.checklists.length > 0 ? (
+                service.checklists.map((row) => (
                   <div className="serviceHistoryContent">
                     <div className="servicesTitle">
                       {row.status === true ? (
@@ -114,7 +114,7 @@ export default function ServiceHistoryPopup({
                     marginRight: '56px',
                   }}
                 >
-                  There is no Schedule
+                  No checklist found
                 </h3>
               )}
             </div>

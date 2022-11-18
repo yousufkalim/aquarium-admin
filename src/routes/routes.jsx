@@ -21,6 +21,7 @@ import Aquarium from '../containers/admin/services/aquariums/Aquarium';
 import ServiceHistory from '../containers/admin/services/serviceHistory/ServiceHistory';
 import Checklist from '../containers/admin/checklistBuilder/Checklist';
 import Technicians from '../containers/admin/dashboard/technicians/Technicians';
+import Products from '../containers/admin/products/Products';
 
 // unAuth routes
 const unAuthRoutes = [
@@ -127,7 +128,7 @@ const adminRoutes = [
     path: '/products',
     name: 'Products',
     icon: products,
-    // element: <Services />,
+    element: <Products />,
   },
 ];
 

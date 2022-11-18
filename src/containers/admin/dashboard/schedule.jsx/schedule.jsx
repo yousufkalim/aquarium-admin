@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import { useState, useEffect } from 'react';
 import { Grid, Button } from '@mui/material';
 import { useParams } from 'react-router-dom';
@@ -13,7 +14,12 @@ export default function Schedule() {
   // eslint-disable-next-line no-unused-vars
   const [tasks, setTasks] = useState([]);
   const [aquariums, setAquariums] = useState([]);
+  const [selectedDate, setSelectedDate] = useState('');
   const { id } = useParams();
+
+  const getDate = (d) => {
+    setSelectedDate(d);
+  };
 
   const getTasks = async (date) => {
     const { data } = await api('get', `/schedule/${id}?date=${date}`);
@@ -43,6 +49,7 @@ export default function Schedule() {
             taskList={tasks}
             getTasks={getTasks}
             aquariums={aquariums}
+            getDate={getDate}
           />
           <div className="btnContainer" style={{ width: '16%' }}>
             <Button
@@ -68,6 +75,7 @@ export default function Schedule() {
           setOpen={setOpen}
           getTasks={getTasks}
           aquariums={aquariums}
+          selectedDate={selectedDate || moment()._d}
         />
       )}
     </div>
