@@ -437,4 +437,7 @@
   .txtOnImg {
     width: 23%;
   }
+  .bgImg {
+    object-fit: none;
+  }
 }
