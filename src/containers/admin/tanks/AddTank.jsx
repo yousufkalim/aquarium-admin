@@ -93,10 +93,10 @@ export default function AddTank({
     } else {
       if (editing) {
         await api('put', `/tank/${tank._id}`, tankDetails);
-        toast.success('Tank edited successfully');
+        toast.success(`Tank ${type} edited successfully`);
       } else {
         await api('post', '/tank', tankDetails);
-        toast.success('Tank created successfully');
+        toast.success(`Tank ${type} added successfully`);
       }
       getTanks();
       handleClose();
