@@ -137,12 +137,9 @@ export default function TechnicianTable({
                         variant="outlined"
                         className="scheduleBtn flexitem"
                         id="flexitem"
-                        onClick={
-                          // eslint-disable-next-line react/no-unstable-nested-components
-                          () =>
-                            // eslint-disable-next-line implicit-arrow-linebreak
-                            navigate(`/admin/technicians/${row._id}`)
-                        }
+                        onClick={() => {
+                          navigate(`/admin/technicians/${row._id}`);
+                        }}
                       >
                         See Schedule
                       </Button>

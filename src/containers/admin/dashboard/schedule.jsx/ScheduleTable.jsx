@@ -1,19 +1,21 @@
-/* eslint-disable no-underscore-dangle */
+/* eslint-disable no-nested-ternary */
 /* eslint-disable indent */
 /* eslint-disable react/jsx-indent */
-/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-underscore-dangle */
 import { React, useState } from 'react';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import moment from 'moment-timezone';
 import DatePicker from 'react-datepicker';
+import { useNavigate } from 'react-router-dom';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
-import TableRow from '@mui/material/TableRow';
 import TableHead from '@mui/material/TableHead';
-import Paper from '@mui/material/Paper';
 import edit from '../../../../assets/images/Edit.svg';
+import back from '../../../../assets/images/BackButton.svg';
+import down from '../../../../assets/images/down.svg';
+import filter from '../../../../assets/images/blueFilter.png';
 import deleteIcon from '../../../../assets/images/Delete.svg';
 import AddTask from './AddTask';
 import DeletePopup from '../../../../components/DeletePopup';
@@ -23,25 +25,18 @@ const StyledTableCell = styled(TableCell)(() => ({
     fontSize: 14,
   },
 }));
-const StyledTableRow = styled(TableRow)(() => ({
-  '&:nth-of-type(even)': {
-    backgroundColor: '#F3FDFF',
-  },
-  // hide last border
-  '&:last-child td, &:last-child th': {
-    borderBottom: '1px solid transparent',
-  },
-}));
 
 export default function ScheduleTable({
   taskList,
   getTasks,
   aquariums,
   getDate,
+  technician,
 }) {
   const [del, setDel] = useState(false);
   const [editing, setEditing] = useState(false);
   const [task, setTask] = useState({});
+  const navigate = useNavigate();
   const [date, setDate] = useState(moment()._d);
 
   const dateChange = (e) => {
@@ -53,32 +48,11 @@ export default function ScheduleTable({
   return (
     <div className="bg">
       <TableContainer
-        component={Paper}
         style={{
-          borderRadius: '20px',
           maxHeight: '100%',
           overflowX: 'hidden',
         }}
       >
-        <div
-          style={{ display: 'flex', justifyContent: 'space-between' }}
-        >
-          <h1 className="thead">List of Technicians</h1>
-
-          <div className="date-div">
-            <DatePicker
-              showPopperArrow
-              dateFormat="dd/MMMM/yyyy"
-              name="date"
-              placeholderText="DD/MM/YYYY"
-              value={date}
-              selected={date}
-              popperPlacement="bottom-start"
-              showYearDropdown
-              onChange={dateChange}
-            />
-          </div>
-        </div>
         <Table
           sx={{
             minWidth: 700,
@@ -89,94 +63,157 @@ export default function ScheduleTable({
           aria-label="customized table"
         >
           <TableHead>
-            <TableRow sx={{ background: '#d9f4ff' }}>
-              <StyledTableCell
-                sx={{
-                  fontSize: '16px',
-                  fontFamily: 'HelveticaBold',
+            <div
+              className="scehduleTableRow"
+              style={{ padding: '10px', border: 'none' }}
+            >
+              <div style={{ display: 'flex' }}>
+                <img
+                  src={back}
+                  alt=""
+                  onClick={() => navigate('/admin/dashboard')}
+                  style={{ cursor: 'pointer' }}
+                  role="presentation"
+                />
+                <h1 className="thead">{`${technician.first_name}'s Schedule`}</h1>
+              </div>
+              <div
+                className="date-filter-div"
+                style={{
+                  height: 'fit-content',
+                  margin: 'auto 0',
+                  display: 'flex',
                 }}
-                align="left"
               >
-                Name
-              </StyledTableCell>
-
-              <StyledTableCell
-                sx={{
-                  fontSize: '16px',
-                  fontFamily: 'HelveticaBold',
-                }}
-                align="center"
-              >
-                Action
-              </StyledTableCell>
-            </TableRow>
+                <DatePicker
+                  showPopperArrow
+                  dateFormat="dd/MMMM/yyyy"
+                  name="date"
+                  placeholderText="DD/MM/YYYY"
+                  value={date}
+                  selected={date}
+                  popperPlacement="bottom-start"
+                  showYearDropdown
+                  onChange={dateChange}
+                />
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    position: 'relative',
+                    right: '70px',
+                    width: '70px',
+                    justifyContent: 'space-between',
+                  }}
+                >
+                  <img src={down} alt="" />
+                  <img src={filter} alt="" />
+                </div>
+              </div>
+            </div>
           </TableHead>
           <TableBody>
-            {taskList.tasks
-              ? taskList.tasks?.map((row) => (
-                  <StyledTableRow>
-                    <StyledTableCell
-                      align="left"
-                      className="technicianName"
-                    >
-                      {row.type}
-                      <p>
-                        {`${moment(row.start_time)
-                          .tz('America/Tijuana')
-                          .format('hh:mm A')}-${moment(row.end_time)
-                          .tz('America/Tijuana')
-                          .format('hh:mm A')}`}
-                      </p>
-                    </StyledTableCell>
+            {taskList.tasks ? (
+              taskList.tasks?.map((row) => (
+                <div
+                  className={
+                    row.type === 'lunch'
+                      ? 'scehduleTableBreakRow'
+                      : row.type === 'drive'
+                      ? 'scehduleTableDrivingRow'
+                      : 'scehduleTableRow'
+                  }
+                >
+                  <StyledTableCell
+                    align="left"
+                    className={
+                      row.type === 'lunch'
+                        ? 'technicianBreakType'
+                        : 'technicianServiceType'
+                    }
+                  >
+                    {row.type === 'service'
+                      ? 'Service'
+                      : row.type === 'loadup'
+                      ? 'Start Vehicle Loadup'
+                      : row.type === 'unload'
+                      ? 'Start Vehicle Unload'
+                      : row.type === 'drive'
+                      ? 'Driving Period'
+                      : row.type === 'lunch'
+                      ? 'Break: Lunch'
+                      : row.type === 'outOfOffice'
+                      ? 'Out Of Office'
+                      : row.type === 'endOfShift'
+                      ? 'Shift Ended'
+                      : ''}
 
-                    <StyledTableCell
-                      align="right"
-                      sx={{
-                        paddingLeft: '2%',
-                        paddingRight: '2%',
+                    <p
+                      style={{ fontSize: '17px', marginTop: '10px' }}
+                    >
+                      {`${moment(row.start_time)
+                        .tz('America/Tijuana')
+                        .format('hh:mm A')}-${moment(row.end_time)
+                        .tz('America/Tijuana')
+                        .format('hh:mm A')}`}
+                    </p>
+                  </StyledTableCell>
+
+                  <StyledTableCell
+                    align="right"
+                    sx={{
+                      paddingLeft: '2%',
+                      paddingRight: '2%',
+                    }}
+                  >
+                    <div
+                      style={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        justifyContent: 'flex-end',
+                        padding: '5px',
                       }}
                     >
                       <div
                         style={{
                           display: 'flex',
                           flexDirection: 'row',
-                          justifyContent: 'flex-end',
-                          padding: '5px',
                         }}
                       >
-                        <div
-                          style={{
-                            display: 'flex',
-                            flexDirection: 'row',
+                        <img
+                          src={edit}
+                          alt=""
+                          className="editIcon flexitem"
+                          onClick={() => {
+                            setEditing(true);
+                            setTask(row);
                           }}
-                        >
-                          <img
-                            src={edit}
-                            alt=""
-                            className="editIcon flexitem"
-                            onClick={() => {
-                              setEditing(true);
-                              setTask(row);
-                            }}
-                            role="presentation"
-                          />
+                          role="presentation"
+                        />
 
-                          <img
-                            src={deleteIcon}
-                            className="deleteIcon flexitem"
-                            onClick={() => {
-                              setDel(true);
-                              setTask(row);
-                            }}
-                            alt=""
-                            role="presentation"
-                          />
-                        </div>
+                        <img
+                          src={deleteIcon}
+                          className="deleteIcon flexitem"
+                          onClick={() => {
+                            setDel(true);
+                            setTask(row);
+                          }}
+                          alt=""
+                          role="presentation"
+                        />
                       </div>
-                    </StyledTableCell>
-                  </StyledTableRow>
-                ))
-              : 'NOTHING FOUND'}
+                    </div>
+                  </StyledTableCell>
+                </div>
+              ))
+            ) : (
+              <div
+                className="scehduleTableRow"
+                style={{ padding: '40px' }}
+              >
+                <StyledTableCell> NOTHING FOUND</StyledTableCell>
+              </div>
+            )}
           </TableBody>
         </Table>
       </TableContainer>

@@ -1,18 +1,21 @@
+/* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable no-underscore-dangle */
 import { useState, useEffect } from 'react';
 import { Grid, Button } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import moment from 'moment';
 import ScheduleTable from './ScheduleTable';
-// import profileDummy from '../../../../assets/images/profileDummy.svg';
+import profileDummy from '../../../../assets/images/profileDummy.svg';
+import add from '../../../../assets/images/add.svg';
 import AddTask from './AddTask';
 import api from '../../../../api/index';
-// import { genMediaUrl } from '../../../../config';
+import { genMediaUrl } from '../../../../config';
 
 export default function Schedule() {
   const [open, setOpen] = useState(false);
   // eslint-disable-next-line no-unused-vars
   const [tasks, setTasks] = useState([]);
+  const [technician, setTechnician] = useState({});
   const [aquariums, setAquariums] = useState([]);
   const [selectedDate, setSelectedDate] = useState('');
   const { id } = useParams();
@@ -20,11 +23,22 @@ export default function Schedule() {
   const getDate = (d) => {
     setSelectedDate(d);
   };
+  const phoneFormat = (num) => {
+    const match = num?.match(/(\d{3})(\d{3})(\d{4})$/);
+
+    if (match) {
+      // eslint-disable-next-line no-param-reassign
+      num = ['(', match[1], ') ', match[2], '-', match[3]].join('');
+      return num;
+    }
+    return num;
+  };
 
   const getTasks = async (date) => {
     const { data } = await api('get', `/schedule/${id}?date=${date}`);
     if (data) {
       setTasks(data?.results || []);
+      setTechnician(data?.results?.technician || '');
     }
   };
   const getAquariums = async () => {
@@ -44,12 +58,13 @@ export default function Schedule() {
       <Grid container>
         <Grid xl={2} lg={3} />
 
-        <Grid xl={8} lg={7}>
+        <Grid xl={8} lg={6.5}>
           <ScheduleTable
             taskList={tasks}
             getTasks={getTasks}
             aquariums={aquariums}
             getDate={getDate}
+            technician={technician}
           />
           <div className="btnContainer" style={{ width: '16%' }}>
             <Button
@@ -58,15 +73,29 @@ export default function Schedule() {
               className="addAdminBtn"
               onClick={() => setOpen(true)}
             >
-              Add new task &nbsp;
+              Add new task &nbsp; <img src={add} alt="add" />
             </Button>
           </div>
         </Grid>
-        <Grid xl={2} lg={2}>
-          {/* <div className="scheduleTech">
-                          <img src={genMediaUrl() || profileDummy} alt="add" />
-            <h1>David</h1>
-          </div> */}
+        <Grid xl={2} lg={2.5}>
+          <div className="scheduleTech">
+            <div className="scheduleCard">
+              <img
+                style={{ width: '100%' }}
+                src={
+                  genMediaUrl(technician.profile_pic) || profileDummy
+                }
+                alt="add"
+              />
+            </div>
+            <div>
+              <h1 className="techName">{`${technician.first_name} ${technician.last_name}`}</h1>
+              <p className="techNum">{`+1 ${phoneFormat(
+                technician.phone_number,
+                // eslint-disable-next-line react/jsx-closing-tag-location
+              )}`}</p>
+            </div>
+          </div>
         </Grid>
       </Grid>
       {open && (
