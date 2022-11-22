@@ -108,6 +108,7 @@
   text-align: left !important;
   width: 174px !important;
 }
+
 @media only screen and (min-width: 992px) and (max-width: 1919px) {
   .spaceCol {
     width: auto !important;

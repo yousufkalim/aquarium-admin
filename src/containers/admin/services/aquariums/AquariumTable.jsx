@@ -1,5 +1,5 @@
 /* eslint-disable indent */
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 import { styled } from '@mui/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -38,9 +38,11 @@ export default function AquariumTable({
   const [del, setDel] = useState(false);
   const [editing, setEditing] = useState(false);
   const [aquarium, setAquarium] = useState('');
+  const [allAquariums, setAllAquariums] = useState(aquariums);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  //   useEffect(() => getAquariums(), []);
+  useEffect(() => {
+    setAllAquariums(aquariums);
+  }, [aquariums]);
 
   return (
     <div className="bg">
@@ -71,7 +73,8 @@ export default function AquariumTable({
                 color: '#8C8C8C',
                 padding: '2%',
               }}
-              clients={clients}
+              aquariums={aquariums}
+              setAllAquariums={setAllAquariums}
               sx={{ m: 1, mt: 3, mr: 8, minWidth: 200 }}
             />
           </div>
@@ -129,7 +132,7 @@ export default function AquariumTable({
           </TableHead>
           <TableBody>
             {/* <h1>List of Admins</h1> */}
-            {aquariums?.map((row) => (
+            {allAquariums?.map((row) => (
               <StyledTableRow key={row.name}>
                 <StyledTableCell
                   align="center"

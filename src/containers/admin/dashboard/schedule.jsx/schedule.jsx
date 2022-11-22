@@ -38,7 +38,7 @@ export default function Schedule() {
     const { data } = await api('get', `/schedule/${id}?date=${date}`);
     if (data) {
       setTasks(data?.results || []);
-      setTechnician(data?.results?.technician || '');
+      setTechnician(data?.results?.technician);
     }
   };
   const getAquariums = async () => {

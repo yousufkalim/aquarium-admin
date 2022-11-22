@@ -63,7 +63,6 @@ export default function AddClient({
     first_name: '',
     last_name: '',
     phone_number: '',
-    email: '',
   });
 
   useEffect(() => {
@@ -169,7 +168,7 @@ export default function AddClient({
                   maxlength: CHARACTER_LIMIT,
                   style: { color: '#8C8C8C', fontWeight: '700' },
                 }}
-                id="outlined-email"
+                id="outlined-lastname"
                 classes={outlinedInputStyles}
                 label="Last Name"
                 name="last_name"
@@ -234,7 +233,7 @@ export default function AddClient({
                 label="Email"
                 size="normal"
                 type="email"
-                value={email}
+                value={email || ''}
                 name="email"
                 onChange={onChangeEvent}
                 InputLabelProps={{
@@ -262,7 +261,7 @@ export default function AddClient({
             variant="contained"
             disabled={disable}
           >
-            {editing ? 'Save' : 'Send Invite'}
+            {editing ? 'Save' : 'Add Client'}
           </Button>
         </DialogActions>
       </BootstrapDialog>

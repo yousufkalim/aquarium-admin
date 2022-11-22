@@ -1,7 +1,8 @@
 import { React, useState, useEffect } from 'react';
 import { styled } from '@mui/styles';
 import Table from '@mui/material/Table';
-// import moment from 'moment';
+import moment from 'moment';
+import DatePicker from 'react-datepicker';
 import TableBody from '@mui/material/TableBody';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
@@ -9,7 +10,8 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import TableHead from '@mui/material/TableHead';
 import profileDummy from '../../../assets/images/profileDummy.svg';
-import MultipleSelect from './Multiselect';
+import FiltersSelect from './FiltersSelect';
+import DataFiltersSelect from './DataFiltersSelect';
 import { genMediaUrl } from '../../../config';
 
 const StyledTableCell = styled(TableCell)(() => ({
@@ -31,7 +33,8 @@ export default function ServiceTable({ serviceHistory }) {
   // eslint-disable-next-line no-unused-vars, operator-linebreak
   const [serviceHistories, setServiceHistories] =
     useState(serviceHistory);
-
+  const [selectedFilter, setSelectedFilter] = useState('');
+  const [date, setDate] = useState(new Date());
   useEffect(() => {
     setServiceHistories(serviceHistory);
   }, [serviceHistory]);
@@ -41,9 +44,16 @@ export default function ServiceTable({ serviceHistory }) {
     day: 'numeric',
     month: 'short',
   };
-  const t_options = {
-    hour: '2-digit',
-    minute: '2-digit',
+  const dateChange = (e) => {
+    setDate(e);
+    setServiceHistories(
+      serviceHistory.filter(
+        (_) =>
+          // eslint-disable-next-line implicit-arrow-linebreak, operator-linebreak
+          moment(_.date).format('DD/MM/YYYY') ===
+          moment(e).format('DD/MM/YYYY'),
+      ),
+    );
   };
 
   return (
@@ -67,18 +77,44 @@ export default function ServiceTable({ serviceHistory }) {
             <h1 className="thead">Service History</h1>
           </div>
           <div style={{ display: 'flex', flexDirection: 'row' }}>
-            <MultipleSelect
-              text="Tank Size"
-              style={{
-                border: '1px solid #28CDFF ',
-                borderRadius: '17px',
-                color: '#28CDFF',
-                textAlign: 'left',
-                paddingRight: '4%',
-              }}
-              sx={{ m: 1, width: 300, mt: 3 }}
-            />
-            <MultipleSelect
+            {selectedFilter === 'date' ? (
+              <div
+                className="date-filter-div2"
+                style={{
+                  height: 'fit-content',
+                  margin: 'auto 0',
+                  display: 'flex',
+                }}
+              >
+                <DatePicker
+                  showPopperArrow
+                  dateFormat="dd/MMMM/yyyy"
+                  name="date"
+                  placeholderText="DD/MM/YYYY"
+                  value={date}
+                  selected={date}
+                  popperPlacement="bottom-start"
+                  showYearDropdown
+                  onChange={dateChange}
+                />
+              </div>
+            ) : (
+              <DataFiltersSelect
+                text={selectedFilter || 'Tank Size'}
+                style={{
+                  border: '1px solid #28CDFF ',
+                  borderRadius: '17px',
+                  color: '#28CDFF',
+                  textAlign: 'left',
+                  paddingRight: '4%',
+                }}
+                sx={{ m: 1, width: 300, mt: 3 }}
+                selectedFilter={selectedFilter}
+                serviceHistory={serviceHistory}
+                setServiceHistories={setServiceHistories}
+              />
+            )}
+            <FiltersSelect
               text="Filter"
               style={{
                 borderRadius: '17px',
@@ -86,6 +122,7 @@ export default function ServiceTable({ serviceHistory }) {
                 color: '#8C8C8C',
               }}
               sx={{ m: 1, minWidth: 80, mt: 3 }}
+              setSelectedFilter={setSelectedFilter}
             />
           </div>
         </div>
@@ -164,8 +201,6 @@ export default function ServiceTable({ serviceHistory }) {
                   {/* {moment(row.date).format('DD-MM-YYYY')} */}
                   {new Date(row.date).toLocaleDateString(
                     'en-BA',
-                    // BE,NZ,SG,BR
-                    // ET
                     options,
                   )}
                 </StyledTableCell>
@@ -173,13 +208,11 @@ export default function ServiceTable({ serviceHistory }) {
                   align="center"
                   className="serviceTableTxt"
                 >
-                  {`${new Date(row.start_time).toLocaleTimeString(
-                    'en',
-                    t_options,
-                  )} -  ${new Date(row.end_time).toLocaleTimeString(
-                    'en',
-                    t_options,
-                  )} `}
+                  {`${moment(row.start_time)
+                    .tz('America/Tijuana')
+                    .format('hh:mm A')}-${moment(row.end_time)
+                    .tz('America/Tijuana')
+                    .format('hh:mm A')}`}
                 </StyledTableCell>
                 <StyledTableCell align="center">
                   <div className="technicianCol">
