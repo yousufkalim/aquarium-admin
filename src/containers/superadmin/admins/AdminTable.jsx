@@ -7,11 +7,12 @@ import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import profileDummy from '../../../assets/images/profileDummy.svg';
+import Avatar from 'react-avatar';
 import edit from '../../../assets/images/Edit.svg';
 import deleteIcon from '../../../assets/images/Delete.svg';
 import AddAdmin from './AddAdmin';
 import DeletePopup from '../../../components/DeletePopup';
+import { genMediaUrl } from '../../../config';
 
 const StyledTableCell = styled(TableCell)(() => ({
   [`&.${tableCellClasses.body}`]: {
@@ -67,11 +68,37 @@ export default function AdminTable({ admins, getAdmins }) {
                   }}
                 >
                   <div className="adminTextAndImage">
-                    <img
-                      src={profileDummy}
-                      className="imgNameCombo"
-                      alt=""
-                    />
+                    {row?.profile_pic ? (
+                      <img
+                        style={{
+                          height: '50px',
+                          width: '50px',
+                          border: '3px solid #28CDFF',
+                          borderRadius: '50%',
+                          display: 'flex',
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                        }}
+                        src={
+                          // eslint-disable-next-line operator-linebreak
+                          genMediaUrl(row?.profile_pic)
+                        }
+                        alt=""
+                      />
+                    ) : (
+                      <Avatar
+                        name={row?.name}
+                        style={{
+                          width: 'fit-content',
+                          height: '100%',
+                          border: '3px solid #28CDFF',
+                          borderRadius: '50px',
+                        }}
+                        round
+                        size="50"
+                        alt="profile_pic"
+                      />
+                    )}
                     <p className="admintxt">{row.name}</p>
                   </div>
                 </StyledTableCell>
