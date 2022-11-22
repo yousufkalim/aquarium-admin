@@ -141,11 +141,15 @@ export default function AddTank({
                 marginLeft: '12%',
                 color: '#8C8C8C',
                 fontSize: '16px',
+                fontFamily: 'HelveticaMedium',
               }}
             >
               New value for
               <span
-                style={{ fontWeight: '100', letterSpacing: '1px' }}
+                style={{
+                  fontWeight: '100',
+                  letterSpacing: '1px',
+                }}
               >
                 {' '}
                 (select one)
@@ -233,7 +237,7 @@ export default function AddTank({
                 InputLabelProps={{
                   style: {
                     color: '#8C8C8C',
-                    fontSize: '19px',
+                    fontSize: '17px',
                     fontWeight: '700',
                   },
                 }}

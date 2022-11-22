@@ -31,7 +31,7 @@
 .signInBtn {
   background-color: #28cdff !important;
   font-weight: 500 !important;
-  font-size: 19px !important;
+  font-size: 20px !important;
   border-radius: 14px !important;
   text-transform: none !important;
   padding: 10px 36px !important;
@@ -63,6 +63,9 @@
 @media only screen and (min-width: 1600px) {
   .loginFirstSection {
     height: 490px !important;
+  }
+  .logoLogin {
+    top: 130px;
   }
 }
 
@@ -125,9 +128,9 @@
 
   .loginClearIcon {
     position: absolute;
-    right: 0;
+    right: 4%;
     width: 1.2em !important;
-    top: 0;
+    top: 1%;
   }
 
   .loginPg {
@@ -151,10 +154,11 @@
   .lgForm {
     text-align: center;
     padding: 0% 2%;
+    margin-left: 8%;
   }
 
   .forgetPasswordTxt {
-    padding: 4%;
+    padding: 6% 0%;
     font-size: 20px;
   }
 

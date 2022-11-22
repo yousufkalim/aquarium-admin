@@ -59,6 +59,19 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
+const CustomSelect = styled(Select)(() => ({
+  '&.MuiOutlinedInput-root': {
+    '& fieldset': {
+      borderColor: '#cdeefc',
+    },
+    '&:hover fieldset': {
+      borderColor: '#cdeefc',
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: '#cdeefc',
+    },
+  },
+}));
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialog-root': {
     borderRadius: '25px',
@@ -273,11 +286,12 @@ export default function AddTask({
                   Vehicle Unload
                 </Button>
 
-                <Select
+                <CustomSelect
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   displayEmpty
                   variant="outlined"
+                  style={{ height: 51 }}
                   className={
                     [
                       'drive',
@@ -322,7 +336,7 @@ export default function AddTask({
                   <MenuItem value="endOfShift" name="type">
                     End of Shift
                   </MenuItem>
-                </Select>
+                </CustomSelect>
               </div>
             </div>
 

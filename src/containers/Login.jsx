@@ -73,7 +73,7 @@ export default function Login() {
 
       <Grid container className="loginFormSection" xs={12}>
         <Grid xs={0} xl={4.5} lg={4.2} />
-        <Grid className="lgForm" xs={12} xl={3} lg={4}>
+        <Grid className="lgForm" xs={10} xl={3} lg={4}>
           <h1 className="signInTxt">Sign in to Aquarium!</h1>
           <Grid item xs={12}>
             <FormControl

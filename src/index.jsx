@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
+import { ConfigProvider } from 'react-avatar';
 import { StoreProvider } from './StoreContext';
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
@@ -9,11 +10,22 @@ import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <StoreProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </StoreProvider>
+    <ConfigProvider
+      colors={[
+        'red',
+        'green',
+        'brown',
+        'lightgray',
+        'black',
+        'purple',
+      ]}
+    >
+      <StoreProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </StoreProvider>
+    </ConfigProvider>
   </React.StrictMode>,
 );
 

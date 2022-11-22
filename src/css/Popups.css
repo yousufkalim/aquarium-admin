@@ -52,7 +52,7 @@
 
 .enterEmailTxt {
   color: #8c8c8c;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 400;
   padding: 0.5% 0% 2% 0%;
   cursor: pointer;
@@ -181,20 +181,20 @@
 .otherTaskBtn {
   color: #8c8c8c !important;
   background-color: white !important;
-  border: 2px solid #cdeefc !important;
+  /* border: 2px solid #cdeefc !important; */
   font-weight: 500 !important;
   font-size: 16px !important;
   border-radius: 16px !important;
   padding: 0px !important;
   text-transform: none !important;
   cursor: pointer !important;
-  margin: 10px !important;
+  margin: 17px 10px 13px 10px !important;
 }
 
 .activeOtherTaskBtn {
   background-color: #28cdff !important;
   color: #202020 !important;
-  border: 2px solid #cdeefc !important;
+  /* border: 2px solid #cdeefc !important; */
   font-weight: 500 !important;
   font-size: 16px !important;
   padding: 0px !important;
@@ -207,7 +207,7 @@
 .otherTaskBtn:hover {
   background-color: #28cdff !important;
   color: #202020 !important;
-  border: 2px solid #cdeefc !important;
+  /* border: 2px solid #cdeefc !important; */
 }
 
 .profileBtn {
