@@ -342,8 +342,8 @@ export default function AddAquarium({
                 {tanks
                   ?.filter((tank) => tank.type === 'size')
                   .map((tank) => (
-                    <MenuItem value={`${tank.value} Gallon Tank `}>
-                      {`${tank.value} Gallon Tank `}
+                    <MenuItem value={`${tank.value} Gallon Tank`}>
+                      {`${tank.value} Gallon Tank`}
                     </MenuItem>
                   ))}
               </Select>
