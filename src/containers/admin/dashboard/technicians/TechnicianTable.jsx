@@ -10,7 +10,8 @@ import TableHead from '@mui/material/TableHead';
 import Paper from '@mui/material/Paper';
 import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import profileDummy from '../../../../assets/images/profileDummy.svg';
+import Avatar from 'react-avatar';
+import { genMediaUrl } from '../../../../config';
 import edit from '../../../../assets/images/Edit.svg';
 import deleteIcon from '../../../../assets/images/Delete.svg';
 import AddTechnician from './AddTechnician';
@@ -92,7 +93,7 @@ export default function TechnicianTable({
             </TableRow>
           </TableHead>
           <TableBody>
-            {technicians?.map((row) => (
+            {technicians?.map((row, i) => (
               <StyledTableRow key={row.first_name}>
                 <StyledTableCell
                   align="right"
@@ -102,11 +103,38 @@ export default function TechnicianTable({
                   }}
                 >
                   {' '}
-                  <img
-                    src={profileDummy}
-                    className="imgNameCombo"
-                    alt=""
-                  />
+                  {row.technician?.profile_pic ? (
+                    <img
+                      src={
+                        // eslint-disable-next-line operator-linebreak
+                        genMediaUrl(row?.profile_pic)
+                      }
+                      alt=""
+                      onError={
+                        () =>
+                          // eslint-disable-next-line implicit-arrow-linebreak
+                          setTechnician((prev) => {
+                            // eslint-disable-next-line no-param-reassign, operator-linebreak
+                            prev[i].row.profile_pic = undefined;
+                            return [...prev];
+                          })
+                        // eslint-disable-next-line react/jsx-curly-newline
+                      }
+                    />
+                  ) : (
+                    <Avatar
+                      name={row?.first_name}
+                      style={{
+                        width: 'fit-content',
+                        height: '100%',
+                        border: '3px solid #28CDFF',
+                        borderRadius: '50px',
+                      }}
+                      round
+                      size="50"
+                      alt="profile_pic"
+                    />
+                  )}
                 </StyledTableCell>
                 <StyledTableCell
                   align="left"
@@ -130,6 +158,7 @@ export default function TechnicianTable({
                       flexDirection: 'row',
                       justifyContent: 'flex-end',
                       padding: '5px',
+                      alignItems: 'center',
                     }}
                   >
                     <div className="flexitem">

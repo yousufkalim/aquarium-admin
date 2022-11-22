@@ -6,6 +6,8 @@
   font-size: 18px !important;
   text-transform: none !important;
   font-weight: 600 !important;
+  text-align: center;
+  white-space: nowrap;
 }
 .scheduleBtn:hover {
   background-color: #28cdff !important;
