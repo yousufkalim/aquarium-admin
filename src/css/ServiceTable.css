@@ -61,6 +61,13 @@
   align-items: center;
   gap: 12px;
 }
+.date-filter-div2 .react-datepicker-wrapper {
+  border: 2px solid #28cdff !important;
+  margin-top: 14px !important;
+  border-radius: 22px;
+  padding: 11px 50px;
+  text-align: left !important;
+}
 
 /* SERVICES HISTORY CSS END HERE */
 
