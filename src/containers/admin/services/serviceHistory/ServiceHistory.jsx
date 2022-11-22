@@ -7,6 +7,8 @@ import api from '../../../../api/index';
 export default function ServiceHistory() {
   // const [open, setOpen] = useState(false);
   const [serviceHistory, setServiceHistory] = useState([]);
+  // const [clients, setClients] = useState([]);
+  // const [tanks, setTanks] = useState([]);
 
   const getServiceHistory = async () => {
     const { data } = await api('get', '//schedule/tasks');
@@ -15,8 +17,23 @@ export default function ServiceHistory() {
     }
   };
 
+  // const getClients = async () => {
+  //   const { data } = await api('get', '/clients');
+  //   if (data) {
+  //     setClients(data?.results);
+  //   }
+  // };
+  // const getTankDetails = async () => {
+  //   const { data } = await api('get', '/tank');
+  //   if (data) {
+  //     setTanks(data?.tanks.filter((tank) => tank.type === 'size'));
+  //   }
+  // };
+
   useEffect(() => {
     getServiceHistory();
+    // getClients();
+    // getTankDetails();
   }, []);
 
   return (

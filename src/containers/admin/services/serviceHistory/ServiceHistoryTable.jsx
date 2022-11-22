@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import { React, useState, useEffect } from 'react';
 import { styled } from '@mui/styles';
 import Table from '@mui/material/Table';
@@ -5,11 +6,14 @@ import TableBody from '@mui/material/TableBody';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import Button from '@mui/material/Button';
+import DatePicker from 'react-datepicker';
+import moment from 'moment-timezone';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import TableHead from '@mui/material/TableHead';
 import profileDummy from '../../../../assets/images/profileDummy.svg';
-import MultipleSelect from './FiltersMultiselect';
+import DataFiltersSelect from './DataFiltersSelect';
+import FiltersSelect from './FiltersSelect';
 import { genMediaUrl } from '../../../../config';
 import ServiceHistoryPopup from '../../../../components/ServiceHistoryPopup';
 
@@ -33,6 +37,20 @@ export default function ServiceHistoryTable({ serviceHistory }) {
   const [serviceHistories, setServiceHistories] = useState([]);
   const [service, setService] = useState({});
   const [open, setOpen] = useState(false);
+  const [selectedFilter, setSelectedFilter] = useState('');
+  const [date, setDate] = useState(new Date());
+
+  const dateChange = (e) => {
+    setDate(e);
+    setServiceHistories(
+      serviceHistory.filter(
+        (_) =>
+          // eslint-disable-next-line implicit-arrow-linebreak, operator-linebreak
+          moment(_.date).format('DD/MM/YYYY') ===
+          moment(e).format('DD/MM/YYYY'),
+      ),
+    );
+  };
 
   useEffect(() => {
     setServiceHistories(serviceHistory);
@@ -43,10 +61,6 @@ export default function ServiceHistoryTable({ serviceHistory }) {
     year: 'numeric',
     day: 'numeric',
     month: 'short',
-  };
-  const t_options = {
-    hour: '2-digit',
-    minute: '2-digit',
   };
 
   return (
@@ -70,18 +84,44 @@ export default function ServiceHistoryTable({ serviceHistory }) {
             <h1 className="thead">Service History</h1>
           </div>
           <div style={{ display: 'flex', flexDirection: 'row' }}>
-            <MultipleSelect
-              text="Tank Size"
-              style={{
-                border: '1px solid #28CDFF ',
-                borderRadius: '17px',
-                color: '#28CDFF',
-                textAlign: 'left',
-                paddingRight: '4%',
-              }}
-              sx={{ m: 1, width: 300, mt: 3 }}
-            />
-            <MultipleSelect
+            {selectedFilter === 'date' ? (
+              <div
+                className="date-filter-div2"
+                style={{
+                  height: 'fit-content',
+                  margin: 'auto 0',
+                  display: 'flex',
+                }}
+              >
+                <DatePicker
+                  showPopperArrow
+                  dateFormat="dd/MMMM/yyyy"
+                  name="date"
+                  placeholderText="DD/MM/YYYY"
+                  value={date}
+                  selected={date}
+                  popperPlacement="bottom-start"
+                  showYearDropdown
+                  onChange={dateChange}
+                />
+              </div>
+            ) : (
+              <DataFiltersSelect
+                text={selectedFilter || 'Tank Size'}
+                style={{
+                  border: '1px solid #28CDFF ',
+                  borderRadius: '17px',
+                  color: '#28CDFF',
+                  textAlign: 'left',
+                  paddingRight: '4%',
+                }}
+                sx={{ m: 1, width: 300, mt: 3 }}
+                selectedFilter={selectedFilter}
+                serviceHistory={serviceHistory}
+                setServiceHistories={setServiceHistories}
+              />
+            )}
+            <FiltersSelect
               text="Filter"
               style={{
                 borderRadius: '17px',
@@ -89,6 +129,7 @@ export default function ServiceHistoryTable({ serviceHistory }) {
                 color: '#8C8C8C',
               }}
               sx={{ m: 1, minWidth: 80, mt: 3 }}
+              setSelectedFilter={setSelectedFilter}
             />
           </div>
         </div>
@@ -157,7 +198,7 @@ export default function ServiceHistoryTable({ serviceHistory }) {
                     <p className="placename">{`${row.aquarium?.client?.first_name} ${row.aquarium?.client?.last_name}`}</p>
 
                     <p className="tankname">
-                      {row.aquarium?.tank_details?.size}
+                      {row.aquarium?.tank_details?.size.trim()}
                     </p>
                   </div>
                 </StyledTableCell>
@@ -174,13 +215,11 @@ export default function ServiceHistoryTable({ serviceHistory }) {
                   align="center"
                   className="serviceTableTxt"
                 >
-                  {`${new Date(row.start_time).toLocaleTimeString(
-                    'en',
-                    t_options,
-                  )} -  ${new Date(row.end_time).toLocaleTimeString(
-                    'en',
-                    t_options,
-                  )} `}
+                  {`${moment(row.start_time)
+                    .tz('America/Tijuana')
+                    .format('hh:mm A')}-${moment(row.end_time)
+                    .tz('America/Tijuana')
+                    .format('hh:mm A')}`}
                 </StyledTableCell>
                 <StyledTableCell align="center">
                   <div className="technicianCol">
