@@ -1,3 +1,5 @@
+/* eslint-disable operator-linebreak */
+/* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable react/no-unstable-nested-components */
 import * as React from 'react';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -19,16 +21,36 @@ const MenuProps = {
   },
 };
 
-export default function MultipleSelect({ text, style, sx, clients }) {
-  const [tank, settank] = React.useState([]);
+export default function MultipleSelect({
+  text,
+  style,
+  sx,
+  // clients,
+  aquariums,
+  setAllAquariums,
+}) {
+  const [Filter, setFilter] = React.useState('');
+  let clients = aquariums.map((a) => a.client);
+
+  clients = clients.filter(
+    (value, index, self) =>
+      index ===
+      self.findIndex(
+        (t) =>
+          t.id === value.id &&
+          t.first_name === value.first_name &&
+          t.last_name === value.last_name,
+      ),
+  );
 
   const handleChange = (event) => {
-    const {
-      target: { value },
-    } = event;
-    settank(
-      // On autofill we get a stringified value.
-      typeof value === 'string' ? value.split(',') : value,
+    setFilter(event.target.value);
+    setAllAquariums(
+      aquariums.filter(
+        (aquarium) =>
+          // eslint-disable-next-line implicit-arrow-linebreak
+          aquarium?.client?._id === event.target.value,
+      ),
     );
   };
 
@@ -36,9 +58,8 @@ export default function MultipleSelect({ text, style, sx, clients }) {
     <div>
       <FormControl sx={sx} size="small">
         <Select
-          multiple
           displayEmpty
-          value={tank}
+          value={Filter}
           onChange={handleChange}
           input={<OutlinedInput />}
           style={style}
@@ -49,13 +70,6 @@ export default function MultipleSelect({ text, style, sx, clients }) {
               <img src={filter} style={{ margin: '0 2%' }} alt="" />
             </>
           )}
-          renderValue={(selected) => {
-            if (selected.length === 0) {
-              return <p>{text}</p>;
-            }
-
-            return selected.join(', ');
-          }}
           MenuProps={MenuProps}
           inputProps={{ 'aria-label': 'Without label' }}
         >
@@ -63,9 +77,9 @@ export default function MultipleSelect({ text, style, sx, clients }) {
             <em>{text}</em>
           </MenuItem>
 
-          {clients?.map((client) => (
-            <MenuItem value={client.first_name}>
-              {`${client.first_name} ${client.last_name}`}
+          {clients?.map((a) => (
+            <MenuItem value={a._id}>
+              {`${a.first_name} ${a.last_name}`}
             </MenuItem>
           ))}
         </Select>
