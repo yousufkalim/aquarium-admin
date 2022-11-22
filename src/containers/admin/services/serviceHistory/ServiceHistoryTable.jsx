@@ -8,7 +8,7 @@ import Button from '@mui/material/Button';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import TableHead from '@mui/material/TableHead';
-import profileDummy from '../../../../assets/images/profileDummy.svg';
+import Avatar from 'react-avatar';
 import MultipleSelect from './FiltersMultiselect';
 import { genMediaUrl } from '../../../../config';
 import ServiceHistoryPopup from '../../../../components/ServiceHistoryPopup';
@@ -37,7 +37,6 @@ export default function ServiceHistoryTable({ serviceHistory }) {
   useEffect(() => {
     setServiceHistories(serviceHistory);
   }, [serviceHistory]);
-
   const options = {
     weekday: 'short',
     year: 'numeric',
@@ -185,31 +184,39 @@ export default function ServiceHistoryTable({ serviceHistory }) {
                 <StyledTableCell align="center">
                   <div className="technicianCol">
                     <div style={{ height: '56px' }}>
-                      <img
-                        src={
-                          // eslint-disable-next-line operator-linebreak
-                          genMediaUrl(row.technician?.profile_pic) ||
-                          profileDummy
-                        }
-                        style={{
-                          width: '100%',
-                          height: '100%',
-                          border: '3px solid #28CDFF',
-                          borderRadius: '50px',
-                        }}
-                        onError={
-                          () =>
-                            // eslint-disable-next-line implicit-arrow-linebreak
-                            setServiceHistories((prev) => {
-                              // eslint-disable-next-line no-param-reassign, operator-linebreak
-                              prev[i].technician.profile_pic =
-                                undefined;
-                              return [...prev];
-                            })
-                          // eslint-disable-next-line react/jsx-curly-newline
-                        }
-                        alt=""
-                      />
+                      {row.technician?.profile_pic ? (
+                        <img
+                          src={
+                            // eslint-disable-next-line operator-linebreak
+                            genMediaUrl(row.technician?.profile_pic)
+                          }
+                          alt=""
+                          onError={
+                            () =>
+                              // eslint-disable-next-line implicit-arrow-linebreak
+                              setServiceHistories((prev) => {
+                                // eslint-disable-next-line no-param-reassign, operator-linebreak
+                                prev[i].technician.profile_pic =
+                                  undefined;
+                                return [...prev];
+                              })
+                            // eslint-disable-next-line react/jsx-curly-newline
+                          }
+                        />
+                      ) : (
+                        <Avatar
+                          name={row.technician?.first_name}
+                          style={{
+                            width: '100%',
+                            height: '100%',
+                            border: '3px solid #28CDFF',
+                            borderRadius: '50px',
+                          }}
+                          round
+                          size="50"
+                          alt="profile_pic"
+                        />
+                      )}
                     </div>
                     <span
                       style={{ margin: 'auto' }}
