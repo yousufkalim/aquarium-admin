@@ -65,6 +65,7 @@
 }
 
 .descriptionTxt {
+  font-family: 'Helvetica Neue';
   font-size: 22px;
   font-weight: 400;
   padding: 0 25%;
@@ -135,8 +136,9 @@
 }
 
 .boxHeading {
-  font-size: 23px;
-  font-family: 'HelveticaBold' !important;
+  font-size: 24px;
+  font-family: 'Helvetica Neue' !important;
+  font-weight: 700 !important;
 }
 
 .boxContent {
@@ -155,7 +157,7 @@
 }
 
 .cardContent {
-  font-size: 21px;
+  font-size: 22px;
 }
 
 .leftBox {
@@ -176,8 +178,8 @@
 .card1Heading {
   font-size: 24px;
   font-weight: 700;
-  letter-spacing: 1px;
-  font-family: 'HelveticaBold' !important;
+  /* letter-spacing: 1px; */
+  font-family: 'Helvetica Neue' !important;
 }
 
 .leftBoxContent {
