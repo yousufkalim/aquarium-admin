@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Grid, Button } from '@mui/material';
+import { Grid } from '@mui/material';
 import ServiceTable from './ServiceTable';
-import arrow from '../../../assets/images/arrow.svg';
 import api from '../../../api/index';
+import ExportServiceHistory from '../../../components/ExportCsv';
 
 export default function Services() {
   const [serviceHistory, setServiceHistory] = useState([]);
@@ -20,19 +20,9 @@ export default function Services() {
     <div>
       <Grid container>
         <Grid xl={2} lg={3} />
-
         <Grid xl={10} lg={9}>
           <ServiceTable serviceHistory={serviceHistory} />
-          <div className="btnContainer">
-            <Button
-              variant="contained"
-              fullWidth
-              className="addAdminBtn"
-            >
-              Export in CSV&nbsp; &nbsp;
-              <img src={arrow} alt="arrow" />
-            </Button>
-          </div>
+          <ExportServiceHistory serviceHistory={serviceHistory} />
         </Grid>
       </Grid>
     </div>

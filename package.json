@@ -23,6 +23,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
     "date-fns": "^2.29.3",
+    "file-saver": "^2.0.5",
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.39",
     "react": "^18.2.0",
@@ -45,7 +46,8 @@
     "workbox-range-requests": "^6.5.4",
     "workbox-routing": "^6.5.4",
     "workbox-strategies": "^6.5.4",
-    "workbox-streams": "^6.5.4"
+    "workbox-streams": "^6.5.4",
+    "xlsx": "^0.18.5"
   },
   "scripts": {
     "start": "react-scripts start",

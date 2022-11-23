@@ -11,8 +11,8 @@ import moment from 'moment-timezone';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import TableHead from '@mui/material/TableHead';
-// import profileDummy from '../../../../assets/images/profileDummy.svg';
 import Avatar from 'react-avatar';
+import profileDummy from '../../../../assets/images/profileDummy.svg';
 import DataFiltersSelect from './DataFiltersSelect';
 import FiltersSelect from './FiltersSelect';
 import { genMediaUrl } from '../../../../config';
@@ -228,7 +228,9 @@ export default function ServiceHistoryTable({ serviceHistory }) {
                         <img
                           src={
                             // eslint-disable-next-line operator-linebreak
-                            genMediaUrl(row.technician?.profile_pic)
+                            genMediaUrl(
+                              row.technician?.profile_pic,
+                            ) || profileDummy
                           }
                           alt=""
                           onError={

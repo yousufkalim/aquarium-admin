@@ -1,8 +1,9 @@
+/* eslint-disable import/no-named-as-default */
 import { useState, useEffect } from 'react';
-import { Grid, Button } from '@mui/material';
+import { Grid } from '@mui/material';
 import ServiceHistoryTable from './ServiceHistoryTable';
-import arrow from '../../../../assets/images/arrow.svg';
 import api from '../../../../api/index';
+import ExportServiceHistory from '../../../../components/ExportCsv';
 
 export default function ServiceHistory() {
   // const [open, setOpen] = useState(false);
@@ -43,16 +44,7 @@ export default function ServiceHistory() {
 
         <Grid xl={10} lg={9}>
           <ServiceHistoryTable serviceHistory={serviceHistory} />
-          <div className="btnContainer">
-            <Button
-              variant="contained"
-              fullWidth
-              className="addAdminBtn"
-            >
-              Export in CSV&nbsp; &nbsp;
-              <img src={arrow} alt="arrow" />
-            </Button>
-          </div>
+          <ExportServiceHistory serviceHistory={serviceHistory} />
         </Grid>
       </Grid>
     </div>
