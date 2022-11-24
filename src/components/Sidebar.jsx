@@ -12,9 +12,9 @@ import ListItemButton from '@mui/material/ListItemButton';
 import Button from '@mui/material/Button';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import Avatar from 'react-avatar';
 import logo from '../assets/images/blueLogo.svg';
 import logout from '../assets/images/Logout.svg';
-import profileDummy from '../assets/images/profileDummy.svg';
 import arrowUp from '../assets/images/arrowUp.svg';
 import { genMediaUrl } from '../config';
 
@@ -29,6 +29,7 @@ const drawerWidth = 300;
 export default function Sidebar() {
   const { admin } = Store();
   const [open, setOpen] = useState(false);
+  const [disable, setDisable] = useState(false);
 
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -294,7 +295,10 @@ export default function Sidebar() {
               flexDirection: 'row',
               cursor: 'pointer',
             }}
-            onClick={() => setOpen(true)}
+            onClick={() => {
+              setOpen(true);
+              setDisable(true);
+            }}
             role="presentation"
           >
             <div
@@ -305,16 +309,34 @@ export default function Sidebar() {
                 height: '51px',
               }}
             >
-              <img
-                src={genMediaUrl(admin.profile_pic) || profileDummy}
-                style={{
-                  width: '100%',
-                  borderRadius: '50px',
-                  height: '100%',
-                  objectFit: 'cover',
-                }}
-                alt=""
-              />
+              {admin?.profile_pic ? (
+                <img
+                  src={
+                    // eslint-disable-next-line operator-linebreak
+                    genMediaUrl(admin?.profile_pic)
+                  }
+                  style={{
+                    width: '100%',
+                    borderRadius: '50px',
+                    height: '100%',
+                    objectFit: 'cover',
+                  }}
+                  alt=""
+                />
+              ) : (
+                <Avatar
+                  name={admin.name}
+                  style={{
+                    width: 'fit-content',
+                    height: 'fit-content',
+                    border: '3px solid #28CDFF',
+                    borderRadius: '50px',
+                  }}
+                  round
+                  size="50"
+                  alt="profile_pic"
+                />
+              )}
             </div>
             <div>
               <h3 className="name">{admin.name}</h3>
@@ -338,7 +360,13 @@ export default function Sidebar() {
           </div>
         </div>
         {open && (
-          <ProfilePopup open={open} setOpen={setOpen} admin={admin} />
+          <ProfilePopup
+            open={open}
+            setOpen={setOpen}
+            admin={admin}
+            disable={disable}
+            setDisable={setDisable}
+          />
         )}
       </Drawer>
     </Box>
