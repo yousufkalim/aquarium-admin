@@ -32,7 +32,7 @@ const StyledTableRow = styled(TableRow)(() => ({
   },
 }));
 
-export default function TankSize({ tanks, getTanks }) {
+export default function TankSize({ tanks, getTanks, type, setType }) {
   const [del, setDel] = useState(false);
   const [editing, setEditing] = useState(false);
   const [tank, setTank] = useState('');
@@ -45,8 +45,12 @@ export default function TankSize({ tanks, getTanks }) {
   };
 
   useEffect(() => {
-    getTanks();
-  }, []);
+    if (type === 'size') {
+      setExpanded(true);
+      setToggleIcon(true);
+    }
+    setType('');
+  }, [type]);
 
   return (
     <div
