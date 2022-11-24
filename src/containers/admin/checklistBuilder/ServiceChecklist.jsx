@@ -32,7 +32,12 @@ const StyledTableRow = styled(TableRow)(() => ({
   },
 }));
 
-export default function ServiceChecklist({ checks, getChecks }) {
+export default function ServiceChecklist({
+  checks,
+  getChecks,
+  type,
+  setType,
+}) {
   const [del, setDel] = useState(false);
   const [editing, setEditing] = useState(false);
   const [check, setCheck] = useState('');
@@ -45,8 +50,12 @@ export default function ServiceChecklist({ checks, getChecks }) {
   };
 
   useEffect(() => {
-    getChecks();
-  }, []);
+    if (type === 'service') {
+      setExpanded(true);
+      setToggleIcon(true);
+    }
+    setType('');
+  }, [type]);
 
   return (
     <div

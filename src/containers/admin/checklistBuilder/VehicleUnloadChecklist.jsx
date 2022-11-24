@@ -35,6 +35,8 @@ const StyledTableRow = styled(TableRow)(() => ({
 export default function VehicleUnloadChecklist({
   checks,
   getChecks,
+  type,
+  setType,
 }) {
   const [del, setDel] = useState(false);
   const [editing, setEditing] = useState(false);
@@ -48,8 +50,12 @@ export default function VehicleUnloadChecklist({
   };
 
   useEffect(() => {
-    getChecks();
-  }, []);
+    if (type === 'unload') {
+      setExpanded(true);
+      setToggleIcon(true);
+    }
+    setType('');
+  }, [type]);
 
   return (
     <div className="CheckList" style={{ padding: '1% 3% 1% 1%' }}>
