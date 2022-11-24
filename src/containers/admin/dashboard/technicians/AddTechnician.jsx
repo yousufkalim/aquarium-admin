@@ -55,6 +55,8 @@ export default function AddTechnician({
   editing,
   getTechnicians,
   technician,
+  disable,
+  setDisable,
 }) {
   const CHARACTER_LIMIT = 30;
   const [values, setValues] = useState({
@@ -77,6 +79,7 @@ export default function AddTechnician({
       ...values,
       [e.target.name]: e.target.value,
     });
+    setDisable(false);
   };
 
   const handleSubmit = async () => {
@@ -222,7 +225,7 @@ export default function AddTechnician({
           </Button>
           <Button
             onClick={handleSubmit}
-            className="resetPasswordBtn"
+            className={`${disable ? 'disable' : 'resetPasswordBtn'}`}
             variant="contained"
           >
             {editing ? 'Save' : 'Send Invite'}

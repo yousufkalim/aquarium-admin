@@ -101,6 +101,8 @@ export default function AddAquarium({
   aquarium,
   clients,
   tanks,
+  disable,
+  setDisable,
 }) {
   const divStyle = {
     color: '#8C8C8C',
@@ -139,6 +141,7 @@ export default function AddAquarium({
       ...values,
       [e.target.name]: e.target.value,
     });
+    setDisable(false);
   };
   const onChangeTankDetails = (e) => {
     setValues((prev) => ({
@@ -148,6 +151,7 @@ export default function AddAquarium({
         [e.target.name]: e.target.value,
       },
     }));
+    setDisable(false);
   };
 
   const handleGetAddress = async ({ target }) => {
@@ -182,6 +186,7 @@ export default function AddAquarium({
         },
       });
     }
+    setDisable(false);
   };
 
   const handleSubmit = async () => {
@@ -445,8 +450,9 @@ export default function AddAquarium({
           </Button>
           <Button
             onClick={handleSubmit}
-            className="resetPasswordBtn"
+            className={`${disable ? 'disable' : 'resetPasswordBtn'}`}
             variant="contained"
+            disabled={disable}
           >
             {editing ? 'Update Aquarium' : 'Add Aquarium'}
           </Button>

@@ -39,6 +39,7 @@ export default function TechnicianTable({
   const [del, setDel] = useState(false);
   const [editing, setEditing] = useState(false);
   const [technician, setTechnician] = useState('');
+  const [disable, setDisable] = useState(false);
 
   const navigate = useNavigate();
 
@@ -186,6 +187,7 @@ export default function TechnicianTable({
                         onClick={() => {
                           setEditing(true);
                           setTechnician(row);
+                          setDisable(true);
                         }}
                         role="presentation"
                       />
@@ -216,6 +218,8 @@ export default function TechnicianTable({
           editing={editing}
           technician={technician}
           getTechnicians={getTechnicians}
+          disable={disable}
+          setDisable={setDisable}
         />
       )}
       {del && (

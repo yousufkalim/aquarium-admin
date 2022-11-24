@@ -38,6 +38,7 @@ export default function ServiceChecklist({ checks, getChecks }) {
   const [check, setCheck] = useState('');
   const [expanded, setExpanded] = useState('');
   const [toggleIcon, setToggleIcon] = useState(false);
+  const [disable, setDisable] = useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -153,6 +154,7 @@ export default function ServiceChecklist({ checks, getChecks }) {
                           onClick={() => {
                             setEditing(true);
                             setCheck(row);
+                            setDisable(true);
                           }}
                           role="presentation"
                         />
@@ -186,6 +188,8 @@ export default function ServiceChecklist({ checks, getChecks }) {
           editing={editing}
           check={check}
           getChecks={getChecks}
+          disable={disable}
+          setDisable={setDisable}
         />
       )}
       {del && (

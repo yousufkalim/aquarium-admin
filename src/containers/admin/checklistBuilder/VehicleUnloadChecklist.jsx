@@ -41,6 +41,7 @@ export default function VehicleUnloadChecklist({
   const [check, setCheck] = useState('');
   const [expanded, setExpanded] = useState('');
   const [toggleIcon, setToggleIcon] = useState(false);
+  const [disable, setDisable] = useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -152,6 +153,7 @@ export default function VehicleUnloadChecklist({
                           onClick={() => {
                             setEditing(true);
                             setCheck(row);
+                            setDisable(true);
                           }}
                           role="presentation"
                         />
@@ -185,6 +187,8 @@ export default function VehicleUnloadChecklist({
           editing={editing}
           check={check}
           getChecks={getChecks}
+          disable={disable}
+          setDisable={setDisable}
         />
       )}
       {del && (

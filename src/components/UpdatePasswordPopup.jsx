@@ -59,6 +59,8 @@ const useOutlinedInputStyles = makeStyles({
 export default function UpdatePasswordPopup({
   openUpdateModal,
   setOpenUpdateModal,
+  disable,
+  setDisable,
 }) {
   const [showOldPassword, setShowOldPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
@@ -77,6 +79,7 @@ export default function UpdatePasswordPopup({
       ...values,
       [e.target.name]: e.target.value,
     });
+    setDisable(false);
   };
   const outlinedInputStyles = useOutlinedInputStyles();
 
@@ -296,7 +299,8 @@ export default function UpdatePasswordPopup({
           </Button>
           <Button
             onClick={handleForgetPassword}
-            className="resetPasswordBtn"
+            className={`${disable ? 'disable' : 'resetPasswordBtn'}`}
+            disabled={disable}
             variant="contained"
           >
             Update
