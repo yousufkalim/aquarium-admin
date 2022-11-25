@@ -72,6 +72,7 @@ export default function MultipleSelect({
           )}
           MenuProps={MenuProps}
           inputProps={{ 'aria-label': 'Without label' }}
+          sx={{ textAlign: 'left', width: '220px' }}
         >
           <MenuItem disabled value="">
             <em>{text}</em>

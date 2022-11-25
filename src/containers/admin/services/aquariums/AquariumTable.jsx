@@ -75,7 +75,7 @@ export default function AquariumTable({
               }}
               aquariums={aquariums}
               setAllAquariums={setAllAquariums}
-              sx={{ m: 1, mt: 3, mr: 8, minWidth: 200 }}
+              sx={{ m: 1, mt: 3, mr: 7 }}
             />
           </div>
         </div>
