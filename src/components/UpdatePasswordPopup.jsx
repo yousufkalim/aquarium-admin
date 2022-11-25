@@ -59,6 +59,7 @@ const useOutlinedInputStyles = makeStyles({
 export default function UpdatePasswordPopup({
   openUpdateModal,
   setOpenUpdateModal,
+  closeProfilePopup,
 }) {
   const [showOldPassword, setShowOldPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
@@ -88,6 +89,7 @@ export default function UpdatePasswordPopup({
     const res = await api('put', '/admins/password', values);
     if (res) {
       toast.success('You have successfully updated your password');
+      closeProfilePopup();
       handleClose();
     }
   };

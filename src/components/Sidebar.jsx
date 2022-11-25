@@ -1,3 +1,5 @@
+/* eslint-disable implicit-arrow-linebreak */
+/* eslint-disable no-return-assign */
 /* eslint-disable react/jsx-indent */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable operator-linebreak */
@@ -313,6 +315,13 @@ export default function Sidebar() {
                   height: '100%',
                   objectFit: 'cover',
                 }}
+                id="dummyimg"
+                onError={
+                  () =>
+                    (document.getElementById('dummyimg').src =
+                      undefined)
+                  // eslint-disable-next-line react/jsx-curly-newline
+                }
                 alt=""
               />
             </div>
