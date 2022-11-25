@@ -40,25 +40,18 @@ export default function MultipleSelect({
           onChange={handleChange}
           input={<OutlinedInput />}
           style={style}
+          sx={{ textAlign: 'left', width: '220px' }}
           IconComponent={() => (
             <>
               <KeyboardArrowDownOutlinedIcon />
-              {text === 'Filter' ? (
-                <img
-                  src={filter}
-                  style={{ margin: '0 12%' }}
-                  alt=""
-                />
-              ) : (
-                ''
-              )}
+              <img src={filter} style={{ margin: '0 12%' }} alt="" />
             </>
           )}
           MenuProps={MenuProps}
           inputProps={{ 'aria-label': 'Without label' }}
         >
           <MenuItem disabled value="">
-            <em>{text}</em>
+            {text}
           </MenuItem>
           <MenuItem value="client">Client Name</MenuItem>
           <MenuItem value="tankSize">Tank Size</MenuItem>

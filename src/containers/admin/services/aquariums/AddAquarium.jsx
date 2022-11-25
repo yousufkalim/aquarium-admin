@@ -257,6 +257,21 @@ export default function AddAquarium({
                 value={aquarium?.address}
                 options={allAddresses}
                 getOptionLabel={(option) => option.name}
+                onKeyDown={(e) => {
+                  const code = e.keyCode || e.which;
+
+                  if (code === 36 || code === 13) {
+                    // or e.key === 'Enter'
+                    handleAddressChange(e);
+                  }
+                }}
+                // onKeyPress={(event) => {
+                //   // document.getElementById('select').click();
+                //   if (event.key === 'Enter') {
+                //     handleAddressChange(event);
+                //     console.log('CLICLDED');
+                //   }
+                // }}
                 onChange={(e) => handleAddressChange(e)}
                 renderInput={(params) => (
                   <TextField
@@ -265,6 +280,7 @@ export default function AddAquarium({
                       backgroundColor: 'white',
                       borderRadius: '25px',
                     }}
+                    id="select"
                     label="Address"
                     variant="outlined"
                     classes={outlinedInputStyles}

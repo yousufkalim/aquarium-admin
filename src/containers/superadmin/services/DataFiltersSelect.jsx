@@ -9,7 +9,6 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
-import filter from '../../../assets/images/filter.png';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -75,25 +74,13 @@ export default function MultipleSelect({
           onChange={handleChange}
           input={<OutlinedInput />}
           style={style}
-          IconComponent={() => (
-            <>
-              <KeyboardArrowDownOutlinedIcon />
-              {text === 'Filter' ? (
-                <img
-                  src={filter}
-                  style={{ margin: '0 12%' }}
-                  alt=""
-                />
-              ) : (
-                ''
-              )}
-            </>
-          )}
+          IconComponent={() => <KeyboardArrowDownOutlinedIcon />}
           MenuProps={MenuProps}
           inputProps={{ 'aria-label': 'Without label' }}
         >
-          <MenuItem disabled value="">
-            <em>{text}</em>
+          <MenuItem disabled selected value="">
+            {(selectedFilter === 'client' ? 'Client' : 'Tank Size') ||
+              text}
           </MenuItem>
           {selectedFilter === 'client'
             ? clients.map((client) => (
