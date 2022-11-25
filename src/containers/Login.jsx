@@ -87,7 +87,7 @@ export default function Login() {
                 }}
                 id="outlined-email"
                 classes={outlinedInputStyles}
-                label="Email"
+                label="Email&nbsp;"
                 size="normal"
                 name="email"
                 value={user.email}
@@ -114,7 +114,7 @@ export default function Login() {
                 }}
                 id="outlined-password"
                 classes={outlinedInputStyles}
-                label="Password"
+                label="Password&nbsp;&nbsp;"
                 size="normal"
                 InputLabelProps={{
                   style: {

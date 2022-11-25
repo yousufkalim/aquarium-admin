@@ -2,7 +2,7 @@
 // Init
 import React, { useEffect } from 'react';
 import Button from '@mui/material/Button';
-
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import { NavLink, Link } from 'react-router-dom';
 import Logo from '../assets/images/LOGO.svg';
 
@@ -71,11 +71,27 @@ export default function Navbar() {
           </Link>
         </div>
         <div className="btn">
-          <Link to="/auth/login" style={{ textDecoration: 'none' }}>
-            <Button className="loginBtn" variant="contained">
-              Login
-            </Button>
-          </Link>
+          {localStorage.getItem('token') ? (
+            <Link
+              to={`/${localStorage.getItem('role')}`}
+              style={{ textDecoration: 'none' }}
+            >
+              <AccountCircleOutlinedIcon
+                color="primary"
+                sx={{
+                  fontSize: 40,
+                  color: 'white',
+                  marginTop: '20px',
+                }}
+              />
+            </Link>
+          ) : (
+            <Link to="/auth/login" style={{ textDecoration: 'none' }}>
+              <Button className="loginBtn" variant="contained">
+                Login
+              </Button>
+            </Link>
+          )}
         </div>
       </nav>
     </div>

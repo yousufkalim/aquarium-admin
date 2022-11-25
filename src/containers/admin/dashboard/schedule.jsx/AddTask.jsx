@@ -296,6 +296,7 @@ export default function AddTask({
                     [
                       'drive',
                       'lunch',
+                      'break',
                       'outOfOffice',
                       'endOfShift',
                     ].includes(type)
@@ -310,6 +311,7 @@ export default function AddTask({
                     [
                       'drive',
                       'lunch',
+                      'break',
                       'outOfOffice',
                       'endOfShift',
                     ].includes(type)
@@ -329,6 +331,9 @@ export default function AddTask({
                   </MenuItem>
                   <MenuItem value="lunch" name="type">
                     Lunch
+                  </MenuItem>
+                  <MenuItem value="break" name="type">
+                    Break
                   </MenuItem>
                   <MenuItem value="outOfOffice" name="type">
                     Out of Office
@@ -521,13 +526,14 @@ export default function AddTask({
                     mt: 2,
                     color: '#28CDFF',
                   }}
-                  control={(
+                  control={
+                    // eslint-disable-next-line react/jsx-wrap-multilines
                     <Checkbox
                       defaultChecked
                       onChange={handleCheck}
                       style={{ color: '#28CDFF' }}
                     />
-                  )}
+                  }
                   label="Want to repeat this task every"
                 />
               ) : (

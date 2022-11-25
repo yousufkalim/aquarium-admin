@@ -82,6 +82,16 @@ export default function AddClient({
     });
     setDisable(false);
   };
+  const onChangePhoneNmbr = (e) => {
+    const regex = /^[0-9\b]+$/;
+
+    if (regex.test(e.target.value)) {
+      setValues({
+        ...values,
+        phone_number: e.target.value,
+      });
+    }
+  };
 
   const handleSubmit = async () => {
     if (editing) {
@@ -205,7 +215,7 @@ export default function AddClient({
                 }}
                 value={phone_number}
                 name="phone_number"
-                onChange={onChangeEvent}
+                onChange={onChangePhoneNmbr}
                 InputLabelProps={{
                   style: {
                     color: '#8C8C8C',

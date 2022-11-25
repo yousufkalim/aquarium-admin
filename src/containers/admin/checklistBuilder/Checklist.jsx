@@ -9,6 +9,7 @@ import VehicleUnloadChecklist from './VehicleUnloadChecklist';
 
 export default function Checklist() {
   const [open, setOpen] = useState(false);
+  const [type, setType] = useState('');
   const [checks, setChecks] = useState([]);
   const getCheckList = async () => {
     const { data } = await api('get', '/checklist');
@@ -17,6 +18,9 @@ export default function Checklist() {
     }
   };
 
+  const getType = (t) => {
+    setType(t);
+  };
   useEffect(() => {
     getCheckList();
   }, []);
@@ -33,14 +37,20 @@ export default function Checklist() {
           <ServiceChecklist
             checks={checks}
             getChecks={getCheckList}
+            type={type}
+            setType={setType}
           />
           <VehicleLoadUpChecklist
             checks={checks}
             getChecks={getCheckList}
+            type={type}
+            setType={setType}
           />
           <VehicleUnloadChecklist
             checks={checks}
             getChecks={getCheckList}
+            type={type}
+            setType={setType}
           />
           <div className="btnContainer" style={{ position: 'fixed' }}>
             <Button
@@ -61,6 +71,7 @@ export default function Checklist() {
           open={open}
           setOpen={setOpen}
           getChecks={getCheckList}
+          getType={getType}
         />
       )}
     </div>

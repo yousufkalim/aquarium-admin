@@ -56,6 +56,7 @@ export default function AddTank({
   editing,
   getTanks,
   tank,
+  getType,
 }) {
   const [type, setType] = useState('');
   const [value, setValue] = useState('');
@@ -99,6 +100,9 @@ export default function AddTank({
         toast.success(`Tank ${type} added successfully`);
       }
       getTanks();
+      if (!editing) {
+        getType(type);
+      }
       handleClose();
     }
   };

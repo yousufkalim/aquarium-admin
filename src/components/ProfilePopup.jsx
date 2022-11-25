@@ -1,3 +1,6 @@
+/* eslint-disable operator-linebreak */
+/* eslint-disable implicit-arrow-linebreak */
+/* eslint-disable no-return-assign */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable consistent-return */
 import { React, useState } from 'react';
@@ -10,6 +13,7 @@ import DialogActions from '@mui/material/DialogActions';
 import Typography from '@mui/material/Typography';
 import { toast } from 'react-toastify';
 import { FormControl, TextField } from '@mui/material';
+import { UpdateStore } from '../StoreContext';
 import editIcon from '../assets/images/EditIcon.svg';
 import arrow from '../assets/images/rightArrow.svg';
 import profileDummy from '../assets/images/profileDummy.svg';
@@ -63,6 +67,8 @@ export default function ProfilePopup({ open, setOpen, admin }) {
     email: admin.email,
     profile_pic: '',
   });
+  // eslint-disable-next-line no-unused-vars
+  const updateStore = UpdateStore();
   const [openUpdateModal, setOpenUpdateModal] = useState(false);
   const { name, phone_number, email } = values;
   const handleClose = () => {
@@ -75,9 +81,23 @@ export default function ProfilePopup({ open, setOpen, admin }) {
       [e.target.name]: e.target.value,
     });
   };
-  const handleSelectedFile = (e) => {
+  const handleSelectedFile = async (e) => {
     const myFile = e.target.files[0];
-    values.profile_pic = myFile;
+    // values.profile_pic = myFile;
+
+    const formData = new FormData();
+    formData.append('name', name);
+
+    if (email) {
+      formData.append('email', email);
+    }
+
+    if (myFile) {
+      formData.append('profile_pic', myFile);
+    }
+    const { data } = await api('put', '/admins', formData);
+
+    setValues({ ...values, profile_pic: data.results.profile_pic });
   };
 
   const handleSubmit = async () => {
@@ -92,10 +112,10 @@ export default function ProfilePopup({ open, setOpen, admin }) {
     if (values.profile_pic) {
       formData.append('profile_pic', values.profile_pic);
     }
-    await api('put', '/admins', formData);
+    const { data } = await api('put', '/admins', formData);
 
     toast.success('Profile edited successfully');
-
+    updateStore({ admin: data.results });
     handleClose();
   };
   const outlinedInputStyles = useOutlinedInputStyles();
@@ -136,7 +156,11 @@ export default function ProfilePopup({ open, setOpen, admin }) {
                 }}
               >
                 <img
-                  src={genMediaUrl(admin.profile_pic) || profileDummy}
+                  src={
+                    genMediaUrl(
+                      values.profile_pic || admin.profile_pic,
+                    ) || profileDummy
+                  }
                   style={{
                     border: '3px solid #28CDFF',
                     borderRadius: '100px',
@@ -145,6 +169,13 @@ export default function ProfilePopup({ open, setOpen, admin }) {
                     objectFit: 'cover',
                   }}
                   alt=""
+                  id="dummyimg1"
+                  onError={
+                    () =>
+                      (document.getElementById('dummyimg1').src =
+                        undefined)
+                    // eslint-disable-next-line react/jsx-curly-newline
+                  }
                 />
               </div>
               <label>
@@ -154,6 +185,7 @@ export default function ProfilePopup({ open, setOpen, admin }) {
                   }}
                   name="profile_pic"
                   type="file"
+                  accept="image/*"
                   onChange={handleSelectedFile}
                 />
 
@@ -294,6 +326,7 @@ export default function ProfilePopup({ open, setOpen, admin }) {
         <UpdatePasswordPopup
           openUpdateModal={openUpdateModal}
           setOpenUpdateModal={setOpenUpdateModal}
+          closeProfilePopup={handleClose}
         />
       )}
     </div>

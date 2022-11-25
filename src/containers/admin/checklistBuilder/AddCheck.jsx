@@ -58,6 +58,7 @@ export default function AddTank({
   editing,
   getChecks,
   check,
+  getType,
 }) {
   const [type, setType] = useState('');
   const [title, setTitle] = useState('');
@@ -112,8 +113,12 @@ export default function AddTank({
       toast.success('Check created successfully');
     }
     getChecks();
+    if (!editing) {
+      getType(type);
+    }
     handleClose();
   };
+
   const outlinedInputStyles = useOutlinedInputStyles();
 
   return (

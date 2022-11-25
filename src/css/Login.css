@@ -24,7 +24,6 @@
 
 .signInTxt {
   color: #28cdff;
-  font-family: 'HelveticaBold' !important;
   font-size: 30px;
 }
 
@@ -36,8 +35,8 @@
   text-transform: none !important;
   padding: 10px 36px !important;
   cursor: pointer !important;
+  font-family: 'Helvetica Neue' !important;
   position: relative;
-  font-weight: 600 !important;
 }
 
 .forgetPasswordTxt {
@@ -167,11 +166,6 @@
     height: 83px;
     position: relative;
     top: 2%;
-  }
-
-  .signInTxt {
-    color: #28cdff;
-    font-size: 30px;
   }
 
   .signInBtn {

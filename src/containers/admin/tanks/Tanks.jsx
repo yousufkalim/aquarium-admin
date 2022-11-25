@@ -10,12 +10,16 @@ import TankFilter from './Tank Filter';
 
 export default function Tanks() {
   const [open, setOpen] = useState(false);
+  const [type, setType] = useState('');
   const [tanks, setTanks] = useState([]);
   const getTankDetails = async () => {
     const { data } = await api('get', '/tank');
     if (data) {
       setTanks(data?.tanks);
     }
+  };
+  const getType = (t) => {
+    setType(t);
   };
 
   useEffect(() => {
@@ -31,10 +35,30 @@ export default function Tanks() {
           lg={9}
           sx={{ backgroundColor: '#d9f4ff', height: '100%' }}
         >
-          <TankSize tanks={tanks} getTanks={getTankDetails} />
-          <TankType tanks={tanks} getTanks={getTankDetails} />
-          <TankMaterial tanks={tanks} getTanks={getTankDetails} />
-          <TankFilter tanks={tanks} getTanks={getTankDetails} />
+          <TankSize
+            tanks={tanks}
+            getTanks={getTankDetails}
+            type={type}
+            setType={setType}
+          />
+          <TankType
+            tanks={tanks}
+            getTanks={getTankDetails}
+            type={type}
+            setType={setType}
+          />
+          <TankMaterial
+            tanks={tanks}
+            getTanks={getTankDetails}
+            type={type}
+            setType={setType}
+          />
+          <TankFilter
+            tanks={tanks}
+            getTanks={getTankDetails}
+            type={type}
+            setType={setType}
+          />
           <div className="btnContainer" style={{ position: 'fixed' }}>
             <Button
               variant="contained"
@@ -54,6 +78,7 @@ export default function Tanks() {
           open={open}
           setOpen={setOpen}
           getTanks={getTankDetails}
+          getType={getType}
         />
       )}
     </div>

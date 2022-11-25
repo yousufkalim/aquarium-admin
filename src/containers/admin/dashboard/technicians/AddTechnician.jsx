@@ -78,8 +78,19 @@ export default function AddTechnician({
       [e.target.name]: e.target.value,
     });
   };
+  const onChangePhoneNmbr = (e) => {
+    const regex = /^[0-9\b]+$/;
+
+    if (regex.test(e.target.value)) {
+      setValues({
+        ...values,
+        phone_number: e.target.value,
+      });
+    }
+  };
 
   const handleSubmit = async () => {
+    // const regex = /^[0-9\b]+$/;
     if (editing) {
       await api('put', `/users/${technician._id}`, values);
       toast.success('Technician edited successfully');
@@ -200,7 +211,7 @@ export default function AddTechnician({
                   maxLength: 10,
                   style: { color: '#8C8C8C', fontWeight: '700' },
                 }}
-                onChange={onChangeEvent}
+                onChange={onChangePhoneNmbr}
                 InputLabelProps={{
                   style: {
                     color: '#8C8C8C',
