@@ -111,6 +111,7 @@ export default function ResetPasswordPopup() {
     if (res) {
       toast.success('You have successfully updated your password');
       handleClose();
+      navigate('/auth/login');
     }
   };
 
