@@ -8,7 +8,7 @@ import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import Button from '@mui/material/Button';
@@ -19,7 +19,6 @@ import logout from '../assets/images/Logout.svg';
 import profileDummy from '../assets/images/profileDummy.svg';
 import arrowUp from '../assets/images/arrowUp.svg';
 import { genMediaUrl } from '../config';
-
 import ProfilePopup from './ProfilePopup';
 import { Store } from '../StoreContext';
 
@@ -27,14 +26,15 @@ import { Store } from '../StoreContext';
 import { superadminRoutes, adminRoutes } from '../routes/routes';
 
 const drawerWidth = 300;
-
 export default function Sidebar() {
+  const navigate = useNavigate();
   const { admin } = Store();
   const [open, setOpen] = useState(false);
 
   const handleLogout = () => {
     localStorage.removeItem('token');
-    window.location = '/auth/login';
+
+    navigate('/auth/login');
   };
   const [updownIconToggle, setupdownIconToggle] = useState({
     key: '',
