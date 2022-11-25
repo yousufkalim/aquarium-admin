@@ -113,11 +113,12 @@ export default function AddTank({
       toast.success('Check created successfully');
     }
     getChecks();
-    getType(type);
+    if (!editing) {
+      getType(type);
+    }
     handleClose();
   };
 
-  // const getType=()=>{}
   const outlinedInputStyles = useOutlinedInputStyles();
 
   return (
