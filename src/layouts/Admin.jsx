@@ -26,6 +26,7 @@ function Admin() {
         window.location = '/superadmin';
       }
       updateStore({ admin: data.admin, loggedIn: true });
+      localStorage.setItem('role', data.admin.role);
     });
 
     //  eslint-disable-next-line react-hooks/exhaustive-deps

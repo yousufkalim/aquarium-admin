@@ -100,7 +100,9 @@ export default function AddTank({
         toast.success(`Tank ${type} added successfully`);
       }
       getTanks();
-      getType(type);
+      if (!editing) {
+        getType(type);
+      }
       handleClose();
     }
   };
