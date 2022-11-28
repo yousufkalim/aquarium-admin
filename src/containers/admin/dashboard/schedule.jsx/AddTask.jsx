@@ -527,12 +527,9 @@ export default function AddTask({
                     color: '#28CDFF',
                   }}
                   control={
-                    // eslint-disable-next-line react/jsx-wrap-multilines
-                    <Checkbox
-                      defaultChecked
-                      onChange={handleCheck}
-                      style={{ color: '#28CDFF' }}
-                    />
+
+                    <Checkbox defaultChecked onChange={handleCheck} style={{ color: '#28CDFF' }} />
+
                   }
                   label="Want to repeat this task every"
                 />

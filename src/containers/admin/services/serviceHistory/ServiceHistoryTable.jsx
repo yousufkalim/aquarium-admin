@@ -249,7 +249,7 @@ export default function ServiceHistoryTable({ serviceHistory }) {
                             width: '100%',
                             height: '100%',
                             border: '3px solid #28CDFF',
-                            borderRadius: '50px',
+                            borderRadius: '50%',
                           }}
                           round
                           size="50"

@@ -235,7 +235,7 @@ export default function AddTank({
                     // eslint-disable-next-line implicit-arrow-linebreak
                     type === 'size'
                       ? onChangeEvent(e)
-                      : setValue(e.target.value)
+                      : setValue(e.target.value) || setDisable(false)
                   // eslint-disable-next-line react/jsx-curly-newline
                 }
                 InputLabelProps={{

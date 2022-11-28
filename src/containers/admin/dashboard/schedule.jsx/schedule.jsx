@@ -80,13 +80,30 @@ export default function Schedule() {
         <Grid xl={2} lg={2.5}>
           <div className="scheduleTech">
             <div className="scheduleCard">
-              <img
-                style={{ width: '100%' }}
-                src={
-                  genMediaUrl(technician.profile_pic) || profileDummy
-                }
-                alt="add"
-              />
+
+              {technician?.profile_pic ? (
+                <img
+                  src={
+                    // eslint-disable-next-line operator-linebreak
+                    genMediaUrl(technician?.profile_pic)
+                  }
+                  alt=""
+                />
+              ) : (
+                <Avatar
+                  name={technician?.first_name}
+                  style={{
+                    width: 'fit-content',
+                    height: 'fit-content',
+                    border: '3px solid #28CDFF',
+                    borderRadius: '50%',
+                  }}
+                  round
+                  size="150"
+                  alt="profile_pic"
+                />
+              )}
+
             </div>
             <div>
               <h1 className="techName">{`${technician.first_name} ${technician.last_name}`}</h1>
