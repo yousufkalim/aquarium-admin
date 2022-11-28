@@ -58,8 +58,7 @@ export default function AddTank({
   editing,
   getChecks,
   check,
-  disable,
-  setDisable,
+  getType,
 }) {
   const [type, setType] = useState('');
   const [title, setTitle] = useState('');
@@ -114,8 +113,12 @@ export default function AddTank({
       toast.success('Check created successfully');
     }
     getChecks();
+    if (!editing) {
+      getType(type);
+    }
     handleClose();
   };
+
   const outlinedInputStyles = useOutlinedInputStyles();
 
   return (
@@ -223,10 +226,7 @@ export default function AddTank({
                 name="title"
                 type="text"
                 value={title}
-                onChange={(e) => {
-                  setTitle(e.target.value);
-                  setDisable(false);
-                }}
+                onChange={(e) => setTitle(e.target.value)}
                 InputLabelProps={{
                   style: {
                     color: '#8C8C8C',
@@ -250,10 +250,7 @@ export default function AddTank({
                   name="description"
                   value={description}
                   label="Description (optional)"
-                  onChange={(e) => {
-                    setDescription(e.target.value);
-                    setDisable(false);
-                  }}
+                  onChange={(e) => setDescription(e.target.value)}
                   sx={{
                     backgroundColor: 'white',
                     borderRadius: '25px',
@@ -302,7 +299,6 @@ export default function AddTank({
                         setAttachment({});
                         setDescription(e.target.value);
                       }
-                      setDisable(false);
                     }}
                     InputLabelProps={{
                       style: {
@@ -358,9 +354,8 @@ export default function AddTank({
           </Button>
           <Button
             onClick={handleSubmit}
-            className={`${disable ? 'disable' : 'resetPasswordBtn'}`}
+            className="resetPasswordBtn"
             variant="contained"
-            disabled={disable}
           >
             {editing ? 'Update Check' : 'Add Check'}
           </Button>

@@ -35,13 +35,14 @@ const StyledTableRow = styled(TableRow)(() => ({
 export default function VehicleLoadUpChecklist({
   checks,
   getChecks,
+  type,
+  setType,
 }) {
   const [del, setDel] = useState(false);
   const [editing, setEditing] = useState(false);
   const [check, setCheck] = useState('');
   const [expanded, setExpanded] = useState('');
   const [toggleIcon, setToggleIcon] = useState(false);
-  const [disable, setDisable] = useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -49,8 +50,12 @@ export default function VehicleLoadUpChecklist({
   };
 
   useEffect(() => {
-    getChecks();
-  }, []);
+    if (type === 'loadup') {
+      setExpanded(true);
+      setToggleIcon(true);
+    }
+    setType('');
+  }, [type]);
 
   return (
     <div className="CheckList" style={{ padding: '1% 3% 1% 1%' }}>
@@ -154,7 +159,6 @@ export default function VehicleLoadUpChecklist({
                           onClick={() => {
                             setEditing(true);
                             setCheck(row);
-                            setDisable(true);
                           }}
                           role="presentation"
                         />
@@ -188,8 +192,6 @@ export default function VehicleLoadUpChecklist({
           editing={editing}
           check={check}
           getChecks={getChecks}
-          disable={disable}
-          setDisable={setDisable}
         />
       )}
       {del && (

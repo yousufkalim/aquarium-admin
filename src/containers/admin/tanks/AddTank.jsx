@@ -56,8 +56,7 @@ export default function AddTank({
   editing,
   getTanks,
   tank,
-  disable,
-  setDisable,
+  getType,
 }) {
   const [type, setType] = useState('');
   const [value, setValue] = useState('');
@@ -78,7 +77,6 @@ export default function AddTank({
     if (e.target.value === '' || regex.test(e.target.value)) {
       setValue(e.target.value);
     }
-    setDisable(false);
   };
 
   const handleSubmit = async () => {
@@ -102,6 +100,9 @@ export default function AddTank({
         toast.success(`Tank ${type} added successfully`);
       }
       getTanks();
+      if (!editing) {
+        getType(type);
+      }
       handleClose();
     }
   };
@@ -258,8 +259,7 @@ export default function AddTank({
           </Button>
           <Button
             onClick={handleSubmit}
-            className={`${disable ? 'disable' : 'resetPasswordBtn'}`}
-            disabled={disable}
+            className="resetPasswordBtn"
             variant="contained"
           >
             {editing ? 'Update Value' : 'Add Value'}

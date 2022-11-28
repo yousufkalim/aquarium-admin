@@ -1,3 +1,6 @@
+/* eslint-disable operator-linebreak */
+/* eslint-disable implicit-arrow-linebreak */
+/* eslint-disable no-return-assign */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable consistent-return */
 import { React, useState } from 'react';
@@ -10,9 +13,11 @@ import DialogActions from '@mui/material/DialogActions';
 import Typography from '@mui/material/Typography';
 import { toast } from 'react-toastify';
 import { FormControl, TextField } from '@mui/material';
-import Avatar from 'react-avatar';
+import { UpdateStore } from '../StoreContext';
 import editIcon from '../assets/images/EditIcon.svg';
 import arrow from '../assets/images/rightArrow.svg';
+import profileDummy from '../assets/images/profileDummy.svg';
+// import { genMediaUrl } from '../config';
 import api from '../api/index';
 import UpdatePasswordPopup from './UpdatePasswordPopup';
 import { genMediaUrl } from '../config';
@@ -55,19 +60,15 @@ const useOutlinedInputStyles = makeStyles({
     },
   },
 });
-export default function ProfilePopup({
-  open,
-  setOpen,
-  admin,
-  disable,
-  setDisable,
-}) {
+export default function ProfilePopup({ open, setOpen, admin }) {
   const [values, setValues] = useState({
     name: admin.name,
     phone_number: admin.phone_number,
     email: admin.email,
     profile_pic: '',
   });
+  // eslint-disable-next-line no-unused-vars
+  const updateStore = UpdateStore();
   const [openUpdateModal, setOpenUpdateModal] = useState(false);
   const { name, phone_number, email } = values;
   const handleClose = () => {
@@ -79,11 +80,24 @@ export default function ProfilePopup({
       ...values,
       [e.target.name]: e.target.value,
     });
-    setDisable(false);
   };
-  const handleSelectedFile = (e) => {
+  const handleSelectedFile = async (e) => {
     const myFile = e.target.files[0];
-    values.profile_pic = myFile;
+    // values.profile_pic = myFile;
+
+    const formData = new FormData();
+    formData.append('name', name);
+
+    if (email) {
+      formData.append('email', email);
+    }
+
+    if (myFile) {
+      formData.append('profile_pic', myFile);
+    }
+    const { data } = await api('put', '/admins', formData);
+
+    setValues({ ...values, profile_pic: data.results.profile_pic });
   };
 
   const handleSubmit = async () => {
@@ -98,10 +112,10 @@ export default function ProfilePopup({
     if (values.profile_pic) {
       formData.append('profile_pic', values.profile_pic);
     }
-    await api('put', '/admins', formData);
+    const { data } = await api('put', '/admins', formData);
 
     toast.success('Profile edited successfully');
-
+    updateStore({ admin: data.results });
     handleClose();
   };
   const outlinedInputStyles = useOutlinedInputStyles();
@@ -141,6 +155,7 @@ export default function ProfilePopup({
                   margin: 'auto',
                 }}
               >
+
                 {admin?.profile_pic ? (
                   <img
                     style={{
@@ -170,6 +185,7 @@ export default function ProfilePopup({
                     alt="profile_pic"
                   />
                 )}
+
               </div>
               <label>
                 <input
@@ -178,6 +194,7 @@ export default function ProfilePopup({
                   }}
                   name="profile_pic"
                   type="file"
+                  accept="image/*"
                   onChange={handleSelectedFile}
                 />
 
@@ -307,8 +324,7 @@ export default function ProfilePopup({
           </Button>
           <Button
             onClick={handleSubmit}
-            className={`${disable ? 'disable' : 'resetPasswordBtn'}`}
-            disabled={disable}
+            className="resetPasswordBtn"
             variant="contained"
           >
             Save Changes
@@ -317,10 +333,9 @@ export default function ProfilePopup({
       </BootstrapDialog>
       {openUpdateModal && (
         <UpdatePasswordPopup
-          disable={disable}
-          setDisable={setDisable}
           openUpdateModal={openUpdateModal}
           setOpenUpdateModal={setOpenUpdateModal}
+          closeProfilePopup={handleClose}
         />
       )}
     </div>

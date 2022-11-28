@@ -55,8 +55,6 @@ export default function AddTechnician({
   editing,
   getTechnicians,
   technician,
-  disable,
-  setDisable,
 }) {
   const CHARACTER_LIMIT = 30;
   const [values, setValues] = useState({
@@ -79,10 +77,20 @@ export default function AddTechnician({
       ...values,
       [e.target.name]: e.target.value,
     });
-    setDisable(false);
+  };
+  const onChangePhoneNmbr = (e) => {
+    const regex = /^[0-9\b]+$/;
+
+    if (regex.test(e.target.value)) {
+      setValues({
+        ...values,
+        phone_number: e.target.value,
+      });
+    }
   };
 
   const handleSubmit = async () => {
+    // const regex = /^[0-9\b]+$/;
     if (editing) {
       await api('put', `/users/${technician._id}`, values);
       toast.success('Technician edited successfully');
@@ -203,7 +211,7 @@ export default function AddTechnician({
                   maxLength: 10,
                   style: { color: '#8C8C8C', fontWeight: '700' },
                 }}
-                onChange={onChangeEvent}
+                onChange={onChangePhoneNmbr}
                 InputLabelProps={{
                   style: {
                     color: '#8C8C8C',
@@ -225,7 +233,7 @@ export default function AddTechnician({
           </Button>
           <Button
             onClick={handleSubmit}
-            className={`${disable ? 'disable' : 'resetPasswordBtn'}`}
+            className="resetPasswordBtn"
             variant="contained"
             disabled={disable}
           >

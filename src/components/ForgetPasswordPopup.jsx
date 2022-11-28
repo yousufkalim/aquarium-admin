@@ -92,7 +92,7 @@ export default function ForgetPasswordPopup({ open, setOpen }) {
               style={{
                 fontSize: '24px',
                 color: '#28CDFF',
-                fontFamily: 'HelveticaBold',
+                fontFamily: 'HelveticaMedium',
               }}
             >
               Forgot Password
@@ -112,7 +112,7 @@ export default function ForgetPasswordPopup({ open, setOpen }) {
                 }}
                 id="outlined-email"
                 classes={outlinedInputStyles}
-                label="Email"
+                label="Email&nbsp;"
                 size="normal"
                 value={email}
                 type={email}

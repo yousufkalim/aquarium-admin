@@ -32,7 +32,6 @@ export default function ProductTable({ products, getProducts }) {
   const [del, setDel] = useState(false);
   const [editing, setEditing] = useState(false);
   const [product, setProduct] = useState('');
-  const [disable, setDisable] = useState(false);
 
   useEffect(() => {
     getProducts();
@@ -132,7 +131,6 @@ export default function ProductTable({ products, getProducts }) {
                     onClick={() => {
                       setEditing(true);
                       setProduct(row);
-                      setDisable(true);
                     }}
                     role="presentation"
                   />
@@ -161,8 +159,6 @@ export default function ProductTable({ products, getProducts }) {
           editing={editing}
           product={product}
           getProducts={getProducts}
-          disable={disable}
-          setDisable={setDisable}
         />
       )}
       {del && (

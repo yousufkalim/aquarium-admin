@@ -101,8 +101,6 @@ export default function AddAquarium({
   aquarium,
   clients,
   tanks,
-  disable,
-  setDisable,
 }) {
   const divStyle = {
     color: '#8C8C8C',
@@ -118,6 +116,11 @@ export default function AddAquarium({
       type: '',
       material: '',
       filter: '',
+    },
+    address: {
+      name: '',
+      lat: '',
+      lng: '',
     },
     service_details: '',
   });
@@ -141,7 +144,6 @@ export default function AddAquarium({
       ...values,
       [e.target.name]: e.target.value,
     });
-    setDisable(false);
   };
   const onChangeTankDetails = (e) => {
     setValues((prev) => ({
@@ -151,7 +153,6 @@ export default function AddAquarium({
         [e.target.name]: e.target.value,
       },
     }));
-    setDisable(false);
   };
 
   const handleGetAddress = async ({ target }) => {
@@ -163,30 +164,15 @@ export default function AddAquarium({
   };
 
   // Handling Address Change
-  const handleAddressChange = async ({ target }) => {
-    if (target.textContent) {
-      const index = allAddresses.findIndex(
-        (a) => a.name === target.textContent,
-      );
-      setValues({
-        ...values,
-        address: {
-          name: allAddresses[index].name,
-          lat: allAddresses[index].lat,
-          lng: allAddresses[index].lng,
-        },
-      });
-    } else {
-      setValues({
-        ...values,
-        address: {
-          name: '',
-          lat: '',
-          lng: '',
-        },
-      });
-    }
-    setDisable(false);
+  const handleAddressChange = async (event, value) => {
+    setValues({
+      ...values,
+      address: {
+        name: value.name,
+        lat: value.lat,
+        lng: value.lng,
+      },
+    });
   };
 
   const handleSubmit = async () => {
@@ -259,10 +245,14 @@ export default function AddAquarium({
             >
               <Autocomplete
                 id="combo-box-demo"
-                value={aquarium?.address}
+                value={values?.address}
                 options={allAddresses}
                 getOptionLabel={(option) => option.name}
-                onChange={(e) => handleAddressChange(e)}
+                onChange={(event, value) => {
+                  handleAddressChange(event, value);
+                  console.log('v', values);
+                  console.log('v', value);
+                }}
                 renderInput={(params) => (
                   <TextField
                     {...params}
@@ -270,6 +260,7 @@ export default function AddAquarium({
                       backgroundColor: 'white',
                       borderRadius: '25px',
                     }}
+                    id="select"
                     label="Address"
                     variant="outlined"
                     classes={outlinedInputStyles}
@@ -450,9 +441,8 @@ export default function AddAquarium({
           </Button>
           <Button
             onClick={handleSubmit}
-            className={`${disable ? 'disable' : 'resetPasswordBtn'}`}
+            className="resetPasswordBtn"
             variant="contained"
-            disabled={disable}
           >
             {editing ? 'Update Aquarium' : 'Add Aquarium'}
           </Button>

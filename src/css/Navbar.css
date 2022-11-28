@@ -59,6 +59,8 @@
   text-decoration: none;
   color: white;
   font-size: 22px;
+  font-family: 'Helvetica Neue';
+  font-weight: 400;
 }
 
 .nav-item:hover {

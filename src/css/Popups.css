@@ -157,8 +157,6 @@
   cursor: pointer !important;
   margin: 16px 10px !important;
   font-family: 'HelveticaMedium' !important;
-  box-shadow: 0px 2px 4px 0px rgba(169, 240, 242, 0.55);
-  -webkit-box-shadow: 0px 2px 4px 0px rgba(169, 240, 242, 0.55);
 }
 
 .activeTaskBtn {
@@ -173,15 +171,11 @@
   cursor: pointer !important;
   margin: 16px 10px !important;
   font-family: 'HelveticaMedium' !important;
-  box-shadow: 0px 2px 4px 0px rgba(169, 240, 242, 0.55);
-  -webkit-box-shadow: 0px 2px 4px 0px rgba(169, 240, 242, 0.55);
 }
 
 .taskOptionBtns:hover {
   background-color: #28cdff !important;
   color: #202020 !important;
-  box-shadow: 0px 2px 4px 0px rgba(169, 240, 242, 0.55);
-  -webkit-box-shadow: 0px 2px 4px 0px rgba(169, 240, 242, 0.55);
 }
 
 .otherTaskBtn {
@@ -191,12 +185,10 @@
   font-weight: 500 !important;
   font-size: 16px !important;
   border-radius: 16px !important;
-  padding: 0px 12px !important;
+  padding: 0px !important;
   text-transform: none !important;
   cursor: pointer !important;
   margin: 17px 10px 13px 10px !important;
-  box-shadow: 0px 2px 4px 0px rgba(169, 240, 242, 0.55);
-  -webkit-box-shadow: 0px 2px 4px 0px rgba(169, 240, 242, 0.55);
 }
 
 .activeOtherTaskBtn {
@@ -210,16 +202,12 @@
   text-transform: none !important;
   cursor: pointer !important;
   margin: 10px !important;
-  box-shadow: 0px 2px 4px 0px rgba(169, 240, 242, 0.55);
-  -webkit-box-shadow: 0px 2px 4px 0px rgba(169, 240, 242, 0.55);
 }
 
 .otherTaskBtn:hover {
   background-color: #28cdff !important;
   color: #202020 !important;
   /* border: 2px solid #cdeefc !important; */
-  box-shadow: 0px 2px 4px 0px rgba(169, 240, 242, 0.55);
-  -webkit-box-shadow: 0px 2px 4px 0px rgba(169, 240, 242, 0.55);
 }
 
 .profileBtn {
@@ -241,7 +229,7 @@
   background-color: white;
   border-radius: 25px;
   margin-top: 20px;
-  padding: 7.5% 7.5% 7.5% 10.5%;
+  padding: 7.5%;
   width: 150px;
 }
 
@@ -261,7 +249,7 @@
 .react-datepicker-wrapper .react-datepicker__input-container input {
   border: none;
   font-size: 15px;
-  width: 130px;
+  width: 131px;
   outline: none;
 }
 

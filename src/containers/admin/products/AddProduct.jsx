@@ -55,8 +55,6 @@ export default function AddProduct({
   editing,
   getProducts,
   product,
-  disable,
-  setDisable,
 }) {
   const [values, setValues] = useState({
     name: '',
@@ -77,7 +75,6 @@ export default function AddProduct({
       ...values,
       [e.target.name]: e.target.value,
     });
-    setDisable(false);
   };
 
   const handleSubmit = async (e) => {
@@ -146,7 +143,6 @@ export default function AddProduct({
                   borderRadius: '25px',
                 }}
                 inputProps={{
-                  maxlength: 20,
                   style: { color: '#8C8C8C', fontWeight: '700' },
                 }}
                 id="outlined-name"
@@ -175,7 +171,6 @@ export default function AddProduct({
                   borderRadius: '25px',
                 }}
                 inputProps={{
-                  maxlength: 10,
                   style: { color: '#8C8C8C', fontWeight: '700' },
                 }}
                 id="outlined-price"
@@ -206,8 +201,7 @@ export default function AddProduct({
           </Button>
           <Button
             onClick={handleSubmit}
-            className={`${disable ? 'disable' : 'resetPasswordBtn'}`}
-            disabled={disable}
+            className="resetPasswordBtn"
             variant="contained"
           >
             {editing ? 'Save' : 'Add Product'}

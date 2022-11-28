@@ -11,7 +11,6 @@ import moment from 'moment-timezone';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import TableHead from '@mui/material/TableHead';
-// import profileDummy from '../../../../assets/images/profileDummy.svg';
 import Avatar from 'react-avatar';
 import DataFiltersSelect from './DataFiltersSelect';
 import FiltersSelect from './FiltersSelect';
@@ -78,20 +77,12 @@ export default function ServiceHistoryTable({ serviceHistory }) {
             display: 'flex',
             flexDirection: 'row',
             justifyContent: 'space-between',
-            height: '104px',
-            alignItems: 'center',
           }}
         >
           <div>
-            <h1 className="thead">History</h1>
+            <h1 className="thead">Service History</h1>
           </div>
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              marginTop: '-10px',
-            }}
-          >
+          <div style={{ display: 'flex', flexDirection: 'row' }}>
             {selectedFilter === 'date' ? (
               <div
                 className="date-filter-div2"
@@ -225,7 +216,7 @@ export default function ServiceHistoryTable({ serviceHistory }) {
                 >
                   {`${moment(row.start_time)
                     .tz('America/Tijuana')
-                    .format('hh:mm A')} - ${moment(row.end_time)
+                    .format('hh:mm A')}-${moment(row.end_time)
                     .tz('America/Tijuana')
                     .format('hh:mm A')}`}
                 </StyledTableCell>

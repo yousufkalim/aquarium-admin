@@ -32,13 +32,17 @@ const StyledTableRow = styled(TableRow)(() => ({
   },
 }));
 
-export default function TankFilter({ tanks, getTanks }) {
+export default function TankFilter({
+  tanks,
+  getTanks,
+  type,
+  setType,
+}) {
   const [del, setDel] = useState(false);
   const [editing, setEditing] = useState(false);
   const [tank, setTank] = useState('');
   const [expanded, setExpanded] = useState('');
   const [toggleIcon, setToggleIcon] = useState(false);
-  const [disable, setDisable] = useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -46,8 +50,12 @@ export default function TankFilter({ tanks, getTanks }) {
   };
 
   useEffect(() => {
-    getTanks();
-  }, []);
+    if (type === 'filter') {
+      setExpanded(true);
+      setToggleIcon(true);
+    }
+    setType('');
+  }, [type]);
 
   return (
     <div className="tankDetails" style={{ padding: '1% 3% 1% 1%' }}>
@@ -134,7 +142,6 @@ export default function TankFilter({ tanks, getTanks }) {
                           onClick={() => {
                             setEditing(true);
                             setTank(row);
-                            setDisable(true);
                           }}
                           role="presentation"
                         />
@@ -167,8 +174,7 @@ export default function TankFilter({ tanks, getTanks }) {
           setOpen={setEditing}
           editing={editing}
           tank={tank}
-          disable={disable}
-          setDisable={setDisable}
+          getTanks={getTanks}
         />
       )}
       {del && (

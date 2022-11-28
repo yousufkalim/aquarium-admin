@@ -33,10 +33,11 @@ export default function AdminTable({ admins, getAdmins }) {
   const [del, setDel] = useState(false);
   const [editing, setEditing] = useState(false);
   const [admin, setAdmin] = useState('');
+  const [Admins, setAdmins] = useState([]);
 
   useEffect(() => {
-    getAdmins();
-  }, []);
+    setAdmins(admins);
+  }, [admins]);
   return (
     <div className="bg">
       <TableContainer
@@ -58,7 +59,7 @@ export default function AdminTable({ admins, getAdmins }) {
           aria-label="customized table"
         >
           <TableBody>
-            {admins.map((row) => (
+            {Admins.map((row, i) => (
               <StyledTableRow key={row.name}>
                 <StyledTableCell
                   align="right"
@@ -82,6 +83,16 @@ export default function AdminTable({ admins, getAdmins }) {
                         src={
                           // eslint-disable-next-line operator-linebreak
                           genMediaUrl(row?.profile_pic)
+                        }
+                        onError={
+                          () =>
+                            // eslint-disable-next-line implicit-arrow-linebreak
+                            setAdmins((prev) => {
+                              // eslint-disable-next-line no-param-reassign, operator-linebreak
+                              prev[i].profile_pic = undefined;
+                              return [...prev];
+                            })
+                          // eslint-disable-next-line react/jsx-curly-newline
                         }
                         alt=""
                       />

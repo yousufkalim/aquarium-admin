@@ -32,13 +32,12 @@ const StyledTableRow = styled(TableRow)(() => ({
   },
 }));
 
-export default function TankSize({ tanks, getTanks }) {
+export default function TankSize({ tanks, getTanks, type, setType }) {
   const [del, setDel] = useState(false);
   const [editing, setEditing] = useState(false);
   const [tank, setTank] = useState('');
   const [expanded, setExpanded] = useState('');
   const [toggleIcon, setToggleIcon] = useState(false);
-  const [disable, setDisable] = useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -46,8 +45,12 @@ export default function TankSize({ tanks, getTanks }) {
   };
 
   useEffect(() => {
-    getTanks();
-  }, []);
+    if (type === 'size') {
+      setExpanded(true);
+      setToggleIcon(true);
+    }
+    setType('');
+  }, [type]);
 
   return (
     <div
@@ -139,7 +142,6 @@ export default function TankSize({ tanks, getTanks }) {
                           onClick={() => {
                             setEditing(true);
                             setTank(row);
-                            setDisable(true);
                           }}
                           role="presentation"
                         />
@@ -173,8 +175,6 @@ export default function TankSize({ tanks, getTanks }) {
           editing={editing}
           tank={tank}
           getTanks={getTanks}
-          disable={disable}
-          setDisable={setDisable}
         />
       )}
       {del && (

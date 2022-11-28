@@ -59,8 +59,7 @@ const useOutlinedInputStyles = makeStyles({
 export default function UpdatePasswordPopup({
   openUpdateModal,
   setOpenUpdateModal,
-  disable,
-  setDisable,
+  closeProfilePopup,
 }) {
   const [showOldPassword, setShowOldPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
@@ -79,7 +78,6 @@ export default function UpdatePasswordPopup({
       ...values,
       [e.target.name]: e.target.value,
     });
-    setDisable(false);
   };
   const outlinedInputStyles = useOutlinedInputStyles();
 
@@ -91,6 +89,7 @@ export default function UpdatePasswordPopup({
     const res = await api('put', '/admins/password', values);
     if (res) {
       toast.success('You have successfully updated your password');
+      closeProfilePopup();
       handleClose();
     }
   };
@@ -299,8 +298,7 @@ export default function UpdatePasswordPopup({
           </Button>
           <Button
             onClick={handleForgetPassword}
-            className={`${disable ? 'disable' : 'resetPasswordBtn'}`}
-            disabled={disable}
+            className="resetPasswordBtn"
             variant="contained"
           >
             Update

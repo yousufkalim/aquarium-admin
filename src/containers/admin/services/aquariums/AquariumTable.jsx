@@ -39,7 +39,6 @@ export default function AquariumTable({
   const [editing, setEditing] = useState(false);
   const [aquarium, setAquarium] = useState('');
   const [allAquariums, setAllAquariums] = useState(aquariums);
-  const [disable, setDisable] = useState(false);
 
   useEffect(() => {
     setAllAquariums(aquariums);
@@ -76,7 +75,7 @@ export default function AquariumTable({
               }}
               aquariums={aquariums}
               setAllAquariums={setAllAquariums}
-              sx={{ m: 1, mt: 3, mr: 8, minWidth: 200 }}
+              sx={{ m: 1, mt: 3, mr: 7 }}
             />
           </div>
         </div>
@@ -189,7 +188,6 @@ export default function AquariumTable({
                     onClick={() => {
                       setEditing(true);
                       setAquarium(row);
-                      setDisable(true);
                     }}
                     role="presentation"
                   />
@@ -220,8 +218,6 @@ export default function AquariumTable({
           getAquariums={getAquariums}
           clients={clients}
           tanks={tanks}
-          disable={disable}
-          setDisable={setDisable}
         />
       )}
       {del && (
