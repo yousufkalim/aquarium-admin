@@ -227,6 +227,7 @@ export default function AddTechnician({
             onClick={handleSubmit}
             className={`${disable ? 'disable' : 'resetPasswordBtn'}`}
             variant="contained"
+            disabled={disable}
           >
             {editing ? 'Save' : 'Send Invite'}
           </Button>

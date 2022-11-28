@@ -93,12 +93,12 @@ export default function Schedule() {
                   name={technician?.first_name}
                   style={{
                     width: 'fit-content',
-                    height: '100%',
+                    height: 'fit-content',
                     border: '3px solid #28CDFF',
-                    borderRadius: '50px',
+                    borderRadius: '50%',
                   }}
                   round
-                  size="50"
+                  size="150"
                   alt="profile_pic"
                 />
               )}

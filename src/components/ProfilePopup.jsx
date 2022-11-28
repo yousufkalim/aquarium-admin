@@ -163,10 +163,10 @@ export default function ProfilePopup({
                       width: 'fit-content',
                       height: 'fit-content',
                       border: '3px solid #28CDFF',
-                      borderRadius: '50px',
+                      borderRadius: '50%',
                     }}
                     round
-                    size="100"
+                    size="140"
                     alt="profile_pic"
                   />
                 )}

@@ -92,7 +92,7 @@ export default function AdminTable({ admins, getAdmins }) {
                           width: 'fit-content',
                           height: '100%',
                           border: '3px solid #28CDFF',
-                          borderRadius: '50px',
+                          borderRadius: '50%',
                         }}
                         round
                         size="50"

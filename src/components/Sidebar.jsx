@@ -24,7 +24,7 @@ import { Store } from '../StoreContext';
 // eslint-disable-next-line import/no-cycle
 import { superadminRoutes, adminRoutes } from '../routes/routes';
 
-const drawerWidth = 300;
+const drawerWidth = 320;
 
 export default function Sidebar() {
   const { admin } = Store();
@@ -303,8 +303,8 @@ export default function Sidebar() {
           >
             <div
               style={{
-                marginRight: '7%',
-                minWidth: '20%',
+                marginRight: '4%',
+                minWidth: '18%',
                 width: '20%',
                 height: '51px',
               }}

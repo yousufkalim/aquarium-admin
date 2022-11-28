@@ -80,16 +80,25 @@ export default function AddProduct({
     setDisable(false);
   };
 
-  const handleSubmit = async () => {
-    if (editing) {
-      await api('put', `/products/${product._id}`, values);
-      toast.success('Product edited successfully');
+  const handleSubmit = async (e) => {
+    const regex = /^[0-9\b]+$/;
+    if (
+      // eslint-disable-next-line operator-linebreak
+      e.target.name === 'price' &&
+      !regex.test(e.target.value)
+    ) {
+      toast.error('Only numeric characters are allowed');
     } else {
-      await api('post', '/products', values);
-      toast.success('Product created successfully');
+      if (editing) {
+        await api('put', `/products/${product._id}`, values);
+        toast.success('Product edited successfully');
+      } else {
+        await api('post', '/products', values);
+        toast.success('Product created successfully');
+      }
+      handleClose();
+      getProducts();
     }
-    handleClose();
-    getProducts();
   };
   const outlinedInputStyles = useOutlinedInputStyles();
 
