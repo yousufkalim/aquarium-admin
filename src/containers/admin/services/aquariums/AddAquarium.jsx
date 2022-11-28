@@ -117,6 +117,11 @@ export default function AddAquarium({
       material: '',
       filter: '',
     },
+    address: {
+      name: '',
+      lat: '',
+      lng: '',
+    },
     service_details: '',
   });
 
@@ -159,29 +164,15 @@ export default function AddAquarium({
   };
 
   // Handling Address Change
-  const handleAddressChange = async ({ target }) => {
-    if (target.textContent) {
-      const index = allAddresses.findIndex(
-        (a) => a.name === target.textContent,
-      );
-      setValues({
-        ...values,
-        address: {
-          name: allAddresses[index].name,
-          lat: allAddresses[index].lat,
-          lng: allAddresses[index].lng,
-        },
-      });
-    } else {
-      setValues({
-        ...values,
-        address: {
-          name: '',
-          lat: '',
-          lng: '',
-        },
-      });
-    }
+  const handleAddressChange = async (event, value) => {
+    setValues({
+      ...values,
+      address: {
+        name: value.name,
+        lat: value.lat,
+        lng: value.lng,
+      },
+    });
   };
 
   const handleSubmit = async () => {
@@ -254,25 +245,14 @@ export default function AddAquarium({
             >
               <Autocomplete
                 id="combo-box-demo"
-                value={aquarium?.address}
+                value={values?.address}
                 options={allAddresses}
                 getOptionLabel={(option) => option.name}
-                onKeyDown={(e) => {
-                  const code = e.keyCode || e.which;
-
-                  if (code === 36 || code === 13) {
-                    // or e.key === 'Enter'
-                    handleAddressChange(e);
-                  }
+                onChange={(event, value) => {
+                  handleAddressChange(event, value);
+                  console.log('v', values);
+                  console.log('v', value);
                 }}
-                // onKeyPress={(event) => {
-                //   // document.getElementById('select').click();
-                //   if (event.key === 'Enter') {
-                //     handleAddressChange(event);
-                //     console.log('CLICLDED');
-                //   }
-                // }}
-                onChange={(e) => handleAddressChange(e)}
                 renderInput={(params) => (
                   <TextField
                     {...params}
