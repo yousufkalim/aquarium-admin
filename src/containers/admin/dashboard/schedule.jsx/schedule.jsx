@@ -4,8 +4,8 @@ import { useState, useEffect } from 'react';
 import { Grid, Button } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import moment from 'moment';
+import Avatar from 'react-avatar';
 import ScheduleTable from './ScheduleTable';
-import profileDummy from '../../../../assets/images/profileDummy.svg';
 import add from '../../../../assets/images/add.svg';
 import AddTask from './AddTask';
 import api from '../../../../api/index';
@@ -66,7 +66,7 @@ export default function Schedule() {
             getDate={getDate}
             technician={technician}
           />
-          <div className="btnContainer" style={{ width: '16%' }}>
+          <div className="btnContainer" style={{ width: '14%' }}>
             <Button
               variant="contained"
               fullWidth
@@ -80,7 +80,6 @@ export default function Schedule() {
         <Grid xl={2} lg={2.5}>
           <div className="scheduleTech">
             <div className="scheduleCard">
-
               {technician?.profile_pic ? (
                 <img
                   src={
@@ -103,7 +102,6 @@ export default function Schedule() {
                   alt="profile_pic"
                 />
               )}
-
             </div>
             <div>
               <h1 className="techName">{`${technician.first_name} ${technician.last_name}`}</h1>

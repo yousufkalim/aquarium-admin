@@ -77,12 +77,20 @@ export default function ServiceHistoryTable({ serviceHistory }) {
             display: 'flex',
             flexDirection: 'row',
             justifyContent: 'space-between',
+            height: '104px',
+            alignItems: 'center',
           }}
         >
           <div>
-            <h1 className="thead">Service History</h1>
+            <h1 className="thead">History</h1>
           </div>
-          <div style={{ display: 'flex', flexDirection: 'row' }}>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              marginTop: '-10px',
+            }}
+          >
             {selectedFilter === 'date' ? (
               <div
                 className="date-filter-div2"
@@ -216,7 +224,7 @@ export default function ServiceHistoryTable({ serviceHistory }) {
                 >
                   {`${moment(row.start_time)
                     .tz('America/Tijuana')
-                    .format('hh:mm A')}-${moment(row.end_time)
+                    .format('hh:mm A')} - ${moment(row.end_time)
                     .tz('America/Tijuana')
                     .format('hh:mm A')}`}
                 </StyledTableCell>
