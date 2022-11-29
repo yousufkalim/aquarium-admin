@@ -59,6 +59,8 @@ export default function AddTank({
   getChecks,
   check,
   getType,
+  disable,
+  setDisable,
 }) {
   const [type, setType] = useState('');
   const [title, setTitle] = useState('');
@@ -226,7 +228,10 @@ export default function AddTank({
                 name="title"
                 type="text"
                 value={title}
-                onChange={(e) => setTitle(e.target.value)}
+                onChange={(e) => {
+                  setTitle(e.target.value);
+                  setDisable(false);
+                }}
                 InputLabelProps={{
                   style: {
                     color: '#8C8C8C',
@@ -250,7 +255,10 @@ export default function AddTank({
                   name="description"
                   value={description}
                   label="Description (optional)"
-                  onChange={(e) => setDescription(e.target.value)}
+                  onChange={(e) => {
+                    setDescription(e.target.value);
+                    setDisable(false);
+                  }}
                   sx={{
                     backgroundColor: 'white',
                     borderRadius: '25px',
@@ -299,6 +307,7 @@ export default function AddTank({
                         setAttachment({});
                         setDescription(e.target.value);
                       }
+                      setDisable(false);
                     }}
                     InputLabelProps={{
                       style: {
@@ -354,8 +363,9 @@ export default function AddTank({
           </Button>
           <Button
             onClick={handleSubmit}
-            className="resetPasswordBtn"
+            className={disable ? 'disable' : 'resetPasswordBtn'}
             variant="contained"
+            disabled={disable}
           >
             {editing ? 'Update Check' : 'Add Check'}
           </Button>
