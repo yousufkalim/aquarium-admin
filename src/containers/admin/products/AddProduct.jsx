@@ -206,7 +206,7 @@ export default function AddProduct({
           </Button>
           <Button
             onClick={handleSubmit}
-            className={`${disable ? 'disable' : 'resetPasswordBtn'}`}
+            className={disable ? 'disable' : 'resetPasswordBtn'}
             disabled={disable}
             variant="contained"
           >

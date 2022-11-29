@@ -446,7 +446,7 @@ export default function AddAquarium({
           </Button>
           <Button
             onClick={handleSubmit}
-            className={`${disable ? 'disable' : 'resetPasswordBtn'}`}
+            className={disable ? 'disable' : 'resetPasswordBtn'}
             variant="contained"
             disabled={disable}
           >

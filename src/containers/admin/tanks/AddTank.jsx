@@ -262,7 +262,7 @@ export default function AddTank({
           </Button>
           <Button
             onClick={handleSubmit}
-            className={`${disable ? 'disable' : 'resetPasswordBtn'}`}
+            className={disable ? 'disable' : 'resetPasswordBtn'}
             variant="contained"
             disabled={disable}
           >

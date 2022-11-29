@@ -87,6 +87,13 @@ export default function Schedule() {
                     genMediaUrl(technician?.profile_pic)
                   }
                   alt=""
+                  id="dummyimg3"
+                  onError={
+                    () => {
+                      document.getElementById('dummyimg3').src = undefined;
+                    }
+                    // eslint-disable-next-line react/jsx-curly-newline
+                  }
                 />
               ) : (
                 <Avatar

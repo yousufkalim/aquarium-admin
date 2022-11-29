@@ -301,7 +301,7 @@ export default function UpdatePasswordPopup({
           </Button>
           <Button
             onClick={handleForgetPassword}
-            className={`${disable ? 'disable' : 'resetPasswordBtn'}`}
+            className={disable ? 'disable' : 'resetPasswordBtn'}
             disabled={disable}
             variant="contained"
           >

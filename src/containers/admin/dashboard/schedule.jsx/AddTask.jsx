@@ -527,7 +527,8 @@ export default function AddTask({
                         marginRight: '6px',
                       }}
                     >
-                      {`${_.client?.first_name} ${_.client?.last_name}`}
+                      {_.client?.first_name}
+                      {_.client?.last_name}
                     </span>
                     {`(${_.tank_details.size})`}
                   </MenuItem>
@@ -545,7 +546,7 @@ export default function AddTask({
                       onChange={handleCheck}
                       style={{ color: '#28CDFF' }}
                     />
-                  )}
+              )}
                   label="Want to repeat this task every"
                 />
               ) : (
@@ -603,7 +604,7 @@ export default function AddTask({
           <Button
             onClick={handleSubmit}
             variant="contained"
-            className={`${disable ? 'disable' : 'resetPasswordBtn'}`}
+            className={disable ? 'disable' : 'resetPasswordBtn'}
             disabled={disable}
           >
             {editing ? 'Update Task' : 'Add Task'}

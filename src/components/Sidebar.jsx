@@ -325,6 +325,13 @@ export default function Sidebar() {
                     objectFit: 'cover',
                   }}
                   alt=""
+                  id="dummyimg2"
+                  onError={
+                    () =>
+                      (document.getElementById('dummyimg2').src =
+                        undefined)
+                    // eslint-disable-next-line react/jsx-curly-newline
+                  }
                 />
               ) : (
                 <Avatar

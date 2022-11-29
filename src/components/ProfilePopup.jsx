@@ -175,6 +175,13 @@ export default function ProfilePopup({
                       genMediaUrl(admin?.profile_pic)
                     }
                     alt="profile_pic"
+                    id="dummyimg1"
+                    onError={
+                      () =>
+                        (document.getElementById('dummyimg1').src =
+                          undefined)
+                      // eslint-disable-next-line react/jsx-curly-newline
+                    }
                   />
                 ) : (
                   <Avatar
@@ -328,7 +335,7 @@ export default function ProfilePopup({
           </Button>
           <Button
             onClick={handleSubmit}
-            className={`${disable ? 'disable' : 'resetPasswordBtn'}`}
+            className={disable ? 'disable' : 'resetPasswordBtn'}
             disabled={disable}
             variant="contained"
           >
