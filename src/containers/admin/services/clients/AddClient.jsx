@@ -94,11 +94,20 @@ export default function AddClient({
   };
 
   const handleSubmit = async () => {
+    const obj = {};
+
+    // eslint-disable-next-line no-restricted-syntax, guard-for-in
+    for (const property in values) {
+      if (values[property]) {
+        obj[property] = values[property];
+      }
+    }
+
     if (editing) {
-      await api('put', `/clients/${client._id}`, values);
+      await api('put', `/clients/${client._id}`, obj);
       toast.success('Client edited successfully');
     } else {
-      await api('post', '/clients', values);
+      await api('post', '/clients', obj);
       toast.success('Client created successfully');
     }
     handleClose();

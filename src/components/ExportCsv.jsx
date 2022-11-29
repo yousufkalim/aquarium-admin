@@ -58,7 +58,7 @@ export default function ExportServiceHistory({ serviceHistory }) {
         item.aquarium.client.last_name,
       'Tank Size': item.aquarium.tank_details.size,
       // eslint-disable-next-line no-underscore-dangle
-      Date: moment(item.date).format('DD/MM/YYYY'),
+      Date: moment(item.date).format('MM-DD-YYYY'),
       'Service Start Time': moment(item.start_time)
         .tz('America/Tijuana')
         .format('hh:mm A'),
