@@ -1,9 +1,6 @@
 let baseUrl = 'http://localhost:5000/api';
 
-if (
-  window.location.host === 'aquarium-admin-dev.falconweb.app'
-  || true
-) {
+if (window.location.host === 'aquarium-admin-dev.falconweb.app') {
   baseUrl = 'https://aquarium-api-dev.falconweb.app/api';
 } else if (
   window.location.host === 'aquarium-admin-qa.falconweb.app'

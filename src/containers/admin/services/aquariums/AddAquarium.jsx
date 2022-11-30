@@ -255,8 +255,6 @@ export default function AddAquarium({
                 getOptionLabel={(option) => option.name}
                 onChange={(event, value) => {
                   handleAddressChange(event, value);
-                  console.log('v', values);
-                  console.log('v', value);
                 }}
                 renderInput={(params) => (
                   <TextField
