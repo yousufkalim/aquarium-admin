@@ -315,13 +315,6 @@ export default function Sidebar() {
                   height: '100%',
                   objectFit: 'cover',
                 }}
-                id="dummyimg"
-                onError={
-                  () =>
-                    (document.getElementById('dummyimg').src =
-                      undefined)
-                  // eslint-disable-next-line react/jsx-curly-newline
-                }
                 alt=""
               />
             </div>
