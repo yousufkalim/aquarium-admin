@@ -169,13 +169,6 @@ export default function ProfilePopup({ open, setOpen, admin }) {
                     objectFit: 'cover',
                   }}
                   alt=""
-                  id="dummyimg1"
-                  onError={
-                    () =>
-                      (document.getElementById('dummyimg1').src =
-                        undefined)
-                    // eslint-disable-next-line react/jsx-curly-newline
-                  }
                 />
               </div>
               <label>
