@@ -32,7 +32,10 @@ const StyledTableRow = styled(TableRow)(() => ({
   },
 }));
 
-export default function ServiceHistoryTable({ serviceHistory }) {
+export default function ServiceHistoryTable({
+  serviceHistory,
+  exportHistory,
+}) {
   // eslint-disable-next-line no-unused-vars, operator-linebreak
   const [serviceHistories, setServiceHistories] = useState([]);
   const [service, setService] = useState({});
@@ -55,6 +58,10 @@ export default function ServiceHistoryTable({ serviceHistory }) {
   useEffect(() => {
     setServiceHistories(serviceHistory);
   }, [serviceHistory]);
+
+  useEffect(() => {
+    exportHistory(serviceHistories);
+  }, [exportHistory, serviceHistories]);
   const options = {
     weekday: 'short',
     year: 'numeric',
