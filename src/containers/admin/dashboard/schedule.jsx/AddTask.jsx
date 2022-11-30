@@ -109,6 +109,7 @@ export default function AddTask({
     start_time: '',
     end_time: '',
     aquarium: '',
+    repeat: '1',
   });
 
   // eslint-disable-next-line prefer-const
@@ -181,15 +182,22 @@ export default function AddTask({
       end_time: moment(end_time, 'HH:mm').format('hh:mm a'),
     };
 
+    if (!checked) {
+      delete updatedSchedule.repeat;
+    }
+    const obj = {};
+    // eslint-disable-next-line no-restricted-syntax, guard-for-in
+    for (const property in updatedSchedule) {
+      if (updatedSchedule[property]) {
+        obj[property] = updatedSchedule[property];
+      }
+    }
+
     if (editing) {
-      await api(
-        'put',
-        `/schedule/tasks/${task._id}`,
-        updatedSchedule,
-      );
+      await api('put', `/schedule/tasks/${task._id}`, obj);
       toast.success('Task edited successfully');
     } else {
-      await api('post', '/schedule/tasks', updatedSchedule);
+      await api('post', '/schedule/tasks', obj);
       toast.success('Task created successfully');
     }
     getTasks(moment(selectedDate).format('MM-DD-YYYY'));
@@ -547,7 +555,7 @@ export default function AddTask({
                       onChange={handleCheck}
                       style={{ color: '#28CDFF' }}
                     />
-              )}
+                  )}
                   label="Want to repeat this task every"
                 />
               ) : (

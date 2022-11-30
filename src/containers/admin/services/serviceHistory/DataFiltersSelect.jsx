@@ -52,16 +52,16 @@ export default function MultipleSelect({
 
   tanks = [...new Set(tanks)];
 
-  let clients = serviceHistory.map((a) => a.aquarium.client);
+  let clients = serviceHistory.map((a) => a.aquarium?.client);
 
   clients = clients.filter(
     (value, index, self) =>
       index ===
       self.findIndex(
         (t) =>
-          t.id === value.id &&
-          t.first_name === value.first_name &&
-          t.last_name === value.last_name,
+          t?.id === value?.id &&
+          t?.first_name === value?.first_name &&
+          t?.last_name === value?.last_name,
       ),
   );
 
@@ -83,8 +83,10 @@ export default function MultipleSelect({
           </MenuItem>
           {selectedFilter === 'client'
             ? clients.map((client) => (
-                <MenuItem value={client._id}>
-                  {`${client.first_name} ${client.last_name}`}
+                <MenuItem value={client?._id}>
+                  {client?.first_name}
+{' '}
+{client?.last_name}
                 </MenuItem>
               ))
             : tanks.map((tank) => (
