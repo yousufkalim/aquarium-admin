@@ -13,15 +13,14 @@ import DialogActions from '@mui/material/DialogActions';
 import Typography from '@mui/material/Typography';
 import { toast } from 'react-toastify';
 import { FormControl, TextField } from '@mui/material';
+import Avatar from 'react-avatar';
 import { UpdateStore } from '../StoreContext';
 import editIcon from '../assets/images/EditIcon.svg';
 import arrow from '../assets/images/rightArrow.svg';
-import profileDummy from '../assets/images/profileDummy.svg';
 // import { genMediaUrl } from '../config';
 import api from '../api/index';
 import UpdatePasswordPopup from './UpdatePasswordPopup';
 import { genMediaUrl } from '../config';
-
 // eslint-disable-next-line object-curly-newline
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
@@ -60,7 +59,13 @@ const useOutlinedInputStyles = makeStyles({
     },
   },
 });
-export default function ProfilePopup({ open, setOpen, admin }) {
+export default function ProfilePopup({
+  open,
+  setOpen,
+  admin,
+  disable,
+  setDisable,
+}) {
   const [values, setValues] = useState({
     name: admin.name,
     phone_number: admin.phone_number,
@@ -80,6 +85,7 @@ export default function ProfilePopup({ open, setOpen, admin }) {
       ...values,
       [e.target.name]: e.target.value,
     });
+    setDisable(false);
   };
   const handleSelectedFile = async (e) => {
     const myFile = e.target.files[0];
@@ -155,7 +161,9 @@ export default function ProfilePopup({ open, setOpen, admin }) {
                   margin: 'auto',
                 }}
               >
-                <img
+
+                {admin?.profile_pic ? (
+                     <img
                   src={
                     genMediaUrl(
                       values.profile_pic || admin.profile_pic,
@@ -170,6 +178,20 @@ export default function ProfilePopup({ open, setOpen, admin }) {
                   }}
                   alt=""
                 />
+                ) : (
+                  <Avatar
+                    name={name}
+                    style={{
+                      width: 'fit-content',
+                      height: 'fit-content',
+                      border: '3px solid #28CDFF',
+                      borderRadius: '50%',
+                    }}
+                    round
+                    size="140"
+                    alt="profile_pic"
+                  />
+                )}
               </div>
               <label>
                 <input
@@ -308,7 +330,8 @@ export default function ProfilePopup({ open, setOpen, admin }) {
           </Button>
           <Button
             onClick={handleSubmit}
-            className="resetPasswordBtn"
+            className={disable ? 'disable' : 'resetPasswordBtn'}
+            disabled={disable}
             variant="contained"
           >
             Save Changes
@@ -317,6 +340,8 @@ export default function ProfilePopup({ open, setOpen, admin }) {
       </BootstrapDialog>
       {openUpdateModal && (
         <UpdatePasswordPopup
+          disable={disable}
+          setDisable={setDisable}
           openUpdateModal={openUpdateModal}
           setOpenUpdateModal={setOpenUpdateModal}
           closeProfilePopup={handleClose}

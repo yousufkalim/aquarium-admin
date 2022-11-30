@@ -38,6 +38,7 @@ export default function ScheduleTable({
   const [task, setTask] = useState({});
   const navigate = useNavigate();
   const [date, setDate] = useState(moment()._d);
+  const [disable, setDisable] = useState(false);
 
   const dateChange = (e) => {
     setDate(e);
@@ -188,6 +189,7 @@ export default function ScheduleTable({
                           onClick={() => {
                             setEditing(true);
                             setTask(row);
+                            setDisable(true);
                           }}
                           role="presentation"
                         />
@@ -228,6 +230,8 @@ export default function ScheduleTable({
           selectedDate={date}
           aquariums={aquariums}
           getTasks={getTasks}
+          disable={disable}
+          setDisable={setDisable}
         />
       )}
       {del && (

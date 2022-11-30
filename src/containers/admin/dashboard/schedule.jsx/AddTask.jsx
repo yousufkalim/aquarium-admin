@@ -97,6 +97,8 @@ export default function AddTask({
   selectedDate,
   task,
   aquariums,
+  disable,
+  setDisable,
 }) {
   const { id } = useParams();
 
@@ -123,12 +125,14 @@ export default function AddTask({
       ...schedule,
       [e.target.name]: e.target.value,
     });
+    setDisable(false);
   };
   const dateChange = (e) => {
     setSchedule({
       ...schedule,
       date: e,
     });
+    setDisable(false);
   };
 
   const startTimeChange = (e) => {
@@ -222,7 +226,7 @@ export default function AddTask({
             </p>
             <div
               className="hl-del"
-              style={{ width: '70%', marginBottom: '6%' }}
+              style={{ width: '50%', marginBottom: '6%' }}
             />
 
             <div>
@@ -517,7 +521,17 @@ export default function AddTask({
                 {aquariums?.map((_) => (
                   <MenuItem value={_._id}>
                     {' '}
-                    {`${_.client?.first_name} ${_.client?.last_name} (${_.tank_details.size})`}
+                    <span
+                      style={{
+                        color: '#28CDFF',
+                        fontFamily: 'HelveticaMedium',
+                        marginRight: '6px',
+                      }}
+                    >
+                      {_.client?.first_name}
+                      {_.client?.last_name}
+                    </span>
+                    {`(${_.tank_details.size})`}
                   </MenuItem>
                 ))}
               </Select>
@@ -527,14 +541,13 @@ export default function AddTask({
                     mt: 2,
                     color: '#28CDFF',
                   }}
-                  control={
-                    // eslint-disable-next-line react/jsx-wrap-multilines
+                  control={(
                     <Checkbox
                       defaultChecked
                       onChange={handleCheck}
                       style={{ color: '#28CDFF' }}
                     />
-                  }
+              )}
                   label="Want to repeat this task every"
                 />
               ) : (
@@ -588,8 +601,9 @@ export default function AddTask({
           </Button>
           <Button
             onClick={handleSubmit}
-            className="resetPasswordBtn"
             variant="contained"
+            className={disable ? 'disable' : 'resetPasswordBtn'}
+            disabled={disable}
           >
             {editing ? 'Update Task' : 'Add Task'}
           </Button>

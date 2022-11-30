@@ -58,7 +58,6 @@ export default function AddClient({
   disable,
   setDisable,
 }) {
-  const CHARACTER_LIMIT = 30;
   const [values, setValues] = useState({
     first_name: '',
     last_name: '',
@@ -154,7 +153,7 @@ export default function AddClient({
                   borderRadius: '25px',
                 }}
                 inputProps={{
-                  maxlength: CHARACTER_LIMIT,
+                  maxlength: 30,
                   style: { color: '#8C8C8C', fontWeight: '700' },
                 }}
                 id="outlined-fname"
@@ -184,7 +183,7 @@ export default function AddClient({
                   borderRadius: '25px',
                 }}
                 inputProps={{
-                  maxlength: CHARACTER_LIMIT,
+                  maxlength: 30,
                   style: { color: '#8C8C8C', fontWeight: '700' },
                 }}
                 id="outlined-lastname"
@@ -276,7 +275,7 @@ export default function AddClient({
           </Button>
           <Button
             onClick={handleSubmit}
-            className={`${disable ? 'disable' : 'resetPasswordBtn'}`}
+            className={disable ? 'disable' : 'resetPasswordBtn'}
             variant="contained"
             disabled={disable}
           >

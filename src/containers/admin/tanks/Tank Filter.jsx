@@ -43,6 +43,7 @@ export default function TankFilter({
   const [tank, setTank] = useState('');
   const [expanded, setExpanded] = useState('');
   const [toggleIcon, setToggleIcon] = useState(false);
+  const [disable, setDisable] = useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -142,6 +143,7 @@ export default function TankFilter({
                           onClick={() => {
                             setEditing(true);
                             setTank(row);
+                            setDisable(true);
                           }}
                           role="presentation"
                         />
@@ -175,6 +177,8 @@ export default function TankFilter({
           editing={editing}
           tank={tank}
           getTanks={getTanks}
+          disable={disable}
+          setDisable={setDisable}
         />
       )}
       {del && (

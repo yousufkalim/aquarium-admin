@@ -57,6 +57,8 @@ export default function AddTank({
   getTanks,
   tank,
   getType,
+  disable,
+  setDisable,
 }) {
   const [type, setType] = useState('');
   const [value, setValue] = useState('');
@@ -77,6 +79,7 @@ export default function AddTank({
     if (e.target.value === '' || regex.test(e.target.value)) {
       setValue(e.target.value);
     }
+    setDisable(false);
   };
 
   const handleSubmit = async () => {
@@ -235,7 +238,7 @@ export default function AddTank({
                     // eslint-disable-next-line implicit-arrow-linebreak
                     type === 'size'
                       ? onChangeEvent(e)
-                      : setValue(e.target.value)
+                      : setValue(e.target.value) || setDisable(false)
                   // eslint-disable-next-line react/jsx-curly-newline
                 }
                 InputLabelProps={{
@@ -259,8 +262,9 @@ export default function AddTank({
           </Button>
           <Button
             onClick={handleSubmit}
-            className="resetPasswordBtn"
+            className={disable ? 'disable' : 'resetPasswordBtn'}
             variant="contained"
+            disabled={disable}
           >
             {editing ? 'Update Value' : 'Add Value'}
           </Button>
