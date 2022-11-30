@@ -161,28 +161,23 @@ export default function ProfilePopup({
                   margin: 'auto',
                 }}
               >
+
                 {admin?.profile_pic ? (
-                  <img
-                    style={{
-                      border: '3px solid #28CDFF',
-                      borderRadius: '100px',
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                    }}
-                    src={
-                      // eslint-disable-next-line operator-linebreak
-                      genMediaUrl(admin?.profile_pic)
-                    }
-                    alt="profile_pic"
-                    id="dummyimg1"
-                    onError={
-                      () =>
-                        (document.getElementById('dummyimg1').src =
-                          undefined)
-                      // eslint-disable-next-line react/jsx-curly-newline
-                    }
-                  />
+                     <img
+                  src={
+                    genMediaUrl(
+                      values.profile_pic || admin.profile_pic,
+                    ) || profileDummy
+                  }
+                  style={{
+                    border: '3px solid #28CDFF',
+                    borderRadius: '100px',
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                  }}
+                  alt=""
+                />
                 ) : (
                   <Avatar
                     name={name}

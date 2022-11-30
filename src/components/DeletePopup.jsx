@@ -44,8 +44,8 @@ export default function DeleteModal({
     if (txt === 'schedule/tasks') {
       getData(
         // eslint-disable-next-line operator-linebreak
-        moment(selectedDate).format('DD/MM/YYYY') ||
-          moment(new Date()).format('DD/MM/YYYY'),
+        moment(selectedDate).format('MM-DD-YYYY') ||
+          moment(new Date()).format('MM-DD-YYYY'),
       );
     } else {
       getData();

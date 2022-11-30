@@ -312,27 +312,18 @@ export default function Sidebar() {
                 height: '51px',
               }}
             >
+
               {admin?.profile_pic ? (
                 <img
-                  src={
-                    // eslint-disable-next-line operator-linebreak
-                    genMediaUrl(admin?.profile_pic)
-                  }
-                  style={{
-                    width: '100%',
-                    borderRadius: '50px',
-                    height: '100%',
-                    objectFit: 'cover',
-                  }}
-                  alt=""
-                  id="dummyimg2"
-                  onError={
-                    () =>
-                      (document.getElementById('dummyimg2').src =
-                        undefined)
-                    // eslint-disable-next-line react/jsx-curly-newline
-                  }
-                />
+                src={genMediaUrl(admin.profile_pic) || profileDummy}
+                style={{
+                  width: '100%',
+                  borderRadius: '50px',
+                  height: '100%',
+                  objectFit: 'cover',
+                }}
+                alt=""
+              />
               ) : (
                 <Avatar
                   name={admin.name}
@@ -347,6 +338,7 @@ export default function Sidebar() {
                   alt="profile_pic"
                 />
               )}
+
             </div>
             <div>
               <h3

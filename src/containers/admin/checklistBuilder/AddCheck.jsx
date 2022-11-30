@@ -98,9 +98,7 @@ export default function AddTank({
     formData.append('type', type);
     formData.append('title', title);
 
-    if (description) {
-      formData.append('description', description);
-    }
+    formData.append('description', description || '');
 
     if (type === 'service') {
       if (attachment.name && !attachment.editing) {

@@ -49,7 +49,7 @@ export default function Schedule() {
   };
 
   useEffect(() => {
-    getTasks(moment().format('DD/MM/YYYY'));
+    getTasks(moment().format('MM-DD-YYYY'));
     getAquariums();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

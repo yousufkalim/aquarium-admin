@@ -42,7 +42,7 @@ export default function ScheduleTable({
 
   const dateChange = (e) => {
     setDate(e);
-    getTasks(moment(e).format('DD/MM/YYYY'));
+    getTasks(moment(e).format('MM-DD-YYYY'));
     getDate(e);
   };
 
@@ -88,9 +88,10 @@ export default function ScheduleTable({
               >
                 <DatePicker
                   showPopperArrow
-                  dateFormat="dd/MMMM/yyyy"
+                  style={{ cursor: 'pointer' }}
+                  dateFormat="MMMM-dd-yyyy"
                   name="date"
-                  placeholderText="DD/MM/YYYY"
+                  placeholderText="MMMM-dd-yyyy"
                   value={date}
                   selected={date}
                   popperPlacement="bottom-start"

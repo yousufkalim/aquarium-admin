@@ -50,8 +50,8 @@ export default function ServiceTable({ serviceHistory }) {
       serviceHistory.filter(
         (_) =>
           // eslint-disable-next-line implicit-arrow-linebreak, operator-linebreak
-          moment(_.date).format('DD/MM/YYYY') ===
-          moment(e).format('DD/MM/YYYY'),
+          moment(_.date).format('MM-DD-YYYY') ===
+          moment(e).format('MM-DD-YYYY'),
       ),
     );
   };
@@ -88,9 +88,9 @@ export default function ServiceTable({ serviceHistory }) {
               >
                 <DatePicker
                   showPopperArrow
-                  dateFormat="dd/MMMM/yyyy"
+                  dateFormat="MMMM-dd-yyyy"
                   name="date"
-                  placeholderText="DD/MM/YYYY"
+                  placeholderText="DMMMM-dd-yyyy"
                   value={date}
                   selected={date}
                   popperPlacement="bottom-start"

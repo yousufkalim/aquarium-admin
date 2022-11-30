@@ -176,10 +176,11 @@ export default function AddTask({
   const handleSubmit = async () => {
     const updatedSchedule = {
       ...schedule,
-      date: moment(date || selectedDate).format('DD/MM/YYYY'),
+      date: moment(date || selectedDate).format('MM-DD-YYYY'),
       start_time: moment(start_time, 'HH:mm').format('hh:mm a'),
       end_time: moment(end_time, 'HH:mm').format('hh:mm a'),
     };
+
     if (editing) {
       await api(
         'put',
@@ -191,7 +192,7 @@ export default function AddTask({
       await api('post', '/schedule/tasks', updatedSchedule);
       toast.success('Task created successfully');
     }
-    getTasks(moment(selectedDate).format('DD/MM/YYYY'));
+    getTasks(moment(selectedDate).format('MM-DD-YYYY'));
     handleClose();
   };
 
@@ -388,12 +389,12 @@ export default function AddTask({
                 >
                   <DatePicker
                     showPopperArrow
-                    dateFormat="dd/MMMM/yyyy"
+                    dateFormat="MM-dd-yyyy"
                     name="date"
-                    placeholderText="DD/MM/YYYY"
+                    placeholderText="MMMM-dd-yyyy"
                     value={
                       date ||
-                      moment(selectedDate).format('DD/MM/YYYY')
+                      moment(selectedDate).format('MM-DD-YYYY')
                     }
                     selected={date}
                     popperPlacement="bottom-start"
@@ -568,7 +569,6 @@ export default function AddTask({
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
-                  displayEmpty
                   inputProps={{ 'aria-label': 'Without label' }}
                   value={repeat || ''}
                   disabled={!checked}
@@ -577,14 +577,12 @@ export default function AddTask({
                   onChange={handleChange}
                   input={<BootstrapInput />}
                 >
-                  <MenuItem value="" disabled selected>
-                    Week
-                  </MenuItem>
                   <MenuItem value="1" selected>
                     1 week
                   </MenuItem>
                   <MenuItem value="2">2 weeks</MenuItem>
                   <MenuItem value="3">3 weeks</MenuItem>
+                  <MenuItem value="4">4 weeks</MenuItem>
                   {/* ))} */}
                 </Select>
               </FormControl>
