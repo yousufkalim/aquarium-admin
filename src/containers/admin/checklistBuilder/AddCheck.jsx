@@ -52,7 +52,7 @@ const useOutlinedInputStyles = makeStyles({
     },
   },
 });
-export default function AddTank({
+export default function AddCheck({
   open,
   setOpen,
   editing,
@@ -101,7 +101,7 @@ export default function AddTank({
     formData.append('description', description || '');
 
     if (type === 'service') {
-      if (attachment.name && !attachment.editing) {
+      if (attachment?.name && !attachment.editing) {
         formData.append('attachment', attachment);
       }
     }
@@ -294,9 +294,9 @@ export default function AddTank({
                     size="normal"
                     name="attachment"
                     type="text"
-                    value={description || attachment.name}
+                    value={description || attachment?.name}
                     onChange={(e) => {
-                      if (attachment.name) {
+                      if (attachment?.name) {
                         setAttachment({
                           ...attachment,
                           name: e.target.value,

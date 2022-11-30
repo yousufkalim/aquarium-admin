@@ -104,6 +104,7 @@ export default function ProfilePopup({
     const { data } = await api('put', '/admins', formData);
 
     setValues({ ...values, profile_pic: data.results.profile_pic });
+    setDisable(false);
   };
 
   const handleSubmit = async () => {
@@ -161,23 +162,20 @@ export default function ProfilePopup({
                   margin: 'auto',
                 }}
               >
-
                 {admin?.profile_pic ? (
-                     <img
-                  src={
-                    genMediaUrl(
+                  <img
+                    src={genMediaUrl(
                       values.profile_pic || admin.profile_pic,
-                    ) || profileDummy
-                  }
-                  style={{
-                    border: '3px solid #28CDFF',
-                    borderRadius: '100px',
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                  }}
-                  alt=""
-                />
+                    )}
+                    style={{
+                      border: '3px solid #28CDFF',
+                      borderRadius: '100px',
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                    }}
+                    alt=""
+                  />
                 ) : (
                   <Avatar
                     name={name}

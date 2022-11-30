@@ -312,18 +312,17 @@ export default function Sidebar() {
                 height: '51px',
               }}
             >
-
               {admin?.profile_pic ? (
                 <img
-                src={genMediaUrl(admin.profile_pic) || profileDummy}
-                style={{
-                  width: '100%',
-                  borderRadius: '50px',
-                  height: '100%',
-                  objectFit: 'cover',
-                }}
-                alt=""
-              />
+                  src={genMediaUrl(admin.profile_pic)}
+                  style={{
+                    width: '100%',
+                    borderRadius: '50px',
+                    height: '100%',
+                    objectFit: 'cover',
+                  }}
+                  alt=""
+                />
               ) : (
                 <Avatar
                   name={admin.name}
@@ -338,7 +337,6 @@ export default function Sidebar() {
                   alt="profile_pic"
                 />
               )}
-
             </div>
             <div>
               <h3
