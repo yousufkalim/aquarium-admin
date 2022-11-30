@@ -6,10 +6,14 @@ import api from '../../../../api/index';
 import ExportServiceHistory from '../../../../components/ExportCsv';
 
 export default function ServiceHistory() {
-  // const [open, setOpen] = useState(false);
   const [serviceHistory, setServiceHistory] = useState([]);
-  // const [clients, setClients] = useState([]);
-  // const [tanks, setTanks] = useState([]);
+  const [exportServiceHistory, setExportServiceHistory] = useState(
+    [],
+  );
+
+  const exportHistory = async (e) => {
+    setExportServiceHistory(e);
+  };
 
   const getServiceHistory = async () => {
     const { data } = await api('get', '//schedule/tasks');
@@ -18,23 +22,8 @@ export default function ServiceHistory() {
     }
   };
 
-  // const getClients = async () => {
-  //   const { data } = await api('get', '/clients');
-  //   if (data) {
-  //     setClients(data?.results);
-  //   }
-  // };
-  // const getTankDetails = async () => {
-  //   const { data } = await api('get', '/tank');
-  //   if (data) {
-  //     setTanks(data?.tanks.filter((tank) => tank.type === 'size'));
-  //   }
-  // };
-
   useEffect(() => {
     getServiceHistory();
-    // getClients();
-    // getTankDetails();
   }, []);
 
   return (
@@ -43,8 +32,13 @@ export default function ServiceHistory() {
         <Grid xl={2} lg={3} />
 
         <Grid xl={10} lg={9}>
-          <ServiceHistoryTable serviceHistory={serviceHistory} />
-          <ExportServiceHistory serviceHistory={serviceHistory} />
+          <ServiceHistoryTable
+            serviceHistory={serviceHistory}
+            exportHistory={exportHistory}
+          />
+          <ExportServiceHistory
+            serviceHistory={exportServiceHistory}
+          />
         </Grid>
       </Grid>
     </div>
