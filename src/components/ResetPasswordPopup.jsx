@@ -95,6 +95,7 @@ export default function ResetPasswordPopup() {
   }, []);
   const handleClose = () => {
     setOpen(false);
+    navigate('/');
   };
 
   const handleForgetPassword = async () => {
