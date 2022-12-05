@@ -100,35 +100,52 @@ export default function AddCheck({
       setAttachment(myFile);
       setDescription('');
     }
+    setDisable(false);
   };
 
   const handleSubmit = async () => {
-    const formData = new FormData();
-    formData.append('type', type);
-    formData.append('title', title);
+    try {
+      const formData = new FormData();
+      formData.append('type', type);
+      formData.append('title', title);
 
-    formData.append('description', description || '');
+      formData.append('description', description || '');
 
-    if (type === 'service') {
-      if (attachment?.name && !attachment.editing) {
-        formData.append('attachment', attachment);
+      if (type === 'service') {
+        if (attachment?.name && !attachment.editing) {
+          formData.append('attachment', attachment);
+        }
+      }
+      if (editing) {
+        if (type === 'service') {
+          setLoading(true);
+          console.log('NULL', attachment);
+          console.log('NULL', attachment.name);
+          if (!attachment?.name && attachment.editing) {
+            setAttachment('');
+            formData.append('attachment', '');
+          }
+        }
+        await api('put', `/checklist/${check._id}`, formData);
+
+        toast.success('Check edited successfully');
+      } else {
+        if (type === 'service') {
+          setLoading(true);
+        }
+        await api('post', '/checklist', formData);
+        toast.success('Check created successfully');
+      }
+      getChecks();
+      if (!editing) {
+        getType(type);
+      }
+      handleClose();
+    } catch (error) {
+      if (error) {
+        setLoading(false);
       }
     }
-    if (editing) {
-      setLoading(true);
-      await api('put', `/checklist/${check._id}`, formData);
-
-      toast.success('Check edited successfully');
-    } else {
-      setLoading(true);
-      await api('post', '/checklist', formData);
-      toast.success('Check created successfully');
-    }
-    getChecks();
-    if (!editing) {
-      getType(type);
-    }
-    handleClose();
   };
 
   const outlinedInputStyles = useOutlinedInputStyles();
@@ -318,6 +335,8 @@ export default function AddCheck({
                         setDescription(e.target.value);
                       }
                       setDisable(false);
+                      console.log('IN', attachment);
+                      console.log('IN', attachment.name);
                     }}
                     InputLabelProps={{
                       style: {
