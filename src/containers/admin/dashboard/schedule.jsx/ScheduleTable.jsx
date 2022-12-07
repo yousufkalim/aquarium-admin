@@ -2,7 +2,7 @@
 /* eslint-disable indent */
 /* eslint-disable react/jsx-indent */
 /* eslint-disable no-underscore-dangle */
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -32,6 +32,7 @@ export default function ScheduleTable({
   aquariums,
   getDate,
   technician,
+  scheduleDate,
 }) {
   const [del, setDel] = useState(false);
   const [editing, setEditing] = useState(false);
@@ -45,6 +46,13 @@ export default function ScheduleTable({
     getTasks(moment(e).format('MM-DD-YYYY'));
     getDate(e);
   };
+
+  useEffect(() => {
+    if (scheduleDate) {
+      setDate(scheduleDate);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [scheduleDate]);
 
   return (
     <div className="bg">
@@ -98,6 +106,7 @@ export default function ScheduleTable({
                   showYearDropdown
                   onChange={dateChange}
                 />
+
                 <div
                   style={{
                     display: 'flex',
@@ -144,6 +153,8 @@ export default function ScheduleTable({
                       ? 'Driving Period'
                       : row.type === 'lunch'
                       ? 'Break: Lunch'
+                      : row.type === 'break'
+                      ? 'Break'
                       : row.type === 'outOfOffice'
                       ? 'Out Of Office'
                       : row.type === 'endOfShift'

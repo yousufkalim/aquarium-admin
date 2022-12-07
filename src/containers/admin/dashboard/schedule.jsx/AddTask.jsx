@@ -1,3 +1,5 @@
+/* eslint-disable indent */
+/* eslint-disable react/jsx-indent */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable operator-linebreak */
 /* eslint-disable no-constant-condition */
@@ -24,6 +26,7 @@ import InputBase from '@mui/material/InputBase';
 import TimePicker from 'react-time-picker';
 import moment from 'moment-timezone';
 import api from '../../../../api/index';
+import TaskCreatedDetail from './TaskCreatedDetail';
 
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
   '& .MuiInputBase-input': {
@@ -99,6 +102,7 @@ export default function AddTask({
   aquariums,
   disable,
   setDisable,
+  getDate,
 }) {
   const { id } = useParams();
 
@@ -117,6 +121,8 @@ export default function AddTask({
     schedule;
 
   const [checked, setChecked] = useState(true);
+  const [created, setCreated] = useState(false);
+  const [details, setDetails] = useState({});
 
   const handleCheck = (event) => {
     setChecked(event.target.checked);
@@ -162,7 +168,7 @@ export default function AddTask({
           .tz('America/Tijuana')
           .format('HH:mm'),
 
-        aquarium: task.aquarium._id,
+        aquarium: task?.aquarium?._id,
       });
     }
     // setSchedule(values);
@@ -196,12 +202,13 @@ export default function AddTask({
     if (editing) {
       await api('put', `/schedule/tasks/${task._id}`, obj);
       toast.success('Task edited successfully');
+      handleClose();
     } else {
-      await api('post', '/schedule/tasks', obj);
-      toast.success('Task created successfully');
+      const { data } = await api('post', '/schedule/tasks', obj);
+      setCreated(true);
+      setDetails(data.results);
     }
     getTasks(moment(selectedDate).format('MM-DD-YYYY'));
-    handleClose();
   };
 
   return (
@@ -213,6 +220,7 @@ export default function AddTask({
         setOpen={setOpen}
         fullWidth
         maxWidth="md"
+        id="addtask"
         PaperProps={{
           style: {
             borderRadius: 25,
@@ -536,8 +544,8 @@ export default function AddTask({
                         marginRight: '6px',
                       }}
                     >
-                      {_.client?.first_name}
-                      {_.client?.last_name}
+                      {`${_.client?.first_name} 
+                      ${_.client?.last_name}`}
                     </span>
                     {`(${_.tank_details.size})`}
                   </MenuItem>
@@ -549,13 +557,14 @@ export default function AddTask({
                     mt: 2,
                     color: '#28CDFF',
                   }}
-                  control={(
+                  control={
+                    // eslint-disable-next-line react/jsx-wrap-multilines
                     <Checkbox
                       defaultChecked
                       onChange={handleCheck}
                       style={{ color: '#28CDFF' }}
                     />
-                  )}
+                  }
                   label="Want to repeat this task every"
                 />
               ) : (
@@ -616,6 +625,19 @@ export default function AddTask({
             {editing ? 'Update Task' : 'Add Task'}
           </Button>
         </DialogActions>
+        {created && (
+          <TaskCreatedDetail
+            details={details}
+            openDetail={created}
+            setOpenDetail={setCreated}
+            schedule={schedule}
+            getTasks={getTasks}
+            selectedDate={selectedDate}
+            prevPopup={setOpen}
+            getDate={getDate}
+            // handlePrevClose={handleClose}
+          />
+        )}
       </BootstrapDialog>
     </div>
   );

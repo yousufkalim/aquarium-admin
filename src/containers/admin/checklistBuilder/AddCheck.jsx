@@ -119,8 +119,7 @@ export default function AddCheck({
       if (editing) {
         if (type === 'service') {
           setLoading(true);
-          console.log('NULL', attachment);
-          console.log('NULL', attachment.name);
+
           if (!attachment?.name && attachment.editing) {
             setAttachment('');
             formData.append('attachment', '');
@@ -335,8 +334,6 @@ export default function AddCheck({
                         setDescription(e.target.value);
                       }
                       setDisable(false);
-                      console.log('IN', attachment);
-                      console.log('IN', attachment.name);
                     }}
                     InputLabelProps={{
                       style: {

@@ -65,6 +65,7 @@ export default function Schedule() {
             aquariums={aquariums}
             getDate={getDate}
             technician={technician}
+            scheduleDate={selectedDate}
           />
           <div className="btnContainer" style={{ width: '14%' }}>
             <Button
@@ -88,12 +89,6 @@ export default function Schedule() {
                   }
                   alt=""
                   id="dummyimg3"
-                  onError={
-                    () => {
-                      document.getElementById('dummyimg3').src = undefined;
-                    }
-                    // eslint-disable-next-line react/jsx-curly-newline
-                  }
                 />
               ) : (
                 <Avatar
@@ -127,6 +122,7 @@ export default function Schedule() {
           getTasks={getTasks}
           aquariums={aquariums}
           selectedDate={selectedDate || moment()._d}
+          getDate={getDate}
         />
       )}
     </div>
