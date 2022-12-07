@@ -276,3 +276,22 @@
   font-family: 'HelveticaMedium' !important;
   box-shadow: none !important;
 }
+.detailTrue {
+  color: #28cdff;
+  font-size: 16px;
+  font-family: 'Helvetica Neue';
+  font-weight: 400;
+}
+.detailFalse {
+  color: #ff5151;
+  font-size: 16px;
+  font-family: 'Helvetica Neue';
+  font-weight: 500;
+}
+.detailTrueB {
+  border: 1px solid #cdeefc;
+}
+
+.detailFalseB {
+  border: 1px solid #ff5151;
+}

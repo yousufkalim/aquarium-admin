@@ -11,6 +11,7 @@ import Typography from '@mui/material/Typography';
 import { toast } from 'react-toastify';
 import { FormControl, TextField } from '@mui/material';
 import InputLabel from '@mui/material/InputLabel';
+import CircularProgress from '@mui/material/CircularProgress';
 import api from '../../../api/index';
 import media from '../../../assets/images/attachment.svg';
 
@@ -66,6 +67,8 @@ export default function AddCheck({
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [attachment, setAttachment] = useState('');
+  // eslint-disable-next-line no-unused-vars
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (check) {
@@ -89,34 +92,59 @@ export default function AddCheck({
 
   const handleSelectedFile = (e) => {
     const myFile = e.target.files[0];
-    setAttachment(myFile);
-    setDescription('');
+    const size = 1024 * 1024 * 20;
+
+    if (myFile.size > size) {
+      toast.error('File size can not exceed 20 Mb');
+    } else {
+      setAttachment(myFile);
+      setDescription('');
+    }
+    setDisable(false);
   };
 
   const handleSubmit = async () => {
-    const formData = new FormData();
-    formData.append('type', type);
-    formData.append('title', title);
+    try {
+      const formData = new FormData();
+      formData.append('type', type);
+      formData.append('title', title);
 
-    formData.append('description', description || '');
+      formData.append('description', description || '');
 
-    if (type === 'service') {
-      if (attachment?.name && !attachment.editing) {
-        formData.append('attachment', attachment);
+      if (type === 'service') {
+        if (attachment?.name && !attachment.editing) {
+          formData.append('attachment', attachment);
+        }
+      }
+      if (editing) {
+        if (type === 'service') {
+          setLoading(true);
+
+          if (!attachment?.name && attachment.editing) {
+            setAttachment('');
+            formData.append('attachment', '');
+          }
+        }
+        await api('put', `/checklist/${check._id}`, formData);
+
+        toast.success('Check edited successfully');
+      } else {
+        if (type === 'service') {
+          setLoading(true);
+        }
+        await api('post', '/checklist', formData);
+        toast.success('Check created successfully');
+      }
+      getChecks();
+      if (!editing) {
+        getType(type);
+      }
+      handleClose();
+    } catch (error) {
+      if (error) {
+        setLoading(false);
       }
     }
-    if (editing) {
-      await api('put', `/checklist/${check._id}`, formData);
-      toast.success('Check edited successfully');
-    } else {
-      await api('post', '/checklist', formData);
-      toast.success('Check created successfully');
-    }
-    getChecks();
-    if (!editing) {
-      getType(type);
-    }
-    handleClose();
   };
 
   const outlinedInputStyles = useOutlinedInputStyles();
@@ -330,6 +358,7 @@ export default function AddCheck({
                         }}
                         name="media"
                         type="file"
+                        accept="image/*,video/*"
                         onChange={handleSelectedFile}
                         // onClick={(event) => {
                         //   event.target.value = null;
@@ -354,20 +383,40 @@ export default function AddCheck({
         <DialogActions>
           <Button
             onClick={handleClose}
-            className="closeBtn"
+            // className="closeBtn"
             variant="outlined"
+            className={loading ? 'disable' : 'closeBtn'}
+            disabled={loading}
           >
             Close
           </Button>
           <Button
             onClick={handleSubmit}
-            className={disable ? 'disable' : 'resetPasswordBtn'}
+            className={
+              disable || loading ? 'disable' : 'resetPasswordBtn'
+            }
             variant="contained"
-            disabled={disable}
+            disabled={disable || loading}
           >
             {editing ? 'Update Check' : 'Add Check'}
           </Button>
         </DialogActions>
+        {loading ? (
+          <CircularProgress
+            // size={70}
+            thickness={4.5}
+            style={{
+              position: 'absolute',
+              zIndex: '1300',
+              top: '50%',
+              // width: '1300px',
+              left: '50%',
+              color: '#28cdff',
+            }}
+          />
+        ) : (
+          ''
+        )}
       </BootstrapDialog>
     </div>
   );

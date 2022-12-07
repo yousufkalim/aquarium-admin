@@ -89,21 +89,7 @@ export default function ProfilePopup({
   };
   const handleSelectedFile = async (e) => {
     const myFile = e.target.files[0];
-    // values.profile_pic = myFile;
-
-    const formData = new FormData();
-    formData.append('name', name);
-
-    if (email) {
-      formData.append('email', email);
-    }
-
-    if (myFile) {
-      formData.append('profile_pic', myFile);
-    }
-    const { data } = await api('put', '/admins', formData);
-
-    setValues({ ...values, profile_pic: data.results.profile_pic });
+    setValues({ ...values, profile_pic: myFile });
     setDisable(false);
   };
 
@@ -164,9 +150,12 @@ export default function ProfilePopup({
               >
                 {admin?.profile_pic ? (
                   <img
-                    src={genMediaUrl(
-                      values.profile_pic || admin.profile_pic,
-                    )}
+                    src={
+                      values.profile_pic
+                        ? URL.createObjectURL(values.profile_pic)
+                        : genMediaUrl(admin.profile_pic)
+                    }
+                    id="profilePic"
                     style={{
                       border: '3px solid #28CDFF',
                       borderRadius: '100px',

@@ -219,6 +219,7 @@ export default function AddTank({
                 }}
                 inputProps={{
                   style: { color: '#8C8C8C', fontWeight: '700' },
+                  maxLength: 30,
                 }}
                 id="outlined-fname"
                 classes={outlinedInputStyles}
