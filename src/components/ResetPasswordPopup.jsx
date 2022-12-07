@@ -119,7 +119,10 @@ export default function ResetPasswordPopup() {
   return (
     <div>
       <BootstrapDialog
-        onClose={handleClose}
+        onClose={(e, r) => {
+          if (r && r === 'backdropClick') return;
+          handleClose(e);
+        }}
         aria-labelledby="customized-dialog-title"
         open={open}
         setOpen={setOpen}
