@@ -84,12 +84,13 @@ export default function AddClient({
   const onChangePhoneNmbr = (e) => {
     const regex = /^[0-9\b]+$/;
 
-    if (regex.test(e.target.value)) {
+    if (!e.target.value || regex.test(e.target.value)) {
       setValues({
         ...values,
         phone_number: e.target.value,
       });
     }
+    setDisable(false);
   };
 
   const handleSubmit = async () => {

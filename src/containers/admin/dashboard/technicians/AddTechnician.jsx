@@ -83,7 +83,7 @@ export default function AddTechnician({
   const onChangePhoneNmbr = (e) => {
     const regex = /^[0-9\b]+$/;
 
-    if (regex.test(e.target.value)) {
+    if (!e.target.value || regex.test(e.target.value)) {
       setValues({
         ...values,
         phone_number: e.target.value,
