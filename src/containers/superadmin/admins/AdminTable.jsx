@@ -98,7 +98,7 @@ export default function AdminTable({ admins, getAdmins }) {
                       />
                     ) : (
                       <Avatar
-                        name={row?.name}
+                        name={row?.name[0]}
                         style={{
                           width: 'fit-content',
                           height: '100%',
@@ -135,27 +135,35 @@ export default function AdminTable({ admins, getAdmins }) {
                     paddingRight: '2%',
                   }}
                 >
-                  <img
-                    src={edit}
-                    alt=""
-                    className="editIcon"
-                    onClick={() => {
-                      setEditing(true);
-                      setAdmin(row);
+                  <div
+                    className="action-buttons"
+                    style={{
+                      display: 'flex',
+                      gap: '8px',
                     }}
-                    role="presentation"
-                  />
+                  >
+                    <img
+                      src={edit}
+                      alt=""
+                      className="editIcon"
+                      onClick={() => {
+                        setEditing(true);
+                        setAdmin(row);
+                      }}
+                      role="presentation"
+                    />
 
-                  <img
-                    src={deleteIcon}
-                    className="deleteIcon"
-                    onClick={() => {
-                      setDel(true);
-                      setAdmin(row);
-                    }}
-                    alt=""
-                    role="presentation"
-                  />
+                    <img
+                      src={deleteIcon}
+                      className="deleteIcon"
+                      onClick={() => {
+                        setDel(true);
+                        setAdmin(row);
+                      }}
+                      alt=""
+                      role="presentation"
+                    />
+                  </div>
                 </StyledTableCell>
               </StyledTableRow>
             ))}

@@ -77,6 +77,7 @@ export default function ClientsTable({ clients, getClients }) {
                   fontSize: '16px',
                   width: '20%',
                   fontFamily: 'HelveticaBold',
+                  padding: '0px',
                 }}
                 align="center"
               >
@@ -87,6 +88,7 @@ export default function ClientsTable({ clients, getClients }) {
                 sx={{
                   fontSize: '16px',
                   fontFamily: 'HelveticaBold',
+                  padding: '0px',
                 }}
                 align="center"
               >
@@ -97,6 +99,7 @@ export default function ClientsTable({ clients, getClients }) {
                   fontSize: '16px',
                   fontFamily: 'HelveticaBold',
                   width: '25%',
+                  padding: '8px',
                 }}
                 align="center"
               >
@@ -112,7 +115,7 @@ export default function ClientsTable({ clients, getClients }) {
                   className="technicianName"
                   sx={{
                     textAlign: 'justify',
-                    paddingLeft: '40px',
+                    padding: '0px 0px 0px 40px',
                   }}
                 >
                   {`${row.first_name} ${row.last_name}`}
@@ -122,6 +125,7 @@ export default function ClientsTable({ clients, getClients }) {
                   className="admintxt"
                   sx={{
                     color: '#8C8C8C',
+                    padding: '0px',
                   }}
                 >
                   {phoneFormat(row.phone_number)}
@@ -132,9 +136,11 @@ export default function ClientsTable({ clients, getClients }) {
                   sx={{
                     paddingLeft: '2%',
                     paddingRight: '2%',
+                    padding: '10px',
                   }}
                 >
                   <img
+                    style={{ height: '40px' }}
                     src={edit}
                     alt=""
                     className="editIcon"
@@ -149,7 +155,7 @@ export default function ClientsTable({ clients, getClients }) {
                   <img
                     src={deleteIcon}
                     className="deleteIcon"
-                    style={{ marginLeft: '3%' }}
+                    style={{ marginLeft: '3%', height: '40px' }}
                     onClick={() => {
                       setDel(true);
                       setClient(row);

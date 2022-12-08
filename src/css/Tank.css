@@ -18,7 +18,7 @@
 
 @media only screen and (min-width: 992px) and (max-width: 1919px) {
   .tankInfo {
-    font-size: 19px !important;
+    font-size: 22px !important;
     width: 80% !important;
     font-family: 'HelveticaBold' !important;
   }

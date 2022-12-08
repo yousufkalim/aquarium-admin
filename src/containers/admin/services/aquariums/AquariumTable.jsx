@@ -137,7 +137,13 @@ export default function AquariumTable({
               <StyledTableRow key={row.name}>
                 <StyledTableCell
                   align="center"
-                  sx={{ display: 'flex', justifyContent: 'center' }}
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    width: 'max-Content',
+                    marginLeft: '20px',
+                    alignItems: 'left',
+                  }}
                 >
                   <div
                     style={{ textAlign: 'left', marginTop: '15px' }}
@@ -153,8 +159,11 @@ export default function AquariumTable({
                   </div>
                 </StyledTableCell>
                 <StyledTableCell
-                  align="center"
+                  align="justifyContent"
                   className="serviceTableTxt"
+                  style={{
+                    padding: '0px 80px 0px 60px',
+                  }}
                 >
                   {`${row.address.name}`}
                 </StyledTableCell>

@@ -67,7 +67,13 @@ export default function Tanks() {
               onClick={() => setOpen(true)}
             >
               Add New Value &nbsp;
-              <img src={add} alt="add" />
+              <img
+                style={{
+                  height: '24px',
+                }}
+                src={add}
+                alt="add"
+              />
             </Button>
           </div>
         </Grid>
