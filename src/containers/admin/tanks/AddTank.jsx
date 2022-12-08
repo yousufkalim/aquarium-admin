@@ -227,7 +227,7 @@ export default function AddTank({
                 classes={outlinedInputStyles}
                 placeholder={
                   type === 'size'
-                    ? 'E.G. 100 Gallon Tank'
+                    ? 'e.g. 100 Gallon Tank'
                     : type === 'type'
                     ? 'Tank Type'
                     : type === 'material'
