@@ -132,7 +132,9 @@ export default function AddTask({
       ...schedule,
       [e.target.name]: e.target.value,
     });
-    setDisable(false);
+    if (editing) {
+      setDisable(false);
+    }
   };
   const dateChange = (e) => {
     setSchedule({
@@ -147,12 +149,18 @@ export default function AddTask({
       ...schedule,
       start_time: e,
     });
+    if (editing) {
+      setDisable(false);
+    }
   };
   const endTimeChange = (e) => {
     setSchedule({
       ...schedule,
       end_time: e,
     });
+    if (editing) {
+      setDisable(false);
+    }
   };
 
   useEffect(() => {
