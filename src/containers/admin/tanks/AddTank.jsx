@@ -1,3 +1,5 @@
+/* eslint-disable indent */
+/* eslint-disable no-nested-ternary */
 /* eslint-disable consistent-return */
 import { React, useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
@@ -223,10 +225,14 @@ export default function AddTank({
                 }}
                 id="outlined-fname"
                 classes={outlinedInputStyles}
-                label={
+                placeholder={
                   type === 'size'
                     ? 'E.G. 100 Gallon Tank'
-                    : 'Tank Details'
+                    : type === 'type'
+                    ? 'Tank Type'
+                    : type === 'material'
+                    ? 'Tank Material'
+                    : 'Tank Filter'
                 }
                 size="normal"
                 name={type}
