@@ -137,6 +137,9 @@ export default function TankFilter({
                         }}
                       >
                         <img
+                          style={{
+                            marginRight: '14%',
+                          }}
                           src={edit}
                           alt=""
                           className="editIcon"

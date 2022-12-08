@@ -336,6 +336,9 @@ export default function AddAquarium({
                 label="size"
                 name="size"
                 onChange={onChangeTankDetails}
+                style={{
+                  textAlign: 'left',
+                }}
                 input={<BootstrapInput />}
               >
                 {tanks
@@ -361,6 +364,9 @@ export default function AddAquarium({
                 label="type"
                 name="type"
                 onChange={onChangeTankDetails}
+                style={{
+                  textAlign: 'left',
+                }}
                 input={<BootstrapInput />}
               >
                 {tanks
@@ -391,6 +397,9 @@ export default function AddAquarium({
                 label="material"
                 name="material"
                 onChange={onChangeTankDetails}
+                style={{
+                  textAlign: 'left',
+                }}
                 input={<BootstrapInput />}
               >
                 {tanks
@@ -421,6 +430,9 @@ export default function AddAquarium({
                 label="filter"
                 name="filter"
                 onChange={onChangeTankDetails}
+                style={{
+                  textAlign: 'left',
+                }}
                 input={<BootstrapInput />}
               >
                 {tanks

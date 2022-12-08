@@ -194,6 +194,8 @@ export default function VehicleLoadUpChecklist({
           editing={editing}
           check={check}
           getChecks={getChecks}
+          disable={disable}
+          setDisable={setDisable}
         />
       )}
       {del && (
@@ -203,8 +205,6 @@ export default function VehicleLoadUpChecklist({
           item={check}
           txt="checklist"
           getData={getChecks}
-          disable={disable}
-          setDisable={setDisable}
         />
       )}
     </div>

@@ -204,10 +204,19 @@ export default function ServiceHistoryTable({
               <StyledTableRow>
                 <StyledTableCell
                   align="center"
-                  sx={{ display: 'flex', justifyContent: 'center' }}
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    width: 'max-Content',
+                    marginLeft: '20px',
+                    alignItems: 'left',
+                  }}
                 >
                   <div
-                    style={{ textAlign: 'left', marginTop: '20px' }}
+                    style={{
+                      textAlign: 'left',
+                      marginTop: '20px',
+                    }}
                   >
                     <p className="placename">{`${row.aquarium?.client?.first_name} ${row.aquarium?.client?.last_name}`}</p>
 

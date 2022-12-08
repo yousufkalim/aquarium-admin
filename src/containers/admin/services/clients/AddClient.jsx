@@ -19,7 +19,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
   '& .MuiDialogContent-root': {
     padding: theme.spacing(2),
-    paddingTop: theme.spacing(7),
+    paddingTop: theme.spacing(4.4),
     textAlign: 'center',
   },
   '& .MuiDialogActions-root': {
@@ -142,10 +142,15 @@ export default function AddClient({
                 ? 'Client info will be modified by click on save button'
                 : 'Client will be added by phone number'}
             </p>
-            <div className="hl-forget" />
+            <div
+              className="hl-forget"
+              style={{
+                marginBottom: '22px',
+              }}
+            />
 
             <FormControl
-              sx={{ mb: 1, mt: 3, width: '85%' }}
+              sx={{ mb: 1, mt: 3, width: '80%' }}
               variant="outlined"
             >
               <TextField
@@ -175,7 +180,7 @@ export default function AddClient({
             </FormControl>
 
             <FormControl
-              sx={{ mb: 1, mt: 1, width: '85%' }}
+              sx={{ mb: 1, mt: 1, width: '80%' }}
               variant="outlined"
             >
               <TextField
@@ -205,7 +210,7 @@ export default function AddClient({
             </FormControl>
 
             <FormControl
-              sx={{ mb: 1, mt: 1, width: '85%' }}
+              sx={{ mb: 1, mt: 1, width: '80%' }}
               variant="outlined"
             >
               <TextField
@@ -236,7 +241,7 @@ export default function AddClient({
             </FormControl>
 
             <FormControl
-              sx={{ mb: 1, mt: 1, width: '85%' }}
+              sx={{ mb: 1, mt: 1, width: '80%' }}
               variant="outlined"
             >
               <TextField

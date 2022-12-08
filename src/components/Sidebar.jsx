@@ -139,6 +139,7 @@ export default function Sidebar() {
                             : {
                                 display: 'flex',
                                 flexDirection: 'column',
+                                marginBottom: '24px',
                               }
                         }
                         key={route.name}
@@ -306,8 +307,8 @@ export default function Sidebar() {
           >
             <div
               style={{
-                marginRight: '4%',
-                minWidth: '18%',
+                marginRight: '6%',
+                minWidth: '22%',
                 width: '20%',
                 height: '51px',
               }}

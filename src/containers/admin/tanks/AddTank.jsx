@@ -218,7 +218,10 @@ export default function AddTank({
                   borderRadius: '25px',
                 }}
                 inputProps={{
-                  style: { color: '#8C8C8C', fontWeight: '700' },
+                  style: {
+                    color: '#8C8C8C',
+                    fontWeight: '700',
+                  },
                   maxLength: 30,
                 }}
                 id="outlined-fname"

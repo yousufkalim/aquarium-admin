@@ -132,6 +132,9 @@ export default function TankType({ tanks, getTanks, type, setType }) {
                         }}
                       >
                         <img
+                          style={{
+                            marginRight: '14%',
+                          }}
                           src={edit}
                           alt=""
                           className="editIcon"
