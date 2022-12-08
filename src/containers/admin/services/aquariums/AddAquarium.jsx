@@ -146,7 +146,9 @@ export default function AddAquarium({
       ...values,
       [e.target.name]: e.target.value,
     });
-    setDisable(false);
+    if (editing) {
+      setDisable(false);
+    }
   };
   const onChangeTankDetails = (e) => {
     setValues((prev) => ({
@@ -156,7 +158,9 @@ export default function AddAquarium({
         [e.target.name]: e.target.value,
       },
     }));
-    setDisable(false);
+    if (editing) {
+      setDisable(false);
+    }
   };
 
   const handleGetAddress = async ({ target }) => {
@@ -177,7 +181,9 @@ export default function AddAquarium({
         lng: value.lng,
       },
     });
-    setDisable(false);
+    if (editing) {
+      setDisable(false);
+    }
   };
 
   const handleSubmit = async () => {
