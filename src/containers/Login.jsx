@@ -85,6 +85,7 @@ export default function Login() {
                   backgroundColor: 'white',
                   borderRadius: '25px',
                 }}
+                className="emailField"
                 id="outlined-email"
                 classes={outlinedInputStyles}
                 label="Email&nbsp;"
@@ -112,6 +113,7 @@ export default function Login() {
                   backgroundColor: 'white',
                   borderRadius: '25px',
                 }}
+                className="passwordField"
                 id="outlined-password"
                 classes={outlinedInputStyles}
                 label="Password&nbsp;&nbsp;"
@@ -149,6 +151,7 @@ export default function Login() {
                 }}
               />
               <div
+                className="forgetPassword"
                 style={{
                   width: 'fit-content',
                   marginLeft: 'auto',
