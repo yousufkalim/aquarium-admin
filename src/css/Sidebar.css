@@ -166,7 +166,7 @@
 
 .s-vl {
   height: 116px;
-  margin-left: -40px !important;
+  margin-left: -30px !important;
   border-left: 2px solid #28cdff;
 }
 
@@ -190,6 +190,6 @@
   }
 
   .s-vl {
-    margin-left: -44px !important;
+    margin-left: -70px !important;
   }
 }

@@ -80,7 +80,7 @@ export default function ScheduleTable({
                 <img
                   src={back}
                   alt=""
-                  onClick={() => navigate('/admin/dashboard')}
+                  onClick={() => navigate('/admin/technicians')}
                   style={{ cursor: 'pointer' }}
                   role="presentation"
                 />

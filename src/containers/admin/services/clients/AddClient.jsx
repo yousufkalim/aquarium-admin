@@ -19,7 +19,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
   '& .MuiDialogContent-root': {
     padding: theme.spacing(2),
-    paddingTop: theme.spacing(4.4),
+    paddingTop: theme.spacing(6.2),
     textAlign: 'center',
   },
   '& .MuiDialogActions-root': {
@@ -137,17 +137,6 @@ export default function AddClient({
             <h1 style={{ fontSize: '24px', color: '#28CDFF' }}>
               {editing ? 'Edit Client' : 'Add New Client'}
             </h1>
-            <p className="clientPopupTxt">
-              {editing
-                ? 'Client info will be modified by click on save button'
-                : 'Client will be added by phone number'}
-            </p>
-            <div
-              className="hl-forget"
-              style={{
-                marginBottom: '22px',
-              }}
-            />
 
             <FormControl
               sx={{ mb: 1, mt: 3, width: '80%' }}
@@ -160,7 +149,6 @@ export default function AddClient({
                 }}
                 inputProps={{
                   maxlength: 30,
-                  style: { color: '#8C8C8C', fontWeight: '700' },
                 }}
                 id="outlined-fname"
                 classes={outlinedInputStyles}
@@ -190,7 +178,6 @@ export default function AddClient({
                 }}
                 inputProps={{
                   maxlength: 30,
-                  style: { color: '#8C8C8C', fontWeight: '700' },
                 }}
                 id="outlined-lastname"
                 classes={outlinedInputStyles}
@@ -225,7 +212,6 @@ export default function AddClient({
                 type="text"
                 inputProps={{
                   maxLength: 10,
-                  style: { color: '#8C8C8C', fontWeight: '700' },
                 }}
                 value={phone_number}
                 name="phone_number"
@@ -249,9 +235,7 @@ export default function AddClient({
                   backgroundColor: 'white',
                   borderRadius: '25px',
                 }}
-                inputProps={{
-                  style: { color: '#8C8C8C', fontWeight: '700' },
-                }}
+                inputProps={{}}
                 id="outlined-password"
                 classes={outlinedInputStyles}
                 label="Email"

@@ -127,13 +127,13 @@ export default function AddCheck({
         }
         await api('put', `/checklist/${check._id}`, formData);
 
-        toast.success('Check edited successfully');
+        toast.success('Task edited successfully');
       } else {
         if (type === 'service') {
           setLoading(true);
         }
         await api('post', '/checklist', formData);
-        toast.success('Check created successfully');
+        toast.success('Task created successfully');
       }
       getChecks();
       if (!editing) {
@@ -168,18 +168,16 @@ export default function AddCheck({
       >
         <DialogContent>
           <Typography gutterBottom>
-            <h1 style={{ fontSize: '24px', color: '#28CDFF' }}>
-              {editing ? 'Edit Check' : 'Add new Check'}
+            <h1
+              style={{
+                fontSize: '24px',
+                color: '#28CDFF',
+                paddingBottom: '30px',
+              }}
+            >
+              {editing ? 'Edit Task' : 'Add new Task'}
             </h1>
-            <p className="enterEmailTxt">
-              {editing
-                ? 'Check will be edited in the list which you are going to edit'
-                : 'Check will be added in the list which you are going to select'}
-            </p>
-            <div
-              className="hl-del"
-              style={{ width: '76%', marginBottom: '7%' }}
-            />
+
             <InputLabel
               sx={{
                 textAlign: 'left',
@@ -189,7 +187,7 @@ export default function AddCheck({
                 fontWeight: '600',
               }}
             >
-              Check for
+              Tasklist
               <span
                 style={{ fontWeight: '100', letterSpacing: '1px' }}
               >
@@ -244,12 +242,9 @@ export default function AddCheck({
                   backgroundColor: 'white',
                   borderRadius: '25px',
                 }}
-                inputProps={{
-                  style: { color: '#8C8C8C', fontWeight: '700' },
-                }}
                 id="outlined-fname"
                 classes={outlinedInputStyles}
-                label="Sentence"
+                label="Name"
                 size="normal"
                 name="title"
                 type="text"
@@ -271,9 +266,6 @@ export default function AddCheck({
             {type !== 'service' ? (
               <FormControl fullWidth sx={{ width: '78%', mt: 2 }}>
                 <TextField
-                  inputProps={{
-                    style: { color: '#8C8C8C', fontWeight: '700' },
-                  }}
                   multiline
                   rows={5}
                   maxRows={5}
@@ -398,7 +390,7 @@ export default function AddCheck({
             variant="contained"
             disabled={disable || loading}
           >
-            {editing ? 'Update Check' : 'Add Check'}
+            {editing ? 'Update Task' : 'Add Task'}
           </Button>
         </DialogActions>
         {loading ? (

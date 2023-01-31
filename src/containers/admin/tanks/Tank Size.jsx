@@ -36,8 +36,8 @@ export default function TankSize({ tanks, getTanks, type, setType }) {
   const [del, setDel] = useState(false);
   const [editing, setEditing] = useState(false);
   const [tank, setTank] = useState('');
-  const [expanded, setExpanded] = useState('');
-  const [toggleIcon, setToggleIcon] = useState(false);
+  const [expanded, setExpanded] = useState(true);
+  const [toggleIcon, setToggleIcon] = useState(true);
   const [disable, setDisable] = useState(false);
 
   const handleExpandClick = () => {

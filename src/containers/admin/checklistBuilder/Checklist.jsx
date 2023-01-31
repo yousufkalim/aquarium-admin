@@ -32,7 +32,11 @@ export default function Checklist() {
         <Grid
           xl={10}
           lg={9}
-          sx={{ backgroundColor: '#d9f4ff', height: '100%' }}
+          sx={{
+            backgroundColor: '#d9f4ff',
+            height: '100%',
+            paddingBottom: '3%',
+          }}
         >
           <ServiceChecklist
             checks={checks}
@@ -59,7 +63,7 @@ export default function Checklist() {
               className="CheckListBtn"
               onClick={() => setOpen(true)}
             >
-              Add New Check &nbsp;
+              Add New Task &nbsp;
               <img src={add} alt="add" />
             </Button>
           </div>

@@ -37,7 +37,7 @@ function Admin() {
     if (admin.role === 'admin') {
       // eslint-disable-next-line array-callback-return
       routes = adminRoutes.map((route) => {
-        if (route.name === 'Services') {
+        if (route.name === 'Services' || route.name === 'Settings') {
           return route.child.map((child) => (
             <Route path={child.path} element={child.element} />
           ));
@@ -60,7 +60,7 @@ function Admin() {
         <Route path="/technicians/:id" element={<Schedule />} />
         <Route
           path="/*"
-          element={<Navigate to="/admin/dashboard" />}
+          element={<Navigate to="/admin/technicians" />}
         />
       </Routes>
     </>

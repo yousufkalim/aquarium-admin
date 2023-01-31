@@ -130,12 +130,7 @@ export default function AddTechnician({
                 ? 'Edit Technician Profile'
                 : 'Invite a new Technician'}
             </h1>
-            <p className="enterEmailTxt">
-              {editing
-                ? 'Technician info will be modified by click on save button'
-                : 'Technician will be invited by phone number'}
-            </p>
-            <div className="hl-forget" />
+
             <FormControl
               sx={{ mb: 1, mt: 6, width: '85%' }}
               variant="outlined"
@@ -147,7 +142,6 @@ export default function AddTechnician({
                 }}
                 inputProps={{
                   maxlength: 30,
-                  style: { color: '#8C8C8C', fontWeight: '700' },
                 }}
                 id="outlined-fname"
                 classes={outlinedInputStyles}
@@ -176,7 +170,6 @@ export default function AddTechnician({
                 }}
                 inputProps={{
                   maxlength: 30,
-                  style: { color: '#8C8C8C', fontWeight: '700' },
                 }}
                 id="outlined-email"
                 classes={outlinedInputStyles}
@@ -212,7 +205,6 @@ export default function AddTechnician({
                 name="phone_number"
                 inputProps={{
                   maxLength: 10,
-                  style: { color: '#8C8C8C', fontWeight: '700' },
                 }}
                 onChange={onChangePhoneNmbr}
                 InputLabelProps={{

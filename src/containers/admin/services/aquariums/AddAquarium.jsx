@@ -12,11 +12,8 @@ import { FormControl, TextField } from '@mui/material';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
-import InputBase from '@mui/material/InputBase';
 import Autocomplete from '@mui/material/Autocomplete';
 import api from '../../../../api/index';
-
-// eslint-disable-next-line object-curly-newline
 
 // styling for dialog
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
@@ -60,39 +57,6 @@ const useOutlinedInputStyles = makeStyles({
   },
 });
 
-// styling for select drop down
-const BootstrapInput = styled(InputBase)(({ theme }) => ({
-  '& .MuiInputBase-input': {
-    borderRadius: 20,
-    position: 'relative',
-    backgroundColor: theme.palette.background.paper,
-    border: '1px solid #CDEEFC',
-    fontSize: 16,
-    padding: '4% 10%',
-    transition: theme.transitions.create([
-      'border-color',
-      'box-shadow',
-    ]),
-    // Use the system font instead of the default Roboto font.
-    fontFamily: [
-      '-apple-system',
-      'BlinkMacSystemFont',
-      '"Segoe UI"',
-      'Roboto',
-      '"Helvetica Neue"',
-      'Arial',
-      'sans-serif',
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"',
-    ].join(','),
-    '&:focus': {
-      borderRadius: 20,
-      borderColor: '#28CDFF',
-      // boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
-    },
-  },
-}));
 export default function AddAquarium({
   open,
   setOpen,
@@ -104,12 +68,6 @@ export default function AddAquarium({
   disable,
   setDisable,
 }) {
-  const divStyle = {
-    color: '#8C8C8C',
-    fontSize: '19px',
-    fontWeight: '700',
-  };
-
   const outlinedInputStyles = useOutlinedInputStyles();
   const [values, setValues] = useState({
     client: '',
@@ -126,8 +84,33 @@ export default function AddAquarium({
     },
     service_details: '',
   });
-
   const [allAddresses, setAllAddresses] = useState([]);
+
+  const divStyle = {
+    color: '#8C8C8C',
+    fontSize: '19px',
+    fontWeight: '700',
+  };
+
+  const selectFieldStyle = {
+    '.MuiOutlinedInput-notchedOutline': {
+      border: '1px solid #CDEEFC',
+      padding: '4%',
+    },
+    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+      borderColor: '#28CDFF',
+      padding: '4%',
+    },
+    '&:hover .MuiOutlinedInput-notchedOutline': {
+      borderColor: '#28CDFF',
+      padding: '4%',
+    },
+    borderRadius: '20px',
+    backgroundColor: 'white',
+    textAlign: 'left',
+    fontSize: 16,
+  };
+
   // eslint-disable-next-line no-unused-vars
   useEffect(() => {
     if (aquarium) {
@@ -217,14 +200,8 @@ export default function AddAquarium({
         <DialogContent>
           <Typography gutterBottom>
             <h1 style={{ fontSize: '24px', color: '#28CDFF' }}>
-              {editing ? 'Edit Aquarium' : 'Add An Aquarium'}
+              {editing ? 'Edit Aquarium' : 'Add Aquarium'}
             </h1>
-            <p className="clientPopupTxt">
-              {editing
-                ? 'Aquarium will be modified in the list'
-                : 'Aquarium will be added in the list'}
-            </p>
-            <div className="hl-forget" />
 
             <FormControl sx={{ mt: 5, mr: 5, mb: 3, width: '45%' }}>
               <InputLabel
@@ -240,7 +217,7 @@ export default function AddAquarium({
                 value={values.client}
                 label="Client Name"
                 onChange={onChangeEvent}
-                input={<BootstrapInput />}
+                sx={selectFieldStyle}
               >
                 {clients?.map((client) => (
                   <MenuItem value={client._id}>
@@ -257,6 +234,7 @@ export default function AddAquarium({
               <Autocomplete
                 id="combo-box-demo"
                 value={values?.address}
+                freeSolo
                 options={allAddresses}
                 getOptionLabel={(option) => option.name}
                 onChange={(event, value) => {
@@ -270,7 +248,7 @@ export default function AddAquarium({
                       borderRadius: '25px',
                     }}
                     id="select"
-                    label="Address"
+                    label="Address&nbsp;&nbsp;"
                     variant="outlined"
                     classes={outlinedInputStyles}
                     onChange={(e) => handleGetAddress(e)}
@@ -293,7 +271,7 @@ export default function AddAquarium({
                 classes={outlinedInputStyles}
                 name="service_details"
                 value={values.service_details}
-                label="Service Details"
+                label="Service Details&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
                 onChange={onChangeEvent}
                 sx={{
                   backgroundColor: 'white',
@@ -301,7 +279,6 @@ export default function AddAquarium({
                 }}
                 inputProps={{
                   maxlength: '500',
-                  style: { color: '#8C8C8C', fontWeight: '700' },
                 }}
                 InputLabelProps={{
                   style: {
@@ -342,10 +319,7 @@ export default function AddAquarium({
                 label="size"
                 name="size"
                 onChange={onChangeTankDetails}
-                style={{
-                  textAlign: 'left',
-                }}
-                input={<BootstrapInput />}
+                sx={selectFieldStyle}
               >
                 {tanks
                   ?.filter((tank) => tank.type === 'size')
@@ -370,10 +344,7 @@ export default function AddAquarium({
                 label="type"
                 name="type"
                 onChange={onChangeTankDetails}
-                style={{
-                  textAlign: 'left',
-                }}
-                input={<BootstrapInput />}
+                sx={selectFieldStyle}
               >
                 {tanks
                   ?.filter((tank) => tank.type === 'type')
@@ -384,12 +355,7 @@ export default function AddAquarium({
                   ))}
               </Select>
             </FormControl>
-            <FormControl
-              sx={{ mb: 1, mt: 1, width: '45%', mr: 5 }}
-
-              // sx={{ mb: 1, mt: 3, width: '85%' }}
-              // variant="outlined"
-            >
+            <FormControl sx={{ mb: 1, mt: 1, width: '45%', mr: 5 }}>
               <InputLabel
                 id="demo-simple-select-label"
                 style={divStyle}
@@ -403,10 +369,7 @@ export default function AddAquarium({
                 label="material"
                 name="material"
                 onChange={onChangeTankDetails}
-                style={{
-                  textAlign: 'left',
-                }}
-                input={<BootstrapInput />}
+                sx={selectFieldStyle}
               >
                 {tanks
                   ?.filter((tank) => tank.type === 'material')
@@ -417,12 +380,7 @@ export default function AddAquarium({
                   ))}
               </Select>
             </FormControl>
-            <FormControl
-              sx={{ mb: 1, mt: 1, width: '45%' }}
-
-              // sx={{ mb: 1, mt: 3, width: '85%' }}
-              // variant="outlined"
-            >
+            <FormControl sx={{ mb: 1, mt: 1, width: '45%' }}>
               <InputLabel
                 id="demo-simple-select-label"
                 style={divStyle}
@@ -436,10 +394,7 @@ export default function AddAquarium({
                 label="filter"
                 name="filter"
                 onChange={onChangeTankDetails}
-                style={{
-                  textAlign: 'left',
-                }}
-                input={<BootstrapInput />}
+                sx={selectFieldStyle}
               >
                 {tanks
                   ?.filter((tank) => tank.type === 'filter')

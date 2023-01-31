@@ -239,19 +239,15 @@ export default function AddTask({
       >
         <DialogContent>
           <Typography gutterBottom>
-            <h1 style={{ fontSize: '24px', color: '#28CDFF' }}>
-              {editing ? 'Edit Task' : 'Add New Task'}
-            </h1>
-            <p
-              className="enterEmailTxt"
-              style={{ cursor: 'default' }}
+            <h1
+              style={{
+                fontSize: '24px',
+                color: '#28CDFF',
+                paddingBottom: '20px',
+              }}
             >
-              The task will be added in Technician&apos;s schedule.
-            </p>
-            <div
-              className="hl-del"
-              style={{ width: '50%', marginBottom: '6%' }}
-            />
+              {editing ? 'Edit Service' : 'Add New Service'}
+            </h1>
 
             <div>
               <InputLabel
@@ -400,6 +396,7 @@ export default function AddTask({
                     display: 'flex',
                     fontFamily: 'HelveticaMedium',
                     fontWeight: 400,
+                    color: '#8C8C8C',
                   }}
                 >
                   Date
@@ -423,7 +420,6 @@ export default function AddTask({
                     selected={date}
                     popperPlacement="bottom-start"
                     showYearDropdown
-                    // minDate={addDays(new Date(), 1)}
                     onChange={dateChange}
                   />
                 </div>
@@ -441,6 +437,7 @@ export default function AddTask({
                     marginBottom: '-8%',
                     fontFamily: 'HelveticaMedium',
                     fontWeight: 400,
+                    color: '#8C8C8C',
                   }}
                 >
                   Start Time
@@ -480,6 +477,7 @@ export default function AddTask({
                     marginBottom: '-8%',
                     fontFamily: 'HelveticaMedium',
                     fontWeight: 400,
+                    color: '#8C8C8C',
                   }}
                 >
                   End Time
@@ -573,7 +571,7 @@ export default function AddTask({
                       style={{ color: '#28CDFF' }}
                     />
                   }
-                  label="Want to repeat this task every"
+                  label="Want to repeat this service every"
                 />
               ) : (
                 ''
@@ -630,7 +628,7 @@ export default function AddTask({
             className={disable ? 'disable' : 'resetPasswordBtn'}
             disabled={disable}
           >
-            {editing ? 'Update Task' : 'Add Task'}
+            {editing ? 'Update Service' : 'Add Service'}
           </Button>
         </DialogActions>
         {created && (

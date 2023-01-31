@@ -130,12 +130,7 @@ export default function AddProduct({
             >
               {editing ? 'Edit Product' : 'Add new Product'}
             </h1>
-            <p className="enterEmailTxt">
-              {editing
-                ? 'Product will be modified in the list'
-                : 'Product will be added in the list'}
-            </p>
-            <div className="hl-forget" />
+
             <FormControl
               sx={{ mb: 1, mt: 6, width: '85%' }}
               variant="outlined"
@@ -147,7 +142,6 @@ export default function AddProduct({
                 }}
                 inputProps={{
                   maxLength: 30,
-                  style: { color: '#8C8C8C', fontWeight: '700' },
                 }}
                 id="outlined-name"
                 classes={outlinedInputStyles}
@@ -175,16 +169,18 @@ export default function AddProduct({
                   borderRadius: '25px',
                 }}
                 inputProps={{
-                  maxlength: 10,
-                  style: { color: '#8C8C8C', fontWeight: '700' },
+                  maxlength: 11,
                 }}
                 id="outlined-price"
                 classes={outlinedInputStyles}
                 label="Price"
                 name="price"
-                value={price}
+                value={price ? `$${price}` : ''}
                 type="text"
-                onChange={onChangeEvent}
+                onChange={(e) => {
+                  e.target.value = e.target.value.replace('$', '');
+                  onChangeEvent(e);
+                }}
                 InputLabelProps={{
                   style: {
                     color: '#8C8C8C',
