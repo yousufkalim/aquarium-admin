@@ -149,7 +149,6 @@ export default function AddClient({
                 }}
                 inputProps={{
                   maxlength: 30,
-                  style: { color: '#8C8C8C', fontWeight: '700' },
                 }}
                 id="outlined-fname"
                 classes={outlinedInputStyles}
@@ -179,7 +178,6 @@ export default function AddClient({
                 }}
                 inputProps={{
                   maxlength: 30,
-                  style: { color: '#8C8C8C', fontWeight: '700' },
                 }}
                 id="outlined-lastname"
                 classes={outlinedInputStyles}
@@ -214,7 +212,6 @@ export default function AddClient({
                 type="text"
                 inputProps={{
                   maxLength: 10,
-                  style: { color: '#8C8C8C', fontWeight: '700' },
                 }}
                 value={phone_number}
                 name="phone_number"
@@ -238,9 +235,7 @@ export default function AddClient({
                   backgroundColor: 'white',
                   borderRadius: '25px',
                 }}
-                inputProps={{
-                  style: { color: '#8C8C8C', fontWeight: '700' },
-                }}
+                inputProps={{}}
                 id="outlined-password"
                 classes={outlinedInputStyles}
                 label="Email"

@@ -242,9 +242,6 @@ export default function AddCheck({
                   backgroundColor: 'white',
                   borderRadius: '25px',
                 }}
-                inputProps={{
-                  style: { color: '#8C8C8C', fontWeight: '700' },
-                }}
                 id="outlined-fname"
                 classes={outlinedInputStyles}
                 label="Name"
@@ -269,9 +266,6 @@ export default function AddCheck({
             {type !== 'service' ? (
               <FormControl fullWidth sx={{ width: '78%', mt: 2 }}>
                 <TextField
-                  inputProps={{
-                    style: { color: '#8C8C8C', fontWeight: '700' },
-                  }}
                   multiline
                   rows={5}
                   maxRows={5}

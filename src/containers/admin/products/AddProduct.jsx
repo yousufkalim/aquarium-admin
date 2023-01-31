@@ -142,7 +142,6 @@ export default function AddProduct({
                 }}
                 inputProps={{
                   maxLength: 30,
-                  style: { color: '#8C8C8C', fontWeight: '700' },
                 }}
                 id="outlined-name"
                 classes={outlinedInputStyles}
@@ -171,7 +170,6 @@ export default function AddProduct({
                 }}
                 inputProps={{
                   maxlength: 11,
-                  style: { color: '#8C8C8C', fontWeight: '700' },
                 }}
                 id="outlined-price"
                 classes={outlinedInputStyles}

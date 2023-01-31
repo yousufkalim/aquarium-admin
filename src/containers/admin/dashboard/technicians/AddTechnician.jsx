@@ -142,7 +142,6 @@ export default function AddTechnician({
                 }}
                 inputProps={{
                   maxlength: 30,
-                  style: { color: '#8C8C8C', fontWeight: '700' },
                 }}
                 id="outlined-fname"
                 classes={outlinedInputStyles}
@@ -171,7 +170,6 @@ export default function AddTechnician({
                 }}
                 inputProps={{
                   maxlength: 30,
-                  style: { color: '#8C8C8C', fontWeight: '700' },
                 }}
                 id="outlined-email"
                 classes={outlinedInputStyles}
@@ -207,7 +205,6 @@ export default function AddTechnician({
                 name="phone_number"
                 inputProps={{
                   maxLength: 10,
-                  style: { color: '#8C8C8C', fontWeight: '700' },
                 }}
                 onChange={onChangePhoneNmbr}
                 InputLabelProps={{
