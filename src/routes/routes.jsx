@@ -104,7 +104,7 @@ const adminRoutes = [
   {
     layout: '/admin',
     path: '/checklistBuilder',
-    name: 'Checklist Builder',
+    name: 'Tasklist Builder',
     icon: checklist,
     element: <Checklist />,
   },
