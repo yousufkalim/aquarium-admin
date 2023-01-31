@@ -14,7 +14,10 @@ import service from '../assets/images/service.svg';
 import serviceAdmin from '../assets/images/serviceAdmin.svg';
 import products from '../assets/images/products.svg';
 import checklist from '../assets/images/checklist.svg';
+import settings from '../assets/images/Setting.svg';
 import tank from '../assets/images/aquarium.svg';
+
+// child imports
 import Tanks from '../containers/admin/tanks/Tanks';
 import Clients from '../containers/admin/services/clients/Clients';
 import Aquarium from '../containers/admin/services/aquariums/Aquarium';
@@ -100,35 +103,45 @@ const adminRoutes = [
       },
     ],
   },
-
-  {
-    layout: '/admin',
-    path: '/checklistBuilder',
-    name: 'Tasklist Builder',
-    icon: checklist,
-    element: <Checklist />,
-  },
   {
     layout: '/admin',
     path: '/billing',
     name: 'Billing',
     icon: service,
-    // element: <Services />,
   },
   {
     layout: '/admin',
-    path: '/tankDetails',
-    name: 'Tank Details',
-    icon: tank,
+    path: '/settings/tankDetails',
+    name: 'Settings',
+    icon: settings,
     element: <Tanks />,
-  },
-
-  {
-    layout: '/admin',
-    path: '/products',
-    name: 'Products',
-    icon: products,
-    element: <Products />,
+    key: '1',
+    child: [
+      {
+        layout: '/admin',
+        path: '/settings/tasklistBuilder',
+        name: 'Tasklist Builder',
+        icon: checklist,
+        element: <Checklist />,
+        key: '2',
+      },
+      {
+        layout: '/admin',
+        path: '/settings/tankDetails',
+        name: 'Tank Details',
+        icon: tank,
+        element: <Tanks />,
+        key: '3',
+      },
+      {
+        layout: '/admin',
+        path: '/settings/products',
+        name: 'Products',
+        icon: products,
+        element: <Products />,
+        key: '4',
+      },
+    ],
   },
 ];
 

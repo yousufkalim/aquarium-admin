@@ -258,6 +258,145 @@ export default function Sidebar() {
                     </div>
                   );
                   // eslint-disable-next-line no-else-return
+                } else if (route.name === 'Settings') {
+                  return (
+                    <div>
+                      <ListItem
+                        className={`fullListItemAdmin ${
+                          window.location.pathname.includes(
+                            'settings',
+                          ) && 'activeDropdown'
+                        }`}
+                        style={
+                          activeLink === 'Settings'
+                            ? {
+                                background: '#28cdff',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                color: 'white',
+                              }
+                            : {
+                                display: 'flex',
+                                flexDirection: 'column',
+                                marginBottom: '24px',
+                              }
+                        }
+                        key={route.name}
+                        disablePadding
+                      >
+                        <ListItemButton
+                          className="listItem"
+                          onClick={() => {
+                            toggleIcon(route?.name);
+                          }}
+                          onKeyDown={() => toggleIcon(route?.name)}
+                        >
+                          <ListItemIcon className="M-icon">
+                            <img
+                              src={route.icon}
+                              className="icon"
+                              id="icon"
+                              alt=""
+                            />
+                          </ListItemIcon>
+                          <ListItemText
+                            className="listItem"
+                            primary={route.name}
+                          />
+
+                          <div className="T-btn">
+                            {/* eslint-disable-next-line operator-linebreak */}
+                            {updownIconToggle[updownIconToggle.key] &&
+                            updownIconToggle.key === route?.name ? (
+                              <img
+                                className="arrow-icon-up"
+                                src={arrowUp}
+                                alt="arrowUp"
+                              />
+                            ) : (
+                              // eslint-disable-next-line indent
+                              // eslint-disable-next-line indent
+                              <img
+                                className="arrow-icon-up"
+                                src={arrowUp}
+                                style={{
+                                  transform: 'rotateX(180deg)',
+                                }}
+                                alt="arrowUp"
+                              />
+                              // eslint-disable-next-line indent
+                            )}
+                          </div>
+                        </ListItemButton>
+                        <div
+                          className="flex listItem1"
+                          style={{
+                            display: 'flex',
+                            flexDirection: 'row',
+                            width: '100%',
+                            justifyContent: 'center',
+                          }}
+                        >
+                          {updownIconToggle[updownIconToggle.key] &&
+                          updownIconToggle.key === route?.name ? (
+                            <>
+                              <div className="s-vl" />
+                              <div
+                                className="flex-col"
+                                style={{
+                                  marginLeft: '50px',
+                                  marginTop: '10%',
+                                  marginBottom: '10%',
+                                }}
+                              >
+                                {route?.child.map((routeChild) => (
+                                  <div
+                                    onClick={
+                                      () =>
+                                        // eslint-disable-next-line implicit-arrow-linebreak
+                                        setactiveLink(
+                                          routeChild?.name,
+                                        )
+                                      // eslint-disable-next-line react/jsx-curly-newline
+                                    }
+                                    onKeyUp={
+                                      () =>
+                                        // eslint-disable-next-line implicit-arrow-linebreak
+                                        setactiveLink(
+                                          routeChild?.name,
+                                        )
+                                      // eslint-disable-next-line react/jsx-curly-newline
+                                    }
+                                    role="presentation"
+                                    className="dropDownLeftBorder"
+                                  >
+                                    <NavLink
+                                      style={{
+                                        textDecoration: 'none',
+                                      }}
+                                      activeClassName="active"
+                                      className={
+                                        routeChild?.name ===
+                                        activeLink
+                                          ? 'active-NavLink'
+                                          : ''
+                                      }
+                                      to={`${routeChild.layout}${routeChild?.path}`}
+                                    >
+                                      <p className="adminServiceDropdown">
+                                        {routeChild?.name}
+                                      </p>
+                                    </NavLink>
+                                  </div>
+                                ))}
+                              </div>
+                            </>
+                          ) : null}
+                        </div>
+                      </ListItem>
+                    </div>
+                  );
+                  // eslint-disable-next-line no-else-return
                 } else {
                   return (
                     <NavLink
