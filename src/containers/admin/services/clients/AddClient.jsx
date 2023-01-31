@@ -19,7 +19,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
   '& .MuiDialogContent-root': {
     padding: theme.spacing(2),
-    paddingTop: theme.spacing(4.4),
+    paddingTop: theme.spacing(6.2),
     textAlign: 'center',
   },
   '& .MuiDialogActions-root': {
@@ -137,17 +137,6 @@ export default function AddClient({
             <h1 style={{ fontSize: '24px', color: '#28CDFF' }}>
               {editing ? 'Edit Client' : 'Add New Client'}
             </h1>
-            <p className="clientPopupTxt">
-              {editing
-                ? 'Client info will be modified by click on save button'
-                : 'Client will be added by phone number'}
-            </p>
-            <div
-              className="hl-forget"
-              style={{
-                marginBottom: '22px',
-              }}
-            />
 
             <FormControl
               sx={{ mb: 1, mt: 3, width: '80%' }}

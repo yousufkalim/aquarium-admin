@@ -168,18 +168,16 @@ export default function AddCheck({
       >
         <DialogContent>
           <Typography gutterBottom>
-            <h1 style={{ fontSize: '24px', color: '#28CDFF' }}>
+            <h1
+              style={{
+                fontSize: '24px',
+                color: '#28CDFF',
+                paddingBottom: '30px',
+              }}
+            >
               {editing ? 'Edit Check' : 'Add new Check'}
             </h1>
-            <p className="enterEmailTxt">
-              {editing
-                ? 'Check will be edited in the list which you are going to edit'
-                : 'Check will be added in the list which you are going to select'}
-            </p>
-            <div
-              className="hl-del"
-              style={{ width: '76%', marginBottom: '7%' }}
-            />
+
             <InputLabel
               sx={{
                 textAlign: 'left',

@@ -239,19 +239,15 @@ export default function AddTask({
       >
         <DialogContent>
           <Typography gutterBottom>
-            <h1 style={{ fontSize: '24px', color: '#28CDFF' }}>
+            <h1
+              style={{
+                fontSize: '24px',
+                color: '#28CDFF',
+                paddingBottom: '20px',
+              }}
+            >
               {editing ? 'Edit Task' : 'Add New Task'}
             </h1>
-            <p
-              className="enterEmailTxt"
-              style={{ cursor: 'default' }}
-            >
-              The task will be added in Technician&apos;s schedule.
-            </p>
-            <div
-              className="hl-del"
-              style={{ width: '50%', marginBottom: '6%' }}
-            />
 
             <div>
               <InputLabel

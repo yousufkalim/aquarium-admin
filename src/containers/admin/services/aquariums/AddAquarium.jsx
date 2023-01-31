@@ -217,14 +217,8 @@ export default function AddAquarium({
         <DialogContent>
           <Typography gutterBottom>
             <h1 style={{ fontSize: '24px', color: '#28CDFF' }}>
-              {editing ? 'Edit Aquarium' : 'Add An Aquarium'}
+              {editing ? 'Edit Aquarium' : 'Add Aquarium'}
             </h1>
-            <p className="clientPopupTxt">
-              {editing
-                ? 'Aquarium will be modified in the list'
-                : 'Aquarium will be added in the list'}
-            </p>
-            <div className="hl-forget" />
 
             <FormControl sx={{ mt: 5, mr: 5, mb: 3, width: '45%' }}>
               <InputLabel

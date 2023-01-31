@@ -130,12 +130,7 @@ export default function AddTechnician({
                 ? 'Edit Technician Profile'
                 : 'Invite a new Technician'}
             </h1>
-            <p className="enterEmailTxt">
-              {editing
-                ? 'Technician info will be modified by click on save button'
-                : 'Technician will be invited by phone number'}
-            </p>
-            <div className="hl-forget" />
+
             <FormControl
               sx={{ mb: 1, mt: 6, width: '85%' }}
               variant="outlined"

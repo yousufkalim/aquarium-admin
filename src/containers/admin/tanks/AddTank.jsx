@@ -132,18 +132,16 @@ export default function AddTank({
       >
         <DialogContent>
           <Typography gutterBottom>
-            <h1 style={{ fontSize: '24px', color: '#28CDFF' }}>
+            <h1
+              style={{
+                fontSize: '24px',
+                color: '#28CDFF',
+                paddingBottom: '30px',
+              }}
+            >
               {editing ? 'Edit Tank Details' : 'Add New Tank Details'}
             </h1>
-            <p className="enterEmailTxt">
-              {editing
-                ? 'Lorem ipsum dolor sit amet, consectetur adipiscing elit'
-                : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit'}
-            </p>
-            <div
-              className="hl-del"
-              style={{ width: '76%', marginBottom: '7%' }}
-            />
+
             <InputLabel
               sx={{
                 textAlign: 'left',

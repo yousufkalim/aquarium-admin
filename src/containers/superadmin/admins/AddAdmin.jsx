@@ -126,12 +126,7 @@ export default function AddAdmin({
             >
               {editing ? 'Edit Admin Profile' : 'Invite A New Admin'}
             </h1>
-            <p className="enterEmailTxt">
-              {editing
-                ? 'Admin info will be modified by click on save button'
-                : 'Admin will be invited by email address'}
-            </p>
-            <div className="hl-forget" />
+
             <FormControl
               sx={{ mb: 1, mt: 6, width: '85%' }}
               variant="outlined"

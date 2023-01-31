@@ -130,12 +130,7 @@ export default function AddProduct({
             >
               {editing ? 'Edit Product' : 'Add new Product'}
             </h1>
-            <p className="enterEmailTxt">
-              {editing
-                ? 'Product will be modified in the list'
-                : 'Product will be added in the list'}
-            </p>
-            <div className="hl-forget" />
+
             <FormControl
               sx={{ mb: 1, mt: 6, width: '85%' }}
               variant="outlined"
