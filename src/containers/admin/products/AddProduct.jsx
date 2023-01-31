@@ -170,16 +170,19 @@ export default function AddProduct({
                   borderRadius: '25px',
                 }}
                 inputProps={{
-                  maxlength: 10,
+                  maxlength: 11,
                   style: { color: '#8C8C8C', fontWeight: '700' },
                 }}
                 id="outlined-price"
                 classes={outlinedInputStyles}
                 label="Price"
                 name="price"
-                value={price}
+                value={price ? `$${price}` : ''}
                 type="text"
-                onChange={onChangeEvent}
+                onChange={(e) => {
+                  e.target.value = e.target.value.replace('$', '');
+                  onChangeEvent(e);
+                }}
                 InputLabelProps={{
                   style: {
                     color: '#8C8C8C',
