@@ -33,7 +33,11 @@ export default function Tanks() {
         <Grid
           xl={10}
           lg={9}
-          sx={{ backgroundColor: '#d9f4ff', height: '100%' }}
+          sx={{
+            backgroundColor: '#d9f4ff',
+            height: '100%',
+            paddingBottom: '3%',
+          }}
         >
           <TankSize
             tanks={tanks}
