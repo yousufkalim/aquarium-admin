@@ -255,6 +255,8 @@
   border-radius: 25px;
   margin-top: 20px;
   padding: 4.2%;
+  text-align: left;
+  padding-left: 10% !important;
   width: 280px;
 }
 
