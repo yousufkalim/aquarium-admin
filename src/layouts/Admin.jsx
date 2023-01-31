@@ -60,7 +60,7 @@ function Admin() {
         <Route path="/technicians/:id" element={<Schedule />} />
         <Route
           path="/*"
-          element={<Navigate to="/admin/dashboard" />}
+          element={<Navigate to="/admin/technicians" />}
         />
       </Routes>
     </>

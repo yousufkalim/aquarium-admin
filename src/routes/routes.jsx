@@ -64,8 +64,8 @@ const superadminRoutes = [
 const adminRoutes = [
   {
     layout: '/admin',
-    path: '/dashboard',
-    name: 'Dashboard',
+    path: '/technicians',
+    name: 'Technicians',
     icon: admin,
     element: <Technicians />,
   },
