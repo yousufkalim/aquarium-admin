@@ -41,8 +41,8 @@ export default function ServiceChecklist({
   const [del, setDel] = useState(false);
   const [editing, setEditing] = useState(false);
   const [check, setCheck] = useState('');
-  const [expanded, setExpanded] = useState('');
-  const [toggleIcon, setToggleIcon] = useState(false);
+  const [expanded, setExpanded] = useState(true);
+  const [toggleIcon, setToggleIcon] = useState(true);
   const [disable, setDisable] = useState(false);
 
   const handleExpandClick = () => {
@@ -79,7 +79,7 @@ export default function ServiceChecklist({
             padding: '0.5% 1.5%',
           }}
         >
-          <h1 className="thead">Service Checklist</h1>
+          <h1 className="thead">Service Tasklist</h1>
           {toggleIcon ? (
             <img
               src={dropdown}

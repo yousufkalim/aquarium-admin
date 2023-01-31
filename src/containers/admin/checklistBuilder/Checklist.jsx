@@ -59,7 +59,7 @@ export default function Checklist() {
               className="CheckListBtn"
               onClick={() => setOpen(true)}
             >
-              Add New Check &nbsp;
+              Add New Task &nbsp;
               <img src={add} alt="add" />
             </Button>
           </div>

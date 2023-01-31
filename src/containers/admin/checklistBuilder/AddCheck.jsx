@@ -127,13 +127,13 @@ export default function AddCheck({
         }
         await api('put', `/checklist/${check._id}`, formData);
 
-        toast.success('Check edited successfully');
+        toast.success('Task edited successfully');
       } else {
         if (type === 'service') {
           setLoading(true);
         }
         await api('post', '/checklist', formData);
-        toast.success('Check created successfully');
+        toast.success('Task created successfully');
       }
       getChecks();
       if (!editing) {
@@ -175,7 +175,7 @@ export default function AddCheck({
                 paddingBottom: '30px',
               }}
             >
-              {editing ? 'Edit Check' : 'Add new Check'}
+              {editing ? 'Edit Task' : 'Add new Task'}
             </h1>
 
             <InputLabel
@@ -187,7 +187,7 @@ export default function AddCheck({
                 fontWeight: '600',
               }}
             >
-              Check for
+              Tasklist
               <span
                 style={{ fontWeight: '100', letterSpacing: '1px' }}
               >
@@ -247,7 +247,7 @@ export default function AddCheck({
                 }}
                 id="outlined-fname"
                 classes={outlinedInputStyles}
-                label="Sentence"
+                label="Name"
                 size="normal"
                 name="title"
                 type="text"
@@ -396,7 +396,7 @@ export default function AddCheck({
             variant="contained"
             disabled={disable || loading}
           >
-            {editing ? 'Update Check' : 'Add Check'}
+            {editing ? 'Update Task' : 'Add Task'}
           </Button>
         </DialogActions>
         {loading ? (
