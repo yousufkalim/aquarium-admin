@@ -340,7 +340,7 @@ export default function Sidebar() {
                           {updownIconToggle[updownIconToggle.key] &&
                           updownIconToggle.key === route?.name ? (
                             <>
-                              <div className="s-vl" />
+                              <div className="setting-vl" />
                               <div
                                 className="flex-col"
                                 style={{

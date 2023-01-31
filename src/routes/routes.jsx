@@ -103,12 +103,7 @@ const adminRoutes = [
       },
     ],
   },
-  {
-    layout: '/admin',
-    path: '/billing',
-    name: 'Billing',
-    icon: service,
-  },
+
   {
     layout: '/admin',
     path: '/settings/tankDetails',
@@ -140,6 +135,13 @@ const adminRoutes = [
         icon: products,
         element: <Products />,
         key: '4',
+      },
+      {
+        layout: '/admin',
+        path: '/settings/billing',
+        name: 'Billing',
+        icon: service,
+        key: '5',
       },
     ],
   },
