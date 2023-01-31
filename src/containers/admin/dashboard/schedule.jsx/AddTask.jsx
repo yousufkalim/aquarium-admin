@@ -246,7 +246,7 @@ export default function AddTask({
                 paddingBottom: '20px',
               }}
             >
-              {editing ? 'Edit Task' : 'Add New Task'}
+              {editing ? 'Edit Service' : 'Add New Service'}
             </h1>
 
             <div>
@@ -396,6 +396,7 @@ export default function AddTask({
                     display: 'flex',
                     fontFamily: 'HelveticaMedium',
                     fontWeight: 400,
+                    color: '#8C8C8C',
                   }}
                 >
                   Date
@@ -419,7 +420,6 @@ export default function AddTask({
                     selected={date}
                     popperPlacement="bottom-start"
                     showYearDropdown
-                    // minDate={addDays(new Date(), 1)}
                     onChange={dateChange}
                   />
                 </div>
@@ -437,6 +437,7 @@ export default function AddTask({
                     marginBottom: '-8%',
                     fontFamily: 'HelveticaMedium',
                     fontWeight: 400,
+                    color: '#8C8C8C',
                   }}
                 >
                   Start Time
@@ -476,6 +477,7 @@ export default function AddTask({
                     marginBottom: '-8%',
                     fontFamily: 'HelveticaMedium',
                     fontWeight: 400,
+                    color: '#8C8C8C',
                   }}
                 >
                   End Time
@@ -569,7 +571,7 @@ export default function AddTask({
                       style={{ color: '#28CDFF' }}
                     />
                   }
-                  label="Want to repeat this task every"
+                  label="Want to repeat this service every"
                 />
               ) : (
                 ''
@@ -626,7 +628,7 @@ export default function AddTask({
             className={disable ? 'disable' : 'resetPasswordBtn'}
             disabled={disable}
           >
-            {editing ? 'Update Task' : 'Add Task'}
+            {editing ? 'Update Service' : 'Add Service'}
           </Button>
         </DialogActions>
         {created && (

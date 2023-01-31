@@ -74,7 +74,7 @@ export default function Schedule() {
               className="addAdminBtn"
               onClick={() => setOpen(true)}
             >
-              Add new task &nbsp; <img src={add} alt="add" />
+              Add new service &nbsp; <img src={add} alt="add" />
             </Button>
           </div>
         </Grid>
