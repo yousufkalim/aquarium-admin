@@ -79,6 +79,7 @@ export default function AdminTable({ admins, getAdmins }) {
                           display: 'flex',
                           justifyContent: 'center',
                           alignItems: 'center',
+                          objectFit: 'cover',
                         }}
                         src={
                           // eslint-disable-next-line operator-linebreak

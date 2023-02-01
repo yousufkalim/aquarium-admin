@@ -447,7 +447,6 @@ export default function Sidebar() {
             <div
               style={{
                 marginRight: '6%',
-                minWidth: '22%',
                 width: '20%',
                 height: '51px',
               }}
@@ -457,9 +456,10 @@ export default function Sidebar() {
                   src={genMediaUrl(admin.profile_pic)}
                   style={{
                     width: '100%',
-                    borderRadius: '50px',
+                    borderRadius: '50%',
                     height: '100%',
                     objectFit: 'cover',
+                    border: '3px solid #28CDFF',
                   }}
                   alt=""
                 />
