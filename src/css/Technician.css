@@ -51,8 +51,9 @@
   font-weight: 700;
 }
 .scheduleCard {
-  width: 65%;
+  width: 54%;
   margin: auto;
+  margin-bottom: 20px;
 }
 .date-filter-div .react-datepicker-wrapper {
   border: 2px solid #28cdff !important;
