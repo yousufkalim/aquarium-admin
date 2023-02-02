@@ -246,7 +246,7 @@ export default function AddTask({
                 paddingBottom: '20px',
               }}
             >
-              {editing ? 'Edit Service' : 'Add New Service'}
+              {editing ? 'Edit Event' : 'Add New Event'}
             </h1>
 
             <div>
@@ -260,7 +260,7 @@ export default function AddTask({
                   fontWeight: 400,
                 }}
               >
-                Task
+                Event Type
               </InputLabel>
               <div
                 className="taskInfo"
@@ -348,7 +348,7 @@ export default function AddTask({
                 >
                   <MenuItem disabled value="" name="type">
                     {' '}
-                    Others
+                    More
                   </MenuItem>
                   <MenuItem value="drive" name="type">
                     {' '}
@@ -364,7 +364,7 @@ export default function AddTask({
                     Out of Office
                   </MenuItem>
                   <MenuItem value="endOfShift" name="type">
-                    End of Shift
+                    Other
                   </MenuItem>
                 </CustomSelect>
               </div>
@@ -571,7 +571,7 @@ export default function AddTask({
                       style={{ color: '#28CDFF' }}
                     />
                   }
-                  label="Want to repeat this service every"
+                  label="Want to repeat this event every"
                 />
               ) : (
                 ''
@@ -628,7 +628,7 @@ export default function AddTask({
             className={disable ? 'disable' : 'resetPasswordBtn'}
             disabled={disable}
           >
-            {editing ? 'Update Service' : 'Add Service'}
+            {editing ? 'Update Event' : 'Add Event'}
           </Button>
         </DialogActions>
         {created && (

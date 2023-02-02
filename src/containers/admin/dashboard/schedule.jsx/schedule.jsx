@@ -74,7 +74,7 @@ export default function Schedule() {
               className="addAdminBtn"
               onClick={() => setOpen(true)}
             >
-              Add new service &nbsp; <img src={add} alt="add" />
+              Add new event &nbsp; <img src={add} alt="add" />
             </Button>
           </div>
         </Grid>
@@ -89,6 +89,13 @@ export default function Schedule() {
                   }
                   alt=""
                   id="dummyimg3"
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    border: '4px solid #28CDFF',
+                    borderRadius: '50%',
+                    objectFit: 'cover',
+                  }}
                 />
               ) : (
                 <Avatar
