@@ -92,16 +92,21 @@ export default function TaskDetail({
                 color: '#28CDFF',
               }}
             >
-              Task Repetitions
+              {details?.repeat.length <= 1
+                ? 'Task Details'
+                : ' Task Repetitions'}
             </h1>
             <p
               className="enterEmailTxt"
               style={{
                 fontSize: '22px',
+                cursor: 'default',
               }}
             >
               {' '}
-              Following are the list of
+              {details?.repeat.length <= 1
+                ? ' Following is the detail of task'
+                : ' Following are the list of'}
             </p>
             <h1
               style={{
@@ -112,7 +117,9 @@ export default function TaskDetail({
                 marginBottom: '5px',
               }}
             >
-              {`${schedule.type}: ${details.service?.aquarium?.tank_details?.size} - ${details.service?.aquarium?.client?.first_name} ${details.service?.aquarium?.client?.last_name}`}
+              {details.service?.aquarium
+                ? `${schedule.type}: ${details.service?.aquarium?.tank_details?.size} - ${details.service?.aquarium?.client?.first_name} ${details.service?.aquarium?.client?.last_name}`
+                : schedule.type}
             </h1>
             <p
               style={{ color: '#8c8c8c', fontSize: '16px' }}
@@ -131,9 +138,9 @@ export default function TaskDetail({
                 marginBottom: '5px',
               }}
             >
-              {` This task repeats on every ${moment(
-                schedule.date || moment(),
-              ).format('dddd')}`}
+              {details?.repeat.length <= 1
+                ? ''
+                : 'This task repeats on:'}
             </h1>
             {details?.repeat?.map((row) => (
               <>
@@ -161,7 +168,9 @@ export default function TaskDetail({
                           : 'detailFalse'
                       }
                     >
-                      {row.title}
+                      {` ${moment(row.date).format('dddd')} (${
+                        row.title
+                      })`}
                     </p>
                   </div>
                   <div style={{ display: 'flex' }}>

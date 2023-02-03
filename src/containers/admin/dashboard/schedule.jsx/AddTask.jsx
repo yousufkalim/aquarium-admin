@@ -7,13 +7,13 @@
 import { React, useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
-// import { makeStyles } from '@mui/styles';
+import { makeStyles } from '@mui/styles';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 import Typography from '@mui/material/Typography';
 import { toast } from 'react-toastify';
-import { FormControl } from '@mui/material';
+import { FormControl, TextField } from '@mui/material';
 import 'react-datepicker/dist/react-datepicker.css';
 import DatePicker from 'react-datepicker';
 import { useParams } from 'react-router-dom';
@@ -92,6 +92,28 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     margin: 'auto',
   },
 }));
+const useOutlinedInputStyles = makeStyles({
+  root: {
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        border: '1px solid #CDEEFC',
+        borderRadius: '20px',
+        fontSize: 16,
+      },
+      '&:hover fieldset': {
+        borderColor: '#28CDFF',
+      },
+
+      '&.Mui-focused fieldset': {
+        borderColor: '#28CDFF',
+      },
+      '&.Mui-disabled fieldset': {
+        borderColor: ' #CDEEFC',
+      },
+    },
+  },
+});
+
 export default function AddTask({
   open,
   setOpen,
@@ -105,7 +127,7 @@ export default function AddTask({
   getDate,
 }) {
   const { id } = useParams();
-
+  const outlinedInputStyles = useOutlinedInputStyles();
   const [schedule, setSchedule] = useState({
     technician: id,
     type: '',
@@ -114,11 +136,18 @@ export default function AddTask({
     end_time: '',
     aquarium: '',
     repeat: '1',
+    time_unit: 'weeks',
   });
 
-  // eslint-disable-next-line prefer-const
-  let { type, date, start_time, end_time, aquarium, repeat } =
-    schedule;
+  const {
+    type,
+    date,
+    start_time,
+    end_time,
+    aquarium,
+    repeat,
+    time_unit,
+  } = schedule;
 
   const [checked, setChecked] = useState(true);
   const [created, setCreated] = useState(false);
@@ -198,6 +227,7 @@ export default function AddTask({
 
     if (!checked) {
       delete updatedSchedule.repeat;
+      delete updatedSchedule.time_unit;
     }
     const obj = {};
     // eslint-disable-next-line no-restricted-syntax, guard-for-in
@@ -209,7 +239,7 @@ export default function AddTask({
 
     if (editing) {
       await api('put', `/schedule/tasks/${task._id}`, obj);
-      toast.success('Task edited successfully');
+      toast.success('Event edited successfully');
       handleClose();
     } else {
       const { data } = await api('post', '/schedule/tasks', obj);
@@ -504,18 +534,22 @@ export default function AddTask({
                 </div>
               </div>
             </div>
-            <InputLabel
-              sx={{
-                textAlign: 'left',
-                margin: '2% 0% 0% 12%',
-                color: '#8C8C8C',
-                fontSize: '16px',
-                fontFamily: 'HelveticaMedium',
-                fontWeight: 400,
-              }}
-            >
-              Aquarium
-            </InputLabel>
+            {type === 'service' ? (
+              <InputLabel
+                sx={{
+                  textAlign: 'left',
+                  margin: '2% 0% 0% 12%',
+                  color: '#8C8C8C',
+                  fontSize: '16px',
+                  fontFamily: 'HelveticaMedium',
+                  fontWeight: 400,
+                }}
+              >
+                Aquarium
+              </InputLabel>
+            ) : (
+              ''
+            )}
             <FormControl
               sx={{
                 mb: 2,
@@ -527,48 +561,57 @@ export default function AddTask({
               // sx={{ mb: 1, mt: 3, width: '85%' }}
               // variant="outlined"
             >
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                displayEmpty
-                inputProps={{ 'aria-label': 'Without label' }}
-                value={aquarium}
-                name="aquarium"
-                onChange={handleChange}
-                input={<BootstrapInput />}
-              >
-                <MenuItem disabled selected value="">
-                  Select Aquarium
-                </MenuItem>
-                {aquariums?.map((_) => (
-                  <MenuItem value={_._id}>
-                    {' '}
-                    <span
-                      style={{
-                        color: '#28CDFF',
-                        fontFamily: 'HelveticaMedium',
-                        marginRight: '6px',
-                      }}
-                    >
-                      {`${_.client?.first_name} 
-                      ${_.client?.last_name}`}
-                    </span>
-                    {`(${_.tank_details.size})`}
+              {type === 'service' ? (
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  displayEmpty
+                  inputProps={{ 'aria-label': 'Without label' }}
+                  value={aquarium}
+                  name="aquarium"
+                  onChange={handleChange}
+                  input={<BootstrapInput />}
+                >
+                  <MenuItem disabled selected value="">
+                    Select Aquarium
                   </MenuItem>
-                ))}
-              </Select>
+                  {aquariums?.map((_) => (
+                    <MenuItem value={_._id}>
+                      {' '}
+                      <span
+                        style={{
+                          color: '#28CDFF',
+                          fontFamily: 'HelveticaMedium',
+                          marginRight: '6px',
+                        }}
+                      >
+                        {`${_.client?.first_name} 
+                      ${_.client?.last_name}`}
+                      </span>
+                      {`(${_.tank_details.size})`}
+                    </MenuItem>
+                  ))}
+                </Select>
+              ) : (
+                ''
+              )}
+
               {!editing ? (
                 <FormControlLabel
                   sx={{
                     mt: 2,
                     color: '#28CDFF',
+                    width: 'max-content',
                   }}
                   control={
                     // eslint-disable-next-line react/jsx-wrap-multilines
                     <Checkbox
                       defaultChecked
                       onChange={handleCheck}
-                      style={{ color: '#28CDFF' }}
+                      style={{
+                        color: '#28CDFF',
+                        width: 'max-content',
+                      }}
                     />
                   }
                   label="Want to repeat this event every"
@@ -578,37 +621,77 @@ export default function AddTask({
               )}
             </FormControl>
             {!editing ? (
-              <FormControl
-                sx={{
-                  mb: 2,
+              <>
+                <FormControl
+                  sx={{
+                    mb: 2,
+                    width: '40%',
+                    marginLeft: '4%',
+                  }}
 
-                  width: '81%',
-                  marginLeft: '3.5%',
-                }}
-
-                // sx={{ mb: 1, mt: 3, width: '85%' }}
-                // variant="outlined"
-              >
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  inputProps={{ 'aria-label': 'Without label' }}
-                  value={repeat || ''}
-                  disabled={!checked}
-                  // label="size"
-                  name="repeat"
-                  onChange={handleChange}
-                  input={<BootstrapInput />}
+                  // sx={{ mb: 1, mt: 3, width: '85%' }}
+                  // variant="outlined"
                 >
-                  <MenuItem value="1" selected>
-                    1 week
-                  </MenuItem>
-                  <MenuItem value="2">2 weeks</MenuItem>
-                  <MenuItem value="3">3 weeks</MenuItem>
-                  <MenuItem value="4">4 weeks</MenuItem>
-                  {/* ))} */}
-                </Select>
-              </FormControl>
+                  <TextField
+                    sx={{
+                      backgroundColor: 'white',
+                      borderRadius: '25px',
+                      padding: '0px',
+                    }}
+                    disabled={!checked}
+                    id="outlined-email"
+                    classes={outlinedInputStyles}
+                    placeholder="1"
+                    size="normal"
+                    value={repeat}
+                    name="repeat"
+                    onChange={handleChange}
+                    inputProps={{
+                      style: {
+                        height: '15px',
+                        color: 'black',
+                      },
+                    }}
+                  />
+                </FormControl>
+                <FormControl
+                  sx={{
+                    mb: 2,
+                    width: '40%',
+                    marginLeft: '2%',
+                  }}
+                >
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    inputProps={{ 'aria-label': 'Without label' }}
+                    value={time_unit || 'weeks'}
+                    disabled={!checked}
+                    sx={{
+                      '& .MuiInputBase-input': {
+                        padding: '3.5% 3%',
+                        color: 'black',
+                        fontWeight: '300',
+                      },
+                    }}
+                    name="time_unit"
+                    onChange={handleChange}
+                    input={<BootstrapInput />}
+                  >
+                    <MenuItem value="days">
+                      {repeat <= 1 ? 'Day' : 'Days'}
+                    </MenuItem>
+                    <MenuItem value="weeks">
+                      {repeat <= 1 ? 'Week' : 'Weeks'}
+                    </MenuItem>
+                    <MenuItem value="months">
+                      {repeat <= 1 ? 'Month' : 'Months'}
+                    </MenuItem>
+
+                    {/* ))} */}
+                  </Select>
+                </FormControl>
+              </>
             ) : (
               ''
             )}
