@@ -187,7 +187,7 @@ export default function AddCheck({
                 fontWeight: '600',
               }}
             >
-              Tasklist
+              Task List
               <span
                 style={{ fontWeight: '100', letterSpacing: '1px' }}
               >

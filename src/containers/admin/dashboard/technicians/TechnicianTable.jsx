@@ -111,6 +111,7 @@ export default function TechnicianTable({
                         width: '50px',
                         border: '3px solid #28CDFF',
                         borderRadius: '50%',
+                        objectFit: 'cover',
                       }}
                       src={
                         // eslint-disable-next-line operator-linebreak

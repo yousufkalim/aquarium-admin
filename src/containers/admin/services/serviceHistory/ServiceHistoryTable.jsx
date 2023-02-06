@@ -249,6 +249,13 @@ export default function ServiceHistoryTable({
                     <div style={{ height: '56px' }}>
                       {row.technician?.profile_pic ? (
                         <img
+                          style={{
+                            height: '50px',
+                            width: '50px',
+                            border: '3px solid #28CDFF',
+                            borderRadius: '50%',
+                            objectFit: 'cover',
+                          }}
                           src={
                             // eslint-disable-next-line operator-linebreak
                             genMediaUrl(row.technician?.profile_pic)
