@@ -13,7 +13,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 import Typography from '@mui/material/Typography';
 import { toast } from 'react-toastify';
-import { FormControl, TextField } from '@mui/material';
+import { FormControl, Grid, TextField } from '@mui/material';
 import 'react-datepicker/dist/react-datepicker.css';
 import DatePicker from 'react-datepicker';
 import { useParams } from 'react-router-dom';
@@ -137,6 +137,7 @@ export default function AddTask({
     aquarium: '',
     repeat: '1',
     time_unit: 'weeks',
+    rate: '',
   });
 
   const {
@@ -146,12 +147,20 @@ export default function AddTask({
     end_time,
     aquarium,
     repeat,
+    rate,
     time_unit,
   } = schedule;
 
   const [checked, setChecked] = useState(true);
   const [created, setCreated] = useState(false);
   const [details, setDetails] = useState({});
+
+  const [clicked, setClicked] = useState(false);
+  const onClickEventRate = () => {
+    if (editing) {
+      setClicked(true);
+    }
+  };
 
   const handleCheck = (event) => {
     setChecked(event.target.checked);
@@ -206,6 +215,7 @@ export default function AddTask({
           .format('HH:mm'),
 
         aquarium: task?.aquarium?._id,
+        rate: task.rate,
       });
     }
     // setSchedule(values);
@@ -535,18 +545,51 @@ export default function AddTask({
               </div>
             </div>
             {type === 'service' ? (
-              <InputLabel
+              <Grid
+                container
+                spacing={2}
                 sx={{
-                  textAlign: 'left',
-                  margin: '2% 0% 0% 12%',
-                  color: '#8C8C8C',
-                  fontSize: '16px',
-                  fontFamily: 'HelveticaMedium',
-                  fontWeight: 400,
+                  width: '86%',
+                  marginLeft: '3.5%',
                 }}
               >
-                Aquarium
-              </InputLabel>
+                <Grid item xs={9}>
+                  <InputLabel
+                    sx={{
+                      textAlign: 'left',
+                      margin: '2% 0% 0% 12%',
+                      color: '#8C8C8C',
+                      fontSize: '16px',
+                      fontFamily: 'HelveticaMedium',
+                      fontWeight: 400,
+                    }}
+                  >
+                    Aquarium
+                  </InputLabel>
+                </Grid>
+                <Grid
+                  item
+                  xs={3}
+                  sx={{
+                    marginLeft: '-4%',
+                    marginBottom: '-3%',
+                    marginTop: '1%',
+                  }}
+                >
+                  <InputLabel
+                    sx={{
+                      textAlign: 'left',
+                      margin: '2% 0% 0% 12%',
+                      color: '#8C8C8C',
+                      fontSize: '16px',
+                      fontFamily: 'HelveticaMedium',
+                      fontWeight: 400,
+                    }}
+                  >
+                    Hourly Rate
+                  </InputLabel>
+                </Grid>
+              </Grid>
             ) : (
               ''
             )}
@@ -562,36 +605,75 @@ export default function AddTask({
               // variant="outlined"
             >
               {type === 'service' ? (
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  displayEmpty
-                  inputProps={{ 'aria-label': 'Without label' }}
-                  value={aquarium}
-                  name="aquarium"
-                  onChange={handleChange}
-                  input={<BootstrapInput />}
-                >
-                  <MenuItem disabled selected value="">
-                    Select Aquarium
-                  </MenuItem>
-                  {aquariums?.map((_) => (
-                    <MenuItem value={_._id}>
-                      {' '}
-                      <span
-                        style={{
-                          color: '#28CDFF',
-                          fontFamily: 'HelveticaMedium',
-                          marginRight: '6px',
-                        }}
-                      >
-                        {`${_.client?.first_name} 
+                <Grid container spacing={2}>
+                  <Grid item xs={8}>
+                    <Select
+                      sx={{ width: '100%', padding: '0px' }}
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      displayEmpty
+                      inputProps={{ 'aria-label': 'Without label' }}
+                      value={aquarium}
+                      name="aquarium"
+                      onChange={handleChange}
+                      input={<BootstrapInput />}
+                    >
+                      <MenuItem disabled selected value="">
+                        Select Aquarium
+                      </MenuItem>
+                      {aquariums?.map((_) => (
+                        <MenuItem value={_._id}>
+                          {' '}
+                          <span
+                            style={{
+                              color: '#28CDFF',
+                              fontFamily: 'HelveticaMedium',
+                              marginRight: '6px',
+                            }}
+                          >
+                            {`${_.client?.first_name} 
                       ${_.client?.last_name}`}
-                      </span>
-                      {`(${_.tank_details.size})`}
-                    </MenuItem>
-                  ))}
-                </Select>
+                          </span>
+                          {`(${_.tank_details.size})`}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </Grid>
+                  <Grid item xs={4}>
+                    <FormControl>
+                      <TextField
+                        sx={{
+                          backgroundColor: 'white',
+                          borderRadius: '25px',
+                          padding: '0px',
+                          width: '100%',
+                        }}
+                        id="outlined-email"
+                        classes={outlinedInputStyles}
+                        placeholder="$ 00.00"
+                        size="normal"
+                        type="text"
+                        value={
+                          // eslint-disable-next-line no-nested-ternary
+                          editing
+                            ? clicked
+                              ? rate
+                              : `$${rate}/hr`
+                            : rate
+                        }
+                        onClick={onClickEventRate}
+                        name="rate"
+                        onChange={handleChange}
+                        inputProps={{
+                          style: {
+                            height: '15px',
+                            color: '#28CDFF',
+                          },
+                        }}
+                      />
+                    </FormControl>
+                  </Grid>
+                </Grid>
               ) : (
                 ''
               )}

@@ -9,6 +9,7 @@ import DialogActions from '@mui/material/DialogActions';
 import Typography from '@mui/material/Typography';
 import { toast } from 'react-toastify';
 import { FormControl, TextField } from '@mui/material';
+// import { Backspace } from '@mui/icons-material';
 import api from '../../../../api/index';
 
 // eslint-disable-next-line object-curly-newline
@@ -62,14 +63,21 @@ export default function AddTechnician({
     first_name: '',
     last_name: '',
     phone_number: '',
+    rate: '',
   });
 
+  const [clicked, setClicked] = useState(false);
+  const onClickEventRate = () => {
+    if (editing) {
+      setClicked(true);
+    }
+  };
   useEffect(() => {
     if (technician) {
       setValues(technician);
     }
   }, [technician]);
-  const { first_name, last_name, phone_number } = values;
+  const { first_name, last_name, phone_number, rate } = values;
   const handleClose = () => {
     setOpen(false);
   };
@@ -215,6 +223,39 @@ export default function AddTechnician({
                   },
                 }}
               />
+              <FormControl
+                sx={{ mb: 1, mt: 2, width: '100%' }}
+                variant="outlined"
+              >
+                <TextField
+                  sx={{
+                    backgroundColor: 'white',
+                    borderRadius: '25px',
+                  }}
+                  id="outlined-password"
+                  classes={outlinedInputStyles}
+                  label="Hourly Rate"
+                  size="normal"
+                  type="text"
+                  value={
+                    // eslint-disable-next-line no-nested-ternary
+                    editing ? (clicked ? rate : `$${rate}/hr`) : rate
+                  }
+                  onClick={onClickEventRate}
+                  name="rate"
+                  inputProps={{
+                    maxLength: 10,
+                  }}
+                  onChange={onChangeEvent}
+                  InputLabelProps={{
+                    style: {
+                      color: '#8C8C8C',
+                      fontSize: '19px',
+                      fontWeight: '700',
+                    },
+                  }}
+                />
+              </FormControl>
             </FormControl>
           </Typography>
         </DialogContent>
