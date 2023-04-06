@@ -23,6 +23,7 @@ export default function ExportServiceHistory({ serviceHistory }) {
     'Service Start Time',
     'Service End Time',
     'Technician Name',
+    'Products',
   ];
   // Extension
   const fileExtension = '.xlsx';
@@ -67,6 +68,7 @@ export default function ExportServiceHistory({ serviceHistory }) {
         .format('hh:mm A'),
       'Technician Name':
         item.technician.first_name + ' ' + item.technician.first_name,
+      Products: item.products.map((i) => i.product.name).join(', '),
     }));
 
     exportToCSV(updatedserviceHistory, 'serviceHistory');
