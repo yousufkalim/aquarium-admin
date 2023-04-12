@@ -2,13 +2,13 @@
 /* eslint-disable prefer-template */
 import * as FileSaver from 'file-saver';
 import * as XLSX from 'xlsx';
-// import { useState } from 'react';
 import { Button } from '@mui/material';
 import moment from 'moment-timezone';
 import arrow from '../assets/images/arrow.svg';
-
+import { Store } from '../StoreContext';
 // Component
 export default function ExportServiceHistory({ serviceHistory }) {
+  const { admin } = Store();
   //   const [exportItem, setExportItem] = useState('');
 
   // File Type
@@ -17,6 +17,7 @@ export default function ExportServiceHistory({ serviceHistory }) {
     'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
 
   const myHeader = [
+    'Service Id',
     'Client Name',
     'Tank Size',
     'Date',
@@ -53,11 +54,13 @@ export default function ExportServiceHistory({ serviceHistory }) {
   // exporting excel
   const handleSubmitExcel = () => {
     const updatedserviceHistory = serviceHistory.map((item) => ({
-      'Client Name':
-        item.aquarium.client.first_name +
-        ' ' +
-        item.aquarium.client.last_name,
-      'Tank Size': item.aquarium.tank_details.size,
+      'Service Id': (item.serviceId || '')
+        .toString()
+        .padStart(4, '0'),
+      'Client Name': `${item.aquarium?.client?.first_name || ''} ${
+        item.aquarium?.client?.last_name || ''
+      }`,
+      'Tank Size': item.aquarium?.tank_details.size || '',
       // eslint-disable-next-line no-underscore-dangle
       Date: moment(item.date).format('MM-DD-YYYY'),
       'Service Start Time': moment(item.start_time)
@@ -68,8 +71,18 @@ export default function ExportServiceHistory({ serviceHistory }) {
         .format('hh:mm A'),
       'Technician Name':
         item.technician.first_name + ' ' + item.technician.first_name,
-      Products: item.products.map((i) => i.product.name).join(', '),
+      Products: item.products
+        .map((i) => `${i.product.name} (${i.quantity})`)
+        .join(',\r\n '),
+      ...(admin.role === 'superadmin' && {
+        Questions: item.checklists.map((i) => i.title).join(',\r\n'),
+        Answers: item.checklists.map((i) => i.status).join(',\r\n'),
+      }),
     }));
+    // console.log(
+    //   '🚀 ~ file: ExportCsv.jsx:86 ~ handleSubmitExcel ~ serviceHistory:',
+    //   serviceHistory,
+    // );
 
     exportToCSV(updatedserviceHistory, 'serviceHistory');
   };
