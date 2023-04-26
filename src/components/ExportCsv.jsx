@@ -6,10 +6,13 @@ import { Button } from '@mui/material';
 import moment from 'moment-timezone';
 import arrow from '../assets/images/arrow.svg';
 import { Store } from '../StoreContext';
+
+const fileName = `Activity Log Report - ASP - ${moment().format(
+  'MM DD YYYY',
+)}`;
 // Component
 export default function ExportServiceHistory({ serviceHistory }) {
   const { admin } = Store();
-  //   const [exportItem, setExportItem] = useState('');
 
   // File Type
   // eslint-disable-next-line operator-linebreak
@@ -30,7 +33,7 @@ export default function ExportServiceHistory({ serviceHistory }) {
   const fileExtension = '.xlsx';
 
   // Exporting
-  const exportToCSV = (csvData, fileName) => {
+  const exportToCSV = (csvData) => {
     // Sorting
     const ws = XLSX.utils.json_to_sheet(csvData, {
       header: myHeader,
@@ -79,12 +82,8 @@ export default function ExportServiceHistory({ serviceHistory }) {
         Answers: item.checklists.map((i) => i.status).join(',\r\n'),
       }),
     }));
-    // console.log(
-    //   '🚀 ~ file: ExportCsv.jsx:86 ~ handleSubmitExcel ~ serviceHistory:',
-    //   serviceHistory,
-    // );
 
-    exportToCSV(updatedserviceHistory, 'serviceHistory');
+    exportToCSV(updatedserviceHistory);
   };
 
   // Render
