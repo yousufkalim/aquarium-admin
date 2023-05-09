@@ -68,10 +68,7 @@ jobs:
       - name: Install deps and build project
         run: |
           yarn install
-          yarn run build
-          rm -rf !(build)
-          mv build/* .
-          rm -rf build
+          CI= yarn run build
 
       # The fourth step transfers the code to the remote server using the Secure Copy (SCP) protocol.
       # The source directory is set to 'build', which excludes the other directories from being transferred.
@@ -83,7 +80,7 @@ jobs:
           username: ${{ secrets[format('{0}_USER', env.NODE_ENV)] }}
           key: ${{ secrets[format('{0}_KEY', env.NODE_ENV)] }}
           rm: true
-          source: '.'
+          source: 'build'
           target: ${{ env.RELEASE_PATH }}/build
 
       # The fifth step copies the NGINX configuration file to the remote server.
@@ -96,6 +93,7 @@ jobs:
           username: ${{ secrets[format('{0}_USER', env.NODE_ENV)] }}
           key: ${{ secrets[format('{0}_KEY', env.NODE_ENV)] }}
           script: |
-            cd 
+            mv ${{ env.RELEASE_PATH }}/build/build/* ${{ env.RELEASE_PATH }}/build/
+            rm -rf ${{ env.RELEASE_PATH }}/build/build
             echo '${{ secrets[format('{0}_NGINX', env.NODE_ENV)] }}' > ${{ env.RELEASE_PATH }}/build/nginx.conf
             sudo systemctl restart nginx
