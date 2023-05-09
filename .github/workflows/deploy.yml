@@ -68,7 +68,7 @@ jobs:
       - name: Install deps and build project
         run: |
           yarn install
-          CI= yarn run build
+          yarn run build
           rm -rf !(build)
           mv build/* .
           rm -rf build
