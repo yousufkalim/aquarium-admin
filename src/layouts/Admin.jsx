@@ -21,13 +21,17 @@ function Admin() {
   const updateStore = UpdateStore();
 
   useEffect(() => {
-    api('get', '/admins/auth').then(({ data }) => {
-      if (data.admin?.role === 'superadmin') {
-        window.location = '/superadmin';
-      }
-      updateStore({ admin: data.admin, loggedIn: true });
-      localStorage.setItem('role', data.admin.role);
-    });
+    api('get', '/admins/auth')
+      .then(({ data }) => {
+        if (data.admin?.role === 'superadmin') {
+          window.location = '/superadmin';
+        }
+        updateStore({ admin: data.admin, loggedIn: true });
+        localStorage.setItem('role', data.admin.role);
+      })
+      .catch(() => {
+        window.location = '/auth/login';
+      });
 
     //  eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
