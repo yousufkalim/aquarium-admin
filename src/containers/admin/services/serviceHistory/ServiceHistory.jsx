@@ -10,16 +10,23 @@ export default function ServiceHistory() {
   const [exportServiceHistory, setExportServiceHistory] = useState(
     [],
   );
+  const [loading, setLoading] = useState(false);
 
   const exportHistory = async (e) => {
     setExportServiceHistory(e);
   };
 
   const getServiceHistory = async () => {
-    const { data } = await api('get', '//schedule/tasks');
-    if (data) {
-      setServiceHistory(data?.results);
-    }
+    setLoading(true);
+    await api('get', '//schedule/tasks')
+      .then((res) => {
+        setServiceHistory(res?.data?.results);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+      });
   };
 
   useEffect(() => {
@@ -33,6 +40,7 @@ export default function ServiceHistory() {
 
         <Grid xl={10} lg={9}>
           <ServiceHistoryTable
+            loading={loading}
             serviceHistory={serviceHistory}
             exportHistory={exportHistory}
           />

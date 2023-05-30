@@ -8,6 +8,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import TableHead from '@mui/material/TableHead';
+import { Box, CircularProgress } from '@mui/material';
 import MultipleSelect from './FilterByClientName';
 import edit from '../../../../assets/images/Edit.svg';
 import deleteIcon from '../../../../assets/images/Delete.svg';
@@ -34,6 +35,7 @@ export default function AquariumTable({
   getAquariums,
   clients,
   tanks,
+  loading,
 }) {
   const [del, setDel] = useState(false);
   const [editing, setEditing] = useState(false);
@@ -80,145 +82,159 @@ export default function AquariumTable({
             />
           </div>
         </div>
-
-        <Table
-          sx={{
-            minWidth: 700,
-            [`& .${tableCellClasses.root}`]: {
-              borderBottom: 'none',
-            },
-          }}
-          aria-label="customized table"
-        >
-          <TableHead>
-            <TableRow sx={{ background: '#d9f4ff' }}>
-              <StyledTableCell
-                sx={{
-                  fontSize: '16px',
-                  fontFamily: 'HelveticaBold',
-                  width: '18%',
-                }}
-                align="center"
-              >
-                Name
-              </StyledTableCell>
-              <StyledTableCell
-                sx={{
-                  fontSize: '16px',
-                  fontFamily: 'HelveticaBold',
-                  width: '35%',
-                }}
-                align="center"
-              >
-                Address
-              </StyledTableCell>
-              <StyledTableCell
-                sx={{ fontSize: '16px', fontFamily: 'HelveticaBold' }}
-                align="center"
-              >
-                Service Details
-              </StyledTableCell>
-
-              <StyledTableCell
-                sx={{
-                  fontSize: '16px',
-                  fontFamily: 'HelveticaBold',
-                  width: '20%',
-                }}
-                align="center"
-              >
-                Action
-              </StyledTableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {/* <h1>List of Admins</h1> */}
-            {allAquariums?.map((row) => (
-              <StyledTableRow key={row.name}>
+        {loading ? (
+          <Box
+            sx={{
+              justifyContent: 'center',
+              display: 'flex',
+              padding: '5%',
+            }}
+          >
+            <CircularProgress />
+          </Box>
+        ) : (
+          <Table
+            sx={{
+              minWidth: 700,
+              [`& .${tableCellClasses.root}`]: {
+                borderBottom: 'none',
+              },
+            }}
+            aria-label="customized table"
+          >
+            <TableHead>
+              <TableRow sx={{ background: '#d9f4ff' }}>
                 <StyledTableCell
-                  align="center"
                   sx={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    width: 'max-Content',
-                    marginLeft: '20px',
-                    alignItems: 'left',
+                    fontSize: '16px',
+                    fontFamily: 'HelveticaBold',
+                    width: '18%',
                   }}
+                  align="center"
                 >
-                  <div
-                    style={{ textAlign: 'left', marginTop: '15px' }}
+                  Name
+                </StyledTableCell>
+                <StyledTableCell
+                  sx={{
+                    fontSize: '16px',
+                    fontFamily: 'HelveticaBold',
+                    width: '35%',
+                  }}
+                  align="center"
+                >
+                  Address
+                </StyledTableCell>
+                <StyledTableCell
+                  sx={{
+                    fontSize: '16px',
+                    fontFamily: 'HelveticaBold',
+                  }}
+                  align="center"
+                >
+                  Service Details
+                </StyledTableCell>
+
+                <StyledTableCell
+                  sx={{
+                    fontSize: '16px',
+                    fontFamily: 'HelveticaBold',
+                    width: '20%',
+                  }}
+                  align="center"
+                >
+                  Action
+                </StyledTableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {/* <h1>List of Admins</h1> */}
+              {allAquariums?.map((row) => (
+                <StyledTableRow key={row.name}>
+                  <StyledTableCell
+                    align="center"
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      width: 'max-Content',
+                      marginLeft: '20px',
+                      alignItems: 'left',
+                    }}
                   >
-                    <p className="placename">
-                      {' '}
-                      {`${row.client?.first_name} ${row.client?.last_name}`}
-                    </p>
+                    <div
+                      style={{ textAlign: 'left', marginTop: '15px' }}
+                    >
+                      <p className="placename">
+                        {' '}
+                        {`${row.client?.first_name} ${row.client?.last_name}`}
+                      </p>
 
-                    <p className="tankname">
-                      {row.tank_details.size}
-                    </p>
-                  </div>
-                </StyledTableCell>
-                <StyledTableCell
-                  align="justifyContent"
-                  className="serviceTableTxt"
-                  style={{
-                    padding: '0px 80px 0px 60px',
-                  }}
-                >
-                  {`${row.address.name}`}
-                </StyledTableCell>
-                <StyledTableCell
-                  align="center"
-                  className="serviceTableTxt"
-                  sx={{
-                    color: '#8c8c8c',
-                    textAlign: 'justify',
-                    letterSpacing: '0',
-                    wordBreak: 'break-word',
-                  }}
-                >
-                  {row.service_details.length < 135
-                    ? row.service_details
-                    : `${row.service_details.substring(
-                        0,
-                        135,
-                      )}  ....`}
-                </StyledTableCell>
-                <StyledTableCell
-                  align="center"
-                  sx={{
-                    paddingLeft: '2%',
-                    paddingRight: '1%',
-                  }}
-                >
-                  <img
-                    src={edit}
-                    alt=""
-                    className="editIcon"
-                    onClick={() => {
-                      setEditing(true);
-                      setAquarium(row);
-                      setDisable(true);
+                      <p className="tankname">
+                        {row.tank_details.size}
+                      </p>
+                    </div>
+                  </StyledTableCell>
+                  <StyledTableCell
+                    align="justifyContent"
+                    className="serviceTableTxt"
+                    style={{
+                      padding: '0px 80px 0px 60px',
                     }}
-                    role="presentation"
-                  />
+                  >
+                    {`${row.address.name}`}
+                  </StyledTableCell>
+                  <StyledTableCell
+                    align="center"
+                    className="serviceTableTxt"
+                    sx={{
+                      color: '#8c8c8c',
+                      textAlign: 'justify',
+                      letterSpacing: '0',
+                      wordBreak: 'break-word',
+                    }}
+                  >
+                    {row.service_details.length < 135
+                      ? row.service_details
+                      : `${row.service_details.substring(
+                          0,
+                          135,
+                        )}  ....`}
+                  </StyledTableCell>
+                  <StyledTableCell
+                    align="center"
+                    sx={{
+                      paddingLeft: '2%',
+                      paddingRight: '1%',
+                    }}
+                  >
+                    <img
+                      src={edit}
+                      alt=""
+                      className="editIcon"
+                      onClick={() => {
+                        setEditing(true);
+                        setAquarium(row);
+                        setDisable(true);
+                      }}
+                      role="presentation"
+                    />
 
-                  <img
-                    src={deleteIcon}
-                    className="deleteIcon"
-                    style={{ marginLeft: '3%' }}
-                    onClick={() => {
-                      setDel(true);
-                      setAquarium(row);
-                    }}
-                    alt=""
-                    role="presentation"
-                  />
-                </StyledTableCell>
-              </StyledTableRow>
-            ))}
-          </TableBody>
-        </Table>
+                    <img
+                      src={deleteIcon}
+                      className="deleteIcon"
+                      style={{ marginLeft: '3%' }}
+                      onClick={() => {
+                        setDel(true);
+                        setAquarium(row);
+                      }}
+                      alt=""
+                      role="presentation"
+                    />
+                  </StyledTableCell>
+                </StyledTableRow>
+              ))}
+            </TableBody>
+          </Table>
+        )}
       </TableContainer>
       {editing && (
         <AddAquarium

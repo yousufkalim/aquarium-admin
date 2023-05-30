@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable operator-linebreak */
 /* eslint-disable no-underscore-dangle */
 import { React, useState, useEffect } from 'react';
 import { styled } from '@mui/styles';
@@ -12,6 +14,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import TableHead from '@mui/material/TableHead';
 import Avatar from 'react-avatar';
+import { Box, CircularProgress } from '@mui/material';
 import DataFiltersSelect from './DataFiltersSelect';
 import FiltersSelect from './FiltersSelect';
 import { genMediaUrl } from '../../../../config';
@@ -35,6 +38,7 @@ const StyledTableRow = styled(TableRow)(() => ({
 export default function ServiceHistoryTable({
   serviceHistory,
   exportHistory,
+  loading,
 }) {
   // eslint-disable-next-line no-unused-vars, operator-linebreak
   const [serviceHistories, setServiceHistories] = useState([]);
@@ -56,12 +60,19 @@ export default function ServiceHistoryTable({
   };
 
   useEffect(() => {
-    setServiceHistories(serviceHistory);
+    if (serviceHistory) {
+      setServiceHistories(serviceHistory);
+    }
   }, [serviceHistory]);
 
   useEffect(() => {
-    exportHistory(serviceHistories);
-  }, [exportHistory, serviceHistories]);
+    if (serviceHistories) {
+      exportHistory(serviceHistories);
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [serviceHistories]);
+
   const options = {
     weekday: 'short',
     year: 'numeric',
@@ -147,172 +158,196 @@ export default function ServiceHistoryTable({
             />
           </div>
         </div>
-
-        <Table
-          sx={{
-            minWidth: 700,
-            [`& .${tableCellClasses.root}`]: {
-              borderBottom: 'none',
-            },
-          }}
-          aria-label="customized table"
-        >
-          <TableHead>
-            <TableRow sx={{ background: '#d9f4ff' }}>
-              <StyledTableCell
-                sx={{ fontSize: '16px', fontFamily: 'HelveticaBold' }}
-                align="center"
-              >
-                Client Name
-              </StyledTableCell>
-              <StyledTableCell
-                sx={{ fontSize: '16px', fontFamily: 'HelveticaBold' }}
-                align="center"
-              >
-                Date
-              </StyledTableCell>
-              <StyledTableCell
-                sx={{ fontSize: '16px', fontFamily: 'HelveticaBold' }}
-                align="center"
-              >
-                Service Start Time - End Time
-              </StyledTableCell>
-              <StyledTableCell
-                sx={{
-                  fontSize: '16px',
-                  fontFamily: 'HelveticaBold',
-                  width: '20%',
-                }}
-                align="center"
-              >
-                Technician
-              </StyledTableCell>
-              <StyledTableCell
-                sx={{
-                  fontSize: '16px',
-                  fontFamily: 'HelveticaBold',
-                  width: '20%',
-                }}
-                align="center"
-              >
-                Action
-              </StyledTableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {serviceHistories?.map((row, i) => (
-              <StyledTableRow>
+        {loading && serviceHistories.length === 0 ? (
+          <Box
+            sx={{
+              alignItems: 'center',
+              justifyContent: 'center',
+              display: 'flex',
+              padding: '5%',
+            }}
+          >
+            <CircularProgress />
+          </Box>
+        ) : (
+          <Table
+            sx={{
+              minWidth: 700,
+              [`& .${tableCellClasses.root}`]: {
+                borderBottom: 'none',
+              },
+            }}
+            aria-label="customized table"
+          >
+            <TableHead>
+              <TableRow sx={{ background: '#d9f4ff' }}>
                 <StyledTableCell
-                  align="center"
                   sx={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    width: 'max-Content',
-                    marginLeft: '20px',
-                    alignItems: 'left',
+                    fontSize: '16px',
+                    fontFamily: 'HelveticaBold',
                   }}
+                  align="center"
                 >
-                  <div
-                    style={{
-                      textAlign: 'left',
-                      marginTop: '20px',
-                    }}
-                  >
-                    <p className="placename">{`${row.aquarium?.client?.first_name} ${row.aquarium?.client?.last_name}`}</p>
+                  Client Name
+                </StyledTableCell>
+                <StyledTableCell
+                  sx={{
+                    fontSize: '16px',
+                    fontFamily: 'HelveticaBold',
+                  }}
+                  align="center"
+                >
+                  Date
+                </StyledTableCell>
+                <StyledTableCell
+                  sx={{
+                    fontSize: '16px',
+                    fontFamily: 'HelveticaBold',
+                  }}
+                  align="center"
+                >
+                  Service Start Time - End Time
+                </StyledTableCell>
+                <StyledTableCell
+                  sx={{
+                    fontSize: '16px',
+                    fontFamily: 'HelveticaBold',
+                    width: '20%',
+                  }}
+                  align="center"
+                >
+                  Technician
+                </StyledTableCell>
+                <StyledTableCell
+                  sx={{
+                    fontSize: '16px',
+                    fontFamily: 'HelveticaBold',
+                    width: '20%',
+                  }}
+                  align="center"
+                >
+                  Action
+                </StyledTableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {serviceHistories &&
+                serviceHistories.length > 0 &&
+                serviceHistories?.map((row, i) => (
+                  <StyledTableRow>
+                    <StyledTableCell
+                      align="center"
+                      sx={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        width: 'max-Content',
+                        marginLeft: '20px',
+                        alignItems: 'left',
+                      }}
+                    >
+                      <div
+                        style={{
+                          textAlign: 'left',
+                          marginTop: '20px',
+                        }}
+                      >
+                        <p className="placename">{`${row.aquarium?.client?.first_name} ${row.aquarium?.client?.last_name}`}</p>
 
-                    <p className="tankname">
-                      {row.aquarium?.tank_details?.size.trim()}
-                    </p>
-                  </div>
-                </StyledTableCell>
-                <StyledTableCell
-                  align="center"
-                  className="serviceTableTxt"
-                >
-                  {new Date(row.date).toLocaleDateString(
-                    'en-BA',
-                    options,
-                  )}
-                </StyledTableCell>
-                <StyledTableCell
-                  align="center"
-                  className="serviceTableTxt"
-                >
-                  {`${moment(row.start_time)
-                    .tz('America/Tijuana')
-                    .format('hh:mm A')} - ${moment(row.end_time)
-                    .tz('America/Tijuana')
-                    .format('hh:mm A')}`}
-                </StyledTableCell>
-                <StyledTableCell align="center">
-                  <div className="technicianCol">
-                    <div style={{ height: '56px' }}>
-                      {row.technician?.profile_pic ? (
-                        <img
-                          style={{
-                            height: '50px',
-                            width: '50px',
-                            border: '3px solid #28CDFF',
-                            borderRadius: '50%',
-                            objectFit: 'cover',
-                          }}
-                          src={
-                            // eslint-disable-next-line operator-linebreak
-                            genMediaUrl(row.technician?.profile_pic)
-                          }
-                          alt=""
-                          onError={
-                            () =>
-                              // eslint-disable-next-line implicit-arrow-linebreak
-                              setServiceHistories((prev) => {
-                                // eslint-disable-next-line no-param-reassign, operator-linebreak
-                                prev[i].technician.profile_pic =
-                                  undefined;
-                                return [...prev];
-                              })
-                            // eslint-disable-next-line react/jsx-curly-newline
-                          }
-                        />
-                      ) : (
-                        <Avatar
-                          name={row.technician?.first_name}
-                          style={{
-                            width: '100%',
-                            height: '100%',
-                            border: '3px solid #28CDFF',
-                            borderRadius: '50%',
-                          }}
-                          round
-                          size="50"
-                          alt="profile_pic"
-                        />
-                      )}
-                    </div>
-                    <span
-                      style={{ margin: 'auto' }}
+                        <p className="tankname">
+                          {row.aquarium?.tank_details?.size.trim()}
+                        </p>
+                      </div>
+                    </StyledTableCell>
+                    <StyledTableCell
+                      align="center"
                       className="serviceTableTxt"
                     >
-                      {`${row.technician?.first_name} ${row.technician?.last_name}`}
-                    </span>
-                  </div>
-                </StyledTableCell>
-                <StyledTableCell align="center">
-                  <Button
-                    className="serviceDetailBtn"
-                    onClick={() => {
-                      setOpen(true);
-                      setService(row);
-                    }}
-                    onKeyDown={() => setOpen(true)}
-                    variant="outlined"
-                  >
-                    Details
-                  </Button>
-                </StyledTableCell>
-              </StyledTableRow>
-            ))}
-          </TableBody>
-        </Table>
+                      {new Date(row.date).toLocaleDateString(
+                        'en-BA',
+                        options,
+                      )}
+                    </StyledTableCell>
+                    <StyledTableCell
+                      align="center"
+                      className="serviceTableTxt"
+                    >
+                      {`${moment(row.start_time)
+                        .tz('America/Tijuana')
+                        .format('hh:mm A')} - ${moment(row.end_time)
+                        .tz('America/Tijuana')
+                        .format('hh:mm A')}`}
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      <div className="technicianCol">
+                        <div style={{ height: '56px' }}>
+                          {row.technician?.profile_pic ? (
+                            <img
+                              style={{
+                                height: '50px',
+                                width: '50px',
+                                border: '3px solid #28CDFF',
+                                borderRadius: '50%',
+                                objectFit: 'cover',
+                              }}
+                              src={
+                                // eslint-disable-next-line operator-linebreak
+                                genMediaUrl(
+                                  row.technician?.profile_pic,
+                                )
+                              }
+                              alt=""
+                              onError={
+                                () =>
+                                  // eslint-disable-next-line implicit-arrow-linebreak
+                                  setServiceHistories((prev) => {
+                                    prev[i].technician.profile_pic =
+                                      undefined;
+                                    return [...prev];
+                                  })
+                                // eslint-disable-next-line react/jsx-curly-newline
+                              }
+                            />
+                          ) : (
+                            <Avatar
+                              name={row.technician?.first_name}
+                              style={{
+                                width: '100%',
+                                height: '100%',
+                                border: '3px solid #28CDFF',
+                                borderRadius: '50%',
+                              }}
+                              round
+                              size="50"
+                              alt="profile_pic"
+                            />
+                          )}
+                        </div>
+                        <span
+                          style={{ margin: 'auto' }}
+                          className="serviceTableTxt"
+                        >
+                          {`${row.technician?.first_name} ${row.technician?.last_name}`}
+                        </span>
+                      </div>
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      <Button
+                        className="serviceDetailBtn"
+                        onClick={() => {
+                          setOpen(true);
+                          setService(row);
+                        }}
+                        onKeyDown={() => setOpen(true)}
+                        variant="outlined"
+                      >
+                        Details
+                      </Button>
+                    </StyledTableCell>
+                  </StyledTableRow>
+                ))}
+            </TableBody>
+          </Table>
+        )}
       </TableContainer>
       {open && (
         <ServiceHistoryPopup
