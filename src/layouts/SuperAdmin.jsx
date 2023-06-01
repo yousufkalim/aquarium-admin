@@ -20,12 +20,19 @@ function SuperAdmin() {
   const updateStore = UpdateStore();
 
   useEffect(() => {
-    api('get', '/admins/auth').then(({ data }) => {
-      if (data.admin?.role === 'admin') {
-        window.location = '/admin';
-      }
-      updateStore({ admin: data.admin, loggedIn: true });
-    });
+    api('get', '/admins/auth')
+      .then(({ data }) => {
+        if (data.admin?.role === 'admin') {
+          window.location = '/admin';
+        }
+        updateStore({ admin: data.admin, loggedIn: true });
+      })
+      .catch((err) => {
+        if (err?.response?.status === 403) {
+          localStorage.removeItem('token');
+          window.location = '/auth/login';
+        }
+      });
 
     //  eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
