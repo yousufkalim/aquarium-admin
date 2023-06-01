@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Grid, Button } from '@mui/material';
+
 import ClientTable from './ClientTable';
 import add from '../../../../assets/images/add.svg';
 import AddClient from './AddClient';
@@ -8,11 +9,14 @@ import api from '../../../../api/index';
 export default function Clients() {
   const [open, setOpen] = useState(false);
   const [clients, setClients] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const getClients = async () => {
+    setLoading(true);
     const { data } = await api('get', '/clients');
     if (data) {
       setClients(data?.results);
+      setLoading(false);
     }
   };
 
@@ -25,7 +29,11 @@ export default function Clients() {
         <Grid xl={2} lg={3} />
 
         <Grid xl={10} lg={9}>
-          <ClientTable clients={clients} getClients={getClients} />
+          <ClientTable
+            loading={loading}
+            clients={clients}
+            getClients={getClients}
+          />
           <div className="btnContainer">
             <Button
               variant="contained"

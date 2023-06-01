@@ -10,11 +10,14 @@ export default function Aquariums() {
   const [aquariums, setAquariums] = useState([]);
   const [clients, setClients] = useState([]);
   const [tanks, setTanks] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const getAquariums = async () => {
+    setLoading(true);
     const { data } = await api('get', '/clients/aquariums');
     if (data) {
       setAquariums(data?.results);
+      setLoading(false);
     }
   };
   const getClients = async () => {
@@ -48,6 +51,7 @@ export default function Aquariums() {
             getAquariums={getAquariums}
             clients={clients}
             tanks={tanks}
+            loading={loading}
           />
 
           <div className="btnContainer">
