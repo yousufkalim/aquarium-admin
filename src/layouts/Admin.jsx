@@ -29,8 +29,11 @@ function Admin() {
         updateStore({ admin: data.admin, loggedIn: true });
         localStorage.setItem('role', data.admin.role);
       })
-      .catch(() => {
-        window.location = '/auth/login';
+      .catch((err) => {
+        if (err?.response?.status === 403) {
+          localStorage.removeItem('token');
+          window.location = '/auth/login';
+        }
       });
 
     //  eslint-disable-next-line react-hooks/exhaustive-deps
