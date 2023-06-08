@@ -40,7 +40,7 @@ export default function MultipleSelect({
           onChange={handleChange}
           input={<OutlinedInput />}
           style={style}
-          sx={{ textAlign: 'left', width: '220px' }}
+          sx={{ textAlign: 'left', width: '260px' }}
           IconComponent={() => (
             <>
               <KeyboardArrowDownOutlinedIcon />

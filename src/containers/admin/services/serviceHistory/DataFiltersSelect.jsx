@@ -16,7 +16,6 @@ const MenuProps = {
   PaperProps: {
     style: {
       maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
     },
   },
 };
@@ -84,9 +83,7 @@ export default function MultipleSelect({
           {selectedFilter === 'client'
             ? clients.map((client) => (
                 <MenuItem value={client?._id}>
-                  {client?.first_name}
-{' '}
-{client?.last_name}
+                  {`${client?.first_name} ${client?.last_name}`}
                 </MenuItem>
               ))
             : tanks.map((tank) => (
