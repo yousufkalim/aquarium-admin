@@ -1,5 +1,5 @@
 // Init
-import React, { useEffect } from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import {
   Routes,
   Route,
@@ -13,21 +13,26 @@ import { superadminRoutes } from '../routes/routes';
 import { Store, UpdateStore } from '../StoreContext';
 import api from '../api';
 import Sidebar from '../components/Sidebar';
+import SplashScreen from '../components/SplashScreen';
 
 function SuperAdmin() {
   const { admin } = Store();
   const { pathname } = useLocation();
   const updateStore = UpdateStore();
+  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
+    setLoading(true);
     api('get', '/admins/auth')
       .then(({ data }) => {
+        setLoading(false);
         if (data.admin?.role === 'admin') {
           window.location = '/admin';
         }
         updateStore({ admin: data.admin, loggedIn: true });
       })
       .catch((err) => {
+        setLoading(false);
         if (err?.response?.status === 403) {
           localStorage.removeItem('token');
           window.location = '/auth/login';
@@ -47,7 +52,9 @@ function SuperAdmin() {
     return routes;
   };
 
-  return (
+  return loading ? (
+    <SplashScreen />
+  ) : (
     <>
       <Sidebar />
       <Routes>
