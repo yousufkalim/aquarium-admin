@@ -1,5 +1,5 @@
 // Init
-import React, { useEffect } from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import {
   Routes,
   Route,
@@ -14,15 +14,19 @@ import { Store, UpdateStore } from '../StoreContext';
 import api from '../api';
 import Sidebar from '../components/Sidebar';
 import Schedule from '../containers/admin/dashboard/schedule.jsx/schedule';
+import SplashScreen from '../components/SplashScreen';
 
 function Admin() {
   const { admin } = Store();
   const { pathname } = useLocation();
   const updateStore = UpdateStore();
+  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
+    setLoading(true);
     api('get', '/admins/auth')
       .then(({ data }) => {
+        setLoading(false);
         if (data.admin?.role === 'superadmin') {
           window.location = '/superadmin';
         }
@@ -30,6 +34,7 @@ function Admin() {
         localStorage.setItem('role', data.admin.role);
       })
       .catch((err) => {
+        setLoading(false);
         if (err?.response?.status === 403) {
           localStorage.removeItem('token');
           window.location = '/auth/login';
@@ -58,10 +63,11 @@ function Admin() {
     return routes.flat();
   };
 
-  return (
+  return loading ? (
+    <SplashScreen />
+  ) : (
     <>
       <Sidebar />
-
       <Routes>
         {getRoutes()}
         <Route path="/technicians/:id" element={<Schedule />} />
