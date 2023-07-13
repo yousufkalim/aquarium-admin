@@ -26,7 +26,7 @@ import InputBase from '@mui/material/InputBase';
 import TimePicker from 'react-time-picker';
 import moment from 'moment-timezone';
 import api from '../../../../api/index';
-import TaskCreatedDetail from './TaskCreatedDetail';
+// import TaskCreatedDetail from './TaskCreatedDetail';
 
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
   '& .MuiInputBase-input': {
@@ -124,7 +124,7 @@ export default function AddTask({
   aquariums,
   disable,
   setDisable,
-  getDate,
+  // getDate,
 }) {
   const { id } = useParams();
   const outlinedInputStyles = useOutlinedInputStyles();
@@ -152,8 +152,8 @@ export default function AddTask({
   } = schedule;
 
   const [checked, setChecked] = useState(true);
-  const [created, setCreated] = useState(false);
-  const [details, setDetails] = useState({});
+  // const [created, setCreated] = useState(false);
+  // const [details, setDetails] = useState({});
 
   const [clicked, setClicked] = useState(false);
   const onClickEventRate = () => {
@@ -253,8 +253,14 @@ export default function AddTask({
       handleClose();
     } else {
       const { data } = await api('post', '/schedule/tasks', obj);
-      setCreated(true);
-      setDetails(data.results);
+      if (data?.success) {
+        toast.success(data?.message);
+        handleClose();
+      } else {
+        toast.error(data?.message);
+      }
+      // setCreated(true);
+      // setDetails(data.results);
     }
     getTasks(moment(selectedDate).format('MM-DD-YYYY'));
   };
@@ -796,7 +802,7 @@ export default function AddTask({
             {editing ? 'Update Event' : 'Add Event'}
           </Button>
         </DialogActions>
-        {created && (
+        {/* {created && (
           <TaskCreatedDetail
             details={details}
             openDetail={created}
@@ -808,7 +814,7 @@ export default function AddTask({
             getDate={getDate}
             // handlePrevClose={handleClose}
           />
-        )}
+        )} */}
       </BootstrapDialog>
     </div>
   );
