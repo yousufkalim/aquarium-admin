@@ -59,7 +59,6 @@ function SuperAdmin() {
       <Sidebar />
       <Routes>
         {getRoutes()}
-
         <Route
           path="/*"
           element={<Navigate replace to="/superadmin/admins" />}
