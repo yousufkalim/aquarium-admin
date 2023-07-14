@@ -28,6 +28,8 @@ export default function ExportServiceHistory({ serviceHistory }) {
     'Service End Time',
     'Technician Name',
     'Products',
+    'Duration',
+    'Notes',
   ];
   // Extension
   const fileExtension = '.xlsx';
@@ -56,32 +58,49 @@ export default function ExportServiceHistory({ serviceHistory }) {
 
   // exporting excel
   const handleSubmitExcel = () => {
-    const updatedserviceHistory = serviceHistory.map((item) => ({
-      'Service Id': (item.serviceId || '')
-        .toString()
-        .padStart(4, '0'),
-      'Client Name': `${item.aquarium?.client?.first_name || ''} ${
-        item.aquarium?.client?.last_name || ''
-      }`,
-      'Tank Size': item.aquarium?.tank_details.size || '',
-      // eslint-disable-next-line no-underscore-dangle
-      Date: moment(item.date).format('MM-DD-YYYY'),
-      'Service Start Time': moment(item.start_time)
-        .tz('America/Tijuana')
-        .format('hh:mm A'),
-      'Service End Time': moment(item.end_time)
-        .tz('America/Tijuana')
-        .format('hh:mm A'),
-      'Technician Name':
-        item.technician.first_name + ' ' + item.technician.first_name,
-      Products: item.products
-        .map((i) => `${i.product.name} (${i.quantity})`)
-        .join(',\r\n '),
-      ...(admin.role === 'superadmin' && {
-        Questions: item.checklists.map((i) => i.title).join(',\r\n'),
-        Answers: item.checklists.map((i) => i.status).join(',\r\n'),
-      }),
-    }));
+    const updatedserviceHistory = serviceHistory.map((item) => {
+      const duration = moment.duration(
+        moment(item?.completed_at).diff(moment(item?.started_at)),
+      );
+      console.log(
+        `${duration?.hours() || 0} h ${duration?.minutes() || 0} m`,
+        'du',
+      );
+      return {
+        'Service Id': (item.serviceId || '')
+          .toString()
+          .padStart(4, '0'),
+        'Client Name': `${item.aquarium?.client?.first_name || ''} ${
+          item.aquarium?.client?.last_name || ''
+        }`,
+        'Tank Size': item.aquarium?.tank_details.size || '',
+        // eslint-disable-next-line no-underscore-dangle
+        Date: moment(item.date).format('MM-DD-YYYY'),
+        'Service Start Time': moment(item.start_time)
+          .tz('America/Tijuana')
+          .format('hh:mm A'),
+        'Service End Time': moment(item.end_time)
+          .tz('America/Tijuana')
+          .format('hh:mm A'),
+        'Technician Name':
+          item.technician.first_name +
+          ' ' +
+          item.technician.first_name,
+        Products: item.products
+          .map((i) => `${i.product.name} (${i.quantity})`)
+          .join(',\r\n '),
+        ...(admin.role === 'superadmin' && {
+          Questions: item.checklists
+            .map((i) => i.title)
+            .join(',\r\n'),
+          Answers: item.checklists.map((i) => i.status).join(',\r\n'),
+        }),
+        Duration: `${duration?.hours() || 0} h ${
+          duration?.minutes() || 0
+        } m`,
+        Notes: item?.comment,
+      };
+    });
 
     exportToCSV(updatedserviceHistory);
   };
