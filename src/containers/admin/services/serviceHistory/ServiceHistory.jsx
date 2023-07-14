@@ -18,8 +18,9 @@ export default function ServiceHistory() {
 
   const getServiceHistory = async () => {
     setLoading(true);
-    await api('get', '//schedule/tasks')
+    await api('get', '/schedule/tasks/history')
       .then((res) => {
+        console.log(res, 'Newdata');
         setServiceHistory(res?.data?.results);
         setLoading(false);
       })
