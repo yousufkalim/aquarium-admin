@@ -8,7 +8,7 @@ import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import Button from '@mui/material/Button';
@@ -28,7 +28,6 @@ import { superadminRoutes, adminRoutes } from '../routes/routes';
 const drawerWidth = 300;
 
 export default function Sidebar() {
-  const navigate = useNavigate();
   const { admin } = Store();
   const [open, setOpen] = useState(false);
   const [disable, setDisable] = useState(false);
@@ -37,7 +36,7 @@ export default function Sidebar() {
     localStorage.removeItem('token');
     localStorage.removeItem('role');
 
-    navigate('/auth/login');
+    window.location = '/auth/login';
   };
   const [updownIconToggle, setupdownIconToggle] = useState({
     key: '',
@@ -69,7 +68,7 @@ export default function Sidebar() {
         className="sideBarAdmin"
       >
         <NavLink
-          to="/"
+          to={`/${admin.role}`}
           style={{ textDecoration: 'none', margin: 'auto' }}
           className="sidebarLogo"
         >

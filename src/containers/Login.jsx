@@ -1,12 +1,11 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useLayoutEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Grid, IconButton } from '@mui/material';
 import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
-import ClearIcon from '@mui/icons-material/Clear';
 import { makeStyles } from '@mui/styles';
 
 import Button from '@mui/material/Button';
@@ -43,6 +42,20 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
 
   const updateStore = UpdateStore();
+  const navigate = useNavigate();
+
+  useLayoutEffect(() => {
+    api('get', '/admins/auth', '', false)
+      .then(({ data }) => {
+        if (data.admin?.role) {
+          navigate(`/${data.admin?.role}`);
+          updateStore({ admin: data.admin, loggedIn: true });
+        }
+      })
+      .catch(console.log);
+
+    //  eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -66,9 +79,6 @@ export default function Login() {
     <div className="loginPg">
       <Grid item xs={0} className="loginFirstSection">
         <img src={Logo} className="logoLogin" alt="" />
-        <Link to="/">
-          <ClearIcon className="loginClearIcon" />
-        </Link>
       </Grid>
 
       <Grid container className="loginFormSection" xs={12}>

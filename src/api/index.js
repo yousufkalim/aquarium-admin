@@ -3,7 +3,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { baseUrl } from '../config';
 
-const api = async (method, uri, body) => {
+const api = async (method, uri, body, redirect = true) => {
   // API Call
   const url = baseUrl + uri;
 
@@ -20,12 +20,16 @@ const api = async (method, uri, body) => {
       .catch((err) => {
         if (err?.response?.status === 403) {
           localStorage.removeItem('token');
-          window.location = '/auth/login';
+          if (redirect) {
+            window.location = '/auth/login';
+          }
         } else {
           // eslint-disable-next-line no-console
           console.log('API Error --------> ', err?.response?.status);
           toast.error(
-            err?.response?.data ? err.response.data.message : err?.message,
+            err?.response?.data
+              ? err.response.data.message
+              : err?.message,
           );
           reject(err);
         }

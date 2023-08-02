@@ -1,5 +1,4 @@
 // Auth Routes
-import Home from '../containers/Home';
 import Login from '../containers/Login';
 
 // Superadmin Routes
@@ -25,15 +24,6 @@ import ServiceHistory from '../containers/admin/services/serviceHistory/ServiceH
 import Checklist from '../containers/admin/checklistBuilder/Checklist';
 import Technicians from '../containers/admin/dashboard/technicians/Technicians';
 import Products from '../containers/admin/products/Products';
-
-// unAuth routes
-const unAuthRoutes = [
-  {
-    path: '/',
-    name: 'Home Page',
-    element: <Home />,
-  },
-];
 
 // Routes for login
 const authRoutes = [
@@ -149,4 +139,4 @@ const adminRoutes = [
 
 // Getting all routes
 // eslint-disable-next-line object-curly-newline
-export { authRoutes, unAuthRoutes, superadminRoutes, adminRoutes };
+export { authRoutes, superadminRoutes, adminRoutes };

@@ -15,7 +15,10 @@ function SuperAdmin() {
   return (
     <Routes>
       {getRoutes()}
-      <Route path="/*" element={<Navigate replace to="/" />} />
+      <Route
+        path="/*"
+        element={<Navigate replace to="/auth/login" />}
+      />
     </Routes>
   );
 }
