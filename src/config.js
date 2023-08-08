@@ -10,10 +10,8 @@ if (window.location.host === 'aquarium-admin-dev.falconweb.app') {
   window.location.host === 'aquarium-admin-staging.falconweb.app'
 ) {
   baseUrl = 'https://aquarium-api-staging.falconweb.app/api';
-} else if (
-  window.location.host === 'aquarium-admin-prod.falconweb.app/'
-) {
-  baseUrl = 'https://aquarium-api-prod.falconweb.app/api';
+} else if (window.location.host === 'app.aquariumservicepro.com') {
+  baseUrl = 'https://api.aquariumservicepro.com/api';
 }
 
 const genMediaUrl = (url) => {
